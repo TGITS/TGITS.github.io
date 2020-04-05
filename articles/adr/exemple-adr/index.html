@@ -31,21 +31,21 @@
       
         <meta name="lang:search.tokenizer" content="[\s\-]+">
       
-      <link rel="shortcut icon" href="assets/images/favicon.png">
+      <link rel="shortcut icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.1, mkdocs-material-4.6.3">
     
     
       
-        <title>The Geek In The Shell</title>
+        <title>Exemple d'ADR - The Geek In The Shell</title>
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/application.adb8469c.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/application.adb8469c.css">
       
       
     
     
-      <script src="assets/javascripts/modernizr.86422ebf.js"></script>
+      <script src="../../../assets/javascripts/modernizr.86422ebf.js"></script>
     
     
       
@@ -54,7 +54,7 @@
         <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
       
     
-    <link rel="stylesheet" href="assets/fonts/material-icons.css">
+    <link rel="stylesheet" href="../../../assets/fonts/material-icons.css">
     
     
     
@@ -75,7 +75,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#the-geek-in-the-shell" tabindex="0" class="md-skip">
+      <a href="#adr-0000-utilisation-des-adr-pour-le-suivi-des-decisions-darchitecture-pour-le-projet-xyz" tabindex="0" class="md-skip">
         Skip to content
       </a>
     
@@ -84,7 +84,7 @@
   <nav class="md-header-nav md-grid">
     <div class="md-flex">
       <div class="md-flex__cell md-flex__cell--shrink">
-        <a href="." title="The Geek In The Shell" aria-label="The Geek In The Shell" class="md-header-nav__button md-logo">
+        <a href="../../.." title="The Geek In The Shell" aria-label="The Geek In The Shell" class="md-header-nav__button md-logo">
           
             <i class="md-icon"></i>
           
@@ -101,7 +101,7 @@
             </span>
             <span class="md-header-nav__topic">
               
-                Home
+                Exemple d'ADR
               
             </span>
           
@@ -154,7 +154,7 @@
                   <div class="md-sidebar__inner">
                     <nav class="md-nav md-nav--primary" data-md-level="0">
   <label class="md-nav__title md-nav__title--site" for="__drawer">
-    <a href="." title="The Geek In The Shell" class="md-nav__button md-logo">
+    <a href="../../.." title="The Geek In The Shell" class="md-nav__button md-logo">
       
         <i class="md-icon"></i>
       
@@ -168,6 +168,84 @@
       
       
 
+
+  <li class="md-nav__item">
+    <a href="../../.." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+    
+    <label class="md-nav__link" for="nav-2">
+      Articles
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        Articles
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-1" type="checkbox" id="nav-2-1" checked>
+    
+    <label class="md-nav__link" for="nav-2-1">
+      ADR
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-1">
+        ADR
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../adr/" title="Présentation des ADR" class="md-nav__link">
+      Présentation des ADR
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../traduction_billet_documenting_architecture_decisions/" title="Traduction de l'article orginal de Michael Nygaard" class="md-nav__link">
+      Traduction de l'article orginal de Michael Nygaard
+    </a>
+  </li>
+
+        
+          
+          
+          
+
   
 
 
@@ -179,11 +257,11 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
-        Home
+        Exemple d'ADR
       </label>
     
-    <a href="." title="Home" class="md-nav__link md-nav__link--active">
-      Home
+    <a href="./" title="Exemple d'ADR" class="md-nav__link md-nav__link--active">
+      Exemple d'ADR
     </a>
     
       
@@ -197,36 +275,37 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#reseaux-sociaux" class="md-nav__link">
-    Réseaux sociaux
+  <a href="#suivi" class="md-nav__link">
+    Suivi
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#blogs-recommandes" class="md-nav__link">
-    Blogs recommandés
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#les-blogs-des-potes" class="md-nav__link">
-    Les blogs des potes
+  <a href="#contexte" class="md-nav__link">
+    Contexte
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#le-blog-de-norsys" class="md-nav__link">
-    Le blog de Norsys
+      
+        <li class="md-nav__item">
+  <a href="#decision" class="md-nav__link">
+    Décision
   </a>
   
 </li>
-        
-      </ul>
-    </nav>
+      
+        <li class="md-nav__item">
+  <a href="#etat" class="md-nav__link">
+    Etat
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#consequences" class="md-nav__link">
+    Conséquences
+  </a>
   
 </li>
       
@@ -245,80 +324,6 @@
   
 </nav>
     
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item md-nav__item--nested">
-    
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
-    
-    <label class="md-nav__link" for="nav-2">
-      Articles
-    </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-2">
-        Articles
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item md-nav__item--nested">
-    
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-1" type="checkbox" id="nav-2-1">
-    
-    <label class="md-nav__link" for="nav-2-1">
-      ADR
-    </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
-      <label class="md-nav__title" for="nav-2-1">
-        ADR
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="articles/adr/adr/" title="Présentation des ADR" class="md-nav__link">
-      Présentation des ADR
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="articles/adr/traduction_billet_documenting_architecture_decisions/" title="Traduction de l'article orginal de Michael Nygaard" class="md-nav__link">
-      Traduction de l'article orginal de Michael Nygaard
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="articles/adr/exemple-adr/" title="Exemple d'ADR" class="md-nav__link">
-      Exemple d'ADR
-    </a>
   </li>
 
         
@@ -353,36 +358,37 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#reseaux-sociaux" class="md-nav__link">
-    Réseaux sociaux
+  <a href="#suivi" class="md-nav__link">
+    Suivi
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#blogs-recommandes" class="md-nav__link">
-    Blogs recommandés
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#les-blogs-des-potes" class="md-nav__link">
-    Les blogs des potes
+  <a href="#contexte" class="md-nav__link">
+    Contexte
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#le-blog-de-norsys" class="md-nav__link">
-    Le blog de Norsys
+      
+        <li class="md-nav__item">
+  <a href="#decision" class="md-nav__link">
+    Décision
   </a>
   
 </li>
-        
-      </ul>
-    </nav>
+      
+        <li class="md-nav__item">
+  <a href="#etat" class="md-nav__link">
+    Etat
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#consequences" class="md-nav__link">
+    Conséquences
+  </a>
   
 </li>
       
@@ -410,32 +416,32 @@
               
                 
                 
-                <h1 id="the-geek-in-the-shell">The Geek In The Shell</h1>
-<p>Ce site est mon blog personnel et les propos que j'y tiens n'engage que moi. Notamment je n'y <em>parle</em> pas au nom de mon employeur actuel. 
-S'y trouvent notes, articles et réflexions d'un (vieux) développeur sur les sujets qui me tiennent <em>hacker</em>.</p>
-<p>Je suis actuellement développeur chez <a href="https://www.norsys.fr/">Norsys</a>. J'ai travaillé dans plusieurs ESN à différents postes (développeur, architecte, chef de projet, etc.), mais ce qui m'éclate vraiment c'est concevoir et développer des applications.</p>
-<p>J'ai un humour déplorable et j'aime les jeux de mots assez pourris, il faut le savoir et le cas échéant le supporter.</p>
-<h2 id="reseaux-sociaux">Réseaux sociaux</h2>
+                <h1 id="adr-0000-utilisation-des-adr-pour-le-suivi-des-decisions-darchitecture-pour-le-projet-xyz">ADR #0000 : utilisation des ADR pour le suivi des décisions d'architecture pour le projet XYZ</h1>
+<h2 id="suivi">Suivi</h2>
 <ul>
-<li><a href="https://www.codingame.com/profile/f60cabafedc10558b2fecf345f91b9e69289781">CodinGame</a></li>
-<li><a href="https://exercism.io/profiles/TGITS">Exercism</a></li>
-<li>Twitter avec le <em>handle</em> <a href="https://twitter.com/_TGITS">@_TGITS</a></li>
-<li><a href="https://www.linkedin.com/in/cvaudry/">LinkedIn</a></li>
-<li><a href="http://fr.viadeo.com/fr/profile/christophe.vaudry">Viadeo</a></li>
+<li>Auteur(s) : Jon Snow</li>
+<li>Email(s) : jon.snow@northofthewall.com</li>
+<li>version : v1.0</li>
+<li>Date de création : 2019-01-02</li>
 </ul>
-<h2 id="blogs-recommandes">Blogs recommandés</h2>
-<h3 id="les-blogs-des-potes">Les blogs des potes</h3>
-<p>Je vous recommande les blogs suivants qui sont réalisés par des collègues/ex-collègues. Je ne suis pas nécessairement d'accord avec leur manière de voir les choses mais dans tous les cas il m'amène à réfléchir et à me poser des questions. Bref, j'ai un profond respect pour les pensées qu'ils expriment.</p>
+<h2 id="contexte">Contexte</h2>
+<p>Le projet <strong>XYZ</strong> est une application web qui doit exposer une API à usage de nos clients. Cette application doit être développée sous la forme d'un <strong>microservice</strong> et pourra être la première à utiliser les technologies Y et X. Elle fait donc l'objet d'un suivi particulier afin de pouvoir en tirer des enseignements et des retours d'expérience.</p>
+<p>L'équipe projet travaille avec un Kanban et des <em>user stories</em> dans le cadre d'une démarche itérative et agile.</p>
+<h2 id="decision">Décision</h2>
+<p>Utiliser des <strong>ADR</strong> pour suivre les choix de conception significatifs de l'application. </p>
+<p>Les <strong>ADR</strong> seront rédigés en <strong>Markdown</strong> et placés avec la documentation dans les sources. Le processus d'écriture et de validation des <strong>ADR</strong> dans l'équipe est similaire au processus de développement habituel : soit l'<strong>ADR</strong> est créé dans le cadre du développement d'une <em>feature</em> et fait partie des fichiers de cette <em>feature</em>, soit si c'est un <strong>ADR</strong> <em>hors feature</em>, il y a création d'une branche spécifique  et soumission d'une MR pour intégration dans la branche <code>Master</code>.</p>
+<h2 id="etat">Etat</h2>
+<p>Acceptée</p>
+<h2 id="consequences">Conséquences</h2>
 <ul>
-<li><a href="https://un-est-tout-et-tout-est-un.blogspot.com/">Le blog de Thomas Collonvillé</a></li>
-<li><a href="https://riduidel.wordpress.com/">Le blog de Nicolas Delsaux aka Riduidel</a></li>
-</ul>
-<h3 id="le-blog-de-norsys">Le blog de Norsys</h3>
-<ul>
-<li><a href="https://blog.norsys.fr/accueil">https://blog.norsys.fr/accueil</a></li>
+<li>Toutes décisions de conception suffisamment significatives doit faire l'objet d'un <strong>ADR</strong>. </li>
+<li>Il faudra que l'équipe fasse preuve de discipline et de constance à cet égard, car la pratique n'a d'intérêt que sur le long terme et si elle est pratiquée de manière consistante.</li>
+<li>Il faudra également que l'équipe se mette d'accord sur ce qui est une décision significative.</li>
+<li>Les <strong>ADR</strong> font parties des supports attendus pour alimenter les réunions de suivis d'architecture tout au long du projet. Il faut bien calibrer l'utilisation des <strong>ADR</strong>, afin de les écrire pour les choix de conception au bon niveau d'abstraction, sinon il y aura trop d'<strong>ADR</strong> pour des décisions mineures ou pas assez sur des choix de conception trop génériques.</li>
+<li>Les <strong>ADR</strong> sont un support important pour l'établissement du REX du projet et contribueront à alimenter les points de conception et d'architecture.</li>
 </ul>
 <h2 id="informations-legales">Informations légales</h2>
-<p><a href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a>. De manière générale, le contenu de ce site est sous licence <a href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
+<p><a href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a>. Ce travail est sous licence <a href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a></p>
                 
                   
                 
@@ -457,20 +463,20 @@ S'y trouvent notes, articles et réflexions d'un (vieux) développeur sur les su
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-        
-          <a href="articles/adr/adr/" title="Présentation des ADR" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../traduction_billet_documenting_architecture_decisions/" title="Traduction de l'article orginal de Michael Nygaard" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
-                  Next
+                  Previous
                 </span>
-                Présentation des ADR
+                Traduction de l'article orginal de Michael Nygaard
               </span>
             </div>
-            <div class="md-flex__cell md-flex__cell--shrink">
-              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
-            </div>
           </a>
+        
         
       </nav>
     </div>
@@ -492,9 +498,9 @@ S'y trouvent notes, articles et réflexions d'un (vieux) développeur sur les su
       
     </div>
     
-      <script src="assets/javascripts/application.c33a9706.js"></script>
+      <script src="../../../assets/javascripts/application.c33a9706.js"></script>
       
-      <script>app.initialize({version:"1.1",url:{base:"."}})</script>
+      <script>app.initialize({version:"1.1",url:{base:"../../.."}})</script>
       
     
   </body>
