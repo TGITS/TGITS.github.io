@@ -1,0 +1,1 @@
+mkdocs gh-deploy --config-file ../tgits/mkdocs.yml --remote-branch master
