@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on The Geek In The Shell</title>
+    <link>https://tgits.github.io/post/</link>
+    <description>Recent content in Posts on The Geek In The Shell</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>fr-fr</language>
+    <lastBuildDate>Sun, 24 May 2020 11:53:13 +0200</lastBuildDate>
+    
+	<atom:link href="https://tgits.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Veille pour la semaine du 18 au 24 mai 2020</title>
+      <link>https://tgits.github.io/post/veille-semaine-20200518/</link>
+      <pubDate>Sun, 24 May 2020 11:53:13 +0200</pubDate>
+      
+      <guid>https://tgits.github.io/post/veille-semaine-20200518/</guid>
+      <description>Une sélection de ce que j&amp;rsquo;ai écouté, vu ou lu et qui a marqué ma semaine (ou aurait dû) ! Comme le remarque mon collègue Thomas dans un billet, c&amp;rsquo;est représentatif de ma bulle informationnelle !
+Ecouté   Suite à un changement de matériel pour récupérer et consommer des podcasts (passage de l&amp;rsquo;utilisation de l&amp;rsquo;iPod à un téléphone), j&amp;rsquo;ai pris beaucoup de retard sur mon écoute des Castcodeurs, retard que j&amp;rsquo;ai commencé à rattraper dans le désordre :-)</description>
+    </item>
+    
+    <item>
+      <title>Veille pour la semaine du 11 au 17 mai 2020</title>
+      <link>https://tgits.github.io/post/veille-semaine-20200511/</link>
+      <pubDate>Sun, 17 May 2020 11:53:13 +0200</pubDate>
+      
+      <guid>https://tgits.github.io/post/veille-semaine-20200511/</guid>
+      <description>Une sélection de ce que j&amp;rsquo;ai écouté, vu ou lu et qui a marqué ma semaine (ou aurait dû) !
+Ecouté   Interview de Christian Lehman dans le podcast C&amp;rsquo;est plus que de la SF.
+ Je ne connaissais pas No passaran, le jeu et Christian Lehman, mais ce podcast m&amp;rsquo;a vraiment donné envie de lire ce livre (enfin cette trilogie) et de découvrir cet auteur. L&amp;rsquo;auteur est médecin en exercice, l&amp;rsquo;écriture est une activité qu&amp;rsquo;il pratique en plus.</description>
+    </item>
+    
+    <item>
+      <title>Veille pour la semaine du 4 au 10 mai 2020</title>
+      <link>https://tgits.github.io/post/veille-semaine-20200504/</link>
+      <pubDate>Sun, 10 May 2020 11:53:13 +0200</pubDate>
+      
+      <guid>https://tgits.github.io/post/veille-semaine-20200504/</guid>
+      <description>Une sélection de ce que j&amp;rsquo;ai écouté, vu ou lu et qui a marqué ma semaine (ou aurait dû) !
+Ecouté   J&amp;rsquo;ai écouté pas mal de podcasts intéressants sur Python cette semaine :
+  Episode #179 de PythonBytes avec comme invité Guido van Rossum himself ! Plusieurs pointeurs prometteurs
+  missingno
+   Messy datasets? Missing values? missingno provides a small toolset of flexible and easy-to-use missing data visualizations and utilities that allows you to get a quick visual summary of the completeness (or lack thereof) of your dataset.</description>
+    </item>
+    
+    <item>
+      <title>Veille pour la semaine du 27 avril 2020 au 3 mai 2020</title>
+      <link>https://tgits.github.io/post/veille-semaine-20200427/</link>
+      <pubDate>Sun, 03 May 2020 11:53:13 +0200</pubDate>
+      
+      <guid>https://tgits.github.io/post/veille-semaine-20200427/</guid>
+      <description>Une sélection de ce que j&amp;rsquo;ai écouté, vu ou lu et qui a marqué ma semaine ou aurait dû !
+Ecouté  Une émission spéciale de La Méthode Scientifique : Comment penser la science après le Coronavirus Justin Richer sur OAuth2 par Software Engineering Radio Chasseur de Science, un nouveau Podcast de Futura Sciences, avec un premier épisode sur la quinine, l&amp;rsquo;ancêtre de la chloroquine. Très plaisant à écouter et instructif.</description>
+    </item>
+    
+    <item>
+      <title>Veille pour la semaine du 20 au 26 avril 2020</title>
+      <link>https://tgits.github.io/post/veille-semaine-20200420/</link>
+      <pubDate>Sun, 26 Apr 2020 11:53:13 +0200</pubDate>
+      
+      <guid>https://tgits.github.io/post/veille-semaine-20200420/</guid>
+      <description>Une sélection de ce que j&amp;rsquo;ai écouté, vu ou lu et qui a marqué ma semaine ou aurait dû !
+Ecouté   L&amp;rsquo;épisode de SERadio avec Adam Barr sur la qualité du code
+ Il faudra que j&amp;rsquo;acquiers et lise ce livre : https://mitpress.mit.edu/books/problem-software    https://corecursive.com/050-sam-ritchie-portal-abstractions/
+ J&amp;rsquo;aurais aimé avoir entendu des podcasts de ce type avant de démarrer ma Math Sup, cela m&amp;rsquo;aurait aidé à comprendre l&amp;rsquo;utilité de l&amp;rsquo;algèbre !</description>
+    </item>
+    
+    <item>
+      <title>Veille pour la semaine du 13 au 19 avril 2020</title>
+      <link>https://tgits.github.io/post/veille-semaine-20200413/</link>
+      <pubDate>Sun, 19 Apr 2020 11:53:13 +0200</pubDate>
+      
+      <guid>https://tgits.github.io/post/veille-semaine-20200413/</guid>
+      <description>Une sélection de ce que j&amp;rsquo;ai écouté, vu ou lu et qui a marqué ma semaine ou aurait dû ! C&amp;rsquo;est un bon exercice à réaliser qui permet de mesurer à quel point sur tout ce que nous entendons, lisons, voyons au final on retient assez peu !
+Ecouté  De l&amp;rsquo;épisode 405 de Software Engineering Radio sur les bonnes pratiques pour l&amp;rsquo;IaC (Infrastructure as Code), j&amp;rsquo;ai surtout retenu le concept de Yak Shaving.</description>
+    </item>
+    
+    <item>
+      <title>Veille pour la semaine du 06 au 12 avril 2020</title>
+      <link>https://tgits.github.io/post/veille-semaine-20200406/</link>
+      <pubDate>Sun, 12 Apr 2020 11:53:13 +0200</pubDate>
+      
+      <guid>https://tgits.github.io/post/veille-semaine-20200406/</guid>
+      <description>Une sélection de ce que j&amp;rsquo;ai écouté, vu ou lu et qui a marqué ma semaine.
+Ecouté Data science  Je ne suis pas un data scientist mais l&amp;rsquo;intelligence artificielle et le machine learning font partie de ces domaines qui m&amp;rsquo;ont toujours intéressé et sur lesquels j&amp;rsquo;essaie de garder une culture minimum. Le Podcast Linear Digressions est accessible au non-spécialiste et j&amp;rsquo;apprécie leur manière de discuter des sujets. Cette semaine, j&amp;rsquo;ai écouté l&amp;rsquo;épisode [Putting machine learning into a database](http://lineardigressions.</description>
+    </item>
+    
+  </channel>
+</rss>

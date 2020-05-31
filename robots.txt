@@ -1,0 +1,2 @@
+User-agent: *
+Sitemap: https://tgits.github.io/sitemap.xml

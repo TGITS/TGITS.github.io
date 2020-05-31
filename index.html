@@ -1,593 +1,302 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>The Geek In The Shell</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="TGITS" /><meta name="description" content="The Geek In The Shell, un blog de développeur" /><meta name="keywords" content="TGITS, Développement, Java, Architecture" />
 
 
 
 
-<!doctype html>
-<html lang="en" class="no-js">
-  <head>
-    
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width,initial-scale=1">
-      <meta http-equiv="x-ua-compatible" content="ie=edge">
-      
-      
-      
-      
-        <meta name="lang:clipboard.copy" content="Copy to clipboard">
-      
-        <meta name="lang:clipboard.copied" content="Copied to clipboard">
-      
-        <meta name="lang:search.language" content="en">
-      
-        <meta name="lang:search.pipeline.stopwords" content="True">
-      
-        <meta name="lang:search.pipeline.trimmer" content="True">
-      
-        <meta name="lang:search.result.none" content="No matching documents">
-      
-        <meta name="lang:search.result.one" content="1 matching document">
-      
-        <meta name="lang:search.result.other" content="# matching documents">
-      
-        <meta name="lang:search.tokenizer" content="[\s\-]+">
-      
-      <link rel="shortcut icon" href="assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.1, mkdocs-material-4.6.3">
-    
-    
-      
-        <title>The Geek In The Shell</title>
-      
-    
-    
-      <link rel="stylesheet" href="assets/stylesheets/application.adb8469c.css">
-      
-      
-    
-    
-      <script src="assets/javascripts/modernizr.86422ebf.js"></script>
-    
-    
-      
-        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
-        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
-      
-    
-    <link rel="stylesheet" href="assets/fonts/material-icons.css">
-    
-    
-    
-      
-    
-    
-  </head>
-  
-    <body dir="ltr">
-  
-    <svg class="md-svg">
-      <defs>
-        
-        
-      </defs>
-    </svg>
-    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
-    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
-    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
-    
-      <a href="#the-geek-in-the-shell" tabindex="0" class="md-skip">
-        Skip to content
-      </a>
-    
-    
-      <header class="md-header" data-md-component="header">
-  <nav class="md-header-nav md-grid">
-    <div class="md-flex">
-      <div class="md-flex__cell md-flex__cell--shrink">
-        <a href="." title="The Geek In The Shell" aria-label="The Geek In The Shell" class="md-header-nav__button md-logo">
-          
-            <i class="md-icon"></i>
-          
-        </a>
-      </div>
-      <div class="md-flex__cell md-flex__cell--shrink">
-        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
-      </div>
-      <div class="md-flex__cell md-flex__cell--stretch">
-        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
-          
-            <span class="md-header-nav__topic">
-              The Geek In The Shell
-            </span>
-            <span class="md-header-nav__topic">
-              
-                Home
-              
-            </span>
-          
-        </div>
-      </div>
-      <div class="md-flex__cell md-flex__cell--shrink">
-        
-          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
-          
-<div class="md-search" data-md-component="search" role="dialog">
-  <label class="md-search__overlay" for="__search"></label>
-  <div class="md-search__inner" role="search">
-    <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" aria-label="search" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
-      <label class="md-icon md-search__icon" for="__search"></label>
-      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
-        &#xE5CD;
-      </button>
-    </form>
-    <div class="md-search__output">
-      <div class="md-search__scrollwrap" data-md-scrollfix>
-        <div class="md-search-result" data-md-component="result">
-          <div class="md-search-result__meta">
-            Type to start searching
-          </div>
-          <ol class="md-search-result__list"></ol>
-        </div>
-      </div>
-    </div>
+
+
+<meta name="generator" content="Hugo 0.71.1 with theme even" />
+
+
+<link rel="canonical" href="https://tgits.github.io/" />
+  <link href="https://tgits.github.io/index.xml" rel="alternate" type="application/rss+xml" title="The Geek In The Shell" />
+  <link href="https://tgits.github.io/index.xml" rel="feed" type="application/rss+xml" title="The Geek In The Shell" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.8c3cbcb0324c2bb4875ceccba4007cbad4b4ac8377f33af9953c3e7684534a50.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="The Geek In The Shell" />
+<meta property="og:description" content="The Geek In The Shell, un blog de développeur" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://tgits.github.io/" />
+<meta property="og:updated_time" content="2020-05-31T16:56:13+02:00" />
+<meta itemprop="name" content="The Geek In The Shell">
+<meta itemprop="description" content="The Geek In The Shell, un blog de développeur"><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="The Geek In The Shell"/>
+<meta name="twitter:description" content="The Geek In The Shell, un blog de développeur"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">TGITS</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
   </div>
 </div>
-        
-      </div>
-      
-    </div>
-  </nav>
-</header>
-    
-    <div class="md-container">
-      
-        
-      
-      
-      <main class="md-main" role="main">
-        <div class="md-main__inner md-grid" data-md-component="container">
-          
-            
-              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
-                <div class="md-sidebar__scrollwrap">
-                  <div class="md-sidebar__inner">
-                    <nav class="md-nav md-nav--primary" data-md-level="0">
-  <label class="md-nav__title md-nav__title--site" for="__drawer">
-    <a href="." title="The Geek In The Shell" class="md-nav__button md-logo">
-      
-        <i class="md-icon"></i>
-      
-    </a>
-    The Geek In The Shell
-  </label>
-  
-  <ul class="md-nav__list" data-md-scrollfix>
-    
-      
-      
-      
-
-  
-
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        Home
-      </label>
-    
-    <a href="." title="Home" class="md-nav__link md-nav__link--active">
-      Home
-    </a>
-    
-      
-<nav class="md-nav md-nav--secondary">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">Table of contents</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#reseaux-sociaux" class="md-nav__link">
-    Réseaux sociaux
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#blogs-recommandes" class="md-nav__link">
-    Blogs recommandés
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#les-blogs-des-potes" class="md-nav__link">
-    Les blogs des potes
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#informations-legales" class="md-nav__link">
-    Informations légales
-  </a>
-  
-</li>
-      
-      
-      
-      
-      
-    </ul>
-  
-</nav>
-    
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item md-nav__item--nested">
-    
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
-    
-    <label class="md-nav__link" for="nav-2">
-      Articles
-    </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-2">
-        Articles
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item md-nav__item--nested">
-    
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-1" type="checkbox" id="nav-2-1">
-    
-    <label class="md-nav__link" for="nav-2-1">
-      ADR
-    </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
-      <label class="md-nav__title" for="nav-2-1">
-        ADR
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="articles/adr/adr/" title="Présentation des ADR" class="md-nav__link">
-      Présentation des ADR
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="articles/adr/traduction_billet_documenting_architecture_decisions/" title="Traduction de l'article orginal de Michael Nygaard" class="md-nav__link">
-      Traduction de l'article orginal de Michael Nygaard
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="articles/adr/exemple-adr/" title="Exemple d'ADR" class="md-nav__link">
-      Exemple d'ADR
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item md-nav__item--nested">
-    
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-2" type="checkbox" id="nav-2-2">
-    
-    <label class="md-nav__link" for="nav-2-2">
-      Veille
-    </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
-      <label class="md-nav__title" for="nav-2-2">
-        Veille
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="articles/veille/veille-semaine-20200406/" title="Veille pour la semaine du 06 au 12 avril 2020" class="md-nav__link">
-      Veille pour la semaine du 06 au 12 avril 2020
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="articles/veille/veille-semaine-20200413/" title="Veille pour la semaine du 13 au 19 avril 2020" class="md-nav__link">
-      Veille pour la semaine du 13 au 19 avril 2020
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="articles/veille/veille-semaine-20200420/" title="Veille pour la semaine du 20 au 26 avril 2020" class="md-nav__link">
-      Veille pour la semaine du 20 au 26 avril 2020
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="articles/veille/veille-semaine-20200427/" title="Veille pour la semaine du 27 avril au 03 mai 2020" class="md-nav__link">
-      Veille pour la semaine du 27 avril au 03 mai 2020
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="articles/veille/veille-semaine-20200504/" title="veille pour la semaine du 04 au 10 mai 2020" class="md-nav__link">
-      veille pour la semaine du 04 au 10 mai 2020
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="articles/veille/veille-semaine-20200511/" title="veille pour la semaine du 11 au 17 mai 2020" class="md-nav__link">
-      veille pour la semaine du 11 au 17 mai 2020
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="articles/veille/veille-semaine-20200518/" title="veille pour la semaine du 18 au 24 mai 2020" class="md-nav__link">
-      veille pour la semaine du 18 au 24 mai 2020
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-    
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Blog</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
   </ul>
 </nav>
-                  </div>
-                </div>
-              </div>
-            
-            
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
-                <div class="md-sidebar__scrollwrap">
-                  <div class="md-sidebar__inner">
-                    
-<nav class="md-nav md-nav--secondary">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">Table of contents</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#reseaux-sociaux" class="md-nav__link">
-    Réseaux sociaux
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#blogs-recommandes" class="md-nav__link">
-    Blogs recommandés
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#les-blogs-des-potes" class="md-nav__link">
-    Les blogs des potes
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#informations-legales" class="md-nav__link">
-    Informations légales
-  </a>
-  
-</li>
-      
-      
-      
-      
-      
-    </ul>
-  
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">TGITS</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Blog</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
 </nav>
-                  </div>
-                </div>
-              </div>
-            
-          
-          <div class="md-content">
-            <article class="md-content__inner md-typeset">
-              
-                
-                
-                <h1 id="the-geek-in-the-shell">The Geek In The Shell</h1>
-<p>Ce site est mon blog personnel et les propos que j'y tiens n'engage que moi. Notamment je n'y <em>parle</em> pas au nom de mon employeur actuel. 
-S'y trouvent notes, articles et réflexions d'un (vieux) développeur sur les sujets qui me tiennent <em>hacker</em>.</p>
-<p>Je suis actuellement développeur chez <a href="https://www.norsys.fr/">Norsys</a>. J'ai travaillé dans plusieurs ESN à différents postes (développeur, architecte, chef de projet, etc.), mais ce qui m'éclate vraiment c'est concevoir et développer des applications.</p>
-<p>J'ai un humour assez spécial : j'aime les jeux de mots assez pourris, il faut le savoir et le cas échéant le supporter (mes collègues finissent pas s'y faire !).</p>
-<h2 id="reseaux-sociaux">Réseaux sociaux</h2>
-<ul>
-<li><a href="https://www.codingame.com/profile/f60cabafedc10558b2fecf345f91b9e69289781">CodinGame</a></li>
-<li><a href="https://exercism.io/profiles/TGITS">Exercism</a></li>
-<li>Twitter avec le <em>handle</em> <a href="https://twitter.com/_TGITS">@_TGITS</a></li>
-<li><a href="https://www.linkedin.com/in/cvaudry/">LinkedIn</a></li>
-<li><a href="http://fr.viadeo.com/fr/profile/christophe.vaudry">Viadeo</a></li>
-</ul>
-<h2 id="blogs-recommandes">Blogs recommandés</h2>
-<h3 id="les-blogs-des-potes">Les blogs des potes</h3>
-<p>Je vous recommande les blogs suivants qui sont réalisés par des collègues/ex-collègues. Je ne suis pas nécessairement d'accord avec leur manière de voir les choses mais dans tous les cas il m'amène à réfléchir et à me poser des questions. Bref, j'ai un profond respect pour les pensées qu'ils expriment.</p>
-<ul>
-<li><a href="https://collonvillethomas.wordpress.com/">Le blog de Thomas Collonvillé</a></li>
-<li><a href="https://un-est-tout-et-tout-est-un.blogspot.com/">Lien vers son ancien blog</a></li>
-<li><a href="https://riduidel.wordpress.com/">Le blog de Nicolas Delsaux aka Riduidel</a></li>
-</ul>
-<h2 id="informations-legales">Informations légales</h2>
-<p>De manière générale, le contenu de ce site est sous licence <a href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
-<p><a href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a></p>
-                
-                  
-                
-                
-              
-              
-                
+    </header>
 
-
-              
-            </article>
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <section id="posts" class="posts">
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/post/veille-semaine-20200518/">Veille pour la semaine du 18 au 24 mai 2020</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2020-05-24 </span>
+      <div class="post-category">
+          <a href="/categories/veille/"> veille </a>
           </div>
-        </div>
-      </main>
-      
-        
-<footer class="md-footer">
-  
-    <div class="md-footer-nav">
-      <nav class="md-footer-nav__inner md-grid">
-        
-        
-          <a href="articles/adr/adr/" title="Présentation des ADR" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
-            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
-              <span class="md-flex__ellipsis">
-                <span class="md-footer-nav__direction">
-                  Next
-                </span>
-                Présentation des ADR
-              </span>
-            </div>
-            <div class="md-flex__cell md-flex__cell--shrink">
-              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
-            </div>
-          </a>
-        
-      </nav>
     </div>
+  </header>
   
-  <div class="md-footer-meta md-typeset">
-    <div class="md-footer-meta__inner md-grid">
-      <div class="md-footer-copyright">
-        
-        powered by
-        <a href="https://www.mkdocs.org" target="_blank" rel="noopener">MkDocs</a>
-        and
-        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
-          Material for MkDocs</a>
-      </div>
-      
+  <div class="post-content">
+    <div class="post-summary">
+      Une sélection de ce que j&rsquo;ai écouté, vu ou lu et qui a marqué ma semaine (ou aurait dû) ! Comme le remarque mon collègue Thomas dans un billet, c&rsquo;est représentatif de ma bulle informationnelle !
+Ecouté   Suite à un changement de matériel pour récupérer et consommer des podcasts (passage de l&rsquo;utilisation de l&rsquo;iPod à un téléphone), j&rsquo;ai pris beaucoup de retard sur mon écoute des Castcodeurs, retard que j&rsquo;ai commencé à rattraper dans le désordre :-)
+    </div>
+    <div class="read-more">
+      <a href="/post/veille-semaine-20200518/" class="read-more-link">Lire la suite...</a>
     </div>
   </div>
-</footer>
-      
+</article>
+
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/post/veille-semaine-20200511/">Veille pour la semaine du 11 au 17 mai 2020</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2020-05-17 </span>
+      <div class="post-category">
+          <a href="/categories/veille/"> veille </a>
+          </div>
     </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      Une sélection de ce que j&rsquo;ai écouté, vu ou lu et qui a marqué ma semaine (ou aurait dû) !
+Ecouté   Interview de Christian Lehman dans le podcast C&rsquo;est plus que de la SF.
+ Je ne connaissais pas No passaran, le jeu et Christian Lehman, mais ce podcast m&rsquo;a vraiment donné envie de lire ce livre (enfin cette trilogie) et de découvrir cet auteur. L&rsquo;auteur est médecin en exercice, l&rsquo;écriture est une activité qu&rsquo;il pratique en plus.
+    </div>
+    <div class="read-more">
+      <a href="/post/veille-semaine-20200511/" class="read-more-link">Lire la suite...</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/post/veille-semaine-20200504/">Veille pour la semaine du 4 au 10 mai 2020</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2020-05-10 </span>
+      <div class="post-category">
+          <a href="/categories/veille/"> veille </a>
+          </div>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      Une sélection de ce que j&rsquo;ai écouté, vu ou lu et qui a marqué ma semaine (ou aurait dû) !
+Ecouté   J&rsquo;ai écouté pas mal de podcasts intéressants sur Python cette semaine :
+  Episode #179 de PythonBytes avec comme invité Guido van Rossum himself ! Plusieurs pointeurs prometteurs
+  missingno
+   Messy datasets? Missing values? missingno provides a small toolset of flexible and easy-to-use missing data visualizations and utilities that allows you to get a quick visual summary of the completeness (or lack thereof) of your dataset.
+    </div>
+    <div class="read-more">
+      <a href="/post/veille-semaine-20200504/" class="read-more-link">Lire la suite...</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/post/veille-semaine-20200427/">Veille pour la semaine du 27 avril 2020 au 3 mai 2020</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2020-05-03 </span>
+      <div class="post-category">
+          <a href="/categories/veille/"> veille </a>
+          </div>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      Une sélection de ce que j&rsquo;ai écouté, vu ou lu et qui a marqué ma semaine ou aurait dû !
+Ecouté  Une émission spéciale de La Méthode Scientifique : Comment penser la science après le Coronavirus Justin Richer sur OAuth2 par Software Engineering Radio Chasseur de Science, un nouveau Podcast de Futura Sciences, avec un premier épisode sur la quinine, l&rsquo;ancêtre de la chloroquine. Très plaisant à écouter et instructif.
+    </div>
+    <div class="read-more">
+      <a href="/post/veille-semaine-20200427/" class="read-more-link">Lire la suite...</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/post/veille-semaine-20200420/">Veille pour la semaine du 20 au 26 avril 2020</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2020-04-26 </span>
+      <div class="post-category">
+          <a href="/categories/veille/"> veille </a>
+          </div>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      Une sélection de ce que j&rsquo;ai écouté, vu ou lu et qui a marqué ma semaine ou aurait dû !
+Ecouté   L&rsquo;épisode de SERadio avec Adam Barr sur la qualité du code
+ Il faudra que j&rsquo;acquiers et lise ce livre : https://mitpress.mit.edu/books/problem-software    https://corecursive.com/050-sam-ritchie-portal-abstractions/
+ J&rsquo;aurais aimé avoir entendu des podcasts de ce type avant de démarrer ma Math Sup, cela m&rsquo;aurait aidé à comprendre l&rsquo;utilité de l&rsquo;algèbre !
+    </div>
+    <div class="read-more">
+      <a href="/post/veille-semaine-20200420/" class="read-more-link">Lire la suite...</a>
+    </div>
+  </div>
+</article>
+
+    </section>
+  
+  <nav class="pagination">
     
-      <script src="assets/javascripts/application.c33a9706.js"></script>
-      
-      <script>app.initialize({version:"1.1",url:{base:"."}})</script>
-      
-    
-  </body>
+    <a class="next" href="/page/2/">
+        <span class="next-text">Plus vieux</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+  </nav>
+        </div>
+        
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:thegeekintheshell@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://twitter.com/_TGITS" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="https://www.linkedin.com/in/cvaudry/" class="iconfont icon-linkedin" title="linkedin"></a>
+      <a href="https://github.com/TGITS" class="iconfont icon-github" title="github"></a>
+      <a href="https://gitlab.com/TGITS" class="iconfont icon-gitlab" title="gitlab"></a>
+  <a href="https://tgits.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Propulsé par <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Thème - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2020
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">TGITS</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+
+
+
+
+
+
+</body>
 </html>
