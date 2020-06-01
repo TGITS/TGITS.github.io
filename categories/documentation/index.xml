@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>documentation on The Geek In The Shell</title>
+    <link>https://tgits.github.io/categories/documentation/</link>
+    <description>Recent content in documentation on The Geek In The Shell</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>fr-fr</language>
+    <lastBuildDate>Mon, 01 Jun 2020 11:56:13 +0200</lastBuildDate>
+    
+	<atom:link href="https://tgits.github.io/categories/documentation/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Suivre les décisions d&#39;architecture avec les ADR</title>
+      <link>https://tgits.github.io/post/adr/</link>
+      <pubDate>Mon, 01 Jun 2020 11:56:13 +0200</pubDate>
+      
+      <guid>https://tgits.github.io/post/adr/</guid>
+      <description>The Big Picture Les ADR (Architectural Decision Record) sont une documentation des décisions d’architecture que Michael Nygard a formalisée en 2011 dans un billet sur le blog de Relevance (devenu Cognitech depuis). Pour les lecteurs moins à l&amp;rsquo;aise avec la langue anglaise, je propose une traduction du billet en françaissur un petit dépôt sur GitHub avec d&amp;rsquo;autres ressources sur les ADR en complément de cet article.
+Cette documentation légère est adaptée à des projets agiles.</description>
+    </item>
+    
+  </channel>
+</rss>

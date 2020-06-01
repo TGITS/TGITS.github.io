@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Suivre les décisions d&#39;architecture avec les ADR - The Geek In The Shell</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="TGITS" /><meta name="description" content="The Big Picture Les ADR (Architectural Decision Record) sont une documentation des décisions d’architecture que Michael Nygard a formalisée en 2011 dans un billet sur le blog de Relevance (devenu Cognitech depuis). Pour les lecteurs moins à l&amp;rsquo;aise avec la langue anglaise, je propose une traduction du billet en françaissur un petit dépôt sur GitHub avec d&amp;rsquo;autres ressources sur les ADR en complément de cet article.
+Cette documentation légère est adaptée à des projets agiles." /><meta name="keywords" content="TGITS, Développement, Java, Architecture" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.71.1 with theme even" />
+
+
+<link rel="canonical" href="https://tgits.github.io/post/adr/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.8c3cbcb0324c2bb4875ceccba4007cbad4b4ac8377f33af9953c3e7684534a50.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Suivre les décisions d&#39;architecture avec les ADR" />
+<meta property="og:description" content="The Big Picture Les ADR (Architectural Decision Record) sont une documentation des décisions d’architecture que Michael Nygard a formalisée en 2011 dans un billet sur le blog de Relevance (devenu Cognitech depuis). Pour les lecteurs moins à l&rsquo;aise avec la langue anglaise, je propose une traduction du billet en françaissur un petit dépôt sur GitHub avec d&rsquo;autres ressources sur les ADR en complément de cet article.
+Cette documentation légère est adaptée à des projets agiles." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://tgits.github.io/post/adr/" />
+<meta property="article:published_time" content="2020-06-01T11:56:13+02:00" />
+<meta property="article:modified_time" content="2020-06-01T11:56:13+02:00" />
+<meta itemprop="name" content="Suivre les décisions d&#39;architecture avec les ADR">
+<meta itemprop="description" content="The Big Picture Les ADR (Architectural Decision Record) sont une documentation des décisions d’architecture que Michael Nygard a formalisée en 2011 dans un billet sur le blog de Relevance (devenu Cognitech depuis). Pour les lecteurs moins à l&rsquo;aise avec la langue anglaise, je propose une traduction du billet en françaissur un petit dépôt sur GitHub avec d&rsquo;autres ressources sur les ADR en complément de cet article.
+Cette documentation légère est adaptée à des projets agiles.">
+<meta itemprop="datePublished" content="2020-06-01T11:56:13&#43;02:00" />
+<meta itemprop="dateModified" content="2020-06-01T11:56:13&#43;02:00" />
+<meta itemprop="wordCount" content="3237">
+
+
+
+<meta itemprop="keywords" content="adr,architecture,documentation," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Suivre les décisions d&#39;architecture avec les ADR"/>
+<meta name="twitter:description" content="The Big Picture Les ADR (Architectural Decision Record) sont une documentation des décisions d’architecture que Michael Nygard a formalisée en 2011 dans un billet sur le blog de Relevance (devenu Cognitech depuis). Pour les lecteurs moins à l&rsquo;aise avec la langue anglaise, je propose une traduction du billet en françaissur un petit dépôt sur GitHub avec d&rsquo;autres ressources sur les ADR en complément de cet article.
+Cette documentation légère est adaptée à des projets agiles."/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">TGITS</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Blog</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">TGITS</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Blog</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Suivre les décisions d&#39;architecture avec les ADR</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-06-01 </span>
+        <div class="post-category">
+            <a href="/categories/architecture/"> architecture </a>
+            <a href="/categories/documentation/"> documentation </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contenu</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#the-big-picture">The Big Picture</a></li>
+    <li><a href="#jolie-petite-histoire">Jolie petite histoire</a></li>
+    <li><a href="#les-adr-en-questions">Les ADR en questions</a>
+      <ul>
+        <li><a href="#est-ce-que-les-adr-documentent-la-conception-">Est-ce que les ADR documentent la conception ?</a></li>
+        <li><a href="#mais-de-la-documentation-pour-des-projets-agiles-nest-ce-pas-contradictoire-">Mais de la documentation pour des projets agiles n&rsquo;est-ce pas contradictoire ?</a></li>
+        <li><a href="#pourquoi-utilise-t-on-des-adr-">Pourquoi utilise-t-on des ADR ?</a></li>
+        <li><a href="#mais-en-quoi-est-ce-nécessaire-davoir-un-historique-des-décisions-darchitecture-">Mais en quoi est-ce nécessaire d&rsquo;avoir un historique des décisions d&rsquo;architecture ?</a></li>
+        <li><a href="#quelles-sont-les-parties-constitutives-dun-adr-">Quelles sont les parties constitutives d&rsquo;un ADR ?</a></li>
+        <li><a href="#comment-rédige-t-on-un-adr-">Comment rédige-t-on un ADR ?</a></li>
+        <li><a href="#quels-sont-les-points-importants-à-ne-pas-oublier-">Quels sont les points importants à ne pas oublier ?</a></li>
+        <li><a href="#mais-au-fait-qui-prend-la-décision-">Mais au fait qui prend la décision ?</a></li>
+        <li><a href="#et-si-finalement-la-décision-doit-être-changée-">Et si finalement la décision doit être changée ?</a></li>
+        <li><a href="#cest-uniquement-pour-les-décisions-darchitecture-">C&rsquo;est uniquement pour les décisions d&rsquo;architecture ?</a></li>
+        <li><a href="#et-je-peux-faire-ma-propre-variante-des-adr-">Et je peux faire ma propre variante des ADR ?</a></li>
+        <li><a href="#en-parlant-de-conséquences-quelles-sont-elles-pour-un-adr-">En parlant de conséquences, quelles sont-elles pour un ADR ?</a></li>
+        <li><a href="#et-tu-aurais-un-exemple-dadr-sous-la-main-pour-rendre-les-choses-plus-concrètes-">Et tu aurais un exemple d&rsquo;ADR sous la main pour rendre les choses plus concrètes ?</a></li>
+        <li><a href="#et-tu-aurais-un-exemple-de-mise-en-place-dadr-">Et tu aurais un exemple de mise en place d&rsquo;ADR ?</a></li>
+        <li><a href="#et-si-je-souhaite-creuser-le-sujet-">Et si je souhaite creuser le sujet ?</a></li>
+      </ul>
+    </li>
+    <li><a href="#en-conclusion">En conclusion</a></li>
+    <li><a href="#informations-légales">Informations légales</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h2 id="the-big-picture">The Big Picture</h2>
+<p>Les <strong>ADR</strong> (<strong>A</strong>rchitectural <strong>D</strong>ecision <strong>R</strong>ecord) sont une documentation des décisions d’architecture que <a href="http://thinkrelevance.com/team/members/michael-nygard">Michael Nygard</a> a formalisée en 2011 dans un <a href="http://thinkrelevance.com/blog/2011/11/15/documenting-architecture-decisions">billet</a> sur le blog de <a href="http://thinkrelevance.com/">Relevance (devenu Cognitech depuis)</a>. Pour les lecteurs moins à l&rsquo;aise avec la langue anglaise, je propose une traduction du billet en françaissur un petit <a href="https://github.com/TGITS/adr-resources">dépôt sur GitHub</a> avec d&rsquo;autres ressources sur les ADR en complément de cet article.</p>
+<p>Cette documentation légère est adaptée à des projets agiles. Souvent écrite en <em>Markdown</em>, <em>AsciiDoc</em>, <em>Textile</em> ou un format de ce type, elle est alors suivie en gestion de configuration avec le code source. Cependant, elle peut également être gérée via le wiki du projet ou exister à travers des documents textes classiques voire des slides.</p>
+<p>L&rsquo;objet d&rsquo;un <strong>ADR</strong> est de garder un historique des décisions d&rsquo;architecture afin que les choix de conception restent compréhensibles même pour de nouveaux arrivants. Un <strong>ADR</strong> capture le <strong>contexte</strong> et les <strong>conséquences</strong> de la décision au moment où cette dernière est prise. Cela permet ainsi d&rsquo;avoir de la perspective sur les décisions passées et d&rsquo;avoir des éléments pour prendre des décisions éclairées pour les besoins présents du projet en tenant compte de ces choix passés.</p>
+<h2 id="jolie-petite-histoire">Jolie petite histoire</h2>
+<p><strong>Jon Snow</strong> est un jeune développeur fraîchement sorti de formation à <em>Winterfell</em>. Il vient d&rsquo;arriver dans sa nouvelle entreprise, <em>NightWatch</em> . Il est pressé d&rsquo;en découdre et de faire ses preuves. Lors des premiers développements qu&rsquo;il réalise, il s&rsquo;aperçoit qu&rsquo;il y a du code dupliqué dans plusieurs modules différents. Ces différents modules correspondent à des fonctionnalités métiers différentes mais possédent des abstractions fonctionnelles (des classes représentant des concepts métiers) et techniques (ici des classes qui permettent de les <em>sérialiser en</em>/<em>désérialiser de</em> <strong>JSON</strong>) dupliquées.</p>
+<p>Profitant du travail sur une <em>feature</em> qui touche à ces classes dans un des modules, <strong>Jon</strong> en profite pour se lancer dans un <em>refactoring</em> aggressif après avoir vérifié - et le cas échéant complété - la couverture de tests pour ces parties de code-là. Ainsi, il sort sous forme d&rsquo;un module séparé les abstractions métiers d&rsquo;une part et les classes pour la sérialisation/déserialisation d&rsquo;autre part, puis fait en sorte que les différents modules s&rsquo;appuient désormais sur ces 2 nouveaux modules, supprimant les duplications de code. Il est plutôt content de lui, il a appliqué <em>DRY (Don&rsquo;t Repeat Youtself)</em> et ce qu&rsquo;il a fait fonctionne bien. Dommage qu&rsquo;il n&rsquo;y ait pas de revues de code mise en place dans l&rsquo;équipe, il était fier de lui sur ce coup-là et en aurait volontier discuté avec ces collègues.</p>
+<p>Quelques temps après <strong>Grenn</strong>, un autre jeune développeur arrivé également depuis peu chez <em>NightWatch</em>, doit développer une nouvelle fonctionnalité sur un module métier différent de celui de <strong>Jon</strong>. Cependant, entre temps le code de <strong>Jon</strong> a été <em>mergé</em> sur la branche <em>Master</em>,  et il part d&rsquo;une base de code avec les modifications et les nouveaux modules introduits par <strong>Jon</strong>.</p>
+<p>Il se trouve que les différents modules métiers exposent différentes API REST en JSON. Et la nouvelle fonctionnalité que <strong>Grenn</strong> a à mettre en oeuvre implique des changements sur les données en JSON exposées. Il doit ainsi modifier les classes de sérialisation/désérialisation maintenant communes. Mais là, c&rsquo;est le drame, il y a des régressions dans tous les sens !!!</p>
+<p>L&rsquo;architecte, <strong>Alliser Thorne</strong>, fait une rapide enquête, et s&rsquo;aperçoit que quelqu&rsquo;un a factorisé les classes de sérialisation/désérialisation dans un module commun :</p>
+<blockquote>
+<p>Ah c&rsquo;est ce jeune imbécile de Jon Snow ! Encore un de ces jeunots qui sort de l&rsquo;école et se croit permis de tout changer dans le code !!! De toutes façons, ce gars, je ne l&rsquo;aime pas ! Qu&rsquo;est-ce qu&rsquo;il croyait le faraud, il y avait une raison à cette duplication de code ! J&rsquo;avais anticiper que les modules métiers puissent auraient à évoluer indépendamment !</p>
+</blockquote>
+<p>Lors d&rsquo;une réunion, il tombe sur <strong>Jon</strong>. <strong>Allister</strong> est un architecte acariâtre et présent depuis longtemps chez <em>NightWatch</em>, bref une institution : personne ne vient le contredire et tout le monde regarde ses pieds, pendant que <strong>Jon</strong> se prend une soufflante.</p>
+<p>Heureusement pour ce dernier <strong>Tyrion Lannister</strong>, un consultant indépendant mais influant auprès du directeur de projet, <strong>Jeor Mormont</strong>, vient à sa rescousse. Et il n&rsquo;a pas sa langue dans sa poche !</p>
+<blockquote>
+<p>Mon cher <strong>Alliser</strong>, je vous trouve bien dur envers ce jeune développeur, surtout que ce n&rsquo;est pas lui qui est en faute mais bien vous, le garant de l&rsquo;architecture et des bonnes pratiques ! Je ne reviendrai pas ici sur le fait que si vous aviez mis en place des revues de code, vous auriez vu le problème plutôt, mais comment un développeur pouvait-il savoir qu&rsquo;il y avait une raison à ce que ce code dupliqué ne soit pas à factoriser ? Etait-ce documenté quelque part ? La décision et les raisons de cette décision était-elle connue ? Son idée n&rsquo;a rien de mauvaise, même s&rsquo;il aurait dû communiquer sur ce sujet avec ces collègues&hellip; mais bon, on n&rsquo;est pas trop incité à la communication dans vos équipes !</p>
+</blockquote>
+<p><strong>Alliser</strong> est rouge comme une pivoine et est sur le point d&rsquo;éclater ! Hargneusement, plein de morgue, il balance à <strong>Tyrion</strong> :</p>
+<blockquote>
+<p>C&rsquo;est facile pour vous <strong>M. Lannister</strong> de venir nous donner des leçons ! Mais depuis que nous sommes passés à l&rsquo;Agile, nous n&rsquo;avons plus de documents de conception ! Et de toutes façons, les jeunes sots que l&rsquo;on recrute savent à peine lire et ne compulsent pas les docs ! Et puis tout les développeurs le savaient ! Quand j&rsquo;ai pris cette décision, il y a un an, je l&rsquo;ai bien fait savoir à tout le monde !</p>
+</blockquote>
+<p>Tyrion ne se démonte pas et rétorque avec un grand sourire :</p>
+<blockquote>
+<p>Peut-être que des développeurs il y a 1 an &ldquo;<em>le savaient</em>&quot;, mais il faut avouer qu&rsquo;avec un tech lead tel que vous le <em>turn-over</em> est important dans vos équipes. Je doute qu&rsquo;il reste beaucoup de développeurs qui &ldquo;<em>le savaient</em>&rdquo; :  je ne peux que constater que les bons éléments ne restent pas longtemps avec vous hélas. Et puis l&rsquo;Agilité n&rsquo;est pas une excuse pour ne pas documenter vos décisions d&rsquo;architecture afin qu&rsquo;on ne se retrouve pas dans des situations comme celle-ci ! Les <strong>ADR</strong> vous connaissez ?</p>
+</blockquote>
+<p>Peu après, <strong>Alliser</strong> fut sorti en douceur du projet et placé sur une avant-vente. <strong>Jon</strong> décida de tempérer sa fougue de codeur. Il se dit qu&rsquo;il allait commencer par suivre la recommandation de Tyrion et regarder de plus près ces fameux <strong>ADR</strong> et de manière générale, s&rsquo;assurer de mettre en place les outils idoines pour améliorer la communication avec ces collègues.</p>
+<h2 id="les-adr-en-questions">Les ADR en questions</h2>
+<p><img src="../../img/adr/what-are-adr-aliens-to-most-projects.png" alt="Les ADR sont étrangers à la plupart des projets"></p>
+<h3 id="est-ce-que-les-adr-documentent-la-conception-">Est-ce que les ADR documentent la conception ?</h3>
+<p>Les <strong>ADR</strong> documentent les <strong>décisions de conception ou d&rsquo;architecture</strong> pas la conception elle-même. Ainsi, s&rsquo;ils peuvent référencer un ou des documents de conception, ce qu&rsquo;ils documentent c&rsquo;est la <strong>décision</strong> qui concerne le choix de conception ou d&rsquo;architecture correspondant.</p>
+<p>Un <strong>ADR</strong> décrit une décision structurante ou significative pour un projet spécifique : cela devrait être quelque chose qui a un effet sur la manière dont la suite du projet va se dérouler.</p>
+<h3 id="mais-de-la-documentation-pour-des-projets-agiles-nest-ce-pas-contradictoire-">Mais de la documentation pour des projets agiles n&rsquo;est-ce pas contradictoire ?</h3>
+<p><img src="../../img/adr/what-if-i-told-you-agile-methodologies-not-against-doc.png" alt="Et si je vous disais que les méthodologies agiles ne sont pas contre la documentation ?"></p>
+<p>Les ADR sont une forme de documentation légère et efficace particulièrement adaptée au projet Agile. Les ADR s&rsquo;ils sont correctement mis en place, sont une forme de documentation utile qui a sa place dans tout type de projets dans lequel la traçabilité des choix de conception peut être importante.</p>
+<h3 id="pourquoi-utilise-t-on-des-adr-">Pourquoi utilise-t-on des ADR ?</h3>
+<p>On utilise les <strong>ADR</strong> pour garder un historique des décisions d&rsquo;architectures <strong>significatives</strong>, c&rsquo;est-à-dire celles qui affectent la structure, les caractéristiques non-fonctionnelles, les dépendances, les interfaces ou les constructions techniques.</p>
+<h3 id="mais-en-quoi-est-ce-nécessaire-davoir-un-historique-des-décisions-darchitecture-">Mais en quoi est-ce nécessaire d&rsquo;avoir un historique des décisions d&rsquo;architecture ?</h3>
+<p>La première vertu des <strong>ADR</strong> est d&rsquo;être un outil qui permet une traçabilité des décisions : à tout moment, quelque soit notre historique sur le projet, on peut comprendre pourquoi telle ou telle décision a été prise et s&rsquo;il faut les revoir avec les évolutions du contexte.</p>
+<p>Cela permet ainsi de comprendre pourquoi la situation est ce qu&rsquo;elle est aujourd&rsquo;hui et d&rsquo;avoir plus d&rsquo;assurance pour faire des choix d&rsquo;architecture qui peuvent remettre en cause les choix précédents. Plus de décision aveugle sur le fait de tout casser ou de tout garder en l&rsquo;état, on peut prendre des décisions éclairées !</p>
+<p><img src="../../img/adr/doesnt-keep-an-history-of-you-design-decisions.png" alt="Vous ne gardez pas un historique de vos décisions d&rsquo;architectures ?"></p>
+<p>C&rsquo;est également un outil fort utile dans un contexte de rotation des équipes, en permettant d&rsquo;avoir une mémoire des choix effectués, indépendante des membres de l&rsquo;équipe qui au final vont et viennent. C&rsquo;est aussi pour cela qu&rsquo;il est important que les <strong>ADR</strong> soient avec le code source, là où une bonne partie des décisions se matérialisent.</p>
+<p>Un effet de bord intéressant, c&rsquo;est qu&rsquo;en rendant explicite les décisions, leur contexte et leurs conséquences, cela amène à avoir une réflexion en amont sur le bien fondé de la décision et d&rsquo;être pleinement conscient des conséquences positives comme négatives de cette décision.</p>
+<p>De plus, en ancrant cette décision dans un contexte précis, il est plus facile de revoir l&rsquo;ensemble des décisions à la lumière d&rsquo;un changement de contexte, pour les déprécier et en prendre de nouvelles si nécessaire.</p>
+<p>Enfin, les <strong>ADR</strong> constituent un support fort utile pour alimenter des revues d&rsquo;architecture, pour préparer retrospectives et <strong>REX</strong> d&rsquo;un projet ou rédiger le <em>postmortem</em> d&rsquo;un problème.</p>
+<h3 id="quelles-sont-les-parties-constitutives-dun-adr-">Quelles sont les parties constitutives d&rsquo;un ADR ?</h3>
+<p>Un ADR est en général constitué a minima des 5 parties suivantes :</p>
+<ul>
+<li><strong>Titre</strong> : <code>ADR 10 : Ecriture d’une brique batch séparée en C# pour convertir les documents Office</code></li>
+<li><strong>Contexte</strong> dans lequel la décision d&rsquo;architecture décrite dans ce document est prise</li>
+<li><strong>Décision</strong> prise dans le cadre de l&rsquo;ADR résumé en 1 ou 2 phrases.</li>
+<li><strong>Etat</strong> : <em>Proposée</em>/<em>Refusée</em>/<em>Acceptée</em>/<em>Dépréciée</em></li>
+<li><strong>Conséquence(s)</strong> pour l’application, les développements, l’implémentation, etc. de cette décision
+<ul>
+<li>Les conséquences et impacts tant positifs, négatifs que neutres.</li>
+</ul>
+</li>
+</ul>
+<h3 id="comment-rédige-t-on-un-adr-">Comment rédige-t-on un ADR ?</h3>
+<p>C’est un court fichier texte dans un format similaire à celui des <a href="https://fr.wikipedia.org/wiki/Patron_de_conception">modèles de conception</a> de <a href="https://fr.wikipedia.org/wiki/Christopher_Alexander">Christopher Alexander</a>.</p>
+<p>Chaque enregistrement décrit un ensemble de forces et de contraintes et une unique décision en réponse à ces forces et ces contraintes : la décision est le point central. Ainsi des forces et des contraintes spécifiques peuvent apparaître dans de multiples <strong>ADR</strong> : il est important, à l&rsquo;image du principe SRP (Single Responsability Principle) en conception objet, qu&rsquo;un <strong>ADR</strong> donné ne traite que d&rsquo;une unique décision.</p>
+<p>Les conséquences d&rsquo;un <strong>ADR</strong> peuvent également constituer le contexte d&rsquo;<strong>ADR</strong> ultérieurs : les conséquences suffisamment significatives vont entrainer de nouvelles décisions structurantes, qui seront l&rsquo;objet d&rsquo;un <strong>ADR</strong>.</p>
+<p>Il est important que le contexte et les conséquences d&rsquo;un <strong>ADR</strong> soient factuelles : ils ne doivent servir ni à régler ses comptes, ni à faire de la politique, ni à montrer que l&rsquo;on n&rsquo;est pas d&rsquo;accord, ni à valoriser ou dévaloriser quelqu&rsquo;un, etc. On vise au factuel et à l&rsquo;objectivité, il faut avoir les éléments pour comprendre la décision et comprendre ses impacts. Une décision n&rsquo;est ni bonne ni mauvaise, elle a un sens dans un certain contexte et un ensemble d&rsquo;impacts qu&rsquo;il est nécessaire de prendre en compte.</p>
+<h3 id="quels-sont-les-points-importants-à-ne-pas-oublier-">Quels sont les points importants à ne pas oublier ?</h3>
+<p>Le <strong>contexte</strong> et <strong>les conséquence(s)</strong> sont essentiels à un <strong>ADR</strong> qui perd grandement de sa valeur et de son utilité sans eux.</p>
+<p><img src="../../img/adr/one-doesnt-write-an-adr-without-context-and-consequences.png" alt="On n&rsquo;écrit tout simplement pas un ADR sans contexte et conséquences!"></p>
+<h3 id="mais-au-fait-qui-prend-la-décision-">Mais au fait qui prend la décision ?</h3>
+<p>C&rsquo;est à vous de voir : dans l&rsquo;esprit c&rsquo;est pour matérialiser les décisions de l&rsquo;équipe mais cela peut très bien être une décision de l&rsquo;architecte ou du <em>tech lead</em>.</p>
+<p>Les <strong>ADR</strong> s&rsquo;adaptent à votre organisation car ils ne sont pas prescriptifs sur le qui prend la décision : l&rsquo;<strong>ADR</strong> peut être rédigé par une personne, deux personnes ou par l&rsquo;équipe entière. Et de même, la décision d&rsquo;adopter, de refuser ou de déprécier un <strong>ADR</strong> peut être le fait d&rsquo;une personne ou de l&rsquo;équipe dans son ensemble.</p>
+<p>Vous pouvez définir pour vos <strong>ADR</strong> un statut <em>Refusé</em> et les historiser également mais ce n&rsquo;est pas une obligation.</p>
+<h3 id="et-si-finalement-la-décision-doit-être-changée-">Et si finalement la décision doit être changée ?</h3>
+<p>Un <strong>ADR</strong> a un statut qui sert exactement à cette fin. Si la décision n&rsquo;est plus valable car le contexte a changé ou que les conséquences de cette décision ne sont plus souhaitables ou gérables dans le nouveau contexte, l&rsquo;<strong>ADR</strong> en question sera dépréciée et un nouvel <strong>ADR</strong> documentant la nouvelle décision et son contexte pourra être écrit.</p>
+<h3 id="cest-uniquement-pour-les-décisions-darchitecture-">C&rsquo;est uniquement pour les décisions d&rsquo;architecture ?</h3>
+<p>La traçabilité des décisions importantes n&rsquo;est pas pertinente uniquement pour les choix techniques. On pourrait imaginer d&rsquo;avoir une historisation de décisions métiers ou de décisions organisationnelles par exemple.</p>
+<p>Un point important à conserver en tête, néanmoins, est que les <strong>ADR</strong> sont nés dans un cadre agile dans lequel on souhaite produire de la documentation <!-- raw HTML omitted -->utile<!-- raw HTML omitted -->. Le point-clé ici est que ce sont les décisions importantes qui sont documentées : il faut être au bon niveau de granularité et être d&rsquo;accord au sein de l&rsquo;équipe sur ce qui est important et doit être tracé. Intuitivement ce sont les décisions structurantes, c&rsquo;est-à-dire les décisions qui sont plus difficiles et/ou plus coûteuses à modifier une fois prise.</p>
+<p><img src="../../img/adr/decisions-everywhere.png" alt="Decisions everywhere !"></p>
+<h3 id="et-je-peux-faire-ma-propre-variante-des-adr-">Et je peux faire ma propre variante des ADR ?</h3>
+<p>Evidemment ! Les <strong>ADR</strong> sont un outil qui se prête bien à une personnalisation : il faut être pragmatique et savoir adapter les outils que vous croisez pour qu&rsquo;ils répondent au mieux au besoin de votre équipe. D&rsquo;ailleurs il existe déjà plusieurs variantes, dont quelques-unes sont listées <a href="#Et-si-je-souhaite-creuser-le-sujet-?">ci-après</a>.</p>
+<p>Par contre, par pitié, n&rsquo;appelez plus cela un <strong>ADR</strong> si vous supprimez la partie <em>Contexte</em> et/ou la partie <em>Conséquences</em> !</p>
+<h3 id="en-parlant-de-conséquences-quelles-sont-elles-pour-un-adr-">En parlant de conséquences, quelles sont-elles pour un ADR ?</h3>
+<p>La mise en place des ADR n&rsquo;est pas très coûteuse en elle-même et ne représente pas un gros risque pour une équipe qui voudrait les essayer.</p>
+<p>Néanmoins, il faut que l&rsquo;équipe fasse preuve de discipline et de constance dans la rédaction des <strong>ADR</strong> : la pratique a un meilleur <strong>ROI</strong> sur le long terme et si elle est effectuée de manière consistante.</p>
+<p>De plus, il faut bien calibrer l&rsquo;utilisation des <strong>ADR</strong>, afin de les écrire pour les choix de conception au bon niveau d&rsquo;abstraction, sinon il y aura trop d&rsquo;<strong>ADR</strong> pour des décisions mineures ou pas assez sur des choix de conception trop génériques.</p>
+<h3 id="et-tu-aurais-un-exemple-dadr-sous-la-main-pour-rendre-les-choses-plus-concrètes-">Et tu aurais un exemple d&rsquo;ADR sous la main pour rendre les choses plus concrètes ?</h3>
+<p>Oui bien sûr, j&rsquo;ai mis un exemple d&rsquo;ADR dans un <a href="https://github.com/TGITS/adr-resources">dépôt sur GitHub</a>.</p>
+<h3 id="et-tu-aurais-un-exemple-de-mise-en-place-dadr-">Et tu aurais un exemple de mise en place d&rsquo;ADR ?</h3>
+<p>Comme écrit un peu plus haut, les <strong>ADR</strong> ne sont pas prescriptifs d&rsquo;une démarche spécifique. Néanmoins, il est légitime de s&rsquo;interroger sur leur mise en place dans le cadre d&rsquo;un projet. Il faut distinguer le cas d&rsquo;un nouveau projet et d&rsquo;un projet existant.</p>
+<h4 id="nouveau-projet">Nouveau projet</h4>
+<p>C&rsquo;est le cas le plus simple :-) ! Il suffit de commencer à rédiger les <strong>ADR</strong>, pour toutes décisions structurantes. Une des difficultés est bien sûr de ce qu&rsquo;on entend par <em>structurante</em> : il ne faut pas que l&rsquo;équipe tombe dans le piège de ne pas être au bon niveau de granularité.</p>
+<p>L&rsquo;autre écueil à éviter est de ne pas être discipliné pour écrire les ADR et de n&rsquo;en rédiger que quand on a le temps ou on y pense. Les <strong>ADR</strong> en soit ce n&rsquo;est pas compliqué mais cela demande de la rigueur, de la constance et de la discipline à l&rsquo;équipe pour que la pratique soit fructueuse.</p>
+<p>Le fait de mettre en oeuvre des <strong>ADR</strong> peut d&rsquo;ailleurs être le premier ou un des premiers <strong>ADR</strong> !</p>
+<h4 id="projet-existant">Projet existant</h4>
+<p>Si c&rsquo;est un projet que vous reprenez et qui utilise déjà des <strong>ADR</strong>, c&rsquo;est relativement simple, il suffit de continuer à faire les <strong>ADR</strong> :-) !</p>
+<p>Cependant soyons réalistes, si cela peut arriver (comme il arrive que vous récupériez ou arriviez sur un projet qui suit une démarche <strong>TDD</strong> et qui possède un patrimoine de tests unitaires et de tests d&rsquo;intégration), vous avez plus de chances d&rsquo;arriver sur un projet sans <strong>ADR</strong> que sur un projet avec.</p>
+<p>Comme pour un projet sans tests unitaires automatisés, ce n&rsquo;est pas une raison pour ne pas commencer à les mettre en place mais il va y avoir un vrai challenge ! La difficulté est que vous n&rsquo;avez justement pas l&rsquo;historique des décisions !</p>
+<p>Le premier <strong>ADR</strong> pourrait être la aussi la mise en place des <strong>ADR</strong>, avec un contexte spécifique qui est celui d&rsquo;une application <em>legacy</em> dans laquelle de nombreuses décisions n&rsquo;ont pas été tracées. Si vous avez de la chance vous pouvez trouver dans d&rsquo;autres documents de conception du projet des éléments donnant des indications sur les raisons des choix. Dans tous les cas, cela représente bien une partie du contexte dans lequel vous allez prendre vos décisions d&rsquo;architecture actuelles.</p>
+<p>De plus, si vous n&rsquo;avez pas le contexte des décisions et leurs impacts, vous avez le produit de ces décisions sous les yeux : si l&rsquo;application est une application Web monolithique en Java/Spring, c&rsquo;est bien le produit de décisions prises à un moment ou un autre lors de la vie du projet. Vous ne savez pas pourquoi ces choix ont été faits, mais c&rsquo;est bien une partie du contexte dans lequel vous avez à prendre vos décisions d&rsquo;architecture maintenant et dans lequel elles auront des impacts divers.</p>
+<p>Il est probable que dans un tel cas, la mise en place des <strong>ADR</strong> suscitera plus de frictions et un coût de mise en oeuvre initiale plus important. Le plus gros risque, est qu&rsquo;il y ait un abandon de la pratique avant même qu&rsquo;elle puisse démontrer son intérêt.</p>
+<h3 id="et-si-je-souhaite-creuser-le-sujet-">Et si je souhaite creuser le sujet ?</h3>
+<p>Bien sûr, l&rsquo;idéal est de prendre le temps de lire le billet original de Michael Nygard sur les <strong>ADR</strong> : <a href="http://thinkrelevance.com/blog/2011/11/15/documenting-architecture-decisions">Documenting Architecture Decisions</a>. Si vous êtes allergiques à l&rsquo;anglais, j&rsquo;en propose <a href="./traduction_billet_documenting_architecture_decisions.md">une traduction en français</a>.</p>
+<p>L&rsquo;<a href="https://www.infoq.com/articles/sustainable-architectural-design-decisions">article <em>Sustainable Architectural Design Decisions</em></a> donne une vision complémentaire aux  <strong>ADR</strong>. Cet article s&rsquo;intéresse surtout à la question de la durabilité des décisions d&rsquo;architectures et des moyens qui peuvent être mis en oeuvre pour faire des décisions de conception <em>durables</em>. S&rsquo;il ne préconise pas en particulier les <strong>ADR</strong>, il rejoint cette approche en prônant une documentation légère et simple. Il va cependant plus loin en mettant l&rsquo;accent sur la traçabilité, en définissant des critères de durabilité des décisions et en proposant des lignes directrices pour atteindre cette durabilité des décisions d&rsquo;architecture. On peut juste noter au passage que les <strong>ADR</strong> peuvent constituer les premières étapes pour la mise en place d&rsquo;une démarche de ce type.</p>
+<p>Les <strong>ADR</strong> sous la forme de <a href="https://www.thoughtworks.com/radar/techniques/lightweight-architecture-decision-records">Lightweight Architecture Decision Records</a> sont mentionnés dans la partie <a href="https://www.thoughtworks.com/radar/techniques">Techniques</a> du <a href="https://www.thoughtworks.com/radar">Technology Radar</a> de <a href="https://www.thoughtworks.com/">ThoughWork</a> dès Novembre 2016 (en <strong>Trial</strong>) jusqu&rsquo;en mai 2018 (en <strong>Adopt</strong>).</p>
+<p>Il est possible de trouver plusieurs modèles pour les <strong>ADR</strong>. Par exemple, on peut citer :</p>
+<ul>
+<li>Les <em>templates</em> en Markdown que <a href="https://twitter.com/joel_henderson">Joel Parker Henderson</a> propose sur sa <a href="https://github.com/joelparkerhenderson/architecture_decision_record">Page GitHub sur les <strong>ADR</strong></a>.</li>
+<li>le format <a href="https://github.com/adr/madr">MADR, Markdown Architectural Decision Records</a>.</li>
+<li>ou encore le format <a href="https://github.com/adr/e-adr">E-ADR (Embedded Architectural Decision Records)</a>.</li>
+</ul>
+<p>Je vous propose également des <em>templates</em> aux formats Markdown et AsciiDoc sur le <a href="https://github.com/TGITS/adr-resources">dépôt GitHub précédemment cité</a>.</p>
+<h2 id="en-conclusion">En conclusion</h2>
+<p>Les <strong>ADR</strong> sont faciles et peu coûteux à mettre en place. Au prix d&rsquo;une discipline et d&rsquo;une constance rédactionnelle, ils fournissent un support très appréciable pour garder un historique et une traçabilité des décisions d&rsquo;architecture prises. Ainsi ils permettent de ne pas perdre de vue les choix effectués, le contexte de ces choix et leurs conséquences, ce qui permet de prendre de nouvelles décisions plus éclairées.</p>
+<p><img src="../../img/adr/when-i-do-i-write-and-adr.png" alt="Je n&rsquo;écris pas souvent mais quand je le fais, j&rsquo;écris un ADR"></p>
+<h2 id="informations-légales">Informations légales</h2>
+<p><a href="http://creativecommons.org/licenses/by-sa/4.0/"><img src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" alt="Creative Commons License"></a>. Ce travail est sous licence <a href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a></p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Auteur</span>
+    <span class="item-content">TGITS</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">Modifié</span>
+    <span class="item-content">
+        2020-06-01
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/adr/">adr</a>
+          <a href="/tags/architecture/">architecture</a>
+          <a href="/tags/documentation/">documentation</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/post/veille-semaine-20200518/">
+            <span class="next-text nav-default">Veille pour la semaine du 18 au 24 mai 2020</span>
+            <span class="next-text nav-mobile">Suivant</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:thegeekintheshell@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://twitter.com/_TGITS" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="https://www.linkedin.com/in/cvaudry/" class="iconfont icon-linkedin" title="linkedin"></a>
+      <a href="https://github.com/TGITS" class="iconfont icon-github" title="github"></a>
+      <a href="https://gitlab.com/TGITS" class="iconfont icon-gitlab" title="gitlab"></a>
+  <a href="https://tgits.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Propulsé par <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Thème - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2020
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">TGITS</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>
