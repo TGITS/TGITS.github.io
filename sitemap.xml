@@ -9,6 +9,13 @@
   </url>
   
   <url>
+    <loc>https://tgits.github.io/post/veille-semaine-20200525/</loc>
+    <lastmod>2020-06-01T16:45:13+02:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://tgits.github.io/post/veille-semaine-20200518/</loc>
     <lastmod>2020-05-31T16:56:13+02:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -87,7 +94,7 @@
   
   <url>
     <loc>https://tgits.github.io/categories/</loc>
-    <lastmod>2020-06-01T11:56:13+02:00</lastmod>
+    <lastmod>2020-06-01T16:45:13+02:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -108,42 +115,42 @@
   
   <url>
     <loc>https://tgits.github.io/post/</loc>
-    <lastmod>2020-06-01T11:56:13+02:00</lastmod>
+    <lastmod>2020-06-01T16:45:13+02:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://tgits.github.io/tags/</loc>
-    <lastmod>2020-06-01T11:56:13+02:00</lastmod>
+    <lastmod>2020-06-01T16:45:13+02:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://tgits.github.io/</loc>
-    <lastmod>2020-06-01T11:56:13+02:00</lastmod>
+    <lastmod>2020-06-01T16:45:13+02:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://tgits.github.io/tags/hebdomadaire/</loc>
-    <lastmod>2020-05-31T16:56:13+02:00</lastmod>
+    <lastmod>2020-06-01T16:45:13+02:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://tgits.github.io/tags/veille/</loc>
-    <lastmod>2020-05-31T16:56:13+02:00</lastmod>
+    <lastmod>2020-06-01T16:45:13+02:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://tgits.github.io/categories/veille/</loc>
-    <lastmod>2020-05-31T16:56:13+02:00</lastmod>
+    <lastmod>2020-06-01T16:45:13+02:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>

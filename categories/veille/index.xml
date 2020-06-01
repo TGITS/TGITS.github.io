@@ -6,10 +6,20 @@
     <description>Recent content in veille on The Geek In The Shell</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>fr-fr</language>
-    <lastBuildDate>Sun, 24 May 2020 11:53:13 +0200</lastBuildDate>
+    <lastBuildDate>Sun, 31 May 2020 11:53:13 +0200</lastBuildDate>
     
 	<atom:link href="https://tgits.github.io/categories/veille/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Veille pour la semaine du 25 au 31 mai 2020</title>
+      <link>https://tgits.github.io/post/veille-semaine-20200525/</link>
+      <pubDate>Sun, 31 May 2020 11:53:13 +0200</pubDate>
+      
+      <guid>https://tgits.github.io/post/veille-semaine-20200525/</guid>
+      <description>Une sélection de ce que j&amp;rsquo;ai écouté, vu ou lu et qui a marqué ma semaine (ou aurait dû) ! Comme le remarque mon collègue Thomas dans un billet, c&amp;rsquo;est représentatif de ma bulle informationnelle ! Vous êtes prévenus !
+Ecouté  L&amp;rsquo;épisode #270 sur la Typologie des Attaquants de NoLimitSecu était comme souvent intéressant (c&amp;rsquo;est un podcast très recommandable si vous vous intéressez à la sécurité, même si comme moi vous n&amp;rsquo;êtes pas un spécialiste mais que vous souhaitez vous faire une culture a minima sur ce sujet).</description>
+    </item>
     
     <item>
       <title>Veille pour la semaine du 18 au 24 mai 2020</title>
