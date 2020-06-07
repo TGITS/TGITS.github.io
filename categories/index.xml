@@ -6,10 +6,19 @@
     <description>Recent content in Categories on The Geek In The Shell</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>fr-fr</language>
-    <lastBuildDate>Mon, 01 Jun 2020 11:56:13 +0200</lastBuildDate>
+    <lastBuildDate>Mon, 01 Jun 2020 16:23:17 +0200</lastBuildDate>
     
 	<atom:link href="https://tgits.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>veille</title>
+      <link>https://tgits.github.io/categories/veille/</link>
+      <pubDate>Mon, 01 Jun 2020 16:23:17 +0200</pubDate>
+      
+      <guid>https://tgits.github.io/categories/veille/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>architecture</title>
@@ -30,11 +39,20 @@
     </item>
     
     <item>
-      <title>veille</title>
-      <link>https://tgits.github.io/categories/veille/</link>
+      <title>développement</title>
+      <link>https://tgits.github.io/categories/d%C3%A9veloppement/</link>
       <pubDate>Sun, 31 May 2020 11:53:13 +0200</pubDate>
       
-      <guid>https://tgits.github.io/categories/veille/</guid>
+      <guid>https://tgits.github.io/categories/d%C3%A9veloppement/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>java</title>
+      <link>https://tgits.github.io/categories/java/</link>
+      <pubDate>Sun, 31 May 2020 11:53:13 +0200</pubDate>
+      
+      <guid>https://tgits.github.io/categories/java/</guid>
       <description></description>
     </item>
     

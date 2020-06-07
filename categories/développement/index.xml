@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>développement on The Geek In The Shell</title>
+    <link>https://tgits.github.io/categories/d%C3%A9veloppement/</link>
+    <description>Recent content in développement on The Geek In The Shell</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>fr-fr</language>
+    <lastBuildDate>Sun, 31 May 2020 11:53:13 +0200</lastBuildDate>
+    
+	<atom:link href="https://tgits.github.io/categories/d%C3%A9veloppement/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Tableau de fréquences en Java avec les Streams</title>
+      <link>https://tgits.github.io/post/frequencies_map/</link>
+      <pubDate>Sun, 31 May 2020 11:53:13 +0200</pubDate>
+      
+      <guid>https://tgits.github.io/post/frequencies_map/</guid>
+      <description>Pour contextualiser, je traduis ici par tableau de fréquences l&amp;rsquo;expression anglaise de frequencies map.
+Vous avez une liste d&amp;rsquo;éléments et vous voulez pour chaque élément connaître sa fréquence (le nombre de fois où il est présent dans cette liste) : ainsi à partir de cette liste d&amp;rsquo;éléments, vous désirez obtenir un tableau associatif dans lequel chaque clé est un élément de cet liste et est associé à sa fréquence dans la liste.</description>
+    </item>
+    
+  </channel>
+</rss>

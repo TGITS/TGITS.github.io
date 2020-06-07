@@ -6,10 +6,28 @@
     <description>Recent content in Tags on The Geek In The Shell</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>fr-fr</language>
-    <lastBuildDate>Mon, 01 Jun 2020 11:56:13 +0200</lastBuildDate>
+    <lastBuildDate>Mon, 01 Jun 2020 16:23:17 +0200</lastBuildDate>
     
 	<atom:link href="https://tgits.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>hebdomadaire</title>
+      <link>https://tgits.github.io/tags/hebdomadaire/</link>
+      <pubDate>Mon, 01 Jun 2020 16:23:17 +0200</pubDate>
+      
+      <guid>https://tgits.github.io/tags/hebdomadaire/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>veille</title>
+      <link>https://tgits.github.io/tags/veille/</link>
+      <pubDate>Mon, 01 Jun 2020 16:23:17 +0200</pubDate>
+      
+      <guid>https://tgits.github.io/tags/veille/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>adr</title>
@@ -39,20 +57,29 @@
     </item>
     
     <item>
-      <title>hebdomadaire</title>
-      <link>https://tgits.github.io/tags/hebdomadaire/</link>
+      <title>java</title>
+      <link>https://tgits.github.io/tags/java/</link>
       <pubDate>Sun, 31 May 2020 11:53:13 +0200</pubDate>
       
-      <guid>https://tgits.github.io/tags/hebdomadaire/</guid>
+      <guid>https://tgits.github.io/tags/java/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>veille</title>
-      <link>https://tgits.github.io/tags/veille/</link>
+      <title>streams</title>
+      <link>https://tgits.github.io/tags/streams/</link>
       <pubDate>Sun, 31 May 2020 11:53:13 +0200</pubDate>
       
-      <guid>https://tgits.github.io/tags/veille/</guid>
+      <guid>https://tgits.github.io/tags/streams/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>structure de données</title>
+      <link>https://tgits.github.io/tags/structure-de-donn%C3%A9es/</link>
+      <pubDate>Sun, 31 May 2020 11:53:13 +0200</pubDate>
+      
+      <guid>https://tgits.github.io/tags/structure-de-donn%C3%A9es/</guid>
       <description></description>
     </item>
     
