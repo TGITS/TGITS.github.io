@@ -6,10 +6,20 @@
     <description>Recent content in Posts on The Geek In The Shell</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>fr-fr</language>
-    <lastBuildDate>Sun, 14 Jun 2020 16:23:17 +0200</lastBuildDate>
+    <lastBuildDate>Sun, 21 Jun 2020 17:23:17 +0200</lastBuildDate>
     
 	<atom:link href="https://tgits.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Veille pour la semaine du 15 au 21 juin 2020</title>
+      <link>https://tgits.github.io/post/veille-semaine-20200615/</link>
+      <pubDate>Sun, 21 Jun 2020 17:23:17 +0200</pubDate>
+      
+      <guid>https://tgits.github.io/post/veille-semaine-20200615/</guid>
+      <description>Une sélection de ce que j&amp;rsquo;ai écouté, vu ou lu et qui a marqué ma semaine (ou aurait dû) ! Comme le remarque mon collègue Thomas dans un billet, c&amp;rsquo;est représentatif de ma bulle informationnelle ! Vous êtes prévenus !
+Ecouté  Plusieurs épisodes du Podcast HanselMinutes de Scott Hanselman  Red Teaming with Leron Gray : j&amp;rsquo;ai bien aimé la définition donnée pour la Red Team : Adversary Emulation (vers 1&#39;27&amp;rsquo;&#39;).</description>
+    </item>
     
     <item>
       <title>Veille pour la semaine du 8 au 14 juin 2020</title>
