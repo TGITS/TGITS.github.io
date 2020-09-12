@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://tgits.github.io/post/devoir-vacances-elixir/</loc>
+    <lastmod>2020-09-12T15:46:52+02:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://tgits.github.io/post/veille-semaine-20200622/</loc>
     <lastmod>2020-06-21T15:03:17+02:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -108,48 +115,83 @@
   
   <url>
     <loc>https://tgits.github.io/categories/</loc>
-    <lastmod>2020-06-21T17:23:17+02:00</lastmod>
+    <lastmod>2020-09-12T15:46:52+02:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://tgits.github.io/tags/hebdomadaire/</loc>
-    <lastmod>2020-06-21T17:23:17+02:00</lastmod>
+    <loc>https://tgits.github.io/categories/d%C3%A9veloppement/</loc>
+    <lastmod>2020-09-12T15:46:52+02:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://tgits.github.io/tags/elixir/</loc>
+    <lastmod>2020-09-12T15:46:52+02:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://tgits.github.io/categories/elixir/</loc>
+    <lastmod>2020-09-12T15:46:52+02:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://tgits.github.io/post/</loc>
-    <lastmod>2020-06-21T17:23:17+02:00</lastmod>
+    <lastmod>2020-09-12T15:46:52+02:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://tgits.github.io/tags/programmation-distribu%C3%A9e/</loc>
+    <lastmod>2020-09-12T15:46:52+02:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://tgits.github.io/tags/programmation-fonctionnelle/</loc>
+    <lastmod>2020-09-12T15:46:52+02:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://tgits.github.io/tags/</loc>
-    <lastmod>2020-06-21T17:23:17+02:00</lastmod>
+    <lastmod>2020-09-12T15:46:52+02:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://tgits.github.io/</loc>
-    <lastmod>2020-06-21T17:23:17+02:00</lastmod>
+    <lastmod>2020-09-12T15:46:52+02:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://tgits.github.io/tags/veille/</loc>
-    <lastmod>2020-06-21T17:23:17+02:00</lastmod>
+    <lastmod>2020-09-12T15:46:52+02:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://tgits.github.io/categories/veille/</loc>
+    <lastmod>2020-09-12T15:46:52+02:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://tgits.github.io/tags/hebdomadaire/</loc>
     <lastmod>2020-06-21T17:23:17+02:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -186,13 +228,6 @@
   <url>
     <loc>https://tgits.github.io/categories/documentation/</loc>
     <lastmod>2020-06-01T11:56:13+02:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://tgits.github.io/categories/d%C3%A9veloppement/</loc>
-    <lastmod>2020-06-07T17:13:13+02:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>

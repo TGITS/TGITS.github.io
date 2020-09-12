@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Aventure de vacances : Elixir - The Geek In The Shell</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="TGITS" /><meta name="description" content="Prologue Ce billet n&amp;rsquo;est pas un article d&amp;rsquo;introduction à Elixir. C&amp;rsquo;est juste un billet dans lequel je partage mon expérience et mon ressenti, sur un travail de veille sur Elixir cet été. Ce billet est également l&amp;rsquo;occasion de prendre du recul sur l&amp;rsquo;apprentissage de technologies qui peuvent être considérées comme exotique par rapport aux technologies que l&amp;rsquo;on utilise plus couramment en entreprise.
+A la recherche de la pierre philosophale J&amp;rsquo;ai profité de l&amp;rsquo;été et des périodes de congés qui allaient avec pour regarder un peu le langage Elixir." /><meta name="keywords" content="TGITS, Développement, Java, Architecture" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.71.1 with theme even" />
+
+
+<link rel="canonical" href="https://tgits.github.io/post/devoir-vacances-elixir/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.8c3cbcb0324c2bb4875ceccba4007cbad4b4ac8377f33af9953c3e7684534a50.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Aventure de vacances : Elixir" />
+<meta property="og:description" content="Prologue Ce billet n&rsquo;est pas un article d&rsquo;introduction à Elixir. C&rsquo;est juste un billet dans lequel je partage mon expérience et mon ressenti, sur un travail de veille sur Elixir cet été. Ce billet est également l&rsquo;occasion de prendre du recul sur l&rsquo;apprentissage de technologies qui peuvent être considérées comme exotique par rapport aux technologies que l&rsquo;on utilise plus couramment en entreprise.
+A la recherche de la pierre philosophale J&rsquo;ai profité de l&rsquo;été et des périodes de congés qui allaient avec pour regarder un peu le langage Elixir." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://tgits.github.io/post/devoir-vacances-elixir/" />
+<meta property="article:published_time" content="2020-09-12T15:46:52+02:00" />
+<meta property="article:modified_time" content="2020-09-12T15:46:52+02:00" />
+<meta itemprop="name" content="Aventure de vacances : Elixir">
+<meta itemprop="description" content="Prologue Ce billet n&rsquo;est pas un article d&rsquo;introduction à Elixir. C&rsquo;est juste un billet dans lequel je partage mon expérience et mon ressenti, sur un travail de veille sur Elixir cet été. Ce billet est également l&rsquo;occasion de prendre du recul sur l&rsquo;apprentissage de technologies qui peuvent être considérées comme exotique par rapport aux technologies que l&rsquo;on utilise plus couramment en entreprise.
+A la recherche de la pierre philosophale J&rsquo;ai profité de l&rsquo;été et des périodes de congés qui allaient avec pour regarder un peu le langage Elixir.">
+<meta itemprop="datePublished" content="2020-09-12T15:46:52&#43;02:00" />
+<meta itemprop="dateModified" content="2020-09-12T15:46:52&#43;02:00" />
+<meta itemprop="wordCount" content="2013">
+
+
+
+<meta itemprop="keywords" content="elixir,veille,programmation fonctionnelle,programmation distribuée," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Aventure de vacances : Elixir"/>
+<meta name="twitter:description" content="Prologue Ce billet n&rsquo;est pas un article d&rsquo;introduction à Elixir. C&rsquo;est juste un billet dans lequel je partage mon expérience et mon ressenti, sur un travail de veille sur Elixir cet été. Ce billet est également l&rsquo;occasion de prendre du recul sur l&rsquo;apprentissage de technologies qui peuvent être considérées comme exotique par rapport aux technologies que l&rsquo;on utilise plus couramment en entreprise.
+A la recherche de la pierre philosophale J&rsquo;ai profité de l&rsquo;été et des périodes de congés qui allaient avec pour regarder un peu le langage Elixir."/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">TGITS</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Blog</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">TGITS</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Blog</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Aventure de vacances : Elixir</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-09-12 </span>
+        <div class="post-category">
+            <a href="/categories/d%C3%A9veloppement/"> développement </a>
+            <a href="/categories/elixir/"> elixir </a>
+            <a href="/categories/veille/"> veille </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contenu</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#prologue">Prologue</a></li>
+    <li><a href="#a-la-recherche-de-la-pierre-philosophale">A la recherche de la pierre philosophale</a></li>
+    <li><a href="#la-quête">La quête</a></li>
+    <li><a href="#there-and-back-again">There and back again</a></li>
+    <li><a href="#retour-à-la-maison">Retour à la maison</a></li>
+    <li><a href="#epilogue">Epilogue</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h2 id="prologue">Prologue</h2>
+<p>Ce billet n&rsquo;est pas un article d&rsquo;introduction à <a href="https://elixir-lang.org/">Elixir</a>. C&rsquo;est juste un billet dans lequel je partage mon expérience et mon ressenti, sur un travail de veille sur <a href="https://elixir-lang.org/">Elixir</a> cet été.
+Ce billet est également l&rsquo;occasion de prendre du recul sur l&rsquo;apprentissage de technologies qui peuvent être considérées comme exotique par rapport aux technologies que l&rsquo;on utilise plus couramment en entreprise.</p>
+<h2 id="a-la-recherche-de-la-pierre-philosophale">A la recherche de la pierre philosophale</h2>
+<p>J&rsquo;ai profité de l&rsquo;été et des périodes de congés qui allaient avec pour regarder un peu le langage <a href="https://elixir-lang.org/">Elixir</a>. Cela fait un moment que je souhaitais regarder de plus près le langage et la plateforme.</p>
+<p>Au quotidien je fais essentiellement du développement Java avec Spring mais cela fait un moment que j&rsquo;essaie d&rsquo;ajouter à ma trousse à outils un style de programmation plus fonctionnelle. A cette fin j&rsquo;ai déjà essayé des langages sur la JVM comme <a href="https://www.scala-lang.org/">Scala</a> et <a href="https://clojure.org/">Clojure</a> (avec une nette préférence pour <a href="https://clojure.org/">Clojure</a> mais j&rsquo;ai toujours eu une certaine partialité envers les <a href="https://fr.wikipedia.org/wiki/Lisp">LISP</a>) et bien sûr avec l&rsquo;arrivée de l&rsquo;API Stream en Java, je peux aussi avoir un style plus <em>fonctionnel</em> au quotidien. En me mettant à <a href="https://elixir-lang.org/">Elixir</a>, je voulais ainsi continuer à progresser sur le plan de la programmation fonctionnelle mais également explorer une plateforme qui donne une place centrale aux systèmes distribués (et pas seulement à la <em>concurrence</em>) au niveau du langage.</p>
+<p>En effet, dans mes dernières missions, au quotidien je travaille sur des projets mettant en oeuvre des microservices développés en Java, donc <em>in fine</em> sur des systèmes distribués mais sans forcèment avoir les bons réflexes et les bonnes questions par rapport à la distribution.</p>
+<p>Mon objectif était donc double : découvrir un autre langage fonctionnelle pour m&rsquo;améliorer sur le style de programmation fonctionnelle et découvrir une philosophie de conception et de programmation qui met l&rsquo;accent sur la distribution des traitements.</p>
+<h2 id="la-quête">La quête</h2>
+<p>Pour organiser cette exploration d&rsquo;Elixir en fonction des contraintes qu&rsquo;il était les miennes (par exemple accès à Internet limité et pas forcément la possibilité de passer beaucoup de temps devant un ordinateur), je me suis appuyé sur des livres et des podcasts.</p>
+<p>J&rsquo;ai lu 2 livres :</p>
+<ul>
+<li><a href="https://www.syncfusion.com/ebooks/elixir-succinctly">Elixir Succintly</a> de <a href="http://emanueledelbono.it/">Emanuele DelBono</a> : fidèle à l&rsquo;esprit de cette collection de livres électroniques gratuits, c&rsquo;est une présentation rapide (sur environ 80 pages) du langage et de la plateforme, cela permet de se faire rapidement une idée. Mon objectif en lisant ce livre était de voir si cela me donnait envie d&rsquo;investiguer plus profondément.</li>
+<li><a href="https://pragprog.com/titles/elixir16/programming-elixir-1-6/">Programming Elixir</a> de <a href="https://pragdave.me/blog/">Dave Thomas</a> : le livre ne se veut pas une présentation exhaustive du langage mais en fait un tour quand même assez complet avec beaucoup de pédagogie. J&rsquo;ai vraiment apprécié la lecture et cela m&rsquo;a donné envie de lire la nouvelle édition de <a href="https://pragprog.com/titles/tpp20/the-pragmatic-programmer-20th-anniversary-edition/">The Pragmatic Programmer</a></li>
+</ul>
+<p>Je me suis abonné à différents podcasts traitant d&rsquo;<a href="https://elixir-lang.org/">Elixir</a> et de son écosystème :</p>
+<ul>
+<li><a href="https://smartlogic.io/podcast/elixir-wizards/">Elixir Wizards Podcast</a></li>
+<li><a href="https://devchat.tv/podcasts/elixir-mix/">Elixir Mix</a></li>
+<li><a href="http://elixirtalk.com/">ElixirTalk</a></li>
+<li><a href="https://thinkingelixir.com/the-podcast/">Thinking Elixir</a></li>
+</ul>
+<p>Pour l&rsquo;instant, j&rsquo;ai surtout écouté des épisodes de <a href="https://smartlogic.io/podcast/elixir-wizards/">Elixir Wizards Podcast</a> et de <a href="https://devchat.tv/podcasts/elixir-mix/">Elixir Mix</a>. De ces épisodes écoutés, j&rsquo;en ai particulièrement apprécié <a href="https://smartlogic.io/podcast/elixir-wizards/s4e5-thomas/">un dans lequel Dave Thomas était interviewé</a>.</p>
+<p>Côté pratique, j&rsquo;ai mis à profit <a href="https://exercism.io/tracks/elixir">la <em>track</em> Elixir de Exercism</a> et les exercices proposés dans <a href="https://pragprog.com/titles/elixir16/programming-elixir-1-6/">Programming Elixir</a> mais à ce stade très clairement pas assez &hellip;. mais bon on fait comme on peu.</p>
+<p>Je suis aussi aller faire un tour sur <a href="https://elixirschool.com/">Elixir School</a> et j&rsquo;en ai profité pour contribuer modestement à la traduction française (une manière comme une autre de contribuer à des projets open source).</p>
+<h2 id="there-and-back-again">There and back again</h2>
+<p>Je cherchais du dépaysement zt j&rsquo;ai été servi : <a href="https://elixir-lang.org/">Elixir</a> cela fait quand même un choc culturel quand on pratique Java au quotidien. Certes, je connais <a href="https://www.ruby-lang.org/">Ruby</a> (la syntaxe d&rsquo;Elixir est inspirée de Ruby même si a bien des égards <a href="https://elixir-lang.org/">Elixir</a> n&rsquo;a rien à voir avec <a href="https://www.ruby-lang.org/">Ruby</a>), comme écrit plus haut, j&rsquo;ai déjà un peu essayé des langages <em>fonctionnels</em> et je ne suis pas réfractaire à un style de programmation fonctionnelle bien au contraire, mais j&rsquo;ai appris des choses et cela m&rsquo;a amené à réfléchir. Cela tombe bien c&rsquo;était l&rsquo;un des objectifs !</p>
+<p>Je ne vais pas énumerer si après toutes les spécifités et caractéristiques d&rsquo;<a href="https://elixir-lang.org/">Elixir</a>. Comme indiqué plus haut, ce n&rsquo;est pas un tutoriel, c&rsquo;est plus un compte-rendu d&rsquo;expérience, je me focalise donc sur ce qui m&rsquo;a marqué.</p>
+<p>Tout d&rsquo;abord il y a le <a href="https://en.wikipedia.org/wiki/Pattern_matching">pattern matching</a> (la traduction française serait <a href="https://fr.wikipedia.org/wiki/Filtrage_par_motif">filtrage par motif</a>). Certes, cela existe dans d&rsquo;autres langages et c&rsquo;est <a href="http://cr.openjdk.java.net/~briangoetz/amber/switch-rehab.html">en train d&rsquo;arriver en Java par exemple</a>, et j&rsquo;en avais utilisé quand j&rsquo;avais fait du <a href="https://www.scala-lang.org/">Scala</a>.</p>
+<p>Cependant, là ce n&rsquo;est pas juste du <em>pattern matching</em> à travers un <code>case</code> mais carrèment au niveau des fonctions. Ainsi vous pouvez définir de multiple <em>clauses</em> à une même fonction, chaque clause correspondant à une branche de votre <em>match</em>. Du coup, votre besoin en structures de contrôle conditionnelles est limité : vous pouvez écrire des programmes dans lequel vous n&rsquo;aurez pas de <code>if/else</code> ou équivalent. Cela amène à voir et à penser les choses différemment.</p>
+<p>Ensuite, bien sûr, il y a l&rsquo;opérateur <em>pipe</em> (<code>|&gt;</code>) qui permet de visualiser concrètement le flux de données d&rsquo;une fonction à une autre. Dans des langages comme Elixir, on est sur une approche <a href="https://functional.works-hub.com/learn/the-essence-of-data-oriented-programming-31fe6">Data Oriented Programming</a> et cela demande un changement de <em>mindset</em> par rapport à une approche objet <em>classique</em>. Là aussi cela amène à voir et à penser les choses différemment même si pour le compte c&rsquo;est quelque chose que j&rsquo;avais déjà pratiqué en Clojure et qu&rsquo;au final on peut faire avec l&rsquo;API Stream de Java. Ce qui est intéressant ici c&rsquo;est aussi la lisibilité que l&rsquo;opérateur <em>pipe</em> apporte.</p>
+<p>Cependant la vraie claque, c&rsquo;est quand vous abordez la programmation distribuée avec <a href="https://elixir-lang.org/">Elixir</a> et la VM <a href="https://www.erlang.org/">Erlang</a>. Je croyais à tord qu&rsquo;<a href="https://elixir-lang.org/">Elixir</a> (et <a href="https://www.erlang.org/">Erlang</a>) proposaient un modèle de concurrence intégrée au langage basée sur le modèle d&rsquo;acteurs au même titre que le <a href="https://golang.org/">langage Go</a> propose (entre autre) un modèle de concurrence basée sur les <a href="https://fr.wikipedia.org/wiki/Communicating_sequential_processes">CSP</a> : ce n&rsquo;est pas juste un modèle de concurrence, on est sur un modèle pour développer des systèmes distribués au niveau du langage et de la VM. J&rsquo;ai même l&rsquo;impression que vous n&rsquo;avez pas trop le choix dès que vous developpez en Elixir/Erlang, vous développez un système distribué.</p>
+<p><strong>NB</strong> : ne pas voir ci-dessus une critique du <a href="https://golang.org/">langage Go</a>, on est sur des cas d&rsquo;utilisation différents et je souligne juste une erreur d&rsquo;interprétation de ma part.</p>
+<p>Quand on développe une application sous forme d&rsquo;un ensemble de micro-services, on développe un système distribué. Chaque micro-service est une application indépendante proposant un ensemble de fonctionnalités cohérentes et limitées. L&rsquo;ensemble de ces micro-services une fois déployées vont interagir par échange de messages pour former notre système distribué qui répond à un besoin métier.</p>
+<p>L&rsquo;essence de la programmation avec Erlang et Elixir, c&rsquo;est de faire la même chose mais à l&rsquo;échelle du dessous : des modules regroupant un ensemble de fonctions sont des <em>processus</em> indépendants qui interagissent par échange de message pour répondre au besoin métier. Si on transposait dans l&rsquo;univers Java ou C#, cela serait des instances de classes qui interagiraient par échange de messages (pas par appel de méthode d&rsquo;une classe dans une autre) directement. Et tous les outils pour assurer la supersivion de ces processus sont présents. De plus, ces processus pourraient être déployés sur des VM sur plusieurs noeuds distincts (pouvant correspondre à des machines physiques différentes) et continuer à communiquer de manière transparente.</p>
+<p>La programmation distribuée est la partie que j&rsquo;ai trouvé la plus impressionnante et qui - à mon sens - représente le véritable intérêt d&rsquo;<a href="https://elixir-lang.org/">Elixir</a> mais également la véritable difficulté pour l&rsquo;apprendre. Je ne dis pas qu&rsquo;il soit trivial de se faire à une approche fonctionnelle quand on n&rsquo;y est pas habitué. Cependant organiser son code comme un ensemble de composants distribués et gérer toutes les subtilités de la philosophie <em>Let it crash</em> et des outils qui vous permettent de garder votre système fiable, ce n&rsquo;est pas simple et cela demande de la pratique. Au passage, les mécanismes de déploiement à chaud sont également assez impressionnant et bien pensé. On sent bien derrière <a href="https://elixir-lang.org/">Elixir</a> le poids de l&rsquo;expérience et du savoir faire développés avec <a href="https://www.erlang.org/">Erlang</a>.</p>
+<h2 id="retour-à-la-maison">Retour à la maison</h2>
+<p>Pour l&rsquo;instant, je suis resté très en surface d&rsquo;Elixir et de son écosystème. De nombreuses heures de pratique me séparent d&rsquo;écrire du code idiomatique en Elixir et de l&rsquo;utiliser de manière pertinente. Surtout que pour maitriser réellement Elixir, cela demande quand même d&rsquo;avoir une certaine compréhension de la VM Erlang. Et puis cela suppose aussi de se familiariser avec son écosystème et des projets emblématiques de ce dernier, comme par exemple <a href="https://www.phoenixframework.org/">Phoenix</a> ou <a href="https://www.nerves-project.org/">Nerves</a>.</p>
+<p>En bref <a href="https://elixir-lang.org/">Elixir</a> ne s&rsquo;apprend pas en un week-end et il faut avoir le cas d&rsquo;utilisation : si c&rsquo;est juste pour faire mumuse sur <a href="https://exercism.io/">Exercism</a> et sur des petits programmes quand on a le temps le week-end, on peut clairement se demander si cela vaut le coût d&rsquo;investir du temps (qui pourrait être employé à quelque chose d&rsquo;autre) même si intellectuellement cela sera un chemin intéressant.</p>
+<p>De plus de manière lucide, <a href="https://elixir-lang.org/">Elixir</a> ce n&rsquo;est pas une technologie que l&rsquo;on peut (raisonnablement conseiller) introduire en douce ou sans qu&rsquo;il y ait un véritable besoin et une volonté forte de l&rsquo;utiliser au niveau des développeurs. Et des missions Elixir/Erlang en France on n&rsquo;en trouve pas beaucoup.</p>
+<p>Alors quel intérêt ? Et bien cela va dépendre de vos objectifs.</p>
+<p>Si vous voulez voir une manière différente de concevoir et de coder que celle à laquelle vous êtes habitués dans des approches impératives ou objet pour  changer votre perspective sur votre manière de coder, <a href="https://elixir-lang.org/">Elixir</a> est un bon choix. Clairement  cela est dépaysant et très enrichissant intellectuellement pour qui ne connait pas la programmation fonctionnelle et/ou distribuée.</p>
+<p>Si vous avez un besoin spécifique en développement Web ou en système embarqué, il pourra être intéressant de regarder respectivement si <a href="https://www.phoenixframework.org/">Phoenix</a> ou <a href="https://www.nerves-project.org/">Nerves</a> répondent à votre cas d&rsquo;utilisation.</p>
+<p>Si vous avez besoin de développer une application qui doit avoir un très haut tôt de disponibilité ou être distribué, <a href="https://elixir-lang.org/">Elixir</a> peut clairement être une option à étudier.</p>
+<p>Maintenant, je doute qu&rsquo;on puisse recommander d&rsquo;appendre <a href="https://elixir-lang.org/">Elixir</a> pour trouver plus facilement une mission, un emploi ou améliorer son employabilité. Apprendre <a href="https://elixir-lang.org/">Elixir</a> vous rendra très certainement un meilleur développeur mais cela sera difficile à vendre sur un CV ou dans un entretien, et d&rsquo;autant plus qu&rsquo;<a href="https://elixir-lang.org/">Elixir</a> ou <a href="https://www.erlang.org/">Erlang</a> sont assez peu connu.</p>
+<p>L&rsquo;apprentissage d&rsquo;<a href="https://elixir-lang.org/">Elixir</a> est très enrichissant mais il demande investissement et motivation.</p>
+<h2 id="epilogue">Epilogue</h2>
+<p>De mon côté, je trouve <a href="https://elixir-lang.org/">Elixir</a> très intéressant et je souhaiterais approfondir en mettant plus en pratique et en essayant <a href="https://www.phoenixframework.org/">Phoenix</a>. Cependant, je sais que l&rsquo;investissement en temps est important, avec un temps à allouer pour la <em>veille</em> qui est hélas réduit. Je n&rsquo;ai pas la possibilité d&rsquo;en faire réellement dans le cadre de ma mission sur laquelle je dois enchaîner les projets à faire dans l&rsquo;urgence. Pourtant je travaille dans une ESN, <a href="https://www.norsys.fr/">Norsys</a>, qui m&rsquo;alloue du temps pour faire de la veille technologique, mais par rapport à ma mission actuelle, je n&rsquo;ai tout simplement pas la possibilité de profiter de cette allocation de temps pour de la veille active.</p>
+<p>Les exigences des projets dans le cadre professionnel font que dans un compromis intérêt/utilité directe, j&rsquo;utilise une partie de mon temps personnel dédié à la <em>veille</em> pour me former à des technologies que j&rsquo;estime ne pas maitriser suffisamment dans le cadre de mon activité professionnelle.</p>
+<p>Enfin, maintenant que mon fils (jeune collégien), exprime depuis peu un intérêt pour la programmation (qui a dit que les jeux vidéos cela n&rsquo;amené rien de bon ?), je priorise par rapport à ma veille de lui apprendre les bases de l&rsquo;informatique et du codage. Et <a href="https://www.python.org/">Python</a> m&rsquo;a semblé un choix plus pertinent qu&rsquo;<a href="https://elixir-lang.org/">Elixir</a> pour cela (surtout avec mon niveau de maitrise d&rsquo;<a href="https://elixir-lang.org/">Elixir</a> actuel).</p>
+<p>Pour l&rsquo;instant, c&rsquo;est une activité au ralenti : je continue en pointillé à explorer <a href="https://elixir-lang.org/">Elixir</a> dès que j&rsquo;ai un peu de temps avec <a href="https://exercism.io/tracks/elixir">Exercism</a> et les traductions en français des leçons de <a href="https://elixirschool.com/">Elixir School</a> en attendant de pouvoir y consacrer plus de temps ou de finir par décider que l&rsquo;approfondissement d&rsquo;<a href="https://elixir-lang.org/">Elixir</a> ne doit plus être une partie du <em>portefeuille de connaissances</em> que j&rsquo;essaie de maintenir.</p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Auteur</span>
+    <span class="item-content">TGITS</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">Modifié</span>
+    <span class="item-content">
+        2020-09-12
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/elixir/">elixir</a>
+          <a href="/tags/veille/">veille</a>
+          <a href="/tags/programmation-fonctionnelle/">programmation fonctionnelle</a>
+          <a href="/tags/programmation-distribu%C3%A9e/">programmation distribuée</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/post/veille-semaine-20200622/">
+            <span class="next-text nav-default">Veille pour la semaine du 22 au 28 juin 2020</span>
+            <span class="next-text nav-mobile">Suivant</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    (function() {
+      
+      
+      if (window.location.hostname === 'localhost') return;
+
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      var disqus_shortname = 'thegeekintheshell';
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "thegeekintheshell" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+<div class="social-links">
+      <a href="mailto:thegeekintheshell@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://twitter.com/_TGITS" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="https://www.linkedin.com/in/cvaudry/" class="iconfont icon-linkedin" title="linkedin"></a>
+      <a href="https://github.com/TGITS" class="iconfont icon-github" title="github"></a>
+      <a href="https://gitlab.com/TGITS" class="iconfont icon-gitlab" title="gitlab"></a>
+  <a href="https://tgits.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Propulsé par <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Thème - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2020
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">TGITS</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

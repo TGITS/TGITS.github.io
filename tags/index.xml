@@ -6,10 +6,46 @@
     <description>Recent content in Tags on The Geek In The Shell</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>fr-fr</language>
-    <lastBuildDate>Sun, 28 Jun 2020 11:48:10 +0200</lastBuildDate>
+    <lastBuildDate>Sat, 12 Sep 2020 15:46:52 +0200</lastBuildDate>
     
 	<atom:link href="https://tgits.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>elixir</title>
+      <link>https://tgits.github.io/tags/elixir/</link>
+      <pubDate>Sat, 12 Sep 2020 15:46:52 +0200</pubDate>
+      
+      <guid>https://tgits.github.io/tags/elixir/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>programmation distribuée</title>
+      <link>https://tgits.github.io/tags/programmation-distribu%C3%A9e/</link>
+      <pubDate>Sat, 12 Sep 2020 15:46:52 +0200</pubDate>
+      
+      <guid>https://tgits.github.io/tags/programmation-distribu%C3%A9e/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>programmation fonctionnelle</title>
+      <link>https://tgits.github.io/tags/programmation-fonctionnelle/</link>
+      <pubDate>Sat, 12 Sep 2020 15:46:52 +0200</pubDate>
+      
+      <guid>https://tgits.github.io/tags/programmation-fonctionnelle/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>veille</title>
+      <link>https://tgits.github.io/tags/veille/</link>
+      <pubDate>Sat, 12 Sep 2020 15:46:52 +0200</pubDate>
+      
+      <guid>https://tgits.github.io/tags/veille/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>hebdomadaire</title>
@@ -17,15 +53,6 @@
       <pubDate>Sun, 28 Jun 2020 11:48:10 +0200</pubDate>
       
       <guid>https://tgits.github.io/tags/hebdomadaire/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>veille</title>
-      <link>https://tgits.github.io/tags/veille/</link>
-      <pubDate>Sun, 28 Jun 2020 11:48:10 +0200</pubDate>
-      
-      <guid>https://tgits.github.io/tags/veille/</guid>
       <description></description>
     </item>
     
