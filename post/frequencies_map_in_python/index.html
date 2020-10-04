@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Tableau de fréquences en Python - The Geek In The Shell</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="TGITS" /><meta name="description" content="Il y a quelques temps j&amp;rsquo;ai publié un billet sur les tableaux de fréquences en Java avec les streams. Faisant un peu de Python en ce moment, je me suis demandé comment je pouvais le faire en Python de manière idiomatique (ou du moins d&amp;rsquo;une manière qui me semble idiomatique en Python).
+Pour rappel, je traduis ici par tableau de fréquences l&amp;rsquo;expression anglaise de frequencies map. Vous avez une liste d&amp;rsquo;éléments et vous voulez pour chaque élément connaître sa fréquence (le nombre de fois où cet élément est présent dans cette liste)." /><meta name="keywords" content="TGITS, Développement, Java, Architecture" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.71.1 with theme even" />
+
+
+<link rel="canonical" href="https://tgits.github.io/post/frequencies_map_in_python/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.8c3cbcb0324c2bb4875ceccba4007cbad4b4ac8377f33af9953c3e7684534a50.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Tableau de fréquences en Python" />
+<meta property="og:description" content="Il y a quelques temps j&rsquo;ai publié un billet sur les tableaux de fréquences en Java avec les streams. Faisant un peu de Python en ce moment, je me suis demandé comment je pouvais le faire en Python de manière idiomatique (ou du moins d&rsquo;une manière qui me semble idiomatique en Python).
+Pour rappel, je traduis ici par tableau de fréquences l&rsquo;expression anglaise de frequencies map. Vous avez une liste d&rsquo;éléments et vous voulez pour chaque élément connaître sa fréquence (le nombre de fois où cet élément est présent dans cette liste)." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://tgits.github.io/post/frequencies_map_in_python/" />
+<meta property="article:published_time" content="2020-10-03T12:01:23+02:00" />
+<meta property="article:modified_time" content="2020-10-04T18:27:13+02:00" />
+<meta itemprop="name" content="Tableau de fréquences en Python">
+<meta itemprop="description" content="Il y a quelques temps j&rsquo;ai publié un billet sur les tableaux de fréquences en Java avec les streams. Faisant un peu de Python en ce moment, je me suis demandé comment je pouvais le faire en Python de manière idiomatique (ou du moins d&rsquo;une manière qui me semble idiomatique en Python).
+Pour rappel, je traduis ici par tableau de fréquences l&rsquo;expression anglaise de frequencies map. Vous avez une liste d&rsquo;éléments et vous voulez pour chaque élément connaître sa fréquence (le nombre de fois où cet élément est présent dans cette liste).">
+<meta itemprop="datePublished" content="2020-10-03T12:01:23&#43;02:00" />
+<meta itemprop="dateModified" content="2020-10-04T18:27:13&#43;02:00" />
+<meta itemprop="wordCount" content="2012">
+
+
+
+<meta itemprop="keywords" content="python,structure de données," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Tableau de fréquences en Python"/>
+<meta name="twitter:description" content="Il y a quelques temps j&rsquo;ai publié un billet sur les tableaux de fréquences en Java avec les streams. Faisant un peu de Python en ce moment, je me suis demandé comment je pouvais le faire en Python de manière idiomatique (ou du moins d&rsquo;une manière qui me semble idiomatique en Python).
+Pour rappel, je traduis ici par tableau de fréquences l&rsquo;expression anglaise de frequencies map. Vous avez une liste d&rsquo;éléments et vous voulez pour chaque élément connaître sa fréquence (le nombre de fois où cet élément est présent dans cette liste)."/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">TGITS</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Blog</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">TGITS</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Blog</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Tableau de fréquences en Python</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-10-03 </span>
+        <div class="post-category">
+            <a href="/categories/d%C3%A9veloppement/"> développement </a>
+            <a href="/categories/python/"> python </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contenu</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#la-problématique">La problématique</a></li>
+    <li><a href="#une-solution-impérative">Une solution impérative</a></li>
+    <li><a href="#détour-par-itertools">Détour par itertools</a>
+      <ul>
+        <li><a href="#itérables-et-itérateurs">Itérables et itérateurs</a></li>
+        <li><a href="#itérables-rassemblement-">Itérables, rassemblement !</a></li>
+      </ul>
+    </li>
+    <li><a href="#pour-une-bonne-compréhension">Pour une bonne compréhension</a></li>
+    <li><a href="#regard-critique">Regard critique</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>Il y a quelques temps j&rsquo;ai publié <a href="https://tgits.github.io/post/frequencies_map/">un billet sur les tableaux de fréquences en Java avec les streams</a>. Faisant un peu de Python en ce moment, je me suis demandé comment je pouvais le faire en Python de manière idiomatique (ou du moins d&rsquo;une manière qui me semble idiomatique en Python).</p>
+<p>Pour rappel, je traduis ici par tableau de fréquences l&rsquo;expression anglaise de <em>frequencies map</em>. Vous avez une liste d&rsquo;éléments et vous voulez pour chaque élément connaître sa fréquence (le nombre de fois où cet élément est présent dans cette liste). Ainsi à partir de cette liste d&rsquo;éléments, vous désirez obtenir un tableau associatif dans lequel chaque clé est un élément de cet liste et est associé à sa fréquence dans la liste.</p>
+<h2 id="la-problématique">La problématique</h2>
+<p>On a une séquence d&rsquo;éléments qui peuvent se répéter, on souhaite avoir pour chaque élément sa fréquence, c&rsquo;est-à-dire le nombre de fois que cet élément apparaît dans la séquence. Par exemple pour la séquence d&rsquo;élément <code>a, b, c, d, a, d, a</code>, je souhaite obtenir l&rsquo;information que l&rsquo;élément <code>a</code> apparaît 3 fois, les éléments <code>b</code> et <code>c</code> apparaissent 1 fois et l&rsquo;élément <code>d</code> apparaît 2 fois.</p>
+<p>Si je traduis cela en Python avec une spécification sous forme de test cela me donne :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">FrequenciesMapWithForTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">test_empty_list</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">frequencies_map_with_for_from</span><span class="p">([]),</span> <span class="p">{})</span>
+
+    <span class="k">def</span> <span class="nf">test_single_element_list</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">frequencies_map_with_for_from</span><span class="p">([</span><span class="s2">&#34;a&#34;</span><span class="p">]),</span> <span class="p">{</span><span class="s2">&#34;a&#34;</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>
+
+    <span class="k">def</span> <span class="nf">test_several_identical_elements_list</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">frequencies_map_with_for_from</span><span class="p">(</span>
+            <span class="p">[</span><span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;a&#34;</span><span class="p">]),</span> <span class="p">{</span><span class="s2">&#34;a&#34;</span><span class="p">:</span> <span class="mi">3</span><span class="p">})</span>
+
+    <span class="k">def</span> <span class="nf">test_several_different_elements_list_sorted</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">frequencies_map_with_for_from</span><span class="p">(</span>
+            <span class="p">[</span><span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;b&#34;</span><span class="p">,</span> <span class="s2">&#34;b&#34;</span><span class="p">,</span> <span class="s2">&#34;c&#34;</span><span class="p">,</span> <span class="s2">&#34;d&#34;</span><span class="p">,</span> <span class="s2">&#34;d&#34;</span><span class="p">,</span> <span class="s2">&#34;d&#34;</span><span class="p">,</span> <span class="s2">&#34;d&#34;</span><span class="p">]),</span> <span class="p">{</span><span class="s2">&#34;a&#34;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">&#34;b&#34;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&#34;c&#34;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&#34;d&#34;</span><span class="p">:</span> <span class="mi">4</span><span class="p">})</span>
+
+    <span class="k">def</span> <span class="nf">test_several_different_elements_list_unsorted</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">frequencies_map_with_for_from</span><span class="p">(</span>
+            <span class="p">[</span><span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;b&#34;</span><span class="p">,</span> <span class="s2">&#34;c&#34;</span><span class="p">,</span> <span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;d&#34;</span><span class="p">,</span> <span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;d&#34;</span><span class="p">,</span> <span class="s2">&#34;b&#34;</span><span class="p">,</span> <span class="s2">&#34;d&#34;</span><span class="p">,</span> <span class="s2">&#34;d&#34;</span><span class="p">]),</span> <span class="p">{</span><span class="s2">&#34;a&#34;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">&#34;b&#34;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&#34;c&#34;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&#34;d&#34;</span><span class="p">:</span> <span class="mi">4</span><span class="p">})</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>L&rsquo;utilité du dernier test sur une liste d&rsquo;éléments non-triés se verra un peu plus tard quand on regardera les manières non classiques de le faire.</p>
+<h2 id="une-solution-impérative">Une solution impérative</h2>
+<p>Une manière classique de résoudre ce problème en Python et dans d&rsquo;autres langages est de parcourir la séquence d&rsquo;éléments et de <em>compter</em> leurs occurences.
+Nous allons stocker au fur et à mesure le résultat dans un dictionnaire, avec bien sûr la nécessité de vérifier si l&rsquo;élément si trouve déjà ou pas.</p>
+<p>Ci-après une proposition d&rsquo;implémentation de la fonction en Python.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">frequencies_map_with_for_from</span><span class="p">(</span><span class="n">elements</span><span class="p">):</span>
+    <span class="n">frequencies_map</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">elements</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">frequencies_map</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="n">frequencies_map</span><span class="p">[</span><span class="n">element</span><span class="p">]</span> <span class="o">=</span> <span class="n">frequencies_map</span><span class="p">[</span><span class="n">element</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">frequencies_map</span><span class="p">[</span><span class="n">element</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">frequencies_map</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Rien de compliquer en soit : une boucle <code>for</code> pour parcourir les éléments de la liste et à l&rsquo;intérieur de cette boucle une alternative <code>if-else</code> pour remplir le dictionnaire.</p>
+<h2 id="détour-par-itertools">Détour par itertools</h2>
+<p>Python permet d&rsquo;utiliser tant un style impératif qu&rsquo;un style plus fonctionnel. Tout comme pour <a href="https://tgits.github.io/post/frequencies_map/">mon billet sur le même thème en Java</a>, j&rsquo;ai essayé de voir ce que pouvait me proposer la bibliothèque standard de Python. Dans <a href="https://www.oreilly.com/programming/free/files/functional-programming-python.pdf">l&rsquo;excellente petite introduction à la programmation fonctionnelle en Python</a> <a href="https://www.oreilly.com/people/david-mertz/">David Mertz</a> indique que le <a href="https://docs.python.org/fr/3/library/itertools.html">module itertools de la bibliothèque standard de Python</a> regorge de fonctions pour faciliter la manipulation des itérateurs et des itérablesréaliser des boucles dans un style plus fonctionnel plus facilement.</p>
+<p>Cependant avant d&rsquo;en venir au fait, un détour dans le détour, pour parler des itérables et des itérateurs.</p>
+<h3 id="itérables-et-itérateurs">Itérables et itérateurs</h3>
+<p>Un <a href="https://docs.python.org/fr/3/glossary.html#term-iterable">itérable</a> en Python est une abstraction représentant un séquence d&rsquo;élements qui est capable de retouner un élément à la fois. A partir d&rsquo;un itérable, on peut créer un <a href="https://docs.python.org/fr/3/glossary.html#term-iterator">itérateur</a> qui est cette fois-ci l&rsquo;abstraction de l&rsquo;itération elle-même : un itérateur représente un flux de données avec lequel on peut intéragir avec une méthode spécifique pour obtenir l&rsquo;élément suivant de ce flux. L&rsquo;<a href="https://docs.python.org/fr/3/glossary.html#term-iterator">itérateur</a> est une vue ou un <em>curseur</em> qui permet de parcourir un <a href="https://docs.python.org/fr/3/glossary.html#term-iterable">itérable</a> sous-jacent.</p>
+<h3 id="itérables-rassemblement-">Itérables, rassemblement !</h3>
+<p>Après un peu de recherche dans les fonctions mises à disposition dans <a href="https://docs.python.org/fr/3/library/itertools.html">le module itertools</a>, je suis tombé sur la fonction <a href="https://docs.python.org/fr/3/library/itertools.html#itertools.groupby">groupby</a> qui me semblait pouvoir être exploité pour résoudre mon problème.</p>
+<p><a href="https://docs.python.org/fr/3/library/itertools.html#itertools.groupby">groupby</a> prend en entrée un <a href="https://docs.python.org/fr/3/glossary.html#term-iterable">itérable</a> et un paramètre optionnel qui correspond à une fonction <code>key</code>dont l&rsquo;objet est de générer une clé pour chaque élément. Si cette fonction n&rsquo;est pas spécifiée ou si sa valeur est <code>None</code>, par défaut c&rsquo;est une fonction identité renvoyant l&rsquo;élément sans le modifier. Parfait, je n&rsquo;ai pas besoin de plus. Faisons un essai dans l&rsquo;interpréteur.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">groupby</span>
+<span class="n">groupby</span><span class="p">([</span><span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;b&#34;</span><span class="p">,</span> <span class="s2">&#34;c&#34;</span><span class="p">,</span> <span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;d&#34;</span><span class="p">,</span> <span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;d&#34;</span><span class="p">,</span> <span class="s2">&#34;b&#34;</span><span class="p">,</span> <span class="s2">&#34;d&#34;</span><span class="p">,</span> <span class="s2">&#34;d&#34;</span><span class="p">])</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Le résultat n&rsquo;est pas celui que j&rsquo;attendais mais à la réflexion c&rsquo;est normal : <code>&lt;itertools.groupby object at 0x00000160680EA680&gt;</code></p>
+<p><img src="../../img/python/frequencies-map/essai_itertools_groupby_1.png" alt="Premier essai avec groupby dans l&rsquo;interpréteur"></p>
+<p>En effet, Python m&rsquo;affiche l&rsquo;adresse de l&rsquo;objet qui est un itérateur, il ne sait pas me l&rsquo;afficher directement, il faudrait que je le transforme en liste d&rsquo;abord. Ok, on va faire çà.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="nb">list</span><span class="p">(</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;b&#34;</span><span class="p">,</span> <span class="s2">&#34;c&#34;</span><span class="p">,</span> <span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;d&#34;</span><span class="p">,</span> <span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;d&#34;</span><span class="p">,</span> <span class="s2">&#34;b&#34;</span><span class="p">,</span> <span class="s2">&#34;d&#34;</span><span class="p">,</span> <span class="s2">&#34;d&#34;</span><span class="p">]))</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>C&rsquo;est mieux mais ce n&rsquo;est toujours pas cela : <code>[('a', &lt;itertools._grouper object at 0x0000016066418940&gt;), ('b', &lt;itertools._grouper object at 0x0000016066418400&gt;), ('c', &lt;itertools._grouper object at 0x0000016066418640&gt;), ('a', &lt;itertools._grouper object at 0x00000160680E2580&gt;), ('d', &lt;itertools._grouper object at 0x00000160680E25B0&gt;), ('a', &lt;itertools._grouper object at 0x00000160680E25E0&gt;), ('d', &lt;itertools._grouper object at 0x00000160680E2610&gt;), ('b', &lt;itertools._grouper object at 0x00000160680E2640&gt;), ('d', &lt;itertools._grouper object at 0x00000160680E2670&gt;)]</code>.</p>
+<p><img src="../../img/python/frequencies-map/essai_itertools_groupby_2.png" alt="Deuxième essai avec groupby dans l&rsquo;interpréteur"></p>
+<p>Et même si ce n&rsquo;est pas très lisible, je sens qu&rsquo;il y a un problème. Pas grave, dans un premier temps améliorons l&rsquo;affichage. Déjà on peut voir que l&rsquo;iérateur retourné est un itérateur sur un tuple comportant la <em>clé</em> un un itérateur. Mettons à profit la méthode <code>map</code> avec une lambda pour améliorer ce qu&rsquo;on voit. La <code>lambda</code> via la fonction <code>map</code> permet de transformer en liste le deuxième élément de chaque tuple de la <em>séquence</em> retournée par <code>groupby</code>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nb">list</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">])),</span> <span class="n">groupby</span><span class="p">([</span><span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;b&#34;</span><span class="p">,</span> <span class="s2">&#34;c&#34;</span><span class="p">,</span> <span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;d&#34;</span><span class="p">,</span> <span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;d&#34;</span><span class="p">,</span> <span class="s2">&#34;b&#34;</span><span class="p">,</span> <span class="s2">&#34;d&#34;</span><span class="p">,</span> <span class="s2">&#34;d&#34;</span><span class="p">])))</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Bon, déjà c&rsquo;est un peu mieux mais ce n&rsquo;est pas ce que j&rsquo;espérais : <code>[('a', ['a']), ('b', ['b']), ('c', ['c']), ('a', ['a']), ('d', ['d']), ('a', ['a']), ('d', ['d']), ('b', ['b']), ('d', ['d', 'd'])]</code>.</p>
+<p><img src="../../img/python/frequencies-map/essai_itertools_groupby_3.png" alt="Troisième essai avec groupby dans l&rsquo;interpréteur"></p>
+<p>En lisant plus attentivement la documentation de <code>groupby</code> on peut lire que l&rsquo;opération <code>groupby</code> :</p>
+<blockquote>
+<p>Elle génère un nouveau groupe à chaque fois que la valeur de la fonction key change (ce pourquoi il est souvent nécessaire d&rsquo;avoir trié les données selon la même fonction de clé). Ce comportement est différent de celui de GROUP BY de SQL qui agrège les éléments sans prendre compte de leur ordre d&rsquo;entrée.</p>
+</blockquote>
+<p>Ok, cela explique pourquoi j&rsquo;ai ce résultat <code>[('a', ['a']), ('b', ['b']), ('c', ['c']), ('a', ['a']), ('d', ['d']), ('a', ['a']), ('d', ['d']), ('b', ['b']), ('d', ['d', 'd'])]</code> : pour les 2 derniers <code>d</code> qui se suivent, ils ont bien été regroupés mais sinon à chaque changement de valeur de la clé, un nouveau groupe a été créé. Bon, il faut donc trier la séquence avant d&rsquo;utiliser <code>groupby</code>. Ok, trions notre séquence (avec <code>sorted</code>) et recommençons.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nb">list</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">])),</span> <span class="n">groupby</span><span class="p">(</span><span class="nb">sorted</span><span class="p">([</span><span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;b&#34;</span><span class="p">,</span> <span class="s2">&#34;c&#34;</span><span class="p">,</span> <span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;d&#34;</span><span class="p">,</span> <span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;d&#34;</span><span class="p">,</span> <span class="s2">&#34;b&#34;</span><span class="p">,</span> <span class="s2">&#34;d&#34;</span><span class="p">,</span> <span class="s2">&#34;d&#34;</span><span class="p">]))))</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Cette fois-ci cela nous donne quelque chose que nous allons pouvoir exploiter : <code>[('a', ['a', 'a', 'a']), ('b', ['b', 'b']), ('c', ['c']), ('d', ['d', 'd', 'd', 'd'])]</code></p>
+<p><img src="../../img/python/frequencies-map/essai_itertools_groupby_4.png" alt="Quatrième essai avec groupby dans l&rsquo;interpréteur"></p>
+<p>Nous allons juste faire une petite retouche : plutôt que d&rsquo;avoir un tuple avec l&rsquo;élément et la liste de ces occurences, ce qui nous intéresse c&rsquo;est l&rsquo;élément et le nombre de ces occurrences. Nous allons légèrement modifier la lambda à cette fin.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">]))),</span> <span class="n">groupby</span><span class="p">(</span><span class="nb">sorted</span><span class="p">([</span><span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;b&#34;</span><span class="p">,</span> <span class="s2">&#34;c&#34;</span><span class="p">,</span> <span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;d&#34;</span><span class="p">,</span> <span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;d&#34;</span><span class="p">,</span> <span class="s2">&#34;b&#34;</span><span class="p">,</span> <span class="s2">&#34;d&#34;</span><span class="p">,</span> <span class="s2">&#34;d&#34;</span><span class="p">]))))</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Parfait, c&rsquo;est ce dont nous avons besoin, il faut juste transformer ce résultat en dictionnaire : <code>[('a', 3), ('b', 2), ('c', 1), ('d', 4)]</code>.</p>
+<p><img src="../../img/python/frequencies-map/essai_itertools_groupby_5.png" alt="cinquième essai avec groupby dans l&rsquo;interpréteur"></p>
+<p>En Python, si on crée un dictionnaire à partir d&rsquo;une liste de tuples à 2 éléments, cela crée directement un dictionnaire dont les clés sont le premier élément du tuple et la valeur le second élément du tuple. C&rsquo;est donc juste une petite modification sur l&rsquo;expression précédente.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="nb">dict</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">]))),</span> <span class="n">groupby</span><span class="p">(</span><span class="nb">sorted</span><span class="p">([</span><span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;b&#34;</span><span class="p">,</span> <span class="s2">&#34;c&#34;</span><span class="p">,</span> <span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;d&#34;</span><span class="p">,</span> <span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;d&#34;</span><span class="p">,</span> <span class="s2">&#34;b&#34;</span><span class="p">,</span> <span class="s2">&#34;d&#34;</span><span class="p">,</span> <span class="s2">&#34;d&#34;</span><span class="p">]))))</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>C&rsquo;est exactement ce qu&rsquo;on souhaite : <code>{'a': 3, 'b': 2, 'c': 1, 'd': 4}</code>.</p>
+<p><img src="../../img/python/frequencies-map/essai_itertools_groupby_5.png" alt="sixième essai avec groupby dans l&rsquo;interpréteur"></p>
+<p>Il nous reste à écrire les tests :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">FrequenciesMapWithMapTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">test_empty_list</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">frequencies_map_with_map_from</span><span class="p">([]),</span> <span class="p">{})</span>
+
+    <span class="k">def</span> <span class="nf">test_single_element_list</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">frequencies_map_with_map_from</span><span class="p">([</span><span class="s2">&#34;a&#34;</span><span class="p">]),</span> <span class="p">{</span><span class="s2">&#34;a&#34;</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>
+
+    <span class="k">def</span> <span class="nf">test_several_identical_elements_list</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">frequencies_map_with_map_from</span><span class="p">(</span>
+            <span class="p">[</span><span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;a&#34;</span><span class="p">]),</span> <span class="p">{</span><span class="s2">&#34;a&#34;</span><span class="p">:</span> <span class="mi">3</span><span class="p">})</span>
+
+    <span class="k">def</span> <span class="nf">test_several_different_elements_list_sorted</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">frequencies_map_with_map_from</span><span class="p">(</span>
+            <span class="p">[</span><span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;b&#34;</span><span class="p">,</span> <span class="s2">&#34;b&#34;</span><span class="p">,</span> <span class="s2">&#34;c&#34;</span><span class="p">,</span> <span class="s2">&#34;d&#34;</span><span class="p">,</span> <span class="s2">&#34;d&#34;</span><span class="p">,</span> <span class="s2">&#34;d&#34;</span><span class="p">,</span> <span class="s2">&#34;d&#34;</span><span class="p">]),</span> <span class="p">{</span><span class="s2">&#34;a&#34;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">&#34;b&#34;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&#34;c&#34;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&#34;d&#34;</span><span class="p">:</span> <span class="mi">4</span><span class="p">})</span>
+
+    <span class="k">def</span> <span class="nf">test_several_different_elements_list_unsorted</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">frequencies_map_with_map_from</span><span class="p">(</span>
+            <span class="p">[</span><span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;b&#34;</span><span class="p">,</span> <span class="s2">&#34;c&#34;</span><span class="p">,</span> <span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;d&#34;</span><span class="p">,</span> <span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;d&#34;</span><span class="p">,</span> <span class="s2">&#34;b&#34;</span><span class="p">,</span> <span class="s2">&#34;d&#34;</span><span class="p">,</span> <span class="s2">&#34;d&#34;</span><span class="p">]),</span> <span class="p">{</span><span class="s2">&#34;a&#34;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">&#34;b&#34;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&#34;c&#34;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&#34;d&#34;</span><span class="p">:</span> <span class="mi">4</span><span class="p">})</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Puis finalement il nous mettre l&rsquo;expression travaillée dans l&rsquo;interpréteur sous forme de fonction :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">groupby</span>
+
+
+<span class="k">def</span> <span class="nf">frequencies_map_with_map_from</span><span class="p">(</span><span class="n">elements</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">]))),</span> <span class="n">groupby</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">elements</span><span class="p">))))</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="pour-une-bonne-compréhension">Pour une bonne compréhension</h2>
+<p>Je préfère la solution précédente à la première solution <em>imperative</em> que j&rsquo;ai proposée. Néanmoins en y regardant de près c&rsquo;est pas encore le top de la lisibilité. Un développeur non familier avec un style fonctionnel risque d&rsquo;avoir du mal à lire et comprendre ce que fait la fonction.</p>
+<p>Comment pourrait-on améliorer le code pour améliorer sa compréhension ? Et bien justement avec une compréhension ! En python, en général là où il y a une boucle <code>for</code>, il peut y avoir une compréhension ; au minimum cela mérite de se pencher sur la question. Surtout que Python ne se limite pas au compréhension pour les listes, cela marche aussi avec les dictionnaires.</p>
+<p>Cela ne devrait pas être compliqué : pour chaque pair de notre <em>séquence</em> <code>groupby(sorted(elements))</code>, je veux extraire la clé et la valeur associée. Je sais que cette valeur associée est une liste et ce qui m&rsquo;intéresse c&rsquo;est sa longueur. Essayons dans l&rsquo;interpréteur !</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">groupby</span>
+<span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">v</span><span class="p">))</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">groupby</span><span class="p">(</span><span class="nb">sorted</span><span class="p">([</span><span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;b&#34;</span><span class="p">,</span> <span class="s2">&#34;c&#34;</span><span class="p">,</span> <span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;d&#34;</span><span class="p">,</span> <span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;d&#34;</span><span class="p">,</span> <span class="s2">&#34;b&#34;</span><span class="p">,</span> <span class="s2">&#34;d&#34;</span><span class="p">,</span> <span class="s2">&#34;d&#34;</span><span class="p">]))}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Ok, le résultat est très exactement ce que nous recherchons : <code>{'a': 3, 'b': 2, 'c': 1, 'd': 4}</code>.</p>
+<p><img src="../../img/python/frequencies-map/essai_itertools_groupby_avec_comprehension.png" alt="essai avec groupby dans une compréhension dans l&rsquo;interpréteur"></p>
+<p>Il nous reste à écrire les tests.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">FrequenciesMapWithComprehensionTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">test_empty_list</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">frequencies_map_with_comprehension_from</span><span class="p">([]),</span> <span class="p">{})</span>
+
+    <span class="k">def</span> <span class="nf">test_single_element_list</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span>
+            <span class="n">frequencies_map_with_comprehension_from</span><span class="p">([</span><span class="s2">&#34;a&#34;</span><span class="p">]),</span> <span class="p">{</span><span class="s2">&#34;a&#34;</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>
+
+    <span class="k">def</span> <span class="nf">test_several_identical_elements_list</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">frequencies_map_with_comprehension_from</span><span class="p">(</span>
+            <span class="p">[</span><span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;a&#34;</span><span class="p">]),</span> <span class="p">{</span><span class="s2">&#34;a&#34;</span><span class="p">:</span> <span class="mi">3</span><span class="p">})</span>
+
+    <span class="k">def</span> <span class="nf">test_several_different_elements_list_sorted</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">frequencies_map_with_comprehension_from</span><span class="p">(</span>
+            <span class="p">[</span><span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;b&#34;</span><span class="p">,</span> <span class="s2">&#34;b&#34;</span><span class="p">,</span> <span class="s2">&#34;c&#34;</span><span class="p">,</span> <span class="s2">&#34;d&#34;</span><span class="p">,</span> <span class="s2">&#34;d&#34;</span><span class="p">,</span> <span class="s2">&#34;d&#34;</span><span class="p">,</span> <span class="s2">&#34;d&#34;</span><span class="p">]),</span> <span class="p">{</span><span class="s2">&#34;a&#34;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">&#34;b&#34;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&#34;c&#34;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&#34;d&#34;</span><span class="p">:</span> <span class="mi">4</span><span class="p">})</span>
+
+    <span class="k">def</span> <span class="nf">test_several_different_elements_list_unsorted</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">frequencies_map_with_comprehension_from</span><span class="p">(</span>
+            <span class="p">[</span><span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;b&#34;</span><span class="p">,</span> <span class="s2">&#34;c&#34;</span><span class="p">,</span> <span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;d&#34;</span><span class="p">,</span> <span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;d&#34;</span><span class="p">,</span> <span class="s2">&#34;b&#34;</span><span class="p">,</span> <span class="s2">&#34;d&#34;</span><span class="p">,</span> <span class="s2">&#34;d&#34;</span><span class="p">]),</span> <span class="p">{</span><span class="s2">&#34;a&#34;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">&#34;b&#34;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&#34;c&#34;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&#34;d&#34;</span><span class="p">:</span> <span class="mi">4</span><span class="p">})</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Puis il faut que nous transformions notre expression en fonction.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">groupby</span>
+
+
+<span class="k">def</span> <span class="nf">frequencies_map_with_comprehension_from</span><span class="p">(</span><span class="n">elements</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">v</span><span class="p">))</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">groupby</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">elements</span><span class="p">))}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="regard-critique">Regard critique</h2>
+<p>La solution avec la compréhension tient en 1 ligne tout en restant lisible. Par contre, cette dernière solution et la précédente avec <code>map</code> imposent de trier la liste pour pouvoir exploiter <code>groupby</code> alors que la solution <em>impérative</em> n&rsquo;a pas cette contrainte.</p>
+<p>Il faudrait évaluer la performance des 3 fonctions par rapport à des listes de différentes tailles. Cela pourrait être l&rsquo;objet d&rsquo;un prochain billet d&rsquo;ailleurs.</p>
+<p>Je me suis également arrêté sur <code>groupby</code> mais il faudrait voir si je ne peux pas trouver une autre solution dans laquelle on n&rsquo;est pas obligé de trier la liste (au final cela me chagrine un peu de devoir faire ce tri).</p>
+<p>Bref, à travers ce billet, cela a été l&rsquo;occasion d&rsquo;explorer une petite problématique pour voir comment y répondre dans un langage que je suis en train de ré-apprendre. Cette première exploration permet déjà d&rsquo;approfondir Python.</p>
+<p>Je m&rsquo;aperçois qu&rsquo;il est fort agréable d&rsquo;avoir une <strong>REPL</strong> pour explorer et expérimenter. C&rsquo;est une habitude que j&rsquo;ai prise lorsque je m&rsquo;essayais à Clojure et qui est vraiment pertinente est complète bien une approche dirigé par les tests : je suis en train d&rsquo;apprendre à programment à mon fils, et l&rsquo;interpréteur pour expérimenter c&rsquo;est vraiment pratique et efficace. Il faudrait vraiment que j&rsquo;essaie d&rsquo;utiliser un interpréteur de commande Python plus avancé et que je m&rsquo;essaie aux <em>Notebooks</em> en Python ou des outils comme <a href="https://colab.research.google.com/notebooks/intro.ipynb">Colaboratory</a>.</p>
+<p>Je me rends également compte que je pensais partir pour un petit billet rapide mais que non seulement le billet n&rsquo;est pas court mais en appel probablement d&rsquo;autres.</p>
+<p>Le code source est disponible sous forme de <a href="https://gist.github.com/TGITS/8b5dfde8eb57c1b304b4e98ed909b665">Gist</a>.</p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Auteur</span>
+    <span class="item-content">TGITS</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">Modifié</span>
+    <span class="item-content">
+        2020-10-04
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/python/">python</a>
+          <a href="/tags/structure-de-donn%C3%A9es/">structure de données</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/post/aventure-vacances-elixir/">
+            <span class="next-text nav-default">Aventure de vacances : Elixir</span>
+            <span class="next-text nav-mobile">Suivant</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    (function() {
+      
+      
+      if (window.location.hostname === 'localhost') return;
+
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      var disqus_shortname = 'thegeekintheshell';
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "thegeekintheshell" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+<div class="social-links">
+      <a href="mailto:thegeekintheshell@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://twitter.com/_TGITS" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="https://www.linkedin.com/in/cvaudry/" class="iconfont icon-linkedin" title="linkedin"></a>
+      <a href="https://github.com/TGITS" class="iconfont icon-github" title="github"></a>
+      <a href="https://gitlab.com/TGITS" class="iconfont icon-gitlab" title="gitlab"></a>
+  <a href="https://tgits.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Propulsé par <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Thème - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2020
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">TGITS</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -6,10 +6,20 @@
     <description>Recent content on The Geek In The Shell</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>fr-fr</language>
-    <lastBuildDate>Sat, 12 Sep 2020 15:46:52 +0200</lastBuildDate>
+    <lastBuildDate>Sat, 03 Oct 2020 12:01:23 +0200</lastBuildDate>
     
 	<atom:link href="https://tgits.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Tableau de fréquences en Python</title>
+      <link>https://tgits.github.io/post/frequencies_map_in_python/</link>
+      <pubDate>Sat, 03 Oct 2020 12:01:23 +0200</pubDate>
+      
+      <guid>https://tgits.github.io/post/frequencies_map_in_python/</guid>
+      <description>Il y a quelques temps j&amp;rsquo;ai publié un billet sur les tableaux de fréquences en Java avec les streams. Faisant un peu de Python en ce moment, je me suis demandé comment je pouvais le faire en Python de manière idiomatique (ou du moins d&amp;rsquo;une manière qui me semble idiomatique en Python).
+Pour rappel, je traduis ici par tableau de fréquences l&amp;rsquo;expression anglaise de frequencies map. Vous avez une liste d&amp;rsquo;éléments et vous voulez pour chaque élément connaître sa fréquence (le nombre de fois où cet élément est présent dans cette liste).</description>
+    </item>
     
     <item>
       <title>Aventure de vacances : Elixir</title>

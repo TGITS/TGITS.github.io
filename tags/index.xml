@@ -6,10 +6,28 @@
     <description>Recent content in Tags on The Geek In The Shell</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>fr-fr</language>
-    <lastBuildDate>Sat, 12 Sep 2020 15:46:52 +0200</lastBuildDate>
+    <lastBuildDate>Sat, 03 Oct 2020 12:01:23 +0200</lastBuildDate>
     
 	<atom:link href="https://tgits.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>python</title>
+      <link>https://tgits.github.io/tags/python/</link>
+      <pubDate>Sat, 03 Oct 2020 12:01:23 +0200</pubDate>
+      
+      <guid>https://tgits.github.io/tags/python/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>structure de données</title>
+      <link>https://tgits.github.io/tags/structure-de-donn%C3%A9es/</link>
+      <pubDate>Sat, 03 Oct 2020 12:01:23 +0200</pubDate>
+      
+      <guid>https://tgits.github.io/tags/structure-de-donn%C3%A9es/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>elixir</title>
@@ -98,15 +116,6 @@
       <pubDate>Sun, 31 May 2020 11:53:13 +0200</pubDate>
       
       <guid>https://tgits.github.io/tags/streams/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>structure de données</title>
-      <link>https://tgits.github.io/tags/structure-de-donn%C3%A9es/</link>
-      <pubDate>Sun, 31 May 2020 11:53:13 +0200</pubDate>
-      
-      <guid>https://tgits.github.io/tags/structure-de-donn%C3%A9es/</guid>
       <description></description>
     </item>
     
