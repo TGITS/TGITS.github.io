@@ -46,17 +46,17 @@ A la recherche de la pierre philosophale J&rsquo;ai profité de l&rsquo;été et
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://tgits.github.io/post/aventure-vacances-elixir/" />
 <meta property="article:published_time" content="2020-09-12T15:46:52+02:00" />
-<meta property="article:modified_time" content="2020-09-12T15:46:52+02:00" />
+<meta property="article:modified_time" content="2020-10-19T12:12:52+02:00" />
 <meta itemprop="name" content="Aventure de vacances : Elixir">
 <meta itemprop="description" content="Prologue Ce billet n&rsquo;est pas un article d&rsquo;introduction à Elixir. C&rsquo;est juste un billet dans lequel je partage mon expérience et mon ressenti, sur un travail de veille sur Elixir cet été. Ce billet est également l&rsquo;occasion de prendre du recul sur l&rsquo;apprentissage de technologies qui peuvent être considérées comme exotique par rapport aux technologies que l&rsquo;on utilise plus couramment en entreprise.
 A la recherche de la pierre philosophale J&rsquo;ai profité de l&rsquo;été et des périodes de congés qui allaient avec pour regarder un peu le langage Elixir.">
 <meta itemprop="datePublished" content="2020-09-12T15:46:52&#43;02:00" />
-<meta itemprop="dateModified" content="2020-09-12T15:46:52&#43;02:00" />
-<meta itemprop="wordCount" content="2013">
+<meta itemprop="dateModified" content="2020-10-19T12:12:52&#43;02:00" />
+<meta itemprop="wordCount" content="2015">
 
 
 
-<meta itemprop="keywords" content="elixir,veille,programmation fonctionnelle,programmation distribuée," /><meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="elixir,veille,programmation fonctionnelle,programmation distribuée,langage de programmation," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Aventure de vacances : Elixir"/>
 <meta name="twitter:description" content="Prologue Ce billet n&rsquo;est pas un article d&rsquo;introduction à Elixir. C&rsquo;est juste un billet dans lequel je partage mon expérience et mon ressenti, sur un travail de veille sur Elixir cet été. Ce billet est également l&rsquo;occasion de prendre du recul sur l&rsquo;apprentissage de technologies qui peuvent être considérées comme exotique par rapport aux technologies que l&rsquo;on utilise plus couramment en entreprise.
 A la recherche de la pierre philosophale J&rsquo;ai profité de l&rsquo;été et des périodes de congés qui allaient avec pour regarder un peu le langage Elixir."/>
@@ -134,6 +134,7 @@ A la recherche de la pierre philosophale J&rsquo;ai profité de l&rsquo;été et
             <a href="/categories/d%C3%A9veloppement/"> développement </a>
             <a href="/categories/elixir/"> elixir </a>
             <a href="/categories/veille/"> veille </a>
+            <a href="/categories/rex/"> rex </a>
             </div>
         
       </div>
@@ -193,19 +194,19 @@ Ce billet est également l&rsquo;occasion de prendre du recul sur l&rsquo;appren
 <p>La programmation distribuée est la partie que j&rsquo;ai trouvé la plus impressionnante et qui - à mon sens - représente le véritable intérêt d&rsquo;<a href="https://elixir-lang.org/">Elixir</a> mais également la véritable difficulté pour l&rsquo;apprendre. Je ne dis pas qu&rsquo;il soit trivial de se faire à une approche fonctionnelle quand on n&rsquo;y est pas habitué. Cependant organiser son code comme un ensemble de composants distribués et gérer toutes les subtilités de la philosophie <em>Let it crash</em> et des outils qui vous permettent de garder votre système fiable, ce n&rsquo;est pas simple et cela demande de la pratique. Au passage, les mécanismes de déploiement à chaud sont également assez impressionnant et bien pensé. On sent bien derrière <a href="https://elixir-lang.org/">Elixir</a> le poids de l&rsquo;expérience et du savoir faire développés avec <a href="https://www.erlang.org/">Erlang</a>.</p>
 <h2 id="retour-à-la-maison">Retour à la maison</h2>
 <p>Pour l&rsquo;instant, je suis resté très en surface d&rsquo;Elixir et de son écosystème. De nombreuses heures de pratique me séparent d&rsquo;écrire du code idiomatique en Elixir et de l&rsquo;utiliser de manière pertinente. Surtout que pour maitriser réellement Elixir, cela demande quand même d&rsquo;avoir une certaine compréhension de la VM Erlang. Et puis cela suppose aussi de se familiariser avec son écosystème et des projets emblématiques de ce dernier, comme par exemple <a href="https://www.phoenixframework.org/">Phoenix</a> ou <a href="https://www.nerves-project.org/">Nerves</a>.</p>
-<p>En bref <a href="https://elixir-lang.org/">Elixir</a> ne s&rsquo;apprend pas en un week-end et il faut avoir le cas d&rsquo;utilisation : si c&rsquo;est juste pour faire mumuse sur <a href="https://exercism.io/">Exercism</a> et sur des petits programmes quand on a le temps le week-end, on peut clairement se demander si cela vaut le coût d&rsquo;investir du temps (qui pourrait être employé à quelque chose d&rsquo;autre) même si intellectuellement cela sera un chemin intéressant.</p>
-<p>De plus de manière lucide, <a href="https://elixir-lang.org/">Elixir</a> ce n&rsquo;est pas une technologie que l&rsquo;on peut (raisonnablement conseiller) introduire en douce ou sans qu&rsquo;il y ait un véritable besoin et une volonté forte de l&rsquo;utiliser au niveau des développeurs. Et des missions Elixir/Erlang en France on n&rsquo;en trouve pas beaucoup.</p>
+<p>En bref <a href="https://elixir-lang.org/">Elixir</a> ne s&rsquo;apprend pas en un week-end et il faut avoir le cas d&rsquo;utilisation : si c&rsquo;est juste pour faire <em>mumuse</em> sur <a href="https://exercism.io/">Exercism</a> et sur des petits programmes quand on a le temps le week-end, on peut clairement se demander si cela vaut le coût d&rsquo;investir du temps (qui pourrait être employé à quelque chose d&rsquo;autre) même si intellectuellement cela sera un chemin intéressant.</p>
+<p>De plus de manière lucide, <a href="https://elixir-lang.org/">Elixir</a> ce n&rsquo;est pas une technologie que l&rsquo;on peut (raisonnablement conseiller d&rsquo;) introduire en douce ou sans qu&rsquo;il y ait un véritable besoin et une volonté forte de l&rsquo;utiliser au niveau des développeurs. Et des missions Elixir/Erlang en France on n&rsquo;en trouve pas beaucoup.</p>
 <p>Alors quel intérêt ? Et bien cela va dépendre de vos objectifs.</p>
 <p>Si vous voulez voir une manière différente de concevoir et de coder que celle à laquelle vous êtes habitués dans des approches impératives ou objet pour  changer votre perspective sur votre manière de coder, <a href="https://elixir-lang.org/">Elixir</a> est un bon choix. Clairement  cela est dépaysant et très enrichissant intellectuellement pour qui ne connait pas la programmation fonctionnelle et/ou distribuée.</p>
 <p>Si vous avez un besoin spécifique en développement Web ou en système embarqué, il pourra être intéressant de regarder respectivement si <a href="https://www.phoenixframework.org/">Phoenix</a> ou <a href="https://www.nerves-project.org/">Nerves</a> répondent à votre cas d&rsquo;utilisation.</p>
-<p>Si vous avez besoin de développer une application qui doit avoir un très haut tôt de disponibilité ou être distribué, <a href="https://elixir-lang.org/">Elixir</a> peut clairement être une option à étudier.</p>
-<p>Maintenant, je doute qu&rsquo;on puisse recommander d&rsquo;appendre <a href="https://elixir-lang.org/">Elixir</a> pour trouver plus facilement une mission, un emploi ou améliorer son employabilité. Apprendre <a href="https://elixir-lang.org/">Elixir</a> vous rendra très certainement un meilleur développeur mais cela sera difficile à vendre sur un CV ou dans un entretien, et d&rsquo;autant plus qu&rsquo;<a href="https://elixir-lang.org/">Elixir</a> ou <a href="https://www.erlang.org/">Erlang</a> sont assez peu connu.</p>
+<p>Si vous avez besoin de développer une application qui doit avoir un très haut taux de disponibilité ou être distribuée, <a href="https://elixir-lang.org/">Elixir</a> peut clairement être une option à étudier.</p>
+<p>Maintenant, je doute qu&rsquo;on puisse recommander d&rsquo;appendre <a href="https://elixir-lang.org/">Elixir</a> pour trouver plus facilement une mission, un emploi ou améliorer son employabilité. Apprendre <a href="https://elixir-lang.org/">Elixir</a> vous rendra très certainement un meilleur développeur mais cela sera difficile à vendre sur un CV ou dans un entretien, et d&rsquo;autant plus qu&rsquo;<a href="https://elixir-lang.org/">Elixir</a> ou <a href="https://www.erlang.org/">Erlang</a> sont assez peu connus.</p>
 <p>L&rsquo;apprentissage d&rsquo;<a href="https://elixir-lang.org/">Elixir</a> est très enrichissant mais il demande investissement et motivation.</p>
 <h2 id="epilogue">Epilogue</h2>
-<p>De mon côté, je trouve <a href="https://elixir-lang.org/">Elixir</a> très intéressant et je souhaiterais approfondir en mettant plus en pratique et en essayant <a href="https://www.phoenixframework.org/">Phoenix</a>. Cependant, je sais que l&rsquo;investissement en temps est important, avec un temps à allouer pour la <em>veille</em> qui est hélas réduit. Je n&rsquo;ai pas la possibilité d&rsquo;en faire réellement dans le cadre de ma mission sur laquelle je dois enchaîner les projets à faire dans l&rsquo;urgence. Pourtant je travaille dans une ESN, <a href="https://www.norsys.fr/">Norsys</a>, qui m&rsquo;alloue du temps pour faire de la veille technologique, mais par rapport à ma mission actuelle, je n&rsquo;ai tout simplement pas la possibilité de profiter de cette allocation de temps pour de la veille active.</p>
+<p>De mon côté, je trouve <a href="https://elixir-lang.org/">Elixir</a> très intéressant et je souhaiterais approfondir en mettant plus en pratique et en essayant <a href="https://www.phoenixframework.org/">Phoenix</a>. Cependant, je sais que l&rsquo;investissement en temps est important, avec un temps à allouer pour la <em>veille</em> qui est hélas réduit. Je n&rsquo;ai pas la possibilité d&rsquo;en faire réellement dans le cadre de ma mission, sur laquelle je dois enchaîner les projets à faire dans l&rsquo;urgence. Pourtant je travaille dans une ESN, <a href="https://www.norsys.fr/">Norsys</a>, qui m&rsquo;alloue du temps pour faire de la veille technologique, mais par rapport à ma mission actuelle, je n&rsquo;ai tout simplement pas la possibilité de profiter de cette allocation de temps pour faire de la <em>veille active</em>.</p>
 <p>Les exigences des projets dans le cadre professionnel font que dans un compromis intérêt/utilité directe, j&rsquo;utilise une partie de mon temps personnel dédié à la <em>veille</em> pour me former à des technologies que j&rsquo;estime ne pas maitriser suffisamment dans le cadre de mon activité professionnelle.</p>
-<p>Enfin, maintenant que mon fils (jeune collégien), exprime depuis peu un intérêt pour la programmation (qui a dit que les jeux vidéos cela n&rsquo;amené rien de bon ?), je priorise par rapport à ma veille de lui apprendre les bases de l&rsquo;informatique et du codage. Et <a href="https://www.python.org/">Python</a> m&rsquo;a semblé un choix plus pertinent qu&rsquo;<a href="https://elixir-lang.org/">Elixir</a> pour cela (surtout avec mon niveau de maitrise d&rsquo;<a href="https://elixir-lang.org/">Elixir</a> actuel).</p>
-<p>Pour l&rsquo;instant, c&rsquo;est une activité au ralenti : je continue en pointillé à explorer <a href="https://elixir-lang.org/">Elixir</a> dès que j&rsquo;ai un peu de temps avec <a href="https://exercism.io/tracks/elixir">Exercism</a> et les traductions en français des leçons de <a href="https://elixirschool.com/">Elixir School</a> en attendant de pouvoir y consacrer plus de temps ou de finir par décider que l&rsquo;approfondissement d&rsquo;<a href="https://elixir-lang.org/">Elixir</a> ne doit plus être une partie du <em>portefeuille de connaissances</em> que j&rsquo;essaie de maintenir.</p>
+<p>Enfin, maintenant que mon fils (jeune collégien), exprime depuis peu un intérêt pour la programmation (qui a dit que les jeux vidéos cela n&rsquo;amenait rien de bon ?), je priorise par rapport à ma veille de lui apprendre les bases de l&rsquo;informatique et du codage. Et <a href="https://www.python.org/">Python</a> m&rsquo;a semblé un choix plus pertinent qu&rsquo;<a href="https://elixir-lang.org/">Elixir</a> pour cela (surtout avec mon niveau de maitrise d&rsquo;<a href="https://elixir-lang.org/">Elixir</a> actuel).</p>
+<p>Pour l&rsquo;instant, c&rsquo;est une activité au ralenti : je continue en pointillé à explorer <a href="https://elixir-lang.org/">Elixir</a> dès que j&rsquo;ai un peu de temps avec <a href="https://exercism.io/tracks/elixir">Exercism</a> et les traductions en français des leçons de <a href="https://elixirschool.com/">Elixir School</a>, en attendant de pouvoir y consacrer plus de temps ou de finir par décider que l&rsquo;approfondissement d&rsquo;<a href="https://elixir-lang.org/">Elixir</a> ne doit plus être une partie du <em>portefeuille de connaissances</em> que j&rsquo;essaie de maintenir.</p>
 
     </div>
 
@@ -217,7 +218,7 @@ Ce billet est également l&rsquo;occasion de prendre du recul sur l&rsquo;appren
   <p class="copyright-item">
     <span class="item-title">Modifié</span>
     <span class="item-content">
-        2020-09-12
+        2020-10-19
         
     </span>
   </p>
@@ -230,6 +231,7 @@ Ce billet est également l&rsquo;occasion de prendre du recul sur l&rsquo;appren
           <a href="/tags/veille/">veille</a>
           <a href="/tags/programmation-fonctionnelle/">programmation fonctionnelle</a>
           <a href="/tags/programmation-distribu%C3%A9e/">programmation distribuée</a>
+          <a href="/tags/langage-de-programmation/">langage de programmation</a>
           </div>
       <nav class="post-nav">
         <a class="prev" href="/post/frequencies_map_in_python/">

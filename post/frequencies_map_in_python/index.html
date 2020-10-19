@@ -46,17 +46,17 @@ Pour rappel, je traduis ici par tableau de fréquences l&rsquo;expression anglai
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://tgits.github.io/post/frequencies_map_in_python/" />
 <meta property="article:published_time" content="2020-10-03T12:01:23+02:00" />
-<meta property="article:modified_time" content="2020-10-04T18:27:13+02:00" />
+<meta property="article:modified_time" content="2020-10-19T15:31:13+02:00" />
 <meta itemprop="name" content="Tableau de fréquences en Python">
 <meta itemprop="description" content="Il y a quelques temps j&rsquo;ai publié un billet sur les tableaux de fréquences en Java avec les streams. Faisant un peu de Python en ce moment, je me suis demandé comment je pouvais le faire en Python de manière idiomatique (ou du moins d&rsquo;une manière qui me semble idiomatique en Python).
 Pour rappel, je traduis ici par tableau de fréquences l&rsquo;expression anglaise de frequencies map. Vous avez une liste d&rsquo;éléments et vous voulez pour chaque élément connaître sa fréquence (le nombre de fois où cet élément est présent dans cette liste).">
 <meta itemprop="datePublished" content="2020-10-03T12:01:23&#43;02:00" />
-<meta itemprop="dateModified" content="2020-10-04T18:27:13&#43;02:00" />
+<meta itemprop="dateModified" content="2020-10-19T15:31:13&#43;02:00" />
 <meta itemprop="wordCount" content="2012">
 
 
 
-<meta itemprop="keywords" content="python,structure de données," /><meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="python,structure de données,développement,langage de programmation," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Tableau de fréquences en Python"/>
 <meta name="twitter:description" content="Il y a quelques temps j&rsquo;ai publié un billet sur les tableaux de fréquences en Java avec les streams. Faisant un peu de Python en ce moment, je me suis demandé comment je pouvais le faire en Python de manière idiomatique (ou du moins d&rsquo;une manière qui me semble idiomatique en Python).
 Pour rappel, je traduis ici par tableau de fréquences l&rsquo;expression anglaise de frequencies map. Vous avez une liste d&rsquo;éléments et vous voulez pour chaque élément connaître sa fréquence (le nombre de fois où cet élément est présent dans cette liste)."/>
@@ -455,7 +455,7 @@ Nous allons stocker au fur et à mesure le résultat dans un dictionnaire, avec 
 <p>Il faudrait évaluer la performance des 3 fonctions par rapport à des listes de différentes tailles. Cela pourrait être l&rsquo;objet d&rsquo;un prochain billet d&rsquo;ailleurs.</p>
 <p>Je me suis également arrêté sur <code>groupby</code> mais il faudrait voir si je ne peux pas trouver une autre solution dans laquelle on n&rsquo;est pas obligé de trier la liste (au final cela me chagrine un peu de devoir faire ce tri).</p>
 <p>Bref, à travers ce billet, cela a été l&rsquo;occasion d&rsquo;explorer une petite problématique pour voir comment y répondre dans un langage que je suis en train de ré-apprendre. Cette première exploration permet déjà d&rsquo;approfondir Python.</p>
-<p>Je m&rsquo;aperçois qu&rsquo;il est fort agréable d&rsquo;avoir une <strong>REPL</strong> pour explorer et expérimenter. C&rsquo;est une habitude que j&rsquo;ai prise lorsque je m&rsquo;essayais à Clojure et qui est vraiment pertinente est complète bien une approche dirigé par les tests : je suis en train d&rsquo;apprendre à programment à mon fils, et l&rsquo;interpréteur pour expérimenter c&rsquo;est vraiment pratique et efficace. Il faudrait vraiment que j&rsquo;essaie d&rsquo;utiliser un interpréteur de commande Python plus avancé et que je m&rsquo;essaie aux <em>Notebooks</em> en Python ou des outils comme <a href="https://colab.research.google.com/notebooks/intro.ipynb">Colaboratory</a>.</p>
+<p>Je m&rsquo;aperçois qu&rsquo;il est fort agréable d&rsquo;avoir une <strong>REPL</strong> pour explorer et expérimenter. C&rsquo;est une habitude que j&rsquo;ai prise lorsque je m&rsquo;essayais à Clojure et qui est vraiment pertinente et complète bien une approche dirigé par les tests : je suis en train d&rsquo;apprendre à programment à mon fils, et l&rsquo;interpréteur pour expérimenter c&rsquo;est vraiment pratique et efficace. Il faudrait vraiment que j&rsquo;essaie d&rsquo;utiliser un interpréteur de commande Python plus avancé et que je m&rsquo;essaie aux <em>Notebooks</em> en Python ou des outils comme <a href="https://colab.research.google.com/notebooks/intro.ipynb">Colaboratory</a>.</p>
 <p>Je me rends également compte que je pensais partir pour un petit billet rapide mais que non seulement le billet n&rsquo;est pas court mais en appel probablement d&rsquo;autres.</p>
 <p>Le code source est disponible sous forme de <a href="https://gist.github.com/TGITS/8b5dfde8eb57c1b304b4e98ed909b665">Gist</a>.</p>
 
@@ -469,7 +469,7 @@ Nous allons stocker au fur et à mesure le résultat dans un dictionnaire, avec 
   <p class="copyright-item">
     <span class="item-title">Modifié</span>
     <span class="item-content">
-        2020-10-04
+        2020-10-19
         
     </span>
   </p>
@@ -480,6 +480,8 @@ Nous allons stocker au fur et à mesure le résultat dans un dictionnaire, avec 
       <div class="post-tags">
           <a href="/tags/python/">python</a>
           <a href="/tags/structure-de-donn%C3%A9es/">structure de données</a>
+          <a href="/tags/d%C3%A9veloppement/">développement</a>
+          <a href="/tags/langage-de-programmation/">langage de programmation</a>
           </div>
       <nav class="post-nav">
         
