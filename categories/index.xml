@@ -6,15 +6,24 @@
     <description>Recent content in Categories on The Geek In The Shell</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>fr-fr</language>
-    <lastBuildDate>Sat, 03 Oct 2020 12:01:23 +0200</lastBuildDate>
+    <lastBuildDate>Mon, 19 Oct 2020 12:09:27 +0200</lastBuildDate>
     
 	<atom:link href="https://tgits.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>apprendre à coder à son enfant</title>
+      <link>https://tgits.github.io/categories/apprendre-%C3%A0-coder-%C3%A0-son-enfant/</link>
+      <pubDate>Mon, 19 Oct 2020 12:09:27 +0200</pubDate>
+      
+      <guid>https://tgits.github.io/categories/apprendre-%C3%A0-coder-%C3%A0-son-enfant/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>développement</title>
       <link>https://tgits.github.io/categories/d%C3%A9veloppement/</link>
-      <pubDate>Sat, 03 Oct 2020 12:01:23 +0200</pubDate>
+      <pubDate>Mon, 19 Oct 2020 12:09:27 +0200</pubDate>
       
       <guid>https://tgits.github.io/categories/d%C3%A9veloppement/</guid>
       <description></description>
@@ -23,9 +32,18 @@
     <item>
       <title>python</title>
       <link>https://tgits.github.io/categories/python/</link>
-      <pubDate>Sat, 03 Oct 2020 12:01:23 +0200</pubDate>
+      <pubDate>Mon, 19 Oct 2020 12:09:27 +0200</pubDate>
       
       <guid>https://tgits.github.io/categories/python/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>rex</title>
+      <link>https://tgits.github.io/categories/rex/</link>
+      <pubDate>Mon, 19 Oct 2020 12:09:27 +0200</pubDate>
+      
+      <guid>https://tgits.github.io/categories/rex/</guid>
       <description></description>
     </item>
     
@@ -35,15 +53,6 @@
       <pubDate>Sat, 12 Sep 2020 15:46:52 +0200</pubDate>
       
       <guid>https://tgits.github.io/categories/elixir/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>rex</title>
-      <link>https://tgits.github.io/categories/rex/</link>
-      <pubDate>Sat, 12 Sep 2020 15:46:52 +0200</pubDate>
-      
-      <guid>https://tgits.github.io/categories/rex/</guid>
       <description></description>
     </item>
     

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>tdd on The Geek In The Shell</title>
+    <link>https://tgits.github.io/tags/tdd/</link>
+    <description>Recent content in tdd on The Geek In The Shell</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>fr-fr</language>
+    <lastBuildDate>Mon, 19 Oct 2020 12:09:27 +0200</lastBuildDate>
+    
+	<atom:link href="https://tgits.github.io/tags/tdd/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Apprendre à coder à son enfant, premier REX</title>
+      <link>https://tgits.github.io/post/apprendre_a_coder_a_son_enfant_premier_rex/</link>
+      <pubDate>Mon, 19 Oct 2020 12:09:27 +0200</pubDate>
+      
+      <guid>https://tgits.github.io/post/apprendre_a_coder_a_son_enfant_premier_rex/</guid>
+      <description>Introduction Depuis la fin Août 2020, j&amp;rsquo;ai commencé à apprendre à mon fils à coder. Ce billet est un premier retour d&amp;rsquo;expérience sur cette apprentissage après presque 2 mois. L&amp;rsquo;occasion de faire le point, prendre du recul, de partager cela avec d&amp;rsquo;autres informaticiens ou informaticiennes qui seraient dans une démarche similaire et idéalement de pouvoir avoir un échange sur le sujet.
+Contexte Mon fils a 11 ans, il vient d&amp;rsquo;entrer en 5ème au collège.</description>
+    </item>
+    
+  </channel>
+</rss>

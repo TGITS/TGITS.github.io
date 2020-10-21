@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Apprendre à coder à son enfant, premier REX - The Geek In The Shell</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="TGITS" /><meta name="description" content="Introduction Depuis la fin Août 2020, j&amp;rsquo;ai commencé à apprendre à mon fils à coder. Ce billet est un premier retour d&amp;rsquo;expérience sur cette apprentissage après presque 2 mois. L&amp;rsquo;occasion de faire le point, prendre du recul, de partager cela avec d&amp;rsquo;autres informaticiens ou informaticiennes qui seraient dans une démarche similaire et idéalement de pouvoir avoir un échange sur le sujet.
+Contexte Mon fils a 11 ans, il vient d&amp;rsquo;entrer en 5ème au collège." /><meta name="keywords" content="TGITS, Développement, Java, Architecture" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.71.1 with theme even" />
+
+
+<link rel="canonical" href="https://tgits.github.io/post/apprendre_a_coder_a_son_enfant_premier_rex/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.8c3cbcb0324c2bb4875ceccba4007cbad4b4ac8377f33af9953c3e7684534a50.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Apprendre à coder à son enfant, premier REX" />
+<meta property="og:description" content="Introduction Depuis la fin Août 2020, j&rsquo;ai commencé à apprendre à mon fils à coder. Ce billet est un premier retour d&rsquo;expérience sur cette apprentissage après presque 2 mois. L&rsquo;occasion de faire le point, prendre du recul, de partager cela avec d&rsquo;autres informaticiens ou informaticiennes qui seraient dans une démarche similaire et idéalement de pouvoir avoir un échange sur le sujet.
+Contexte Mon fils a 11 ans, il vient d&rsquo;entrer en 5ème au collège." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://tgits.github.io/post/apprendre_a_coder_a_son_enfant_premier_rex/" />
+<meta property="article:published_time" content="2020-10-19T12:09:27+02:00" />
+<meta property="article:modified_time" content="2020-10-19T12:09:27+02:00" />
+<meta itemprop="name" content="Apprendre à coder à son enfant, premier REX">
+<meta itemprop="description" content="Introduction Depuis la fin Août 2020, j&rsquo;ai commencé à apprendre à mon fils à coder. Ce billet est un premier retour d&rsquo;expérience sur cette apprentissage après presque 2 mois. L&rsquo;occasion de faire le point, prendre du recul, de partager cela avec d&rsquo;autres informaticiens ou informaticiennes qui seraient dans une démarche similaire et idéalement de pouvoir avoir un échange sur le sujet.
+Contexte Mon fils a 11 ans, il vient d&rsquo;entrer en 5ème au collège.">
+<meta itemprop="datePublished" content="2020-10-19T12:09:27&#43;02:00" />
+<meta itemprop="dateModified" content="2020-10-19T12:09:27&#43;02:00" />
+<meta itemprop="wordCount" content="2167">
+
+
+
+<meta itemprop="keywords" content="python,apprentissage,tdd,développement,rex," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Apprendre à coder à son enfant, premier REX"/>
+<meta name="twitter:description" content="Introduction Depuis la fin Août 2020, j&rsquo;ai commencé à apprendre à mon fils à coder. Ce billet est un premier retour d&rsquo;expérience sur cette apprentissage après presque 2 mois. L&rsquo;occasion de faire le point, prendre du recul, de partager cela avec d&rsquo;autres informaticiens ou informaticiennes qui seraient dans une démarche similaire et idéalement de pouvoir avoir un échange sur le sujet.
+Contexte Mon fils a 11 ans, il vient d&rsquo;entrer en 5ème au collège."/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">TGITS</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Blog</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">TGITS</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Blog</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Apprendre à coder à son enfant, premier REX</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-10-19 </span>
+        <div class="post-category">
+            <a href="/categories/apprendre-%C3%A0-coder-%C3%A0-son-enfant/"> apprendre à coder à son enfant </a>
+            <a href="/categories/d%C3%A9veloppement/"> développement </a>
+            <a href="/categories/python/"> python </a>
+            <a href="/categories/rex/"> rex </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contenu</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#contexte">Contexte</a></li>
+    <li><a href="#démarche-pédagogique">Démarche pédagogique</a>
+      <ul>
+        <li><a href="#déjà-le-mettre-à-la-page">Déjà le mettre à la page</a></li>
+        <li><a href="#mon-ptit-python">Mon p&rsquo;tit Python</a></li>
+      </ul>
+    </li>
+    <li><a href="#cest-la-dernière-séance">C&rsquo;est la dernière séance</a></li>
+    <li><a href="#hic-sunt-dracones">Hic sunt dracones</a></li>
+    <li><a href="#bilan">Bilan</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h2 id="introduction">Introduction</h2>
+<p>Depuis la fin Août 2020, j&rsquo;ai commencé à apprendre à mon fils à <em>coder</em>. Ce billet est un premier retour d&rsquo;expérience sur cette apprentissage après presque 2 mois. L&rsquo;occasion de faire le point, prendre du recul, de partager cela avec d&rsquo;autres informaticiens ou informaticiennes qui seraient dans une démarche similaire et idéalement de pouvoir avoir un échange sur le sujet.</p>
+<h2 id="contexte">Contexte</h2>
+<p>Mon fils a 11 ans, il vient d&rsquo;entrer en 5ème au collège. Entre le collège, la pratique de la musique au conservatoire et une pratique hébodmadaire d&rsquo;un sport, il a peu de temps et de bande-passante intellectuelle à consacrer à l&rsquo;apprentissage de la programmation. De mon côté, l&rsquo;ambition n&rsquo;est pas d&rsquo;un faire un codeur mais de lui inculquer des bases et de lui donner une culture informatique.</p>
+<p>Dans son collège, c&rsquo;est <a href="https://scratch.mit.edu/">scratch</a> qui est utilisé même si pour l&rsquo;instant, tant dans son année de 6ème (certes perturbé par le Coronavirus) que dans le début de son année de 5ème, il n&rsquo;a pas eu l&rsquo;occasion d&rsquo;en faire.</p>
+<p>Nous avions déjà, il y a peut-être 1 an, essayé <a href="https://scratch.mit.edu/">scratch</a> mais cela ne l&rsquo;avais pas forcément accroché. Et il me semblait qu&rsquo;il était important qu&rsquo;il soit demandeur de son côté. En effet, c&rsquo;est une activité en plus de tout le reste, il n&rsquo;était pas question de mon point de vue que cela soit une activité imposée.</p>
+<p>L&rsquo;intérêt de mon fils à l&rsquo;égard de l&rsquo;informatique a commencé à changer avec l&rsquo;arrivée d&rsquo;un téléphone portable (qui devenait nécessaire pour qu&rsquo;il puisse nous contacter en cas d&rsquo;urgence) et d&rsquo;un peu plus de temps à faire des jeux vidéos (pas qu&rsquo;il y joue tant que cela, et nous règlementons la chose, mais là cela a commencé à l&rsquo;intéresser un peu plus). Il est donc devenu demandeur d&rsquo;en apprendre plus sur l&rsquo;informatique et la programmation. Et comme le dit un proverbe bouddhiste, <em>Quand l&rsquo;élève est prêt, le maître apparaît</em>.</p>
+<h2 id="démarche-pédagogique">Démarche pédagogique</h2>
+<p>En parlant de démarche pédagogique, je survends propablement la chose : je n&rsquo;ai pas formalisé la démarche en avance et préparer de manière très cadrée les <em>cours</em>. Néanmoins, cela ne signifie pas que je n&rsquo;avais pas une idée de ce que je voulais faire et d&rsquo;où je voulais aller.</p>
+<p>Je ne voulais pas que mon fils le vive comme un enseignement scolaire, je voulais l&rsquo;initier aux joies de la programmation et lui montrer l&rsquo;aspect créatif de cette activité. Il était donc nécessaire à mes yeux que cela ne soit pas trop cadré avec la nécessité de coller à son rythme plutôt que de tenter de lui en imposer un. Après tout, il apprend la programmation pour son plaisir. Certes, cela peut lui servir mais que cela lui soit utile, c&rsquo;est juste un sous-produit.</p>
+<p>La seule contrainte que l&rsquo;on s&rsquo;est imposée, c&rsquo;est d&rsquo;avoir un rythme d&rsquo;une séance d&rsquo;informatique d&rsquo;environ une heure par semaine.</p>
+<h3 id="déjà-le-mettre-à-la-page">Déjà le mettre à la page</h3>
+<p>La première chose que je lui ai fait faire, avant de vraiment se mettre à programmer, c&rsquo;est une page HTML simple. Ce n&rsquo;est pas de la programmation, mais cela permet d&rsquo;introduire la notion de langage et d&rsquo;interprétation de ce langage ici par le navigateur. Il y a un effet visuel et un retour d&rsquo;information rapide sur ce que l&rsquo;on fait. Cela permet aussi une première prise en main du navigateur, d&rsquo;un éditeur de texte et de se rendre compte que les langages informatiques sont moins souples que les langages humains.</p>
+<h3 id="mon-ptit-python">Mon p&rsquo;tit Python</h3>
+<p>Même si cela m&rsquo;a effleuré l&rsquo;esprit, Javascript ne me semblait pas un bon choix pour un premier langage. Je suis très loin d&rsquo;être un détracteur de Javascript et le langage s&rsquo;est très grandement amélioré ses dernières années, mais il ne me semblait pas adapté comme premier langage.</p>
+<p><a href="https://scratch.mit.edu/">Scratch</a>, c&rsquo;est très bien et la dimension visuelle est très sympa mais finalement cela protège trop l&rsquo;apprenant de la réalité du code. Mon objectif est d&rsquo;inculquer à mon fils non seulement des notions de programmation mais également de le rendre plus dégourdi avec les ordinateurs. A mon sens <a href="https://scratch.mit.edu/">scratch</a> n&rsquo;offre pas nécessairement cela.</p>
+<p>Je connaissais un peu <a href="https://www.python.org/">Python</a> et ce langage est à la fois très abordable tout en étant versatile et représentant un investissement sur le long terme. Sans parler de la présence d&rsquo;une REPL via l&rsquo;interpréteur de Python et de la possibilité de faire des scripts. Et comme mon fils a une passion pour l&rsquo;herpétologie, utiliser un langage qui a le nom d&rsquo;un serpent était forcément séduisant.</p>
+<p>On est donc parti sur l&rsquo;apprentissage de la programmation avec Python.</p>
+<h2 id="cest-la-dernière-séance">C&rsquo;est la dernière séance</h2>
+<p>Ci-après, un tableau qui fait une synthèse de nos différentes séances jusqu&rsquo;à présent avec les concepts</p>
+<table>
+<thead>
+<tr>
+<th align="center">Numéro de séance</th>
+<th>Concepts et fonctions/mot-clés abordés</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">1</td>
+<td>interpréteur, <code>print</code>, <code>input</code>, variable, initialisation, type, <code>str</code>, <code>int</code>, concaténation, boucle, while, compteur de boucle</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td>Reprise des notions vues à la séance précédente, opérateurs mathématiques (addition et division)</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td>Reprise des notions vues à la séance précédente, alternatives avec <code>if</code> et <code>else</code>, boucle avec <code>for</code>, liste/tableau</td>
+</tr>
+<tr>
+<td align="center">4</td>
+<td>Reprise des notions vues à la séance précédente, <code>range</code></td>
+</tr>
+<tr>
+<td align="center">5</td>
+<td>Reprise des notions vues à la séance précédente, définition de fonction avec <code>def</code>, division euclidienne, notion de booléens</td>
+</tr>
+<tr>
+<td align="center">6</td>
+<td>Reprise des notions vues à la séance précédente, module et import, génération de nombres aléatoires</td>
+</tr>
+<tr>
+<td align="center">7</td>
+<td>Reprise des notions vues à la séance précédente, tests unitaires, TDD</td>
+</tr>
+</tbody>
+</table>
+<p>Et un autre tableau avec les thèmes des exercices pour chaque séance.</p>
+<table>
+<thead>
+<tr>
+<th align="center">Numéro de séance</th>
+<th>Concepts et fonctions/mot-clés abordés</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">1</td>
+<td><em>hello world</em> et <em>hello world</em> dans une boucle avec demande du nom de la personne à qui dire bonjour</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td>Amélioration du <em>Hello World</em> dans une boucle et calcul de moyenne d&rsquo;une série de notes rentrées de manière interactive</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td>Déterminer si un entier est pair et somme d&rsquo;une liste de nombre entiers</td>
+</tr>
+<tr>
+<td align="center">4</td>
+<td>Reprise de l&rsquo;exercice sur la somme d&rsquo;entiers mais avec <code>range</code></td>
+</tr>
+<tr>
+<td align="center">5</td>
+<td>Mise sous forme de fonction de l&rsquo;exercice pour déterminer si un nombre est pair, permutation du contenu de variables</td>
+</tr>
+<tr>
+<td align="center">6</td>
+<td>Permutation circulaires de 3 nombres  et simulateur de dé à 6 faces</td>
+</tr>
+<tr>
+<td align="center">7</td>
+<td>Fonctions de bases pour implémenter le jeu de dés &ldquo;Le Trop Gourmand&rdquo; (une variante du <a href="https://www.momes.net/jeux/jeux-interieur/regles-des-jeux-de-societe/regle-de-12-jeux-de-des-842684#Le-5.000">5000</a>)</td>
+</tr>
+</tbody>
+</table>
+<p>En écrivant le premier tableau, ma première réaction a été :</p>
+<p><img src="../../img/common/well-that-escalated-quickly.jpg" alt="Well that escalated quickly"></p>
+<p>C&rsquo;est tout l&rsquo;intérêt de ce type de billet, c&rsquo;est qu&rsquo;il permet une prise de recul. Cela peut paraître beaucoup de notions d&rsquo;un coup, mais on peut évoquer une notion et commencer à l&rsquo;utiliser sans en expliquer tous les détails. Ainsi, je n&rsquo;ai pas matraqué les notions, elles ont été introduites pour le besoin de l&rsquo;activité et sont répétées et ré-expliquées dès que et tant que nécessaires. Je ne suis pas dans une logique d&rsquo;apprentissage effréné de Python mais d&rsquo;une sensibilisation au raisonnements pour trouver une solution à un problème en programmation.</p>
+<p>On a donc commencé en douceur avec le classique <code>Hello World</code>. Il me semblait nécessaire de rapidement poser les bases pour pouvoir faire en sorte que mon fils interagisse avec le programme. On a donc commencé par introduire <code>print</code> puis <code>input</code> afin de pouvoir entrer des données pour alimenter le programme. Et au début via l&rsquo;interpréteur puis assez rapidement en utilisant un <em>éditeur de texte</em> (<a href="https://code.visualstudio.com/">Visual Studio Code</a> avec les plugins Python qui vont bien&hellip; c&rsquo;est plus qu&rsquo;un simple éditeur de texte, on est d&rsquo;accord, mais mon fils n&rsquo;a pas besoin de la savoir !) et en exécutant les scripts avec l&rsquo;interpréteur directement.</p>
+<p>Chaque séance suivante a commencé par un rappel de ce qu&rsquo;on avait vu à la séance précédente, et une petite réexplication des points clés. Nous avons construit sur les concepts et exercices précédents : certains exercices ont été faits de manières différentes plusieurs fois ou on a amélioré une implémentation précédente. C&rsquo;est mon fils qui a fait (quasiment) toute la saisie du code mais bien sûr avec mon assistance ou mon guidage : travail maïeutique pour l&rsquo;aider à formuler une idée de solution et assistance pour l&rsquo;implémenter (notamment sur la syntaxe). Encore une fois, mon objectif n&rsquo;est pas un premier temps de le rendre autonome pour développer en Python (cela viendra avec le temps et la pratique) mais c&rsquo;est de le faire réfléchir et formuler des solutions à des problèmes que l&rsquo;on se pose en informatique.</p>
+<p>L&rsquo;approche a été très expérimentale avec un accent mis sur l&rsquo;inocuité des erreurs : on teste ses idées au fur et à mesure, ce n&rsquo;est pas grave de se tromper ou de ne pas faire juste du premier coup. On <em>analyse</em> l&rsquo;erreur ou le comportement exhibé par le programme et on corrige. Au contraire les erreurs nous font avancer car elles nous permettent de mieux comprendre ce qui se passe. C&rsquo;est vite devenu un réflexe : <em>tester</em> rapidement le code, voir ce qui se passe, essayer de comprendre et revenir sur le code. Et cela a été un élément très important : avoir un <em>feedback</em> rapide donne à l&rsquo;enfant le sentiment d&rsquo;avancer et évite les frustrations.</p>
+<p>Lors de la dernière séance effectuée, comme la notion de fonction avait été introduite, j&rsquo;ai essayé d&rsquo;introduire l&rsquo;approche TDD : on réfléchit sur les entrées et les sorties de la fonction et ce qu&rsquo;on attend d&rsquo;elle en travaillant sur les tests, on vérifie que le test est en échec (<a href="https://dev.to/rubberduck/comment/20jc"><em>&ldquo;Never trust a test you haven’t personally seen fail.&quot;</em></a>), on écrit l&rsquo;implémentation et on vérifie sa validité avec le test. Et on recommence. C&rsquo;est tout l&rsquo;intérêt de la TDD, c&rsquo;est un cycle rapide avec un retour rapide. Avec <a href="https://docs.pytest.org/en/stable/">pytest</a> que nous avons utilisé pour écrire nos tests, on a les résultats des tests qui apparaissent en rouge quand ils sont en échec et en vert quand cela est ok. Ce feedback rapide et cette manière collaborative de réfléchir à la solution et de la concevoir a bien convenu à mon fils.</p>
+<h2 id="hic-sunt-dracones">Hic sunt dracones</h2>
+<p>Je m&rsquo;attendais a plus de difficultés que ce que nous avons rencontrées. En partant sur Python et la ligne de commande par rapport à l&rsquo;utilisation de <a href="https://scratch.mit.edu/">scratch</a>, je craignais que mon fils n&rsquo;accroche pas et perde vite de l&rsquo;intérêt s&rsquo;il n&rsquo;y avait qu&rsquo;un retour textuel. J&rsquo;ai été agréablement surpris que finalement des interactions via la console lui suffise. Au final, mon sentiment est que de pouvoir expérimenter rapidement et interagir avec le programme ont été suffisants pour le maintenir interessé et engagé dans la séance.</p>
+<p>Python est très lisible et se lit presque comme un texte en anglais&hellip; mais c&rsquo;est là où le bât blesse : mon fils est au début du collège, il démarre en anglais. Je lui traduit les mots mais c&rsquo;est vrai que cela représente un obstacle de plus pour comprendre que nous n&rsquo;aurions pas eu avec <a href="https://scratch.mit.edu/">scratch</a>.</p>
+<p>Une heure par semaine cela fait peu, il y a un gros travail de <em>répétitions</em> à chaque séance. Cela me semble normal, cela fait beaucoup à retenir et sans y être exposé avec une fréquence quotidienne, ce n&rsquo;est pas simple pour un enfant de se rappeler de tout cela, surtout qu&rsquo;il doit absorber beaucoup d&rsquo;autres connaissances diverses par ailleurs.</p>
+<p>Probablement qu&rsquo;avec <a href="https://scratch.mit.edu/">scratch</a>, cela eût été plus simple avec l&rsquo;interface visuelle qui propose les éléments pour construire le programme plutôt que de devoir se les rappeler. Développer une réelle autonomie en Python lui prendra donc probablement du temps, j&rsquo;en suis conscient. Cependant comme expliqué précédemment, mon objectif <em>pédagogique</em> est une initiation au raisonnement algorithmique et une familiarisation à l&rsquo;outil informatique. Et de ce point de vue-là, mon fils est maintenant beaucoup plus à l&rsquo;aise avec l&rsquo;utilisation de l&rsquo;ordinateur, il a appris quelques raccourcis clavier (pour sauvegarder ou faire des copier-coller :-D) et sait maintenant à quoi correspond un <em>underscore</em> (j&rsquo;essaie d&rsquo;utiliser <em>blanc souligné</em> mais <em>underscore</em> m&rsquo;échappe souvent !), il utilise un éditeur de texte et le terminal de commandes. En utilisant un environnement comme <a href="https://scratch.mit.edu/">scratch</a>, cela aurait probablement simplifié les choses en masquant certaines difficultés techniques qu&rsquo;au final il arrive à gérer.</p>
+<h2 id="bilan">Bilan</h2>
+<p>Après 7 séances mon fils reste intéressé et nous avançons doucement. Il va falloir consolider tout ce qui a été vu petit à petit, mais au fond on a le temps. Il y a le projet lointain de vouloir faire un jeux d&rsquo;aventure en mode texte. Cela nourrit sa motivation même s&rsquo;il a bien compris que cela prendrait du temps et cela nourrit les idées de séances.</p>
+<p>Il est très agréable de voir sa joie  quand il résoud un problème et de le voir s&rsquo;amuser avec les programmes que nous avons codé ensemble. C&rsquo;est rafraichissant.</p>
+<p>Ces séances permettent également d&rsquo;ouvrir sur des sujets en relation mais pas forcément liés à l&rsquo;écriture du code lui-même. Ainsi, un enfant en début de collège n&rsquo;a pas encore forcément vu comment calculer une moyenne ou n&rsquo;a vu que rapidement la division euclidienne. C&rsquo;est l&rsquo;occasion de faire un point explicatif sur ces sujets. Plus largement cela permet de faire des apartés sur des sujets comme les nombres (pseudo-)aléatoires ou les booléens, et sans rentrer dans les détails de semer des germes de savoir. Bref, cela permet d&rsquo;élargir sa vision et de montrer les liens entre les sujets et les différentes matières, ce qui est un premier pas vers l&rsquo;appréhension de la complexité du monde, sans la nier ou en avoir peur.</p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Auteur</span>
+    <span class="item-content">TGITS</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">Modifié</span>
+    <span class="item-content">
+        2020-10-19
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/python/">python</a>
+          <a href="/tags/apprentissage/">apprentissage</a>
+          <a href="/tags/tdd/">tdd</a>
+          <a href="/tags/d%C3%A9veloppement/">développement</a>
+          <a href="/tags/rex/">rex</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/post/frequencies_map_in_python/">
+            <span class="next-text nav-default">Tableau de fréquences en Python</span>
+            <span class="next-text nav-mobile">Suivant</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    (function() {
+      
+      
+      if (window.location.hostname === 'localhost') return;
+
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      var disqus_shortname = 'thegeekintheshell';
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "thegeekintheshell" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+<div class="social-links">
+      <a href="mailto:thegeekintheshell@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://twitter.com/_TGITS" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="https://www.linkedin.com/in/cvaudry/" class="iconfont icon-linkedin" title="linkedin"></a>
+      <a href="https://github.com/TGITS" class="iconfont icon-github" title="github"></a>
+      <a href="https://gitlab.com/TGITS" class="iconfont icon-gitlab" title="gitlab"></a>
+  <a href="https://tgits.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Propulsé par <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Thème - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2020
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">TGITS</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>
