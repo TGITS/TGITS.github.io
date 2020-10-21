@@ -6,10 +6,21 @@
     <description>Recent content on The Geek In The Shell</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>fr-fr</language>
-    <lastBuildDate>Mon, 19 Oct 2020 12:09:27 +0200</lastBuildDate>
+    <lastBuildDate>Wed, 21 Oct 2020 18:13:27 +0200</lastBuildDate>
     
 	<atom:link href="https://tgits.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Notes d&#39;apprentissage de Python : les boucles for et enumerate</title>
+      <link>https://tgits.github.io/post/notes_apprentissage_python_enumerate/</link>
+      <pubDate>Wed, 21 Oct 2020 18:13:27 +0200</pubDate>
+      
+      <guid>https://tgits.github.io/post/notes_apprentissage_python_enumerate/</guid>
+      <description>Contexte Python est un langage de programmation très abordable que l&amp;rsquo;on démarre en programmation ou que l&amp;rsquo;on connaisse déjà d&amp;rsquo;autre langage. Néanmoins, ce n&amp;rsquo;est pas parce qu&amp;rsquo;un langage est abordable qu&amp;rsquo;il n&amp;rsquo;a pas ces propres idiomes et qu&amp;rsquo;il n&amp;rsquo;y a pas des trucs &amp;amp; astuces à connaître et retenir.
+Ci-après, une petite note d&amp;rsquo;apprentissage de Python, sur l&amp;rsquo;utilisation de enumerate.
+Si les éléments de ma liste étaient comptés En Python, le for n&amp;rsquo;est pas comme le for du langage C dans lequel pour itérer sur un tableau, on fait varier la valeur de l&amp;rsquo;indice de ce tableau.</description>
+    </item>
     
     <item>
       <title>Apprendre à coder à son enfant, premier REX</title>

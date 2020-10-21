@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Notes d&#39;apprentissage de Python : les boucles for et enumerate - The Geek In The Shell</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="TGITS" /><meta name="description" content="Contexte Python est un langage de programmation très abordable que l&amp;rsquo;on démarre en programmation ou que l&amp;rsquo;on connaisse déjà d&amp;rsquo;autre langage. Néanmoins, ce n&amp;rsquo;est pas parce qu&amp;rsquo;un langage est abordable qu&amp;rsquo;il n&amp;rsquo;a pas ces propres idiomes et qu&amp;rsquo;il n&amp;rsquo;y a pas des trucs &amp;amp; astuces à connaître et retenir.
+Ci-après, une petite note d&amp;rsquo;apprentissage de Python, sur l&amp;rsquo;utilisation de enumerate.
+Si les éléments de ma liste étaient comptés En Python, le for n&amp;rsquo;est pas comme le for du langage C dans lequel pour itérer sur un tableau, on fait varier la valeur de l&amp;rsquo;indice de ce tableau." /><meta name="keywords" content="TGITS, Développement, Java, Architecture" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.71.1 with theme even" />
+
+
+<link rel="canonical" href="https://tgits.github.io/post/notes_apprentissage_python_enumerate/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.8c3cbcb0324c2bb4875ceccba4007cbad4b4ac8377f33af9953c3e7684534a50.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Notes d&#39;apprentissage de Python : les boucles for et enumerate" />
+<meta property="og:description" content="Contexte Python est un langage de programmation très abordable que l&rsquo;on démarre en programmation ou que l&rsquo;on connaisse déjà d&rsquo;autre langage. Néanmoins, ce n&rsquo;est pas parce qu&rsquo;un langage est abordable qu&rsquo;il n&rsquo;a pas ces propres idiomes et qu&rsquo;il n&rsquo;y a pas des trucs &amp; astuces à connaître et retenir.
+Ci-après, une petite note d&rsquo;apprentissage de Python, sur l&rsquo;utilisation de enumerate.
+Si les éléments de ma liste étaient comptés En Python, le for n&rsquo;est pas comme le for du langage C dans lequel pour itérer sur un tableau, on fait varier la valeur de l&rsquo;indice de ce tableau." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://tgits.github.io/post/notes_apprentissage_python_enumerate/" />
+<meta property="article:published_time" content="2020-10-21T18:13:27+02:00" />
+<meta property="article:modified_time" content="2020-10-21T18:13:27+02:00" />
+<meta itemprop="name" content="Notes d&#39;apprentissage de Python : les boucles for et enumerate">
+<meta itemprop="description" content="Contexte Python est un langage de programmation très abordable que l&rsquo;on démarre en programmation ou que l&rsquo;on connaisse déjà d&rsquo;autre langage. Néanmoins, ce n&rsquo;est pas parce qu&rsquo;un langage est abordable qu&rsquo;il n&rsquo;a pas ces propres idiomes et qu&rsquo;il n&rsquo;y a pas des trucs &amp; astuces à connaître et retenir.
+Ci-après, une petite note d&rsquo;apprentissage de Python, sur l&rsquo;utilisation de enumerate.
+Si les éléments de ma liste étaient comptés En Python, le for n&rsquo;est pas comme le for du langage C dans lequel pour itérer sur un tableau, on fait varier la valeur de l&rsquo;indice de ce tableau.">
+<meta itemprop="datePublished" content="2020-10-21T18:13:27&#43;02:00" />
+<meta itemprop="dateModified" content="2020-10-21T18:13:27&#43;02:00" />
+<meta itemprop="wordCount" content="905">
+
+
+
+<meta itemprop="keywords" content="python,notes d&#39;apprentissage,développement,tips," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Notes d&#39;apprentissage de Python : les boucles for et enumerate"/>
+<meta name="twitter:description" content="Contexte Python est un langage de programmation très abordable que l&rsquo;on démarre en programmation ou que l&rsquo;on connaisse déjà d&rsquo;autre langage. Néanmoins, ce n&rsquo;est pas parce qu&rsquo;un langage est abordable qu&rsquo;il n&rsquo;a pas ces propres idiomes et qu&rsquo;il n&rsquo;y a pas des trucs &amp; astuces à connaître et retenir.
+Ci-après, une petite note d&rsquo;apprentissage de Python, sur l&rsquo;utilisation de enumerate.
+Si les éléments de ma liste étaient comptés En Python, le for n&rsquo;est pas comme le for du langage C dans lequel pour itérer sur un tableau, on fait varier la valeur de l&rsquo;indice de ce tableau."/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">TGITS</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Blog</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">TGITS</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Blog</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Notes d&#39;apprentissage de Python : les boucles for et enumerate</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-10-21 </span>
+        <div class="post-category">
+            <a href="/categories/d%C3%A9veloppement/"> développement </a>
+            <a href="/categories/python/"> python </a>
+            <a href="/categories/notes-dapprentissage/"> notes d&#39;apprentissage </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contenu</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#contexte">Contexte</a></li>
+    <li><a href="#si-les-éléments-de-ma-liste-étaient-comptés">Si les éléments de ma liste étaient comptés</a></li>
+    <li><a href="#en-bref">En bref</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h2 id="contexte">Contexte</h2>
+<p><a href="https://www.python.org/">Python</a> est un langage de programmation très abordable que l&rsquo;on démarre en programmation ou que l&rsquo;on connaisse déjà d&rsquo;autre langage. Néanmoins, ce n&rsquo;est pas parce qu&rsquo;un langage est abordable qu&rsquo;il n&rsquo;a pas ces propres idiomes et qu&rsquo;il n&rsquo;y a pas des trucs &amp; astuces à connaître et retenir.</p>
+<p>Ci-après, une petite note d&rsquo;apprentissage de <a href="https://www.python.org/">Python</a>, sur l&rsquo;utilisation de <code>enumerate</code>.</p>
+<h2 id="si-les-éléments-de-ma-liste-étaient-comptés">Si les éléments de ma liste étaient comptés</h2>
+<p>En <a href="https://www.python.org/">Python</a>, le <code>for</code> n&rsquo;est pas comme le <code>for</code> du langage C dans lequel pour itérer sur un tableau, on fait varier la valeur de l&rsquo;indice de ce tableau. En <a href="https://www.python.org/">Python</a>, le <code>for</code> permet d&rsquo;itérer sur chacun des éléments de la séquence : la variable de boucle va successivement prendre la valeur de chacun des éléments du tableau.</p>
+<p>Voyons un exemple simple avec une liste de nombres :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">letters</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;f&#39;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">]</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;letters {}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">letters</span><span class="p">))</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">##########</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;In Python, the for is a foreach : &#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">letter</span> <span class="ow">in</span> <span class="n">letters</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">letter</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Cela donne comme résultat si on exécute ce script :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">letters [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;, &#39;e&#39;, &#39;f&#39;, &#39;g&#39;]
+
+##########
+
+In Python, the for is a foreach :
+a
+b
+c
+d
+e
+f
+g
+</code></pre></td></tr></table>
+</div>
+</div><p>La variable de boucle a bien pris successivement la valeur de chacun des éléments de la liste.</p>
+<p>Cependant, comment fait-on si on souhaite avoir également l&rsquo;indice de l&rsquo;élément de la liste ?</p>
+<p>Une manière naïve de le faire est d&rsquo;utiliser <code>range</code>, en créant un intervalle de 0 à la taille de la liste, comme dans l&rsquo;exemple ci-après.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">print</span><span class="p">(</span><span class="s1">&#39;Naive approach to access both index of element in the list and the associated value : &#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">letters</span><span class="p">)):</span>
+    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;letters[{}] : {}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">letters</span><span class="p">[</span><span class="n">index</span><span class="p">]))</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Cela donne comme résultat :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">Naive approach to access both index of element in the list and the associated value :
+letters[0] : a
+letters[1] : b
+letters[2] : c
+letters[3] : d
+letters[4] : e
+letters[5] : f
+letters[6] : g
+</code></pre></td></tr></table>
+</div>
+</div><p>Cela fonctionne mais cela ne semble pas très élégant. <a href="https://www.python.org/">Python</a> propose une solution naive pour avoir l&rsquo;indice et la valeur, en utilisant <code>enumerate</code> (vous ne l&rsquo;aviez pas vu venir ? ;-) ). Voici sans plus tarder un exemple :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">print</span><span class="p">(</span><span class="s1">&#39;using enumerate in a for loop : &#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">letters</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;letters[{}] : {}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">value</span><span class="p">))</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Ce qui donne :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">using enumerate in a for loop :
+letters[0] : a
+letters[1] : b
+letters[2] : c
+letters[3] : d
+letters[4] : e
+letters[5] : f
+letters[6] : g
+</code></pre></td></tr></table>
+</div>
+</div><p><code>enumerate</code> énumère pour chacun des éléments de la liste en paramètre, son indice et la valeur associée.</p>
+<p>Si cela fonctionne avec un <code>for</code>, cela fonctionne aussi avec une compréhension :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">print</span><span class="p">(</span><span class="s1">&#39;using enumerate in a for comprehension : &#39;</span><span class="p">)</span>
+<span class="n">list_to_print</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;letters[{}] : {}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">letters</span><span class="p">)]</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">list_to_print</span><span class="p">))</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Ce qui donne :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">using enumerate in a for comprehension :
+letters[0] : a
+letters[1] : b
+letters[2] : c
+letters[3] : d
+letters[4] : e
+letters[5] : f
+letters[6] : g
+</code></pre></td></tr></table>
+</div>
+</div><p>Et si on n&rsquo;a besoin que de l&rsquo;indice ? Pas de soucis, il suffit d&rsquo;ignorer la valeur en utilisant classiquement le <em>underscore</em> <code>_</code> comme nom de variable pour la valeur que l&rsquo;on souhaite ignorer :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">print</span><span class="p">(</span><span class="s1">&#39;using enumerate in a for loop and ignoring the value : &#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">letters</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;index of letter :&#39;</span><span class="p">,</span> <span class="n">index</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Ce qui donne :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">using enumerate in a for loop and ignoring the value :
+index of letter : 0
+index of letter : 1
+index of letter : 2
+index of letter : 3
+index of letter : 4
+index of letter : 5
+index of letter : 6
+</code></pre></td></tr></table>
+</div>
+</div><p>On peut utiliser <code>enumerate</code> indépendamment d&rsquo;une boucle <code>for</code> directement pour créer une liste de tuples <code>(indice, valeur)</code> à partir d&rsquo;une liste de valeurs :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">print</span><span class="p">(</span><span class="s1">&#39;Creating a list of tuples (index, value) from a list of values&#39;</span><span class="p">)</span>
+<span class="n">letters_with_index</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">enumerate</span><span class="p">(</span><span class="n">letters</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">letters_with_index</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Ce qui donne :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">Creating a list of tuples (index, value) from a list of values
+[(0, &#39;a&#39;), (1, &#39;b&#39;), (2, &#39;c&#39;), (3, &#39;d&#39;), (4, &#39;e&#39;), (5, &#39;f&#39;), (6, &#39;g&#39;)]
+</code></pre></td></tr></table>
+</div>
+</div><p>Enfin <code>enumerate</code> peut s&rsquo;utiliser avec d&rsquo;autres itérables comme les tuples, les chaines de caractères ou les ensembles :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># enumerate works with tuple, string and set for example</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;enumerate with tuple : &#39;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">enumerate</span><span class="p">((</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;i&#39;</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="s1">&#39;u&#39;</span><span class="p">))))</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;enumerate with string : &#39;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">enumerate</span><span class="p">((</span><span class="s1">&#39;aeiou&#39;</span><span class="p">))))</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;enumerate with set : &#39;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">enumerate</span><span class="p">({</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;i&#39;</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="s1">&#39;u&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">})))</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Ce qui donne :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">enumerate with tuple :
+[(0, &#39;a&#39;), (1, &#39;e&#39;), (2, &#39;i&#39;), (3, &#39;o&#39;), (4, &#39;u&#39;)]
+enumerate with string :
+[(0, &#39;a&#39;), (1, &#39;e&#39;), (2, &#39;i&#39;), (3, &#39;o&#39;), (4, &#39;u&#39;)]
+enumerate with set :
+[(0, &#39;o&#39;), (1, &#39;i&#39;), (2, &#39;u&#39;), (3, &#39;e&#39;), (4, &#39;a&#39;)]
+</code></pre></td></tr></table>
+</div>
+</div><p>Vous noterez que pour le <code>set</code>, la liste de tuples ne correspond pas à l&rsquo;ordre de saisie, ce qui est normal puisque les <code>set</code> sont non-ordonnés en <a href="https://www.python.org/">Python</a>.</p>
+<h2 id="en-bref">En bref</h2>
+<p>Quand vous avez besoin d&rsquo;avoir l&rsquo;indice associé à l&rsquo;élément d&rsquo;une séquence, pensez à utiliser <code>enumerate</code>!</p>
+<p>Un <a href="https://gist.github.com/TGITS/67d64ec250392e22a8cb3ef5b5142103">gist</a> avec tous les exemples ci-dessus regroupés.</p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Auteur</span>
+    <span class="item-content">TGITS</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">Modifié</span>
+    <span class="item-content">
+        2020-10-21
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/python/">python</a>
+          <a href="/tags/notes-dapprentissage/">notes d&#39;apprentissage</a>
+          <a href="/tags/d%C3%A9veloppement/">développement</a>
+          <a href="/tags/tips/">tips</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/post/apprendre_a_coder_a_son_enfant_premier_rex/">
+            <span class="next-text nav-default">Apprendre à coder à son enfant, premier REX</span>
+            <span class="next-text nav-mobile">Suivant</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    (function() {
+      
+      
+      if (window.location.hostname === 'localhost') return;
+
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      var disqus_shortname = 'thegeekintheshell';
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "thegeekintheshell" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+<div class="social-links">
+      <a href="mailto:thegeekintheshell@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://twitter.com/_TGITS" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="https://www.linkedin.com/in/cvaudry/" class="iconfont icon-linkedin" title="linkedin"></a>
+      <a href="https://github.com/TGITS" class="iconfont icon-github" title="github"></a>
+      <a href="https://gitlab.com/TGITS" class="iconfont icon-gitlab" title="gitlab"></a>
+  <a href="https://tgits.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Propulsé par <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Thème - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2020
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">TGITS</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

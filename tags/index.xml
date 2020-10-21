@@ -6,10 +6,46 @@
     <description>Recent content in Tags on The Geek In The Shell</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>fr-fr</language>
-    <lastBuildDate>Mon, 19 Oct 2020 12:09:27 +0200</lastBuildDate>
+    <lastBuildDate>Wed, 21 Oct 2020 18:13:27 +0200</lastBuildDate>
     
 	<atom:link href="https://tgits.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>développement</title>
+      <link>https://tgits.github.io/tags/d%C3%A9veloppement/</link>
+      <pubDate>Wed, 21 Oct 2020 18:13:27 +0200</pubDate>
+      
+      <guid>https://tgits.github.io/tags/d%C3%A9veloppement/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>notes d&#39;apprentissage</title>
+      <link>https://tgits.github.io/tags/notes-dapprentissage/</link>
+      <pubDate>Wed, 21 Oct 2020 18:13:27 +0200</pubDate>
+      
+      <guid>https://tgits.github.io/tags/notes-dapprentissage/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>python</title>
+      <link>https://tgits.github.io/tags/python/</link>
+      <pubDate>Wed, 21 Oct 2020 18:13:27 +0200</pubDate>
+      
+      <guid>https://tgits.github.io/tags/python/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tips</title>
+      <link>https://tgits.github.io/tags/tips/</link>
+      <pubDate>Wed, 21 Oct 2020 18:13:27 +0200</pubDate>
+      
+      <guid>https://tgits.github.io/tags/tips/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>apprentissage</title>
@@ -17,24 +53,6 @@
       <pubDate>Mon, 19 Oct 2020 12:09:27 +0200</pubDate>
       
       <guid>https://tgits.github.io/tags/apprentissage/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>développement</title>
-      <link>https://tgits.github.io/tags/d%C3%A9veloppement/</link>
-      <pubDate>Mon, 19 Oct 2020 12:09:27 +0200</pubDate>
-      
-      <guid>https://tgits.github.io/tags/d%C3%A9veloppement/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>python</title>
-      <link>https://tgits.github.io/tags/python/</link>
-      <pubDate>Mon, 19 Oct 2020 12:09:27 +0200</pubDate>
-      
-      <guid>https://tgits.github.io/tags/python/</guid>
       <description></description>
     </item>
     
