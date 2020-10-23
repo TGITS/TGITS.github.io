@@ -18,7 +18,7 @@
 
 <meta name="author" content="TGITS" /><meta name="description" content="Contexte Python est un langage de programmation très abordable que l&amp;rsquo;on démarre en programmation ou que l&amp;rsquo;on connaisse déjà d&amp;rsquo;autre langage. Néanmoins, ce n&amp;rsquo;est pas parce qu&amp;rsquo;un langage est abordable qu&amp;rsquo;il n&amp;rsquo;a pas ces propres idiomes et qu&amp;rsquo;il n&amp;rsquo;y a pas des trucs &amp;amp; astuces à connaître et retenir.
 Ci-après, une petite note d&amp;rsquo;apprentissage de Python, sur l&amp;rsquo;utilisation de enumerate.
-Si les éléments de ma liste étaient comptés En Python, le for n&amp;rsquo;est pas comme le for du langage C dans lequel pour itérer sur un tableau, on fait varier la valeur de l&amp;rsquo;indice de ce tableau." /><meta name="keywords" content="TGITS, Développement, Java, Architecture" />
+NB : c&amp;rsquo;est du Python 3 qui est utilisé dans ce billet." /><meta name="keywords" content="TGITS, Développement, Java, Architecture" />
 
 
 
@@ -44,26 +44,26 @@ Si les éléments de ma liste étaient comptés En Python, le for n&amp;rsquo;es
 <meta property="og:title" content="Notes d&#39;apprentissage de Python : les boucles for et enumerate" />
 <meta property="og:description" content="Contexte Python est un langage de programmation très abordable que l&rsquo;on démarre en programmation ou que l&rsquo;on connaisse déjà d&rsquo;autre langage. Néanmoins, ce n&rsquo;est pas parce qu&rsquo;un langage est abordable qu&rsquo;il n&rsquo;a pas ces propres idiomes et qu&rsquo;il n&rsquo;y a pas des trucs &amp; astuces à connaître et retenir.
 Ci-après, une petite note d&rsquo;apprentissage de Python, sur l&rsquo;utilisation de enumerate.
-Si les éléments de ma liste étaient comptés En Python, le for n&rsquo;est pas comme le for du langage C dans lequel pour itérer sur un tableau, on fait varier la valeur de l&rsquo;indice de ce tableau." />
+NB : c&rsquo;est du Python 3 qui est utilisé dans ce billet." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://tgits.github.io/post/notes_apprentissage_python_enumerate/" />
 <meta property="article:published_time" content="2020-10-21T18:13:27+02:00" />
-<meta property="article:modified_time" content="2020-10-22T13:26:27+02:00" />
+<meta property="article:modified_time" content="2020-10-23T13:26:27+02:00" />
 <meta itemprop="name" content="Notes d&#39;apprentissage de Python : les boucles for et enumerate">
 <meta itemprop="description" content="Contexte Python est un langage de programmation très abordable que l&rsquo;on démarre en programmation ou que l&rsquo;on connaisse déjà d&rsquo;autre langage. Néanmoins, ce n&rsquo;est pas parce qu&rsquo;un langage est abordable qu&rsquo;il n&rsquo;a pas ces propres idiomes et qu&rsquo;il n&rsquo;y a pas des trucs &amp; astuces à connaître et retenir.
 Ci-après, une petite note d&rsquo;apprentissage de Python, sur l&rsquo;utilisation de enumerate.
-Si les éléments de ma liste étaient comptés En Python, le for n&rsquo;est pas comme le for du langage C dans lequel pour itérer sur un tableau, on fait varier la valeur de l&rsquo;indice de ce tableau.">
+NB : c&rsquo;est du Python 3 qui est utilisé dans ce billet.">
 <meta itemprop="datePublished" content="2020-10-21T18:13:27&#43;02:00" />
-<meta itemprop="dateModified" content="2020-10-22T13:26:27&#43;02:00" />
-<meta itemprop="wordCount" content="914">
+<meta itemprop="dateModified" content="2020-10-23T13:26:27&#43;02:00" />
+<meta itemprop="wordCount" content="926">
 
 
 
-<meta itemprop="keywords" content="python,notes d&#39;apprentissage,développement,tips," /><meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="python,python3,notes d&#39;apprentissage,développement,tips," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Notes d&#39;apprentissage de Python : les boucles for et enumerate"/>
 <meta name="twitter:description" content="Contexte Python est un langage de programmation très abordable que l&rsquo;on démarre en programmation ou que l&rsquo;on connaisse déjà d&rsquo;autre langage. Néanmoins, ce n&rsquo;est pas parce qu&rsquo;un langage est abordable qu&rsquo;il n&rsquo;a pas ces propres idiomes et qu&rsquo;il n&rsquo;y a pas des trucs &amp; astuces à connaître et retenir.
 Ci-après, une petite note d&rsquo;apprentissage de Python, sur l&rsquo;utilisation de enumerate.
-Si les éléments de ma liste étaient comptés En Python, le for n&rsquo;est pas comme le for du langage C dans lequel pour itérer sur un tableau, on fait varier la valeur de l&rsquo;indice de ce tableau."/>
+NB : c&rsquo;est du Python 3 qui est utilisé dans ce billet."/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -159,6 +159,7 @@ Si les éléments de ma liste étaient comptés En Python, le for n&rsquo;est pa
       <h2 id="contexte">Contexte</h2>
 <p><a href="https://www.python.org/">Python</a> est un langage de programmation très abordable que l&rsquo;on démarre en programmation ou que l&rsquo;on connaisse déjà d&rsquo;autre langage. Néanmoins, ce n&rsquo;est pas parce qu&rsquo;un langage est abordable qu&rsquo;il n&rsquo;a pas ces propres idiomes et qu&rsquo;il n&rsquo;y a pas des trucs &amp; astuces à connaître et retenir.</p>
 <p>Ci-après, une petite note d&rsquo;apprentissage de <a href="https://www.python.org/">Python</a>, sur l&rsquo;utilisation de <code>enumerate</code>.</p>
+<p><strong>NB</strong> : c&rsquo;est du Python 3 qui est utilisé dans ce billet.</p>
 <h2 id="si-les-éléments-de-ma-liste-étaient-comptés">Si les éléments de ma liste étaient comptés</h2>
 <p>En <a href="https://www.python.org/">Python</a>, le <code>for</code> n&rsquo;est pas comme le <code>for</code> du langage C dans lequel pour itérer sur un tableau, on fait varier la valeur de l&rsquo;indice de ce tableau. En <a href="https://www.python.org/">Python</a>, le <code>for</code> permet d&rsquo;itérer sur chacun des éléments de la séquence : la variable de boucle va successivement prendre la valeur de chacun des éléments du tableau.</p>
 <p>Voyons un exemple simple avec une liste de nombres :</p>
@@ -445,7 +446,7 @@ enumerate with set :
   <p class="copyright-item">
     <span class="item-title">Modifié</span>
     <span class="item-content">
-        2020-10-22
+        2020-10-23
         
     </span>
   </p>
@@ -455,12 +456,17 @@ enumerate with set :
 <footer class="post-footer">
       <div class="post-tags">
           <a href="/tags/python/">python</a>
+          <a href="/tags/python3/">python3</a>
           <a href="/tags/notes-dapprentissage/">notes d&#39;apprentissage</a>
           <a href="/tags/d%C3%A9veloppement/">développement</a>
           <a href="/tags/tips/">tips</a>
           </div>
       <nav class="post-nav">
-        
+        <a class="prev" href="/post/notes_apprentissage_python_reverse_sequence/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Notes apprentissage : une séquence renversante</span>
+            <span class="prev-text nav-mobile">Précédent</span>
+          </a>
         <a class="next" href="/post/apprendre_a_coder_a_son_enfant_premier_rex/">
             <span class="next-text nav-default">Apprendre à coder à son enfant, premier REX</span>
             <span class="next-text nav-mobile">Suivant</span>

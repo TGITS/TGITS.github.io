@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Notes apprentissage : une séquence renversante - The Geek In The Shell</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="TGITS" /><meta name="description" content="Contexte Python est un langage de programmation très abordable que l&amp;rsquo;on démarre en programmation ou que l&amp;rsquo;on connaisse déjà d&amp;rsquo;autre langage. Néanmoins, ce n&amp;rsquo;est pas parce qu&amp;rsquo;un langage est abordable qu&amp;rsquo;il n&amp;rsquo;a pas ces propres idiomes et qu&amp;rsquo;il n&amp;rsquo;y a pas des trucs &amp;amp; astuces à connaître et retenir.
+Ci-après, une petite note d&amp;rsquo;apprentissage de Python, sur la manière d&amp;rsquo;inverser les éléments d&amp;rsquo;une liste et d&amp;rsquo;une chaine de caractères.
+NB : c&amp;rsquo;est du Python 3 qui est utilisé dans ce billet." /><meta name="keywords" content="TGITS, Développement, Java, Architecture" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.71.1 with theme even" />
+
+
+<link rel="canonical" href="https://tgits.github.io/post/notes_apprentissage_python_reverse_sequence/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.8c3cbcb0324c2bb4875ceccba4007cbad4b4ac8377f33af9953c3e7684534a50.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Notes apprentissage : une séquence renversante" />
+<meta property="og:description" content="Contexte Python est un langage de programmation très abordable que l&rsquo;on démarre en programmation ou que l&rsquo;on connaisse déjà d&rsquo;autre langage. Néanmoins, ce n&rsquo;est pas parce qu&rsquo;un langage est abordable qu&rsquo;il n&rsquo;a pas ces propres idiomes et qu&rsquo;il n&rsquo;y a pas des trucs &amp; astuces à connaître et retenir.
+Ci-après, une petite note d&rsquo;apprentissage de Python, sur la manière d&rsquo;inverser les éléments d&rsquo;une liste et d&rsquo;une chaine de caractères.
+NB : c&rsquo;est du Python 3 qui est utilisé dans ce billet." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://tgits.github.io/post/notes_apprentissage_python_reverse_sequence/" />
+<meta property="article:published_time" content="2020-10-21T18:13:27+02:00" />
+<meta property="article:modified_time" content="2020-10-23T18:26:27+02:00" />
+<meta itemprop="name" content="Notes apprentissage : une séquence renversante">
+<meta itemprop="description" content="Contexte Python est un langage de programmation très abordable que l&rsquo;on démarre en programmation ou que l&rsquo;on connaisse déjà d&rsquo;autre langage. Néanmoins, ce n&rsquo;est pas parce qu&rsquo;un langage est abordable qu&rsquo;il n&rsquo;a pas ces propres idiomes et qu&rsquo;il n&rsquo;y a pas des trucs &amp; astuces à connaître et retenir.
+Ci-après, une petite note d&rsquo;apprentissage de Python, sur la manière d&rsquo;inverser les éléments d&rsquo;une liste et d&rsquo;une chaine de caractères.
+NB : c&rsquo;est du Python 3 qui est utilisé dans ce billet.">
+<meta itemprop="datePublished" content="2020-10-21T18:13:27&#43;02:00" />
+<meta itemprop="dateModified" content="2020-10-23T18:26:27&#43;02:00" />
+<meta itemprop="wordCount" content="1735">
+
+
+
+<meta itemprop="keywords" content="python,python3,notes d&#39;apprentissage,développement,tips," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Notes apprentissage : une séquence renversante"/>
+<meta name="twitter:description" content="Contexte Python est un langage de programmation très abordable que l&rsquo;on démarre en programmation ou que l&rsquo;on connaisse déjà d&rsquo;autre langage. Néanmoins, ce n&rsquo;est pas parce qu&rsquo;un langage est abordable qu&rsquo;il n&rsquo;a pas ces propres idiomes et qu&rsquo;il n&rsquo;y a pas des trucs &amp; astuces à connaître et retenir.
+Ci-après, une petite note d&rsquo;apprentissage de Python, sur la manière d&rsquo;inverser les éléments d&rsquo;une liste et d&rsquo;une chaine de caractères.
+NB : c&rsquo;est du Python 3 qui est utilisé dans ce billet."/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">TGITS</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Blog</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">TGITS</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Blog</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Notes apprentissage : une séquence renversante</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-10-21 </span>
+        <div class="post-category">
+            <a href="/categories/d%C3%A9veloppement/"> développement </a>
+            <a href="/categories/python/"> python </a>
+            <a href="/categories/notes-dapprentissage/"> notes d&#39;apprentissage </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contenu</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#contexte">Contexte</a></li>
+    <li><a href="#liste">Liste</a>
+      <ul>
+        <li><a href="#renversement-de-situation">Renversement de situation</a></li>
+        <li><a href="#la-tranche-à-lenvers">La tranche à l&rsquo;envers</a></li>
+      </ul>
+    </li>
+    <li><a href="#chaines-de-caractères">Chaines de caractères</a>
+      <ul>
+        <li><a href="#partir-à-la-renverse">partir à la renverse</a></li>
+        <li><a href="#trancher-dans-le-vif">Trancher dans le vif</a></li>
+      </ul>
+    </li>
+    <li><a href="#synthèse">Synthèse</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h2 id="contexte">Contexte</h2>
+<p><a href="https://www.python.org/">Python</a> est un langage de programmation très abordable que l&rsquo;on démarre en programmation ou que l&rsquo;on connaisse déjà d&rsquo;autre langage. Néanmoins, ce n&rsquo;est pas parce qu&rsquo;un langage est abordable qu&rsquo;il n&rsquo;a pas ces propres idiomes et qu&rsquo;il n&rsquo;y a pas des trucs &amp; astuces à connaître et retenir.</p>
+<p>Ci-après, une petite note d&rsquo;apprentissage de <a href="https://www.python.org/">Python</a>, sur la manière d&rsquo;inverser les éléments d&rsquo;une liste et d&rsquo;une chaine de caractères.</p>
+<p><strong>NB</strong> : c&rsquo;est du Python 3 qui est utilisé dans ce billet.</p>
+<h2 id="liste">Liste</h2>
+<p>Pour inverser les éléments d&rsquo;une liste, il y a d&rsquo;abord la méthode <code>reverse()</code> des listes. Cette méthode s&rsquo;appelle directement sur la liste et inverse les éléments de la liste en modifiant la liste. Cela sera plus clair avec un exemple :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;liste de nombres :&#39;</span><span class="p">,</span> <span class="n">numbers</span><span class="p">)</span>
+<span class="n">numbers</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;liste de nombres :&#39;</span><span class="p">,</span> <span class="n">numbers</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Si on exécute ces lignes, cela nous donne :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">liste de nombres : [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+liste de nombres après reverse() : [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
+</code></pre></td></tr></table>
+</div>
+</div><p>La liste est donc irrémédiablement modifiée. Cela peut correspondre à votre besoin, mais dans tous les cas, il vaut mieux le savoir. Maintenant, que se passe-t-il si je veux inverser l&rsquo;ordre des éléments de la liste sans modifier la liste. Nous avons 2 options : utiliser la fonction <code>reversed()</code> et mettre à profit les <em>slices</em>.</p>
+<h3 id="renversement-de-situation">Renversement de situation</h3>
+<p>On peut utiliser la fonction <code>reversed()</code> qui prend en paramètre une liste et retourne une liste dont les éléments sont dans l&rsquo;ordre inverse. Cette fois-ci la liste originale n&rsquo;est plus modifiée :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">numbers</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;liste de nombres :&#39;</span><span class="p">,</span> <span class="n">numbers</span><span class="p">)</span>
+<span class="nb">reversed</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;liste de nombres après avoir appliqué reversed dessus :&#39;</span><span class="p">,</span> <span class="n">numbers</span><span class="p">)</span>
+<span class="n">reversed_numbers</span> <span class="o">=</span> <span class="nb">reversed</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;liste de nombres dans l&#39;ordre inverse obtenue avec reversed :&#34;</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">reversed_numbers</span><span class="p">))</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>ce qui donne :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">liste de nombres : [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+liste de nombres après avoir appliqué reversed dessus : [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+liste de nombres dans l&#39;ordre inverse obtenue avec reversed : [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
+</code></pre></td></tr></table>
+</div>
+</div><p>Comme on peut le constater dans l&rsquo;exemple, <code>reversed()</code> ne modifie pas la liste elle-même. Elle retourne un <code>iterable</code> dont la séquence d&rsquo;éléments est dans l&rsquo;ordre inverse de la séquence de départ. C&rsquo;est un <code>iterable</code> qui est retourné, c&rsquo;est pour cela que pour pouvoir le faire s&rsquo;afficher sous forme de liste dans le dernier <code>print</code>, on le convertit d&rsquo;abord en liste avec <code>list(reversed_numbers)</code>.</p>
+<p>Bien sûr, si vous voulez itérer sur une séquence dans l&rsquo;ordre inverse, vous allez utiliser <code>reversed()</code>, et oui bien sûr cela fonctionne sur d&rsquo;autres itérables que les listes (dans l&rsquo;exemple ci-après avec un <code>range</code>), si l&rsquo;inversion a du sens :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">print</span><span class="p">(</span><span class="s1">&#39;Compte à rebours :&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)):</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>ce qui donne :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">Compte à rebours :
+9
+8
+7
+6
+5
+4
+3
+2
+1
+0
+</code></pre></td></tr></table>
+</div>
+</div><p>Si vous connaissez un peu Python, vous ne manquerez pas de voir une similitude entre d&rsquo;une part la méthode <code>reverse()</code> et la fonction <code>reversed()</code> et d&rsquo;autre part la méthode <code>sort()</code> et la fonction <code>sorted()</code>.</p>
+<p>A noter que cela fonctionne également pour les tuples :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="nb">tuple</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="nb">tuple</span><span class="p">)]</span>
+<span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="la-tranche-à-lenvers">La tranche à l&rsquo;envers</h3>
+<p>Les <em>slices</em> sont un outil pervasif en Python dès que l&rsquo;on a besoin de manipuler des listes ou des chaines de caractères. Sans rentrer dans le détails du fonctionnement des <em>slices</em> auxquelles il faudrait consacrer un billet spécifique, je vais juste les présenter rapidement afin que l&rsquo;on voit comment on peut les mettre à profit pour inverser notre liste.</p>
+<p>Il faut se rappeler qu&rsquo;en Python, classiquement les éléments d&rsquo;une listes sont indexés de 0 (indice du premier élément) à <em>la taille de la liste moins un</em> (indice du dernier élément). La liste <code>['a', 'b', 'c', 'd', 'e', 'f']</code> à 6 éléments indexés de 0 à 5. Moins classiquement, on peut utiliser des indices négatifs : le dernier élément à l&rsquo;indice -1 et le premier élément à l&rsquo;indice -(<em>taille de la liste</em>). Sur la liste précédente les indices négatifs vont ainsi de -6 à -1.</p>
+<p><img src="../../img/python/slice/index_liste.png" alt="Indices d&rsquo;une liste en Python"></p>
+<p>En Python, on peut indiquer un indice (pour le compte positif ou négatif) pour récupérer l&rsquo;élément de la liste.
+Par exemple, dans l&rsquo;interptéteur on pourra avoir :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="n">liste</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;f&#39;</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">liste</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span>
+<span class="s1">&#39;f&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">liste</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="s1">&#39;f&#39;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Mais il est également possible de préciser une tranche, un segment de la liste que l&rsquo;on souhaite récupérer (en anglais, une <em>slice</em>), en précisant entre les crochets, un indice de départ, un indice de fin (élément associé à cet indice non-inclus dans la <em>slice</em> créé), et un pas d&rsquo;avancement, chaque valeur séparée de la précédente par <em>deux points</em> (<code>:</code>). Par exemple, en poursuivant sur l&rsquo;exemple précédent dans l&rsquo;interpréteur :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="n">liste</span><span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="mi">6</span><span class="p">:</span><span class="mi">1</span><span class="p">]</span>
+<span class="p">[</span><span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;f&#39;</span><span class="p">]</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Sur le même principe que précédemment, on peut préciser des indices négatifs et un pas d&rsquo;avancement négatifs. Un pas d&rsquo;avancement négatifs de changer le sens de parcours. Par exemple, toujours en poursuivant l&rsquo;exemple précédent dans l&rsquo;interpréteur.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="n">liste</span><span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="mi">6</span><span class="p">:</span><span class="mi">1</span><span class="p">]</span>
+<span class="p">[</span><span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;f&#39;</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">liste</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">5</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="p">[</span><span class="s1">&#39;f&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">liste</span><span class="p">[</span><span class="o">-</span><span class="mi">5</span><span class="p">:</span><span class="o">-</span><span class="mi">2</span><span class="p">:</span><span class="mi">1</span><span class="p">]</span>
+<span class="p">[</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">liste</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">:</span><span class="mi">6</span><span class="p">:</span><span class="mi">1</span><span class="p">]</span>
+<span class="p">[</span><span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;f&#39;</span><span class="p">]</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>On peut mélanger des indices négatifs et positifs avec un pas d&rsquo;avancement positif ou négatifs, il faut juste que l&rsquo;indice de début et celui de fin soit cohérent par rapport au pas d&rsquo;avancement donné : pour un pas d&rsquo;avancement positif, il faut que l&rsquo;indice de début soit plus petit que l&rsquo;indice de fin et pour un pas d&rsquo;avancement négatif, que l&rsquo;indice de début soit plus grand que l&rsquo;indice de fin, sinon on obtient une liste vide. En continuant avec l&rsquo;interpréteur :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="n">liste</span><span class="p">[</span><span class="o">-</span><span class="mi">4</span><span class="p">:</span><span class="o">-</span><span class="mi">2</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="p">[]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">liste</span><span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="mi">6</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="p">[]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">liste</span><span class="p">[</span><span class="mi">6</span><span class="p">:</span><span class="o">-</span><span class="mi">3</span><span class="p">:</span><span class="mi">1</span><span class="p">]</span>
+<span class="p">[]</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Avec la syntaxe des <em>slices</em>, on peut ne pas préciser la valeur de l&rsquo;indice de départ, la valeur de l&rsquo;indice de fin ou celui du pas d&rsquo;avancement. Dans ce cas des valeurs par défaut sont utilisés. Ainsi si on ne précise aucune valeur, on va obtenir une copie de la liste :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">liste2</span> <span class="o">=</span> <span class="n">liste</span><span class="p">[::]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">liste2</span> <span class="o">==</span> <span class="n">liste</span>
+<span class="bp">True</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">liste2</span> <span class="ow">is</span> <span class="n">liste</span>
+<span class="bp">False</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Par défaut la valeur de l&rsquo;indice de la liste est 0, celui de l&rsquo;indice de fin est la taille de la liste et le pas d&rsquo;avancement est 1. Regardez maintenant ce qui se passe si je précise une valeur de pas d&rsquo;avancement de -1 :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="n">liste</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="p">[</span><span class="s1">&#39;f&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">]</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Dans ce cas, j&rsquo;obtiens une copie de la liste avec les éléments dans l&rsquo;ordre inverse. Vous l&rsquo;avez compris, c&rsquo;est notre troisième manière d&rsquo;inverser l&rsquo;ordre des éléments de la liste.</p>
+<p>On notera au passage, que les valeurs par défaut pour l&rsquo;indice de départ et de fin ne sont plus respectivement 0 et la taille de la liste, mais que les valeurs sont inversées. J&rsquo;avoue je n&rsquo;ai pas creusé pour avoir tous les détails, je suis resté au niveau de l&rsquo;expérimentation.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="n">liste</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="p">[</span><span class="s1">&#39;f&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">liste</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="nb">len</span><span class="p">(</span><span class="n">liste</span><span class="p">):</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="p">[]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">liste</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">liste</span><span class="p">):</span><span class="mi">0</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="p">[</span><span class="s1">&#39;f&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">]</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="../../img/python/slice/exemple_slice.png" alt="Exemples autour des slices"></p>
+<p>A noter que cela fonctionne également pour les tuples :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="nb">tuple</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">tuple</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="chaines-de-caractères">Chaines de caractères</h2>
+<p>Pour les chaines de caractères, il est possible d&rsquo;utiliser <code>reversed</code> et la slice avec un indice négatif.</p>
+<h3 id="partir-à-la-renverse">partir à la renverse</h3>
+<p>Si on utilise <code>reversed</code>, on n&rsquo;obtient pas directement une chaine de caractères :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">bonjour</span> <span class="o">=</span> <span class="s1">&#39;Hello World&#39;</span>
+<span class="k">print</span><span class="p">(</span><span class="n">bonjour</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">reversed</span><span class="p">(</span><span class="n">bonjour</span><span class="p">))</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Ce qui donne :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">Hello World
+&lt;reversed object at 0x000002ADC60D88E0&gt;
+</code></pre></td></tr></table>
+</div>
+</div><p>On peut quand même l&rsquo;afficher moyennant un peu de travail :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">bonjour</span> <span class="o">=</span> <span class="s1">&#39;Hello World&#39;</span>
+<span class="k">print</span><span class="p">(</span><span class="n">bonjour</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;&#34;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">reversed</span><span class="p">(</span><span class="n">bonjour</span><span class="p">)))</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Avec pour résultat :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">Hello World
+Hello World
+</code></pre></td></tr></table>
+</div>
+</div><p>Néanmoins, comme pour les listes, l&rsquo;intérêt d&rsquo;utiliser <code>reversed</code> c&rsquo;est pour l&rsquo;utiliser dans une boucle ou dans une compréhension.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">print</span><span class="p">(</span><span class="n">bonjour</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="n">bonjour</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">([</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="n">bonjour</span><span class="p">)])</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Ce qui donne :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">Hello World
+d
+l
+r
+o
+W
+
+o
+l
+l
+e
+H
+[&#39;d&#39;, &#39;l&#39;, &#39;r&#39;, &#39;o&#39;, &#39;W&#39;, &#39; &#39;, &#39;o&#39;, &#39;l&#39;, &#39;l&#39;, &#39;e&#39;, &#39;H&#39;]
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="trancher-dans-le-vif">Trancher dans le vif</h3>
+<p>L&rsquo;utilisation de la syntaxe d&rsquo;une slice pour inverser une chaine fonctionne de la même manière que pour une liste. Cela crée une nouvelle chaine et c&rsquo;est utilisable dans une boucle for ou une compréhension.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">print</span><span class="p">(</span><span class="n">bonjour</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">bonjour</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="k">print</span><span class="p">([</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">bonjour</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Ce qui donne :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">Hello World
+dlroW olleH
+d
+l
+r
+o
+W
+
+o
+l
+l
+e
+H
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="synthèse">Synthèse</h2>
+<table>
+<thead>
+<tr>
+<th>Solution</th>
+<th>Impacts</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>méthode <code>reverse()</code></td>
+<td>valable uniquement sur les listes, modifie la liste</td>
+</tr>
+<tr>
+<td>fonction <code>reversed()</code></td>
+<td>valable sur les listes, les tuples et les chaines ; retourne une nouvelle séquence avec les éléments dans l&rsquo;ordre inverse</td>
+</tr>
+<tr>
+<td>notation <code>[::-1]</code></td>
+<td>valable sur les listes, les tuples et les chaines ; retourne une nouvelle séquence avec les éléments dans l&rsquo;ordre inverse</td>
+</tr>
+</tbody>
+</table>
+<p>Ma première impression est que la manière idiomatique de le faire en Python est d&rsquo;utiliser la notation [::-1] pour inverser une chaine de caractères. De toutes façons, il faut savoir utiliser les <em>slices</em> en Python, on se prive quand même d&rsquo;un outil bien pratique sinon.</p>
+<p>Je trouve que dans une boucle ou une comprehension <code>reversed</code> véhicule clairement l&rsquo;intention même si quand on est habitué à lire <code>[::-1]</code> on la comprend tout aussi bien. Dans tous les cas, j&rsquo;aurais tendance à n&rsquo;utiliser <code>reversed</code> que dans une boucle, pour juste récupérer une chaine ou une liste inversée la notation <code>[::-1]</code> semble directe. Je n&rsquo;ai pas fait de tests mais j&rsquo;imagine que <code>reversed</code> est probablement préférable pour inverser les très longues listes ou chaînes sur lesquelles on souhaiterait itérer.</p>
+<p>Il faut connaître à mon sens la méthode <code>reverse()</code>, savoir qu&rsquo;elle existe et ce qu&rsquo;elle fait, mais contre il faut vraiment avoir un besoin spécifique : je préfère éviter une méthode qui modifie directement l&rsquo;objet sous-jacent, à part si j&rsquo;ai vraiment une bonne raison de le faire.</p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Auteur</span>
+    <span class="item-content">TGITS</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">Modifié</span>
+    <span class="item-content">
+        2020-10-23
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/python/">python</a>
+          <a href="/tags/python3/">python3</a>
+          <a href="/tags/notes-dapprentissage/">notes d&#39;apprentissage</a>
+          <a href="/tags/d%C3%A9veloppement/">développement</a>
+          <a href="/tags/tips/">tips</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/post/notes_apprentissage_python_enumerate/">
+            <span class="next-text nav-default">Notes d&#39;apprentissage de Python : les boucles for et enumerate</span>
+            <span class="next-text nav-mobile">Suivant</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    (function() {
+      
+      
+      if (window.location.hostname === 'localhost') return;
+
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      var disqus_shortname = 'thegeekintheshell';
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "thegeekintheshell" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+<div class="social-links">
+      <a href="mailto:thegeekintheshell@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://twitter.com/_TGITS" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="https://www.linkedin.com/in/cvaudry/" class="iconfont icon-linkedin" title="linkedin"></a>
+      <a href="https://github.com/TGITS" class="iconfont icon-github" title="github"></a>
+      <a href="https://gitlab.com/TGITS" class="iconfont icon-gitlab" title="gitlab"></a>
+  <a href="https://tgits.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Propulsé par <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Thème - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2020
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">TGITS</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>
