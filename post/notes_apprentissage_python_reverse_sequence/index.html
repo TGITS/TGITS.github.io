@@ -55,7 +55,7 @@ Ci-après, une petite note d&rsquo;apprentissage de Python, sur la manière d&rs
 NB : c&rsquo;est du Python 3 qui est utilisé dans ce billet.">
 <meta itemprop="datePublished" content="2020-10-21T18:13:27&#43;02:00" />
 <meta itemprop="dateModified" content="2020-10-23T18:26:27&#43;02:00" />
-<meta itemprop="wordCount" content="1735">
+<meta itemprop="wordCount" content="1742">
 
 
 
@@ -600,6 +600,7 @@ H
 <p>Ma première impression est que la manière idiomatique de le faire en Python est d&rsquo;utiliser la notation [::-1] pour inverser une chaine de caractères. De toutes façons, il faut savoir utiliser les <em>slices</em> en Python, on se prive quand même d&rsquo;un outil bien pratique sinon.</p>
 <p>Je trouve que dans une boucle ou une comprehension <code>reversed</code> véhicule clairement l&rsquo;intention même si quand on est habitué à lire <code>[::-1]</code> on la comprend tout aussi bien. Dans tous les cas, j&rsquo;aurais tendance à n&rsquo;utiliser <code>reversed</code> que dans une boucle, pour juste récupérer une chaine ou une liste inversée la notation <code>[::-1]</code> semble directe. Je n&rsquo;ai pas fait de tests mais j&rsquo;imagine que <code>reversed</code> est probablement préférable pour inverser les très longues listes ou chaînes sur lesquelles on souhaiterait itérer.</p>
 <p>Il faut connaître à mon sens la méthode <code>reverse()</code>, savoir qu&rsquo;elle existe et ce qu&rsquo;elle fait, mais contre il faut vraiment avoir un besoin spécifique : je préfère éviter une méthode qui modifie directement l&rsquo;objet sous-jacent, à part si j&rsquo;ai vraiment une bonne raison de le faire.</p>
+<p>Le <a href="https://gist.github.com/TGITS/c1510971f0734bd703cfad29a1f7a076">gist</a> avec les exemples de code.</p>
 
     </div>
 
