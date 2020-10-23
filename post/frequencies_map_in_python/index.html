@@ -46,17 +46,17 @@ Pour rappel, je traduis ici par tableau de fréquences l&rsquo;expression anglai
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://tgits.github.io/post/frequencies_map_in_python/" />
 <meta property="article:published_time" content="2020-10-03T12:01:23+02:00" />
-<meta property="article:modified_time" content="2020-10-19T15:31:13+02:00" />
+<meta property="article:modified_time" content="2020-10-23T11:13:13+02:00" />
 <meta itemprop="name" content="Tableau de fréquences en Python">
 <meta itemprop="description" content="Il y a quelques temps j&rsquo;ai publié un billet sur les tableaux de fréquences en Java avec les streams. Faisant un peu de Python en ce moment, je me suis demandé comment je pouvais le faire en Python de manière idiomatique (ou du moins d&rsquo;une manière qui me semble idiomatique en Python).
 Pour rappel, je traduis ici par tableau de fréquences l&rsquo;expression anglaise de frequencies map. Vous avez une liste d&rsquo;éléments et vous voulez pour chaque élément connaître sa fréquence (le nombre de fois où cet élément est présent dans cette liste).">
 <meta itemprop="datePublished" content="2020-10-03T12:01:23&#43;02:00" />
-<meta itemprop="dateModified" content="2020-10-19T15:31:13&#43;02:00" />
-<meta itemprop="wordCount" content="2012">
+<meta itemprop="dateModified" content="2020-10-23T11:13:13&#43;02:00" />
+<meta itemprop="wordCount" content="2474">
 
 
 
-<meta itemprop="keywords" content="python,structure de données,développement,langage de programmation," /><meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="python,python3,structure de données,développement,langage de programmation,multiensemble,coding challenge,exercism," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Tableau de fréquences en Python"/>
 <meta name="twitter:description" content="Il y a quelques temps j&rsquo;ai publié un billet sur les tableaux de fréquences en Java avec les streams. Faisant un peu de Python en ce moment, je me suis demandé comment je pouvais le faire en Python de manière idiomatique (ou du moins d&rsquo;une manière qui me semble idiomatique en Python).
 Pour rappel, je traduis ici par tableau de fréquences l&rsquo;expression anglaise de frequencies map. Vous avez une liste d&rsquo;éléments et vous voulez pour chaque élément connaître sa fréquence (le nombre de fois où cet élément est présent dans cette liste)."/>
@@ -153,13 +153,16 @@ Pour rappel, je traduis ici par tableau de fréquences l&rsquo;expression anglai
     </li>
     <li><a href="#pour-une-bonne-compréhension">Pour une bonne compréhension</a></li>
     <li><a href="#regard-critique">Regard critique</a></li>
+    <li><a href="#there-and-back-again">There and back again</a></li>
+    <li><a href="#regard-critique-le-retour">Regard critique, le retour</a></li>
   </ul>
 </nav>
   </div>
 </div>
     <div class="post-content">
-      <p>Il y a quelques temps j&rsquo;ai publié <a href="https://tgits.github.io/post/frequencies_map/">un billet sur les tableaux de fréquences en Java avec les streams</a>. Faisant un peu de Python en ce moment, je me suis demandé comment je pouvais le faire en Python de manière idiomatique (ou du moins d&rsquo;une manière qui me semble idiomatique en Python).</p>
+      <p>Il y a quelques temps j&rsquo;ai publié <a href="https://tgits.github.io/post/frequencies_map/">un billet sur les tableaux de fréquences en Java avec les streams</a>. Faisant un peu de <a href="https://www.python.org/">Python</a> en ce moment, je me suis demandé comment je pouvais le faire en Python de manière idiomatique (ou du moins d&rsquo;une manière qui me semble idiomatique en <a href="https://www.python.org/">Python</a>).</p>
 <p>Pour rappel, je traduis ici par tableau de fréquences l&rsquo;expression anglaise de <em>frequencies map</em>. Vous avez une liste d&rsquo;éléments et vous voulez pour chaque élément connaître sa fréquence (le nombre de fois où cet élément est présent dans cette liste). Ainsi à partir de cette liste d&rsquo;éléments, vous désirez obtenir un tableau associatif dans lequel chaque clé est un élément de cet liste et est associé à sa fréquence dans la liste.</p>
+<p><strong>NB</strong> : concrètement c&rsquo;est du Python 3 qui est utilisé dans ce billet.</p>
 <h2 id="la-problématique">La problématique</h2>
 <p>On a une séquence d&rsquo;éléments qui peuvent se répéter, on souhaite avoir pour chaque élément sa fréquence, c&rsquo;est-à-dire le nombre de fois que cet élément apparaît dans la séquence. Par exemple pour la séquence d&rsquo;élément <code>a, b, c, d, a, d, a</code>, je souhaite obtenir l&rsquo;information que l&rsquo;élément <code>a</code> apparaît 3 fois, les éléments <code>b</code> et <code>c</code> apparaissent 1 fois et l&rsquo;élément <code>d</code> apparaît 2 fois.</p>
 <p>Si je traduis cela en Python avec une spécification sous forme de test cela me donne :</p>
@@ -458,6 +461,85 @@ Nous allons stocker au fur et à mesure le résultat dans un dictionnaire, avec 
 <p>Je m&rsquo;aperçois qu&rsquo;il est fort agréable d&rsquo;avoir une <strong>REPL</strong> pour explorer et expérimenter. C&rsquo;est une habitude que j&rsquo;ai prise lorsque je m&rsquo;essayais à Clojure et qui est vraiment pertinente et complète bien une approche dirigé par les tests : je suis en train d&rsquo;apprendre à programment à mon fils, et l&rsquo;interpréteur pour expérimenter c&rsquo;est vraiment pratique et efficace. Il faudrait vraiment que j&rsquo;essaie d&rsquo;utiliser un interpréteur de commande Python plus avancé et que je m&rsquo;essaie aux <em>Notebooks</em> en Python ou des outils comme <a href="https://colab.research.google.com/notebooks/intro.ipynb">Colaboratory</a>.</p>
 <p>Je me rends également compte que je pensais partir pour un petit billet rapide mais que non seulement le billet n&rsquo;est pas court mais en appel probablement d&rsquo;autres.</p>
 <p>Le code source est disponible sous forme de <a href="https://gist.github.com/TGITS/8b5dfde8eb57c1b304b4e98ed909b665">Gist</a>.</p>
+<h2 id="there-and-back-again">There and back again</h2>
+<p>Peu de temps après avoir publié une première version de cet article, suite au retour d&rsquo;un <em>mentor</em> sur un puzzle de <a href="https://exercism.io/">Exercism</a>, j&rsquo;ai découvert qu&rsquo;il existait la structure de données <a href="https://docs.python.org/fr/3/library/collections.html#collections.Counter"><code>collections.Counter</code></a> qui est une sous-classe de dictionnaire et qui peut très directement être utilisée comme tableau de fréquence. <code>Counter</code> est une implémentation en Python d&rsquo;un <a href="https://fr.wikipedia.org/wiki/Multiensemble">multiensemble</a>. Un <a href="https://fr.wikipedia.org/wiki/Multiensemble">multiensemble</a> est une manière formelle de définir un tableau de fréquences.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Counter</span>
+
+
+<span class="k">def</span> <span class="nf">frequencies_map_with_counter_from</span><span class="p">(</span><span class="n">elements</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">Counter</span><span class="p">(</span><span class="n">elements</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Et les tests associés</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">FrequenciesMapWithCounterTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">test_empty_list</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">frequencies_map_with_counter_from</span><span class="p">([]),</span> <span class="p">{})</span>
+
+    <span class="k">def</span> <span class="nf">test_single_element_list</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span>
+            <span class="n">frequencies_map_with_counter_from</span><span class="p">([</span><span class="s2">&#34;a&#34;</span><span class="p">]),</span> <span class="p">{</span><span class="s2">&#34;a&#34;</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>
+
+    <span class="k">def</span> <span class="nf">test_several_identical_elements_list</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">frequencies_map_with_counter_from</span><span class="p">(</span>
+            <span class="p">[</span><span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;a&#34;</span><span class="p">]),</span> <span class="p">{</span><span class="s2">&#34;a&#34;</span><span class="p">:</span> <span class="mi">3</span><span class="p">})</span>
+
+    <span class="k">def</span> <span class="nf">test_several_different_elements_list_sorted</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">frequencies_map_with_counter_from</span><span class="p">(</span>
+            <span class="p">[</span><span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;b&#34;</span><span class="p">,</span> <span class="s2">&#34;b&#34;</span><span class="p">,</span> <span class="s2">&#34;c&#34;</span><span class="p">,</span> <span class="s2">&#34;d&#34;</span><span class="p">,</span> <span class="s2">&#34;d&#34;</span><span class="p">,</span> <span class="s2">&#34;d&#34;</span><span class="p">,</span> <span class="s2">&#34;d&#34;</span><span class="p">]),</span> <span class="p">{</span><span class="s2">&#34;a&#34;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">&#34;b&#34;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&#34;c&#34;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&#34;d&#34;</span><span class="p">:</span> <span class="mi">4</span><span class="p">})</span>
+
+    <span class="k">def</span> <span class="nf">test_several_different_elements_list_unsorted</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">frequencies_map_with_counter_from</span><span class="p">(</span>
+            <span class="p">[</span><span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;b&#34;</span><span class="p">,</span> <span class="s2">&#34;c&#34;</span><span class="p">,</span> <span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;d&#34;</span><span class="p">,</span> <span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;d&#34;</span><span class="p">,</span> <span class="s2">&#34;b&#34;</span><span class="p">,</span> <span class="s2">&#34;d&#34;</span><span class="p">,</span> <span class="s2">&#34;d&#34;</span><span class="p">]),</span> <span class="p">{</span><span class="s2">&#34;a&#34;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">&#34;b&#34;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&#34;c&#34;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&#34;d&#34;</span><span class="p">:</span> <span class="mi">4</span><span class="p">})</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Cela résoud le problème en appelant juste la bonne classe spécialisée ! C&rsquo;est assez similaire à la manière selon laquelle on peut résoudre cette problématique en <a href="https://clojure.org/">Clojure</a> avec la fonction <a href="https://clojuredocs.org/clojure.core/frequencies"><code>frequencies</code></a>. Boum, la bonne abstraction dans le langage et plus de problème à résoudre.</p>
+<p><code>Counter</code> peut être initialisé avec une séquence d&rsquo;éléments ou un autre dictionnaire et offre notamment une méthode pour extraire les éléments les plus fréquents. Cette classe mériterait un billet spécifique, ce que j&rsquo;essaierai de faire prochainement.</p>
+<p>J&rsquo;en profite pour faire un peu de publicité à <a href="https://exercism.io/">Exercism</a> qui est vraiment un bon outil pour apprendre un langage et en acquérir les idiomes. Même si les exercices peuvent sembler simples pour certains, dans l&rsquo;esprit des <a href="https://fr.wikipedia.org/wiki/Kata_(programmation)">Coding Katas</a> il y a toujours moyen d&rsquo;apprendre quelque chose et notamment de découvrir les spécificités d&rsquo;un langage, les retours des <em>mentors</em> étant des gros plus en ce sens.</p>
+<p>Le <a href="https://gist.github.com/TGITS/8b5dfde8eb57c1b304b4e98ed909b665">Gist</a> a été mis à jour en conséquence.</p>
+<h2 id="regard-critique-le-retour">Regard critique, le retour</h2>
+<p>Comme l&rsquo;écrivait <a href="https://fr.wikipedia.org/wiki/Nicolas_Boileau">Nicolas Boileau</a>, <em>Vingt fois sur le métier remettez votre ouvrage</em>. Des exercices de style comme celui-ci ou des <em>coding katas</em> sous différentes formes offrent des manières concrètes d&rsquo;approfondir notre connaissance et notre maitrise. Même quand on pense avoir fait le tour d&rsquo;un sujet, il peut encore avoir des choses à en apprendre. Et quand on apprend un nouveau langage, on n&rsquo;est jamais au bout de ses surprises.</p>
+<blockquote>
+<p>Avant donc que d&rsquo;écrire, apprenez à penser.</p>
+<p>Ce que l&rsquo;on conçoit bien s&rsquo;énonce clairement,</p>
+<p>Et les mots pour le dire arrivent aisément.</p>
+<p>Hâtez-vous lentement, et sans perdre courage,</p>
+<p>Vingt fois sur le métier remettez votre ouvrage,</p>
+<p>Polissez-le sans cesse, et le repolissez,</p>
+<p>Ajoutez quelquefois, et souvent effacez.</p>
+<p>(<a href="https://fr.wikipedia.org/wiki/Nicolas_Boileau">Nicolas Boileau</a>, <strong>L&rsquo;Art poétique</strong>)</p>
+</blockquote>
 
     </div>
 
@@ -469,7 +551,7 @@ Nous allons stocker au fur et à mesure le résultat dans un dictionnaire, avec 
   <p class="copyright-item">
     <span class="item-title">Modifié</span>
     <span class="item-content">
-        2020-10-19
+        2020-10-23
         
     </span>
   </p>
@@ -479,9 +561,13 @@ Nous allons stocker au fur et à mesure le résultat dans un dictionnaire, avec 
 <footer class="post-footer">
       <div class="post-tags">
           <a href="/tags/python/">python</a>
+          <a href="/tags/python3/">python3</a>
           <a href="/tags/structure-de-donn%C3%A9es/">structure de données</a>
           <a href="/tags/d%C3%A9veloppement/">développement</a>
           <a href="/tags/langage-de-programmation/">langage de programmation</a>
+          <a href="/tags/multiensemble/">multiensemble</a>
+          <a href="/tags/coding-challenge/">coding challenge</a>
+          <a href="/tags/exercism/">exercism</a>
           </div>
       <nav class="post-nav">
         <a class="prev" href="/post/apprendre_a_coder_a_son_enfant_premier_rex/">
