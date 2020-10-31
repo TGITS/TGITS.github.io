@@ -16,9 +16,8 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="TGITS" /><meta name="description" content="Contexte Python est un langage de programmation très abordable que l&amp;rsquo;on démarre en programmation ou que l&amp;rsquo;on connaisse déjà d&amp;rsquo;autre langage. Néanmoins, ce n&amp;rsquo;est pas parce qu&amp;rsquo;un langage est abordable qu&amp;rsquo;il n&amp;rsquo;a pas ces propres idiomes et qu&amp;rsquo;il n&amp;rsquo;y a pas des trucs &amp;amp; astuces à connaître et retenir.
-Ci-après, une petite note d&amp;rsquo;apprentissage de Python, sur la manière d&amp;rsquo;inverser les éléments d&amp;rsquo;une liste et d&amp;rsquo;une chaine de caractères.
-NB : c&amp;rsquo;est du Python 3 qui est utilisé dans ce billet." /><meta name="keywords" content="TGITS, Développement, Java, Architecture" />
+<meta name="author" content="TGITS" /><meta name="description" content="Contexte Python est un langage de programmation très abordable que l&amp;rsquo;on démarre en programmation ou que l&amp;rsquo;on connaisse déjà d&amp;rsquo;autres langages. Néanmoins, ce n&amp;rsquo;est pas parce qu&amp;rsquo;un langage est abordable qu&amp;rsquo;il n&amp;rsquo;a pas ses propres idiomes et qu&amp;rsquo;il n&amp;rsquo;y a pas des trucs &amp;amp; astuces à connaître et à retenir.
+Ci-après, une petite note d&amp;rsquo;apprentissage de Python, sur la manière d&amp;rsquo;inverser les éléments d&amp;rsquo;une liste et d&amp;rsquo;une chaine de caractères." /><meta name="keywords" content="TGITS, Développement, Java, Architecture" />
 
 
 
@@ -42,28 +41,25 @@ NB : c&amp;rsquo;est du Python 3 qui est utilisé dans ce billet." /><meta name=
 
 
 <meta property="og:title" content="Notes apprentissage : une séquence renversante" />
-<meta property="og:description" content="Contexte Python est un langage de programmation très abordable que l&rsquo;on démarre en programmation ou que l&rsquo;on connaisse déjà d&rsquo;autre langage. Néanmoins, ce n&rsquo;est pas parce qu&rsquo;un langage est abordable qu&rsquo;il n&rsquo;a pas ces propres idiomes et qu&rsquo;il n&rsquo;y a pas des trucs &amp; astuces à connaître et retenir.
-Ci-après, une petite note d&rsquo;apprentissage de Python, sur la manière d&rsquo;inverser les éléments d&rsquo;une liste et d&rsquo;une chaine de caractères.
-NB : c&rsquo;est du Python 3 qui est utilisé dans ce billet." />
+<meta property="og:description" content="Contexte Python est un langage de programmation très abordable que l&rsquo;on démarre en programmation ou que l&rsquo;on connaisse déjà d&rsquo;autres langages. Néanmoins, ce n&rsquo;est pas parce qu&rsquo;un langage est abordable qu&rsquo;il n&rsquo;a pas ses propres idiomes et qu&rsquo;il n&rsquo;y a pas des trucs &amp; astuces à connaître et à retenir.
+Ci-après, une petite note d&rsquo;apprentissage de Python, sur la manière d&rsquo;inverser les éléments d&rsquo;une liste et d&rsquo;une chaine de caractères." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://tgits.github.io/post/notes_apprentissage_python_reverse_sequence/" />
 <meta property="article:published_time" content="2020-10-21T18:13:27+02:00" />
-<meta property="article:modified_time" content="2020-10-23T18:26:27+02:00" />
+<meta property="article:modified_time" content="2020-10-24T14:27:43+02:00" />
 <meta itemprop="name" content="Notes apprentissage : une séquence renversante">
-<meta itemprop="description" content="Contexte Python est un langage de programmation très abordable que l&rsquo;on démarre en programmation ou que l&rsquo;on connaisse déjà d&rsquo;autre langage. Néanmoins, ce n&rsquo;est pas parce qu&rsquo;un langage est abordable qu&rsquo;il n&rsquo;a pas ces propres idiomes et qu&rsquo;il n&rsquo;y a pas des trucs &amp; astuces à connaître et retenir.
-Ci-après, une petite note d&rsquo;apprentissage de Python, sur la manière d&rsquo;inverser les éléments d&rsquo;une liste et d&rsquo;une chaine de caractères.
-NB : c&rsquo;est du Python 3 qui est utilisé dans ce billet.">
+<meta itemprop="description" content="Contexte Python est un langage de programmation très abordable que l&rsquo;on démarre en programmation ou que l&rsquo;on connaisse déjà d&rsquo;autres langages. Néanmoins, ce n&rsquo;est pas parce qu&rsquo;un langage est abordable qu&rsquo;il n&rsquo;a pas ses propres idiomes et qu&rsquo;il n&rsquo;y a pas des trucs &amp; astuces à connaître et à retenir.
+Ci-après, une petite note d&rsquo;apprentissage de Python, sur la manière d&rsquo;inverser les éléments d&rsquo;une liste et d&rsquo;une chaine de caractères.">
 <meta itemprop="datePublished" content="2020-10-21T18:13:27&#43;02:00" />
-<meta itemprop="dateModified" content="2020-10-23T18:26:27&#43;02:00" />
-<meta itemprop="wordCount" content="1742">
+<meta itemprop="dateModified" content="2020-10-24T14:27:43&#43;02:00" />
+<meta itemprop="wordCount" content="1740">
 
 
 
 <meta itemprop="keywords" content="python,python3,notes d&#39;apprentissage,développement,tips," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Notes apprentissage : une séquence renversante"/>
-<meta name="twitter:description" content="Contexte Python est un langage de programmation très abordable que l&rsquo;on démarre en programmation ou que l&rsquo;on connaisse déjà d&rsquo;autre langage. Néanmoins, ce n&rsquo;est pas parce qu&rsquo;un langage est abordable qu&rsquo;il n&rsquo;a pas ces propres idiomes et qu&rsquo;il n&rsquo;y a pas des trucs &amp; astuces à connaître et retenir.
-Ci-après, une petite note d&rsquo;apprentissage de Python, sur la manière d&rsquo;inverser les éléments d&rsquo;une liste et d&rsquo;une chaine de caractères.
-NB : c&rsquo;est du Python 3 qui est utilisé dans ce billet."/>
+<meta name="twitter:description" content="Contexte Python est un langage de programmation très abordable que l&rsquo;on démarre en programmation ou que l&rsquo;on connaisse déjà d&rsquo;autres langages. Néanmoins, ce n&rsquo;est pas parce qu&rsquo;un langage est abordable qu&rsquo;il n&rsquo;a pas ses propres idiomes et qu&rsquo;il n&rsquo;y a pas des trucs &amp; astuces à connaître et à retenir.
+Ci-après, une petite note d&rsquo;apprentissage de Python, sur la manière d&rsquo;inverser les éléments d&rsquo;une liste et d&rsquo;une chaine de caractères."/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -168,9 +164,9 @@ NB : c&rsquo;est du Python 3 qui est utilisé dans ce billet."/>
 </div>
     <div class="post-content">
       <h2 id="contexte">Contexte</h2>
-<p><a href="https://www.python.org/">Python</a> est un langage de programmation très abordable que l&rsquo;on démarre en programmation ou que l&rsquo;on connaisse déjà d&rsquo;autre langage. Néanmoins, ce n&rsquo;est pas parce qu&rsquo;un langage est abordable qu&rsquo;il n&rsquo;a pas ces propres idiomes et qu&rsquo;il n&rsquo;y a pas des trucs &amp; astuces à connaître et retenir.</p>
+<p><a href="https://www.python.org/">Python</a> est un langage de programmation très abordable que l&rsquo;on démarre en programmation ou que l&rsquo;on connaisse déjà d&rsquo;autres langages. Néanmoins, ce n&rsquo;est pas parce qu&rsquo;un langage est abordable qu&rsquo;il n&rsquo;a pas ses propres idiomes et qu&rsquo;il n&rsquo;y a pas des trucs &amp; astuces à connaître et à retenir.</p>
 <p>Ci-après, une petite note d&rsquo;apprentissage de <a href="https://www.python.org/">Python</a>, sur la manière d&rsquo;inverser les éléments d&rsquo;une liste et d&rsquo;une chaine de caractères.</p>
-<p><strong>NB</strong> : c&rsquo;est du Python 3 qui est utilisé dans ce billet.</p>
+<p><strong>NB</strong> : c&rsquo;est du Python 3 qui est utilisé.</p>
 <h2 id="liste">Liste</h2>
 <p>Pour inverser les éléments d&rsquo;une liste, il y a d&rsquo;abord la méthode <code>reverse()</code> des listes. Cette méthode s&rsquo;appelle directement sur la liste et inverse les éléments de la liste en modifiant la liste. Cela sera plus clair avec un exemple :</p>
 <div class="highlight"><div class="chroma">
@@ -612,7 +608,7 @@ H
   <p class="copyright-item">
     <span class="item-title">Modifié</span>
     <span class="item-content">
-        2020-10-23
+        2020-10-24
         
     </span>
   </p>
@@ -628,7 +624,11 @@ H
           <a href="/tags/tips/">tips</a>
           </div>
       <nav class="post-nav">
-        
+        <a class="prev" href="/post/notes_apprentissage_python_comprehension/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Notes d&#39;apprentissage de Python : les compréhensions</span>
+            <span class="prev-text nav-mobile">Précédent</span>
+          </a>
         <a class="next" href="/post/notes_apprentissage_python_enumerate/">
             <span class="next-text nav-default">Notes d&#39;apprentissage de Python : les boucles for et enumerate</span>
             <span class="next-text nav-mobile">Suivant</span>

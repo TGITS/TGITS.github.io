@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Notes d&#39;apprentissage de Python : les compréhensions - The Geek In The Shell</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="TGITS" /><meta name="description" content="Contexte Python est un langage de programmation très abordable que l&amp;rsquo;on démarre en programmation ou que l&amp;rsquo;on connaisse déjà d&amp;rsquo;autres langages. Néanmoins, ce n&amp;rsquo;est pas parce qu&amp;rsquo;un langage est abordable qu&amp;rsquo;il n&amp;rsquo;a pas ses propres idiomes et qu&amp;rsquo;il n&amp;rsquo;y a pas des trucs &amp;amp; astuces à connaître et à retenir.
+Ci-après, une petite note d&amp;rsquo;apprentissage de Python, sur les compréhensions en Python.
+NB : c&amp;rsquo;est du Python 3 qui est utilisé." /><meta name="keywords" content="TGITS, Développement, Java, Architecture" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.71.1 with theme even" />
+
+
+<link rel="canonical" href="https://tgits.github.io/post/notes_apprentissage_python_comprehension/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.8c3cbcb0324c2bb4875ceccba4007cbad4b4ac8377f33af9953c3e7684534a50.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Notes d&#39;apprentissage de Python : les compréhensions" />
+<meta property="og:description" content="Contexte Python est un langage de programmation très abordable que l&rsquo;on démarre en programmation ou que l&rsquo;on connaisse déjà d&rsquo;autres langages. Néanmoins, ce n&rsquo;est pas parce qu&rsquo;un langage est abordable qu&rsquo;il n&rsquo;a pas ses propres idiomes et qu&rsquo;il n&rsquo;y a pas des trucs &amp; astuces à connaître et à retenir.
+Ci-après, une petite note d&rsquo;apprentissage de Python, sur les compréhensions en Python.
+NB : c&rsquo;est du Python 3 qui est utilisé." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://tgits.github.io/post/notes_apprentissage_python_comprehension/" />
+<meta property="article:published_time" content="2020-10-31T14:27:43+02:00" />
+<meta property="article:modified_time" content="2020-10-31T14:27:43+02:00" />
+<meta itemprop="name" content="Notes d&#39;apprentissage de Python : les compréhensions">
+<meta itemprop="description" content="Contexte Python est un langage de programmation très abordable que l&rsquo;on démarre en programmation ou que l&rsquo;on connaisse déjà d&rsquo;autres langages. Néanmoins, ce n&rsquo;est pas parce qu&rsquo;un langage est abordable qu&rsquo;il n&rsquo;a pas ses propres idiomes et qu&rsquo;il n&rsquo;y a pas des trucs &amp; astuces à connaître et à retenir.
+Ci-après, une petite note d&rsquo;apprentissage de Python, sur les compréhensions en Python.
+NB : c&rsquo;est du Python 3 qui est utilisé.">
+<meta itemprop="datePublished" content="2020-10-31T14:27:43&#43;02:00" />
+<meta itemprop="dateModified" content="2020-10-31T14:27:43&#43;02:00" />
+<meta itemprop="wordCount" content="2739">
+
+
+
+<meta itemprop="keywords" content="python,python3,notes d&#39;apprentissage,développement,tips,compréhension," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Notes d&#39;apprentissage de Python : les compréhensions"/>
+<meta name="twitter:description" content="Contexte Python est un langage de programmation très abordable que l&rsquo;on démarre en programmation ou que l&rsquo;on connaisse déjà d&rsquo;autres langages. Néanmoins, ce n&rsquo;est pas parce qu&rsquo;un langage est abordable qu&rsquo;il n&rsquo;a pas ses propres idiomes et qu&rsquo;il n&rsquo;y a pas des trucs &amp; astuces à connaître et à retenir.
+Ci-après, une petite note d&rsquo;apprentissage de Python, sur les compréhensions en Python.
+NB : c&rsquo;est du Python 3 qui est utilisé."/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">TGITS</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Blog</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">TGITS</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Blog</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Notes d&#39;apprentissage de Python : les compréhensions</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-10-31 </span>
+        <div class="post-category">
+            <a href="/categories/d%C3%A9veloppement/"> développement </a>
+            <a href="/categories/python/"> python </a>
+            <a href="/categories/notes-dapprentissage/"> notes d&#39;apprentissage </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contenu</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#contexte">Contexte</a></li>
+    <li><a href="#tldr">TL;DR</a></li>
+    <li><a href="#pour-une-bonne-compréhension">Pour une bonne compréhension</a>
+      <ul>
+        <li><a href="#i-have-got-the-power">I have got the power</a></li>
+        <li><a href="#tous-ensemble">Tous ensemble</a></li>
+        <li><a href="#on-sème-à-tout-vent">On sème à tout vent</a></li>
+        <li><a href="#benevolent-generator">Benevolent Generator</a></li>
+        <li><a href="#infini-dont-nous-sommes-sentinelles">Infini, dont nous sommes sentinelles</a></li>
+        <li><a href="#génération-conditionnelle">Génération conditionnelle</a></li>
+        <li><a href="#imbrication">Imbrication</a></li>
+      </ul>
+    </li>
+    <li><a href="#this-is-the-end-hold-your-breath-and-count-to-ten">This is the end, hold your breath and count to ten</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h2 id="contexte">Contexte</h2>
+<p><a href="https://www.python.org/">Python</a> est un langage de programmation très abordable que l&rsquo;on démarre en programmation ou que l&rsquo;on connaisse déjà d&rsquo;autres langages. Néanmoins, ce n&rsquo;est pas parce qu&rsquo;un langage est abordable qu&rsquo;il n&rsquo;a pas ses propres idiomes et qu&rsquo;il n&rsquo;y a pas des trucs &amp; astuces à connaître et à retenir.</p>
+<p>Ci-après, une petite note d&rsquo;apprentissage de <a href="https://www.python.org/">Python</a>, sur les compréhensions en Python.</p>
+<p><strong>NB</strong> : c&rsquo;est du Python 3 qui est utilisé.</p>
+<h2 id="tldr">TL;DR</h2>
+<p>Une compréhension est une manière idiomatique en Python de créer une séquence d&rsquo;éléments en décrivant comment les éléments de la liste doivent être construits plutôt qu&rsquo;en construisant une séquence explicitement avec une boucle <code>for</code> ou <code>while</code>. Une compréhension est une expression et peut ainsi être utilisé partout où une valeur ou une expression est attendue.</p>
+<p>Une compréhension est constituée par :</p>
+<ol>
+<li>une expression fonction de la <em>variable de boucle</em>, expression qui peut être arbitrairement complexe</li>
+<li>la définition de la <em>variable de boucle</em>,</li>
+<li>le domaine de définition de la variable de boucle</li>
+</ol>
+<p>Par exemple, une compréhension de liste des puissances des nombres de 1 à 9 s&rsquo;écrira :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="p">[</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)]</span>
+</code></pre></td></tr></table>
+</div>
+</div><ol>
+<li><code>x**2</code> est l&rsquo;expression : on veut les puissances de 2 de la variable de boucle <code>x</code></li>
+<li>pour la variable <code>x</code></li>
+<li>variable <code>x</code> dont le domaine de définition est l&rsquo;intervalle des nombres entiers de 1 à 9</li>
+</ol>
+<p><img src="../../img/python/comprehension/syntaxe_comprehension_sans_filtre.png" alt="Compréhension sans filtre"></p>
+<p>L&rsquo;équivalent à la compréhension de liste précédente avec une boucle <code>for</code> classique serait :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">powers_of_2</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">):</span>
+    <span class="n">powers_of_2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Une compréhension peut avoir de manière optionnelle une expression de filtrage qui va permettre d&rsquo;affiner le domaine de définition de la variable de boucle.
+Une compréhension est alors constituée par :</p>
+<ol>
+<li>une expression fonction de la <em>variable de boucle</em>, expression qui peut être arbitrairement complexe</li>
+<li>la définition de la <em>variable de boucle</em>,</li>
+<li>le domaine de définition de la variable de boucle</li>
+<li>une expression de filtrage</li>
+</ol>
+<p>Par exemple, une compréhension de liste des puissances des nombres pairs de 1 à 9 s&rsquo;écrira :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="p">[</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span> <span class="k">if</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
+</code></pre></td></tr></table>
+</div>
+</div><ol>
+<li><code>x**2</code> est l&rsquo;expression : on veut les puissances de 2 de la variable de boucle <code>x</code></li>
+<li>pour la variable <code>x</code></li>
+<li>variable <code>x</code> dont le domaine de définition est l&rsquo;intervalle des nombres entiers de 1 à 9</li>
+<li>seulement si <code>x</code> est un nombre pair.</li>
+</ol>
+<p><img src="../../img/python/comprehension/syntaxe_comprehension_avec_filtre.png" alt="Compréhension avec filtre"></p>
+<p>L&rsquo;équivalent à la liste compréhension avec filtrage précédente avec un <code>for</code> serait :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">powers_of_2</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">powers_of_2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>On peut utiliser des compréhensions pour générer des listes, des ensembles et des dictionnaires. Il n&rsquo;y a pas de compréhension pour les tuples mais vous pouvez créer un <em>générateur</em> à partir d&rsquo;une compréhension, ce qui peut être utile si vous voulez manipuler des compréhensions <em>infinies</em>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># Compréhension de liste</span>
+<span class="p">[</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)]</span>
+
+<span class="c1"># Compréhension d&#39;ensemble</span>
+<span class="p">{</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)}</span>
+
+<span class="c1"># Compréhension de dictionnaire</span>
+<span class="p">{</span><span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)}</span>
+
+<span class="c1"># Générateur créé à partir d&#39;une compréhension</span>
+<span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+
+<span class="c1"># Générateur &#34;infini&#34; créé à partir d&#39;une compréhension (attention on utilise itertools)</span>
+<span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+
+<span class="c1"># Compréhension de liste avec filtrage</span>
+<span class="p">[</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span> <span class="k">if</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Il est possible d&rsquo;imbriquer les compréhensions même si pour des questions de lisibilité, il n&rsquo;est pas recommandé de faire des compréhensions avec trop de niveaux d&rsquo;imbrication (en général il vaut mieux éviter de dépasser 2 niveaux d&rsquo;imbrication !).</p>
+<p>Une compréhension de liste avec 2 niveaux d&rsquo;imbrication, on pourrait écrire :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">columns</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;f&#39;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="s1">&#39;h&#39;</span><span class="p">)</span>
+<span class="n">rows</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+<span class="p">[(</span><span class="n">c</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">columns</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">rows</span><span class="p">]</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Avec une (double) boucle <code>for</code>, cela serait équivalent à :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">chessboard</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">columns</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">rows</span><span class="p">:</span>
+        <span class="n">chessboard</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">c</span><span class="p">,</span> <span class="n">r</span><span class="p">))</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>On peut bien sûr avec une clause de filtrage également dans une compréhension imbriquée :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="p">[</span><span class="n">x</span><span class="o">*</span><span class="n">y</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span> <span class="k">if</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="k">if</span> <span class="n">y</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="../../img/python/comprehension/syntaxe_comprehension_imbriquee.png" alt="Compréhension imbriquée"></p>
+<p>Le <a href="https://gist.github.com/TGITS/11869409350df078e2eca5ede7f5ff5d">gist</a> avec les sources des exemples.</p>
+<h2 id="pour-une-bonne-compréhension">Pour une bonne compréhension</h2>
+<p>Détaillons un peu plus ce qui a été présenté au paragraphe précédent.</p>
+<h3 id="i-have-got-the-power">I have got the power</h3>
+<p>Pour obtenir une liste des puissances de 2 des chiffres de 1 à 9, on pourrait écrire le code suivant :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">powers_of_2</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">powers_of_2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Néanmoins en Python, il sera plus idiomatique d&rsquo;écrire cela sous la forme d&rsquo;une compréhension d&rsquo;une compréhension de liste, comme suit :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">list_of_powers_of_2_for_first_numbers</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)]</span>
+<span class="k">print</span><span class="p">(</span><span class="n">list_of_powers_of_2_for_first_numbers</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Ce qui nous donnera pour la iste dans les 2 cas :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">[1, 4, 9, 16, 25, 36, 49, 64, 81]
+</code></pre></td></tr></table>
+</div>
+</div><p>La compréhension est une expression en tant que telle contrairement au <code>for</code>. Elle peut être stockée dans une variable ou directement manipulée comme une liste.</p>
+<p>Vous pouvez essayez dans l&rsquo;interpréteur :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="nb">sum</span><span class="p">([</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)])</span>
+<span class="mi">285</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)][</span><span class="mi">3</span><span class="p">]</span>
+<span class="mi">16</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Une compréhension est ainsi constituée par :</p>
+<ol>
+<li>une expression fonction de la <em>variable de boucle</em>, expression qui peut être arbitrairement complexe</li>
+<li>la définition de la <em>variable de boucle</em>,</li>
+<li>le domaine de définition de la variable de boucle</li>
+</ol>
+<p>Dans l&rsquo;exemple ci-dessus :</p>
+<ol>
+<li><code>x**2</code> est l&rsquo;expression : on veut les puissances de 2 de la variable de boucle <code>x</code></li>
+<li>pour la variable <code>x</code></li>
+<li>variable <code>x</code> dont le domaine de définition est l&rsquo;intervalle des nombres entiers de 1 à 9</li>
+</ol>
+<p>La compréhension de liste de l&rsquo;exemple peut très littéralement se lire : <em>liste des x à la puissance 2 pour x décrivant l&rsquo;intervalle des nombres entiers de 1 à 9</em></p>
+<p>Bien sûr l&rsquo;expression décrivant comment produire chaque élément de la liste peut être arbitrairement complexe et concerner autre chose que des nombres. Sans vouloir souffler le feu et la glace, voici d&rsquo;autres exemples pour illustrer mon propos :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">lower_case_houses</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;tyrell&#34;</span><span class="p">,</span> <span class="s2">&#34;stark&#34;</span><span class="p">,</span>
+                     <span class="s2">&#34;lannister&#34;</span><span class="p">,</span> <span class="s2">&#34;tarly&#34;</span><span class="p">,</span> <span class="s2">&#34;baratheon&#34;</span><span class="p">,</span> <span class="s2">&#34;targaryen&#34;</span><span class="p">]</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;Houses in lower case :&#39;</span><span class="p">,</span> <span class="n">lower_case_houses</span><span class="p">)</span>
+<span class="n">capitalized_houses</span> <span class="o">=</span> <span class="p">[(</span><span class="n">s</span><span class="p">,</span> <span class="n">s</span><span class="o">.</span><span class="n">capitalize</span><span class="p">())</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">lower_case_houses</span><span class="p">]</span>
+<span class="k">print</span><span class="p">(</span><span class="n">capitalized_houses</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Ce qui donne si on exécute ce code</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">Houses in lower case : [&#39;tyrell&#39;, &#39;stark&#39;, &#39;lannister&#39;, &#39;tarly&#39;, &#39;baratheon&#39;, &#39;targaryen&#39;]
+[(&#39;tyrell&#39;, &#39;Tyrell&#39;), (&#39;stark&#39;, &#39;Stark&#39;), (&#39;lannister&#39;, &#39;Lannister&#39;), (&#39;tarly&#39;, &#39;Tarly&#39;), (&#39;baratheon&#39;, &#39;Baratheon&#39;), (&#39;targaryen&#39;, &#39;Targaryen&#39;)]
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="tous-ensemble">Tous ensemble</h3>
+<p>Il est possible de générer un ensemble avec une compréhension, ce sont juste les crochets <code>[]</code> délimitant la compréhension qui sont remplacés par des accolades <code>{}</code>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">set_of_powers_of_2_for_first_numbers</span> <span class="o">=</span> <span class="p">{</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)}</span>
+<span class="k">print</span><span class="p">(</span><span class="n">set_of_powers_of_2_for_first_numbers</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>On notera dans le résultat que les éléments de la liste ne sont pas <em>ordonnés</em>, ce qui est normal pour un ensemble.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">{64, 1, 4, 36, 9, 16, 49, 81, 25}
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="on-sème-à-tout-vent">On sème à tout vent</h3>
+<p>Comme pour générer un ensemble à partir d&rsquo;une compréhension, une compréhension pour un dictionnaire utilise des accolades <code>{}</code> à la place des crochets <code>[]</code>. En sus, l&rsquo;expression pour générer les éléments du dictionnaire doit suivre une syntaxe <em>clé: valeur</em> comme dans l&rsquo;exemple ci-dessous.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">dict_powers_of_2_for_first_numbers</span> <span class="o">=</span> <span class="p">{</span><span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)}</span>
+<span class="k">print</span><span class="p">(</span><span class="n">dict_powers_of_2_for_first_numbers</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Ce qui nous donne le dictionnaire ci-après, associant ici le chiffre et son carré.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">{1: 1, 2: 4, 3: 9, 4: 16, 5: 25, 6: 36, 7: 49, 8: 64, 9: 81}
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="benevolent-generator">Benevolent Generator</h3>
+<p>Les expressions de générateur (<em>generator expressions</em>) font l&rsquo;objet du <a href="https://www.python.org/dev/peps/pep-0289/">PEP289</a> qui <a href="https://www.python.org/dev/peps/pep-0289/#bdfl-pronouncements">a été accepté pour Python 2.4</a>. Ainsi les expressions de générateur ont été introduites pour proposer une solution basée sur les compréhension performante et efficace en utilisation mémoire. En effet, le constat est que d&rsquo;une part les compréhensions sont très largement appréciées et utilisées dans la communcauté Python mais que d&rsquo;autre part les cas d&rsquo;utilisation typique n&rsquo;implique pas d&rsquo;avoir besoin que la liste représentée par la compréhension soit créée entièrement et immédiatemment en mémoire. Il est juste nécessaire de pouvoir itérer sur chaque élément, un élément à la fois.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">generator_of_powers_of_2_for_first_numbers</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">generator_of_powers_of_2_for_first_numbers</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">generator_of_powers_of_2_for_first_numbers</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">generator_of_powers_of_2_for_first_numbers</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="o">*</span><span class="n">generator_of_powers_of_2_for_first_numbers</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Dans l&rsquo;exemple ci-dessous, on voit que l&rsquo;on peut récupérer un élément à la fois, ici via <code>next()</code>. On notera également que l&rsquo;objet créé est bien un générateur.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">&lt;generator object &lt;genexpr&gt; at 0x0000018EBF852C10&gt;
+1
+4
+9 16 25 36 49 64 81
+</code></pre></td></tr></table>
+</div>
+</div><p>Dans le <a href="https://www.python.org/dev/peps/pep-0289/">PEP289</a> il est ainsi recommandé d&rsquo;utiliser les expressions de générateurs avec des fonctions comme <code>sum()</code>, <code>max()</code> ou <code>min()</code> plutôt que des compréhensions de liste, et de manière générale avec toute fonction réalisant une opération de <em>réduction</em> sur une séquence d&rsquo;élément.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">print</span><span class="p">(</span><span class="nb">sum</span><span class="p">((</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">))))</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">max</span><span class="p">((</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">))))</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">min</span><span class="p">((</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">))))</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Ce qui donne (sans trop de surprise :-)), les résultats suivants.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">285
+81
+1
+</code></pre></td></tr></table>
+</div>
+</div><p>C&rsquo;est à retenir. J&rsquo;avoue que dans le cadre de ce billet, je ne me suis pas fendu de tests de performance pour voir comment l&rsquo;utilisation ou non d&rsquo;expressions de compréhension par rapport à des compréhensions de liste impactait l&rsquo;utilisation de la mémoire et la vitesse d&rsquo;exécution. Cela serait à effectuer, dans un prochain billet peut-être.</p>
+<p>Nous n&rsquo;en avons pas fini avec les expressions de compréhension, nous allons voir à la prochaine section qu&rsquo;on peut les utiliser en combinaison avec <code>itertools</code> pour manipuler des séquences infinies.</p>
+<h3 id="infini-dont-nous-sommes-sentinelles">Infini, dont nous sommes sentinelles</h3>
+<p>Le module <a href="https://docs.python.org/fr/3.9/library/itertools.html">itertools</a> propose des fonctions qui retournent des itérateurs infinis comme <a href="https://docs.python.org/fr/3.9/library/itertools.html#itertools.count"><code>count()</code></a> ou <a href="https://docs.python.org/fr/3.9/library/itertools.html#itertools.cycle"><code>cycle()</code></a>. Comme avec une expression de générateur on peut itérer sur un élément à la fois, si la <em>source</em> de valeur de notre variable de compréhension est un itérateur infini, on aura une expression de générateurs infinie. Toujours dans <a href="https://docs.python.org/fr/3.9/library/itertools.html">itertools</a>, il existe de plus des fonctions qui permettent de manipuler des <em>séquences infinies</em> comme <a href="https://docs.python.org/fr/3.9/library/itertools.html#itertools.takewhile"><code>takewhile</code></a>, qui est utilisé dans l&rsquo;exemple ci-après.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">neverending_generator_of_powers_of_2</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">neverending_generator_of_powers_of_2</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">neverending_generator_of_powers_of_2</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="o">*</span><span class="n">itertools</span><span class="o">.</span><span class="n">takewhile</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">1000</span><span class="p">,</span>
+                           <span class="n">neverending_generator_of_powers_of_2</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">neverending_generator_of_powers_of_2</span><span class="p">))</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>On notera dans les résultats ci-après que les éléments de la séquence sont <em>consommés</em> au fur et à mesure d&rsquo;abord 2 fois de suite avec la fonction <code>next()</code> puis avec <a href="https://docs.python.org/fr/3.9/library/itertools.html#itertools.takewhile"><code>takewhile</code></a> et enfin à nouveau avec la fonction <code>next()</code>. On notera également que si je peux me permettre ici un <em>unpacking</em> avec  <code>*</code> grâce à l&rsquo;utilisation de <a href="https://docs.python.org/fr/3.9/library/itertools.html#itertools.takewhile"><code>takewhile</code></a>, c&rsquo;est bien sûr à éviter directement sur une séquence infinie.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">1
+4
+9 16 25 36 49 64 81 100 121 144 169 196 225 256 289 324 361 400 441 484 529 576 625 676 729 784 841 900 961
+1089
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="génération-conditionnelle">Génération conditionnelle</h3>
+<p>Les éléments constituant la compréhension peuvent être généré de manière conditionnelle : la séquence est composée du résultat de l&rsquo;expression qui est fonction de notre variable de compréhension, pour cette variable de compréhension provenant d&rsquo;une séquence d&rsquo;élément, si cet élément respecte un certain prédicat.</p>
+<p>Par exemple, si je veux avoir la liste des carrés des chiffres pairs, je vais écrire une compréhension de la forme :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">list_powers_of_2_for_first_event_numbers</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span> <span class="k">if</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
+<span class="k">print</span><span class="p">(</span><span class="n">list_powers_of_2_for_first_event_numbers</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Ce qui me donnera la liste de nombres suivantes, correspondant aux carrés de respectivement 2, 4, 6 et 8 :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">[4, 16, 36, 64]
+</code></pre></td></tr></table>
+</div>
+</div><p>Bien sûr, le prédicat peut être aussi complexe que nécessaire du moment qu&rsquo;il est fonction de la variable et qu&rsquo;il renvoie bien un booléen (une fonction prédicat, quoi ! ;-))</p>
+<h3 id="imbrication">Imbrication</h3>
+<p>Il est bine sûr possible d&rsquo;imbriquer les compréhensions de la même manière qu&rsquo;il est possible d&rsquo;imbriquer les boucles <code>for</code>. Pour des questions de lisibilité, il n&rsquo;est pas recommandé de faire des compréhensions avec trop de niveaux d&rsquo;imbrication (en général il vaut mieux éviter de dépasser 2 niveaux d&rsquo;imbrication !).</p>
+<p>Au début de notre compréhension, on a toujours une expression qui sera ici fonction de l&rsquo;ensemble des variables de <em>boucle</em> de la compréhension, avec la première compréhension qui correspondrait à notre boucle <code>for</code> la plus interne, puis la seconde, qui correspondrait à la première boucle <code>for</code> imbriquée et ainsi de suite.</p>
+<p>Par exemple, si je souhaite avoir une liste de tuple correspondant à la position de chaque case d&rsquo;un échiquier, je pourrais écrire une compréhension comme suit :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">columns</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;f&#39;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="s1">&#39;h&#39;</span><span class="p">)</span>
+<span class="n">rows</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+<span class="n">chessboard</span> <span class="o">=</span> <span class="p">[(</span><span class="n">c</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">columns</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">rows</span><span class="p">]</span>
+<span class="k">print</span><span class="p">(</span><span class="n">chessboard</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>J&rsquo;ai une expression fonction de mes variables <code>c</code> et <code>r</code> pour générer les éléments de ma liste (ici juste un tuple), j&rsquo;ai ensuite le domaine de valeurs que ma variable <code>c</code> décrit pour chaque valeur que décrit ma variable <code>r</code> dans son propre domaine de valeurs. En français cela pourrait donner : la liste est constituée de la pair <code>(c, r)</code> pour <code>c</code> décrivant l&rsquo;ensemble des valeurs de la liste <code>columns</code> pour chaque <code>r</code> décrivant lui-même l&rsquo;ensemble des valeurs de la liste <code>rows</code>.</p>
+<p>Cela me donne la liste suivante de tuples avec la colonne de l&rsquo;échiquier en premier élément et la ligne en second :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">[(&#39;a&#39;, 1), (&#39;a&#39;, 2), (&#39;a&#39;, 3), (&#39;a&#39;, 4), (&#39;a&#39;, 5), (&#39;a&#39;, 6), (&#39;a&#39;, 7), (&#39;a&#39;, 8), (&#39;b&#39;, 1), (&#39;b&#39;, 2), (&#39;b&#39;, 3), (&#39;b&#39;, 4), (&#39;b&#39;, 5), (&#39;b&#39;, 6), (&#39;b&#39;, 7), (&#39;b&#39;, 8), (&#39;c&#39;, 1), (&#39;c&#39;, 2), (&#39;c&#39;, 3), (&#39;c&#39;, 4), (&#39;c&#39;, 5), (&#39;c&#39;, 6), (&#39;c&#39;, 7), (&#39;c&#39;, 8), (&#39;d&#39;, 1), (&#39;d&#39;, 2), (&#39;d&#39;, 3), (&#39;d&#39;, 4), (&#39;d&#39;, 5), (&#39;d&#39;, 6), (&#39;d&#39;, 7), (&#39;d&#39;, 8), (&#39;e&#39;, 1), (&#39;e&#39;, 2), (&#39;e&#39;, 3), (&#39;e&#39;, 4), (&#39;e&#39;, 5), (&#39;e&#39;, 6), (&#39;e&#39;, 7), (&#39;e&#39;, 8), (&#39;f&#39;, 1), (&#39;f&#39;, 2), (&#39;f&#39;, 3), (&#39;f&#39;, 4), (&#39;f&#39;, 5), (&#39;f&#39;, 6), (&#39;f&#39;, 7), (&#39;f&#39;, 8), (&#39;g&#39;, 1), (&#39;g&#39;, 2), (&#39;g&#39;, 3), (&#39;g&#39;, 4), (&#39;g&#39;, 5), (&#39;g&#39;, 6), (&#39;g&#39;, 7), (&#39;g&#39;, 8), (&#39;h&#39;, 1), (&#39;h&#39;, 2), (&#39;h&#39;, 3), (&#39;h&#39;, 4), (&#39;h&#39;, 5), (&#39;h&#39;, 6), (&#39;h&#39;, 7), (&#39;h&#39;, 8)]
+</code></pre></td></tr></table>
+</div>
+</div><p>Et bien sûr, si on en a besoin, on peut avoir un filtrage conditionnel des éléments dans une compréhension imbriquée. Par exemple, si je souhaite avoir une liste de la somme de chaque chiffre pair avec chaque chiffres impairs, je pourrais écrire la compréhension suivante avec un filtrage conditionnel :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">sum_of_even_and_odd</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">x</span> <span class="o">+</span> <span class="n">y</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="k">if</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="k">if</span> <span class="n">y</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span>
+<span class="k">print</span><span class="p">(</span><span class="n">sum_of_even_and_odd</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Ce qui me donnera la liste suivante dans laquelle j&rsquo;ai bien la somme de 0 avec tous les chiffres impairs de 1 à 9, puis la somme de 2 avec tous les chiffres impairs, et ainsi de suite pour tous les chiffres pairs jusqu&rsquo;à 8.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">[1, 3, 5, 7, 9, 3, 5, 7, 9, 11, 5, 7, 9, 11, 13, 7, 9, 11, 13, 15, 9, 11, 13, 15, 17]
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="this-is-the-end-hold-your-breath-and-count-to-ten">This is the end, hold your breath and count to ten</h2>
+<p>Bien sûr pour compter jusqu&rsquo;à 10, utilisez une compréhension !</p>
+<p>Quand on vient à Python d&rsquo;un autre langage comme Java, les compréhensions sont une nouveauté et leur syntaxe exacte peut être difficile à retenir (surtout si on ne peut pas faire du Python au quotidien) mais une fois qu&rsquo;on a pris le pli, c&rsquo;est un outil de Python dont on ne peut plus se passer et que l&rsquo;on regrette de ne pas avoir dans d&rsquo;autres langages.
+Bien sûr tout ce qu&rsquo;on fait avec des compréhensions, on peut le faire dans le cadre d&rsquo;un style fonctionnel avec des <code>map</code> et des <code>filter</code> (qui existent également en Python) ou avec des boucles <code>for</code> et des <code>if</code> dans un style impératif (qui existent également en Python), mais il faut reconnaître qu&rsquo;on peut trouver au compréhension une certaine élégance et une certaine lisibilité (si on n&rsquo;essaie pas de faire des compréhensions trop imbriquée).</p>
+<p>Dans ce billet j&rsquo;ai essayé de brosser un tableau des compréhensions, de faire une petite synthèse de leur syntaxe et de leurs principales utilisations. En Python, d&rsquo;après ce que j&rsquo;ai pu en voir, l&rsquo;utilisation des compréhensions est considérée comme étant idiomatique au langage. C&rsquo;est donc un outil que l&rsquo;on se doit de connaître dès qu&rsquo;on fait du Python.</p>
+<p>J&rsquo;aurais écrit ce billet sur les compréhensions dans le cadre de mes billets sur Python quoiqu&rsquo;il arrive mais une <a href="https://twitter.com/riduidel/status/1319004019830984704">demande</a> de <a href="https://riduidel.wordpress.com/">Riduidel</a> m&rsquo;a légèrement fait revoir la priorisation des billets à écrire ;-).</p>
+<p>Il y a bien sûr un <a href="https://gist.github.com/TGITS/11869409350df078e2eca5ede7f5ff5d">gist</a> avec les sources des exemples.</p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Auteur</span>
+    <span class="item-content">TGITS</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">Modifié</span>
+    <span class="item-content">
+        2020-10-31
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/python/">python</a>
+          <a href="/tags/python3/">python3</a>
+          <a href="/tags/notes-dapprentissage/">notes d&#39;apprentissage</a>
+          <a href="/tags/d%C3%A9veloppement/">développement</a>
+          <a href="/tags/tips/">tips</a>
+          <a href="/tags/compr%C3%A9hension/">compréhension</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/post/notes_apprentissage_python_reverse_sequence/">
+            <span class="next-text nav-default">Notes apprentissage : une séquence renversante</span>
+            <span class="next-text nav-mobile">Suivant</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    (function() {
+      
+      
+      if (window.location.hostname === 'localhost') return;
+
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      var disqus_shortname = 'thegeekintheshell';
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "thegeekintheshell" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+<div class="social-links">
+      <a href="mailto:thegeekintheshell@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://twitter.com/_TGITS" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="https://www.linkedin.com/in/cvaudry/" class="iconfont icon-linkedin" title="linkedin"></a>
+      <a href="https://github.com/TGITS" class="iconfont icon-github" title="github"></a>
+      <a href="https://gitlab.com/TGITS" class="iconfont icon-gitlab" title="gitlab"></a>
+  <a href="https://tgits.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Propulsé par <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Thème - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2020
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">TGITS</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

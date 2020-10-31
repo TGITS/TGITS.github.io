@@ -6,10 +6,21 @@
     <description>Recent content in Posts on The Geek In The Shell</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>fr-fr</language>
-    <lastBuildDate>Wed, 21 Oct 2020 18:13:27 +0200</lastBuildDate>
+    <lastBuildDate>Sat, 31 Oct 2020 14:27:43 +0200</lastBuildDate>
     
 	<atom:link href="https://tgits.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Notes d&#39;apprentissage de Python : les compréhensions</title>
+      <link>https://tgits.github.io/post/notes_apprentissage_python_comprehension/</link>
+      <pubDate>Sat, 31 Oct 2020 14:27:43 +0200</pubDate>
+      
+      <guid>https://tgits.github.io/post/notes_apprentissage_python_comprehension/</guid>
+      <description>Contexte Python est un langage de programmation très abordable que l&amp;rsquo;on démarre en programmation ou que l&amp;rsquo;on connaisse déjà d&amp;rsquo;autres langages. Néanmoins, ce n&amp;rsquo;est pas parce qu&amp;rsquo;un langage est abordable qu&amp;rsquo;il n&amp;rsquo;a pas ses propres idiomes et qu&amp;rsquo;il n&amp;rsquo;y a pas des trucs &amp;amp; astuces à connaître et à retenir.
+Ci-après, une petite note d&amp;rsquo;apprentissage de Python, sur les compréhensions en Python.
+NB : c&amp;rsquo;est du Python 3 qui est utilisé.</description>
+    </item>
     
     <item>
       <title>Notes apprentissage : une séquence renversante</title>
@@ -17,9 +28,8 @@
       <pubDate>Wed, 21 Oct 2020 18:13:27 +0200</pubDate>
       
       <guid>https://tgits.github.io/post/notes_apprentissage_python_reverse_sequence/</guid>
-      <description>Contexte Python est un langage de programmation très abordable que l&amp;rsquo;on démarre en programmation ou que l&amp;rsquo;on connaisse déjà d&amp;rsquo;autre langage. Néanmoins, ce n&amp;rsquo;est pas parce qu&amp;rsquo;un langage est abordable qu&amp;rsquo;il n&amp;rsquo;a pas ces propres idiomes et qu&amp;rsquo;il n&amp;rsquo;y a pas des trucs &amp;amp; astuces à connaître et retenir.
-Ci-après, une petite note d&amp;rsquo;apprentissage de Python, sur la manière d&amp;rsquo;inverser les éléments d&amp;rsquo;une liste et d&amp;rsquo;une chaine de caractères.
-NB : c&amp;rsquo;est du Python 3 qui est utilisé dans ce billet.</description>
+      <description>Contexte Python est un langage de programmation très abordable que l&amp;rsquo;on démarre en programmation ou que l&amp;rsquo;on connaisse déjà d&amp;rsquo;autres langages. Néanmoins, ce n&amp;rsquo;est pas parce qu&amp;rsquo;un langage est abordable qu&amp;rsquo;il n&amp;rsquo;a pas ses propres idiomes et qu&amp;rsquo;il n&amp;rsquo;y a pas des trucs &amp;amp; astuces à connaître et à retenir.
+Ci-après, une petite note d&amp;rsquo;apprentissage de Python, sur la manière d&amp;rsquo;inverser les éléments d&amp;rsquo;une liste et d&amp;rsquo;une chaine de caractères.</description>
     </item>
     
     <item>
@@ -28,9 +38,9 @@ NB : c&amp;rsquo;est du Python 3 qui est utilisé dans ce billet.</description>
       <pubDate>Wed, 21 Oct 2020 18:13:27 +0200</pubDate>
       
       <guid>https://tgits.github.io/post/notes_apprentissage_python_enumerate/</guid>
-      <description>Contexte Python est un langage de programmation très abordable que l&amp;rsquo;on démarre en programmation ou que l&amp;rsquo;on connaisse déjà d&amp;rsquo;autre langage. Néanmoins, ce n&amp;rsquo;est pas parce qu&amp;rsquo;un langage est abordable qu&amp;rsquo;il n&amp;rsquo;a pas ces propres idiomes et qu&amp;rsquo;il n&amp;rsquo;y a pas des trucs &amp;amp; astuces à connaître et retenir.
+      <description>Contexte Python est un langage de programmation très abordable que l&amp;rsquo;on démarre en programmation ou que l&amp;rsquo;on connaisse déjà d&amp;rsquo;autres langages. Néanmoins, ce n&amp;rsquo;est pas parce qu&amp;rsquo;un langage est abordable qu&amp;rsquo;il n&amp;rsquo;a pas ses propres idiomes et qu&amp;rsquo;il n&amp;rsquo;y a pas des trucs &amp;amp; astuces à connaître et à retenir.
 Ci-après, une petite note d&amp;rsquo;apprentissage de Python, sur l&amp;rsquo;utilisation de enumerate.
-NB : c&amp;rsquo;est du Python 3 qui est utilisé dans ce billet.</description>
+NB : c&amp;rsquo;est du Python 3 qui est utilisé.</description>
     </item>
     
     <item>
