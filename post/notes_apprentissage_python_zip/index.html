@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Notes d&#39;apprentissage de Python : zip et unzip - The Geek In The Shell</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="TGITS" /><meta name="description" content="Contexte Python est un langage de programmation très abordable que l&amp;rsquo;on démarre en programmation ou que l&amp;rsquo;on connaisse déjà d&amp;rsquo;autres langages. Néanmoins, ce n&amp;rsquo;est pas parce qu&amp;rsquo;un langage est abordable qu&amp;rsquo;il n&amp;rsquo;a pas ses propres idiomes et qu&amp;rsquo;il n&amp;rsquo;y a pas des trucs &amp;amp; astuces à connaître et à retenir.
+Ci-après, une petite note d&amp;rsquo;apprentissage de Python, sur la fonction zip. Il faut noter que c&amp;rsquo;est un billet relativement court, je l&amp;rsquo;ai un peu compressé !" /><meta name="keywords" content="TGITS, Développement, Java, Architecture" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.71.1 with theme even" />
+
+
+<link rel="canonical" href="https://tgits.github.io/post/notes_apprentissage_python_zip/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.8c3cbcb0324c2bb4875ceccba4007cbad4b4ac8377f33af9953c3e7684534a50.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Notes d&#39;apprentissage de Python : zip et unzip" />
+<meta property="og:description" content="Contexte Python est un langage de programmation très abordable que l&rsquo;on démarre en programmation ou que l&rsquo;on connaisse déjà d&rsquo;autres langages. Néanmoins, ce n&rsquo;est pas parce qu&rsquo;un langage est abordable qu&rsquo;il n&rsquo;a pas ses propres idiomes et qu&rsquo;il n&rsquo;y a pas des trucs &amp; astuces à connaître et à retenir.
+Ci-après, une petite note d&rsquo;apprentissage de Python, sur la fonction zip. Il faut noter que c&rsquo;est un billet relativement court, je l&rsquo;ai un peu compressé !" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://tgits.github.io/post/notes_apprentissage_python_zip/" />
+<meta property="article:published_time" content="2020-11-22T18:27:43+02:00" />
+<meta property="article:modified_time" content="2020-11-22T18:27:43+02:00" />
+<meta itemprop="name" content="Notes d&#39;apprentissage de Python : zip et unzip">
+<meta itemprop="description" content="Contexte Python est un langage de programmation très abordable que l&rsquo;on démarre en programmation ou que l&rsquo;on connaisse déjà d&rsquo;autres langages. Néanmoins, ce n&rsquo;est pas parce qu&rsquo;un langage est abordable qu&rsquo;il n&rsquo;a pas ses propres idiomes et qu&rsquo;il n&rsquo;y a pas des trucs &amp; astuces à connaître et à retenir.
+Ci-après, une petite note d&rsquo;apprentissage de Python, sur la fonction zip. Il faut noter que c&rsquo;est un billet relativement court, je l&rsquo;ai un peu compressé !">
+<meta itemprop="datePublished" content="2020-11-22T18:27:43&#43;02:00" />
+<meta itemprop="dateModified" content="2020-11-22T18:27:43&#43;02:00" />
+<meta itemprop="wordCount" content="2328">
+
+
+
+<meta itemprop="keywords" content="python,python3,notes d&#39;apprentissage,développement,tips,zip,unzip,unpacking&#34;," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Notes d&#39;apprentissage de Python : zip et unzip"/>
+<meta name="twitter:description" content="Contexte Python est un langage de programmation très abordable que l&rsquo;on démarre en programmation ou que l&rsquo;on connaisse déjà d&rsquo;autres langages. Néanmoins, ce n&rsquo;est pas parce qu&rsquo;un langage est abordable qu&rsquo;il n&rsquo;a pas ses propres idiomes et qu&rsquo;il n&rsquo;y a pas des trucs &amp; astuces à connaître et à retenir.
+Ci-après, une petite note d&rsquo;apprentissage de Python, sur la fonction zip. Il faut noter que c&rsquo;est un billet relativement court, je l&rsquo;ai un peu compressé !"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">TGITS</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Blog</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">TGITS</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Blog</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Notes d&#39;apprentissage de Python : zip et unzip</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-11-22 </span>
+        <div class="post-category">
+            <a href="/categories/d%C3%A9veloppement/"> développement </a>
+            <a href="/categories/python/"> python </a>
+            <a href="/categories/notes-dapprentissage/"> notes d&#39;apprentissage </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contenu</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#contexte">Contexte</a></li>
+    <li><a href="#just-zip-it">Just zip it</a></li>
+    <li><a href="#got-more-examples-">Got more examples ?</a></li>
+    <li><a href="#where-is-my-unzip-">Where is my unzip ?</a></li>
+    <li><a href="#synthèse-en-image">Synthèse en image</a></li>
+    <li><a href="#a-ne-pas-zapper">A ne pas zapper</a></li>
+    <li><a href="#avant-de-partir">Avant de partir</a></li>
+    <li><a href="#références">Références</a>
+      <ul>
+        <li><a href="#livres">Livres</a></li>
+        <li><a href="#articles-et-billets">Articles et billets</a></li>
+        <li><a href="#images">Images</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h2 id="contexte">Contexte</h2>
+<p><a href="https://www.python.org/">Python</a> est un langage de programmation très abordable que l&rsquo;on démarre en programmation ou que l&rsquo;on connaisse déjà d&rsquo;autres langages. Néanmoins, ce n&rsquo;est pas parce qu&rsquo;un langage est abordable qu&rsquo;il n&rsquo;a pas ses propres idiomes et qu&rsquo;il n&rsquo;y a pas des trucs &amp; astuces à connaître et à retenir.</p>
+<p>Ci-après, une petite note d&rsquo;apprentissage de <a href="https://www.python.org/">Python</a>, sur la fonction <code>zip</code>. Il faut noter que c&rsquo;est un billet relativement court, je l&rsquo;ai un peu <em>compressé</em> !</p>
+<p>Ce qui m&rsquo;a donné matière à faire ce billet, c&rsquo;est une remarque dans <a href="https://jakevdp.github.io/WhirlwindTourOfPython/">A Whirlwind Tour of Python</a> dans la <a href="https://jakevdp.github.io/WhirlwindTourOfPython/10-iterators.html">chapitre 10 sur les itérateurs</a></p>
+<blockquote>
+<p>Using this trick lets us answer the age-old question that comes up in Python learners&rsquo; forums: why is there no unzip() function which does the opposite of zip()? If you lock yourself in a dark closet and think about it for a while, you might realize that the opposite of zip() is&hellip; zip()!</p>
+</blockquote>
+<p>J&rsquo;ai voulu creuser la question pour bien visualiser les choses et être sûr que j&rsquo;avais bien compris. C&rsquo;est parti regardons de plus près ce à quoi correspond cette fonction <code>zip</code> et son pendant <code>unzip</code>.</p>
+<p><a href="https://commons.wikimedia.org/wiki/File:Coil_plastic_and_metal_zippers.jpg"><img src="../../img/python/zip/320px-Coil_plastic_and_metal_zippers.jpg" alt="Woodbine9, CC BY-SA 4.0 , via Wikimedia Commons"></a></p>
+<p><strong>NB</strong> : c&rsquo;est du Python 3 qui est utilisé.</p>
+<h2 id="just-zip-it">Just zip it</h2>
+<p>L&rsquo;image animée ci-après sur le fonctionnement d&rsquo;une fermeture éclair illustre parfaitement l&rsquo;essence de ce que fait la fonction <code>zip</code>. Néanmoins nous allons élaborer un peu plus.</p>
+<p><a href="https://commons.wikimedia.org/wiki/File:Zipper_animated.gif"><img src="../../img/python/zip/Zipper_animated.gif" alt="DemonDeLuxe (Dominique Toussaint), CC BY-SA 3.0 , via Wikimedia Commons"></a></p>
+<p>La fonction <code>zip</code> permet de transformer un séquence de listes (ou de tuples) en une liste de tuples. Cela sera plus clair avec un premier exemple. Nous avons la liste des nucléotides de l&rsquo;ADN (réduit à la lettre qui les représente) et dans le même ordre la liste des nucléotides de l&rsquo;ARN leur correspondant. Je veux les regrouper en une liste de couple. Nous allons pouvoir utiliser <code>zip</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">dna_nucleotides</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;G&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;T&#39;</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span><span class="p">]</span>
+<span class="n">rna_nucleotides</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;G&#39;</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;U&#39;</span><span class="p">]</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;La liste des nucléotides de l&#39;ADN :</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">,</span>
+      <span class="n">dna_nucleotides</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;La liste des nucléotides de l&#39;ARN :</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">rna_nucleotides</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;Résultat de l&#39;application de zip sur les 2 listes :</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">,</span>
+      <span class="nb">zip</span><span class="p">(</span><span class="n">dna_nucleotides</span><span class="p">,</span> <span class="n">rna_nucleotides</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;Résultat de l&#39;application de zip sur les 2 listes après unpacking :</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">,</span>
+      <span class="o">*</span><span class="nb">zip</span><span class="p">(</span><span class="n">dna_nucleotides</span><span class="p">,</span> <span class="n">rna_nucleotides</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;Résultat de l&#39;application de zip sur les 2 listes après conversion en liste :</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">,</span>
+      <span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">dna_nucleotides</span><span class="p">,</span> <span class="n">rna_nucleotides</span><span class="p">)))</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;Résultat de l&#39;application de zip sur les 2 listes après conversion en tuple :</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">,</span>
+      <span class="nb">tuple</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">dna_nucleotides</span><span class="p">,</span> <span class="n">rna_nucleotides</span><span class="p">)))</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;Résultat de l&#39;application de zip sur les 2 listes après conversion en dictionnaire :</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">,</span>
+      <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">dna_nucleotides</span><span class="p">,</span> <span class="n">rna_nucleotides</span><span class="p">)))</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">###########</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">pair</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">dna_nucleotides</span><span class="p">,</span> <span class="n">rna_nucleotides</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&#34;Pair de nucléotides ADN - ARN :&#34;</span><span class="p">,</span> <span class="n">pair</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Ce qui nous donne dans la console quand on exécute le script :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">La liste des nucléotides de l&#39;ADN :
+ [&#39;G&#39;, &#39;C&#39;, &#39;T&#39;, &#39;A&#39;]
+La liste des nucléotides de l&#39;ARN :
+ [&#39;C&#39;, &#39;G&#39;, &#39;A&#39;, &#39;U&#39;]
+Résultat de l&#39;application de zip sur les 2 listes :
+ &lt;zip object at 0x00000176EA4918C0&gt;
+Résultat de l&#39;application de zip sur les 2 listes après unpacking :
+ (&#39;G&#39;, &#39;C&#39;) (&#39;C&#39;, &#39;G&#39;) (&#39;T&#39;, &#39;A&#39;) (&#39;A&#39;, &#39;U&#39;)
+Résultat de l&#39;application de zip sur les 2 listes après conversion en liste :
+ [(&#39;G&#39;, &#39;C&#39;), (&#39;C&#39;, &#39;G&#39;), (&#39;T&#39;, &#39;A&#39;), (&#39;A&#39;, &#39;U&#39;)]
+Résultat de l&#39;application de zip sur les 2 listes après conversion en tuple :
+ ((&#39;G&#39;, &#39;C&#39;), (&#39;C&#39;, &#39;G&#39;), (&#39;T&#39;, &#39;A&#39;), (&#39;A&#39;, &#39;U&#39;))
+Résultat de l&#39;application de zip sur les 2 listes après conversion en dictionnaire :
+ {&#39;G&#39;: &#39;C&#39;, &#39;C&#39;: &#39;G&#39;, &#39;T&#39;: &#39;A&#39;, &#39;A&#39;: &#39;U&#39;}
+
+###########
+
+Pair de nucléotides ADN - ARN : (&#39;G&#39;, &#39;C&#39;)
+Pair de nucléotides ADN - ARN : (&#39;C&#39;, &#39;G&#39;)
+Pair de nucléotides ADN - ARN : (&#39;T&#39;, &#39;A&#39;)
+Pair de nucléotides ADN - ARN : (&#39;A&#39;, &#39;U&#39;)
+</code></pre></td></tr></table>
+</div>
+</div><p>Comme on peut le voir à la ligne <code>Résultat de l'application de zip sur les 2 listes : &lt;zip object at 0x0000022A411419C0&gt;</code>, la fonction <code>zip</code> retourne un itérateur. 
+On peut donc réaliser un <em>unpacking</em> des valeurs de l&rsquo;itérateurs avec l&rsquo;opérateur <em>splat</em> <code>*</code> (Je vous recommande le billet <a href="http://sametmax.com/operateur-splat-ou-etoile-en-python/">L’opérateur splat (l’étoile: *) en Python</a> sur ce sujet), le convertir en liste ou en tuple, le parcourir avec une boucle <code>for</code> (et cela fonctionnerait bien sûr avec une <a href="https://tgits.github.io/post/notes_apprentissage_python_comprehension/">compréhension</a>).</p>
+<p>Il est également intéressant de noter que comme une liste ou un tuple de pairs d&rsquo;éléments peut-être converti directement en un dictionnaire, cela fonctionne également avec <code>zip</code>, comme l&rsquo;illustre le dernier exemple avec <code>dict(zip(dna_nucleotides, rna_nucleotides)))</code> dans lequel le résultat de notre <code>zip</code> est directement transformé en dictionnaire.</p>
+<h2 id="got-more-examples-">Got more examples ?</h2>
+<p>La fonction <code>zip</code> peut prendre en paramètres plus de 2 <em>itérables</em>, comme l&rsquo;illustre l&rsquo;exemple ci-après. Il faut également noter au passage que <code>zip</code> ne retourne pas directement une liste mais un objet <em>itérable</em>. Il est donc nécessaire de le transformer en liste ou en tuple pour l&rsquo;afficher directement dans un <code>print</code> ou bien sûr de l&rsquo;utiliser dans un <code>for</code> ou une <a href="https://tgits.github.io/post/notes_apprentissage_python_comprehension/">compréhension</a>). Il est également possible d&rsquo;utiliser l&rsquo;opérateur splat <code>*</code> pour réaliser un <em>unpacking</em> de l&rsquo;<em>itérable</em> créer par <code>zip</code>. L&rsquo;exemple ci-après illustre ces différents cas.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">houses</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;Stark&#34;</span><span class="p">,</span> <span class="s2">&#34;Lannister&#34;</span><span class="p">,</span> <span class="s2">&#34;Baratheon&#34;</span><span class="p">,</span> <span class="s2">&#34;Greyjoy&#34;</span><span class="p">]</span>
+<span class="n">seats</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;Winterfell&#34;</span><span class="p">,</span> <span class="s2">&#34;Casterly Rock&#34;</span><span class="p">,</span> <span class="s2">&#34;Storm&#39;s End&#34;</span><span class="p">,</span> <span class="s2">&#34;Pyke&#34;</span><span class="p">]</span>
+<span class="n">sigils</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;A Gray Direwolf&#34;</span><span class="p">,</span> <span class="s2">&#34;A Golden Lion&#34;</span><span class="p">,</span>
+          <span class="s2">&#34;A Crowned Black Stag&#34;</span><span class="p">,</span> <span class="s2">&#34;A Golden Kraken&#34;</span><span class="p">]</span>
+<span class="n">words</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;Winter is coming&#34;</span><span class="p">,</span> <span class="s2">&#34;Hear me roar !&#34;</span><span class="p">,</span>
+         <span class="s2">&#34;Our is the fury !&#34;</span><span class="p">,</span> <span class="s2">&#34;We do not sow&#34;</span><span class="p">]</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&#34;houses : {houses}&#34;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&#34;seats : {seats}&#34;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&#34;sigils : {sigils}&#34;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&#34;words : {words}&#34;</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">###########</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span>
+<span class="n">f</span><span class="s2">&#34;zip(houses, seats, sigils, words) en tant que liste : </span><span class="se">\n</span><span class="s2">{list(zip(houses, seats, sigils, words))}&#34;</span><span class="p">,</span> <span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">unpacking de zip(houses, seats, sigils, words) :</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">,</span>
+      <span class="o">*</span><span class="nb">zip</span><span class="p">(</span><span class="n">houses</span><span class="p">,</span> <span class="n">seats</span><span class="p">,</span> <span class="n">sigils</span><span class="p">,</span> <span class="n">words</span><span class="p">))</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">###########</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;Affichage de chacun des éléments de la séquence zip(houses, seats, sigils, words) via un for :&#34;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">got_house_info</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">houses</span><span class="p">,</span> <span class="n">seats</span><span class="p">,</span> <span class="n">sigils</span><span class="p">,</span> <span class="n">words</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">got_house_info</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">###########</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;Utilisation dans une compréhension&#34;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">f</span><span class="s2">&#34;{house} : {word}&#34;</span> <span class="k">for</span> <span class="n">house</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">word</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">houses</span><span class="p">,</span> <span class="n">seats</span><span class="p">,</span> <span class="n">sigils</span><span class="p">,</span> <span class="n">words</span><span class="p">)]))</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Ce script donne l&rsquo;affichage suivant dans la console :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">houses : [&#39;Stark&#39;, &#39;Lannister&#39;, &#39;Baratheon&#39;, &#39;Greyjoy&#39;]
+seats : [&#39;Winterfell&#39;, &#39;Casterly Rock&#39;, &#34;Storm&#39;s End&#34;, &#39;Pyke&#39;]
+sigils : [&#39;A Gray Direwolf&#39;, &#39;A Golden Lion&#39;, &#39;A Crowned Black Stag&#39;, &#39;A Golden Kraken&#39;]
+seats : [&#39;Winter is coming&#39;, &#39;Hear me roar !&#39;, &#39;Our is the fury !&#39;, &#39;We do not sow&#39;]
+
+###########
+
+zip(houses, seats, sigils, words) en tant que liste :
+[(&#39;Stark&#39;, &#39;Winterfell&#39;, &#39;A Gray Direwolf&#39;, &#39;Winter is coming&#39;), (&#39;Lannister&#39;, &#39;Casterly Rock&#39;, &#39;A Golden Lion&#39;, &#39;Hear me roar !&#39;), (&#39;Baratheon&#39;, &#34;Storm&#39;s End&#34;, &#39;A Crowned Black Stag&#39;, &#39;Our is the fury !&#39;), (&#39;Greyjoy&#39;, &#39;Pyke&#39;, &#39;A Golden Kraken&#39;, &#39;We do not sow&#39;)]
+unpacking de zip(houses, seats, sigils, words) : (&#39;Stark&#39;, &#39;Winterfell&#39;, &#39;A Gray Direwolf&#39;, &#39;Winter is coming&#39;) (&#39;Lannister&#39;, &#39;Casterly Rock&#39;, &#39;A Golden Lion&#39;, &#39;Hear me roar !&#39;) (&#39;Baratheon&#39;, 
+&#34;Storm&#39;s End&#34;, &#39;A Crowned Black Stag&#39;, &#39;Our is the fury !&#39;) (&#39;Greyjoy&#39;, &#39;Pyke&#39;, &#39;A Golden Kraken&#39;, &#39;We do not sow&#39;)
+
+###########
+
+Affichage de chacun des éléments de la séquence zip(houses, seats, sigils, words) :
+(&#39;Stark&#39;, &#39;Winterfell&#39;, &#39;A Gray Direwolf&#39;, &#39;Winter is coming&#39;)
+(&#39;Lannister&#39;, &#39;Casterly Rock&#39;, &#39;A Golden Lion&#39;, &#39;Hear me roar !&#39;)
+(&#39;Baratheon&#39;, &#34;Storm&#39;s End&#34;, &#39;A Crowned Black Stag&#39;, &#39;Our is the fury !&#39;)
+(&#39;Greyjoy&#39;, &#39;Pyke&#39;, &#39;A Golden Kraken&#39;, &#39;We do not sow&#39;)
+Baratheon : Our is the fury !
+Greyjoy : We do not sow
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="where-is-my-unzip-">Where is my unzip ?</h2>
+<p>La fonction <code>zip</code> permet de transformer plusieurs séquences en une séquence de tuples, chaque élément de ces tuples venant éléments à la même position de chacune de ces listes. Maintenant si je veux faire l&rsquo;opération inverse : j&rsquo;ai une liste de tuples de taille identique et je veux en obtenir autant de listes, constitué des éléments à la même position dans chacun des tuples de départ.</p>
+<p>Facile en utilisant <code>unzip</code>, cela semble cohérent comme nom pour l&rsquo;opération <em>inverse</em> !</p>
+<p>Juste un soucis, <code>unzip</code> n&rsquo;existe pas en Python !</p>
+<p><img src="../../img/python/zip/where_is_my_unzip.jpg" alt="Where is my unzip"></p>
+<p>Alors, comment faire ? Pas de panique, si la fonction n&rsquo;existe pas en Python, il y a une bonne rasion, c&rsquo;est qu&rsquo;on n&rsquo;en pas vraiment besoin !</p>
+<p><img src="../../img/python/zip/you_know_nothing_daenerys.jpg" alt="You know nothing Daenerys!"></p>
+<p>Et oui, il va suffire d&rsquo;utiliser <code>zip</code> &hellip; enfin presque, on va être aider par l&rsquo;opérateur de <em>unpacking</em>.</p>
+<p>Avec <code>*</code> on peut forcer le <em>unpacking</em> de notre séquence de tuples, on a ainsi plusieurs tuples, plutôt qu&rsquo;une liste de séquence de tuples. En appliquant <code>zip</code> à nouveau sur ces tuples, on créé une nouvelle séquence de tuples, cette séquence correspond à la séquence de nos listes de départ (ok, les listes ont été transformées en tuples au passage mais c&rsquo;est un <em>détail</em>).
+On peut ensuite par exemple, faire le <em>unpacking</em> du résultat dans des variables et on retrouve nos <em>listes</em> de départ (transformées en tuples).</p>
+<p>En continuant sur l&rsquo;exemple du paragraphe précédent, voici ce que l&rsquo;on pourrait écrire :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">print</span><span class="p">(</span><span class="s2">&#34;Réalisation d&#39;un &#39;unzip&#39; et retour à la situation initiale&#34;</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;zip(*zip(houses, seats, sigils, words)) comme liste : &#34;</span><span class="p">,</span>
+      <span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="nb">zip</span><span class="p">(</span><span class="n">houses</span><span class="p">,</span> <span class="n">seats</span><span class="p">,</span> <span class="n">sigils</span><span class="p">,</span> <span class="n">words</span><span class="p">))))</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">unpacking de zip(*zip(houses, seats, sigils, words)) :&#34;</span><span class="p">)</span>
+<span class="n">houses_2</span><span class="p">,</span> <span class="n">seats_2</span><span class="p">,</span> <span class="n">sigils_2</span><span class="p">,</span> <span class="n">words_2</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="nb">zip</span><span class="p">(</span><span class="n">houses</span><span class="p">,</span> <span class="n">seats</span><span class="p">,</span> <span class="n">sigils</span><span class="p">,</span> <span class="n">words</span><span class="p">))</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&#34;=&gt; houses_2 : {houses_2}&#34;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&#34;=&gt; seats_2 : {seats_2}&#34;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&#34;=&gt; sigils_2 : {sigils_2}&#34;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&#34;=&gt; seats_2 : {words_2}&#34;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Ce qui nous donne si on exécute ce code :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">Réalisation d&#39;un &#39;unzip&#39; et retour à la situation initiale
+zip(*zip(houses, seats, sigils, words)) comme liste :  [(&#39;Stark&#39;, &#39;Lannister&#39;, &#39;Baratheon&#39;, &#39;Greyjoy&#39;), (&#39;Winterfell&#39;, &#39;Casterly Rock&#39;, &#34;Storm&#39;s End&#34;, &#39;Pyke&#39;), (&#39;A Gray Direwolf&#39;, &#39;A Golden Lion&#39;, &#39;A Crowned Black Stag&#39;, &#39;A Golden Kraken&#39;), (&#39;Winter is coming&#39;, &#39;Hear me roar !&#39;, &#39;Our is the fury !&#39;, &#39;We do not sow&#39;)]
+
+unpacking de zip(*zip(houses, seats, sigils, words)) :
+=&gt; houses_2 : (&#39;Stark&#39;, &#39;Lannister&#39;, &#39;Baratheon&#39;, &#39;Greyjoy&#39;)
+=&gt; seats_2 : (&#39;Winterfell&#39;, &#39;Casterly Rock&#39;, &#34;Storm&#39;s End&#34;, &#39;Pyke&#39;)
+=&gt; sigils_2 : (&#39;A Gray Direwolf&#39;, &#39;A Golden Lion&#39;, &#39;A Crowned Black Stag&#39;, &#39;A Golden Kraken&#39;)
+=&gt; seats_2 : (&#39;Winter is coming&#39;, &#39;Hear me roar !&#39;, &#39;Our is the fury !&#39;, &#39;We do not sow&#39;)
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="synthèse-en-image">Synthèse en image</h2>
+<p>Un petit récapitulatif de ce qui vient d&rsquo;être présenté : ce n&rsquo;est pas compliqué mais ce n&rsquo;est pas toujours très simple à visualiser.</p>
+<p><img src="../../img/python/zip/synthese_zip_unzip.png" alt="Synthèse en image"></p>
+<p>Si vous trouvez l&rsquo;image trop petite pour une lecture confortable la voici en [<a href="../../assets/python/zip/zip_et_unzip_en_python.pdf">PDF</a>|<a href="../../assets/python/zip/zip_et_unzip_en_python.xlsx">XLSX</a>|<a href="../../assets/python/zip/zip_et_unzip_en_python.ods">ODF</a>]</p>
+<h2 id="a-ne-pas-zapper">A ne pas zapper</h2>
+<p>Il y a encore quelques particularités de la fonction <code>zip</code> que nous n&rsquo;avons pas abordées.</p>
+<p>La fonction <code>zip</code> peut être utilisé avec des séquences <em>infinies</em> : ce que produit <code>zip</code> est un <em>itérable</em> et tant que vous n&rsquo;essayez pas de <em>réaliser</em> la séquence de manière brutale en la transformant en liste ou en essayant de faire un <em>unpacking</em> dessus, il n&rsquo;y a pas de soucis : vous avez un itérable qui représente une séquence potentiellement infini. Dans l&rsquo;exemple ci-après j&rsquo;utilise <code>count</code> de <code>itertools</code> pour générer des listes de nombres entiers infinis et j&rsquo;utilise la fonction <code>islice</code> de <code>itertools</code>également pour prendre une <em>tranche</em> de taille définie (ici 10) de l&rsquo;<em>iterator</em> produit par <code>zip</code>. En effet, on ne peut pas <em>slicer</em> directement avec la syntaxe <code>[start🔚step]</code> utilisable avec les listes, les tuples ou les chaînes.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">count</span><span class="p">,</span> <span class="n">islice</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;zip avec des séquences infinies&#34;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">islice</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">count</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">count</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">count</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">count</span><span class="p">(</span><span class="mi">3</span><span class="p">)),</span> <span class="mi">10</span><span class="p">)))</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">zip avec des séquences infinies
+[(0, 1, 2, 3), (1, 2, 3, 4), (2, 3, 4, 5), (3, 4, 5, 6), (4, 5, 6, 7), (5, 6, 7, 8), (6, 7, 8, 9), (7, 8, 9, 10), (8, 9, 10, 11), (9, 10, 11, 12)]
+</code></pre></td></tr></table>
+</div>
+</div><p>Si vous appliquez <code>zip</code> sur des séquences de tailles différentes, que se passe-t-il ? Eh bien, le <code>zip</code> s&rsquo;effectue par rapport à la séquence qui a la plus petite taille, il n&rsquo;y aura pas plus de tuples que d&rsquo;éléments dans la plus petite des listes. Cela sera probablement plus clair avec l&rsquo;exemple qui suit :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">print</span><span class="p">(</span><span class="s2">&#34;zip avec des séquences de tailles différentes&#34;</span><span class="p">)</span>
+<span class="n">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]</span>
+<span class="n">lower_cap_letters</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">]</span>
+<span class="n">upper_cap_letters</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">]</span>
+<span class="k">print</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">lower_cap_letters</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">upper_cap_letters</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;Les 3 listes précédentes &#39;zippées&#39; avec la fonction zip :&#34;</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">numbers</span><span class="p">,</span> <span class="n">lower_cap_letters</span><span class="p">,</span> <span class="n">upper_cap_letters</span><span class="p">)))</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>On obtient ainsi qu&rsquo;une séquence de 3 tuples, avec les 3 premiers éléments de chaque liste, c&rsquo;est la plus petite liste qui a déterminé la contrainte sur la taille de la séquence produite.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">zip avec des séquences de tailles différentes
+[1, 2, 3, 4, 5]
+[&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;]
+[&#39;A&#39;, &#39;B&#39;, &#39;C&#39;]
+Les 3 listes précédentes &#39;zippées&#39; avec la fonction zip : [(1, &#39;a&#39;, &#39;A&#39;), (2, &#39;b&#39;, &#39;B&#39;), (3, &#39;c&#39;, &#39;C&#39;)]
+</code></pre></td></tr></table>
+</div>
+</div><p>Et si je veux <em>zipper</em> par rapport à la liste qui a la plus grande taille ? Je fais appel à <code>zip_longest</code> de <code>itertools</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">zip_longest</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;utilisation de zip_longest de itertools&#34;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">lower_cap_letters</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">upper_cap_letters</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;Les 3 listes précédentes &#39;zippées&#39; avec la fonction itertools.zip_longest :&#34;</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">zip_longest</span><span class="p">(</span><span class="n">numbers</span><span class="p">,</span> <span class="n">lower_cap_letters</span><span class="p">,</span> <span class="n">upper_cap_letters</span><span class="p">)))</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Cette fois-ci c&rsquo;est la plus longue liste qui impose les conditions, les valeurs manquantes pour compléter les tuples sont remplacées assez logiquement par <code>None</code>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">utilisation de zip_longest de itertools
+[1, 2, 3, 4, 5]
+[&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;]
+[&#39;A&#39;, &#39;B&#39;, &#39;C&#39;]
+Les 3 listes précédentes &#39;zippées&#39; avec la fonction itertools.zip_longest : [(1, &#39;a&#39;, &#39;A&#39;), (2, &#39;b&#39;, &#39;B&#39;), (3, &#39;c&#39;, &#39;C&#39;), (4, &#39;d&#39;, None), (5, None, None)]
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="avant-de-partir">Avant de partir</h2>
+<p>Les fonctions <code>zip</code> et <code>unzip</code> font parties des outils de manipulation de séquences qu&rsquo;il est intéressant de connaître notamment dès qu&rsquo;on souhaite manipuler des séquences d&rsquo;éléments sous forme d&rsquo;<em>iterator</em> avec des fonctions comme <em>map</em>, <em>filter</em> et companie, dans des <a href="https://tgits.github.io/post/notes_apprentissage_python_comprehension/">compréhensions</a>) ou avec des <em>generators</em>. Il est intéressant de trouver la fonction en Python directement et de pouvoir faire le <code>unzip</code> facilement.</p>
+<p>Les exemples du billet sont disponibles sous forme de <a href="https://gist.github.com/TGITS/384a5e145fe2786e02a61a9792be5fdb">gist</a>.</p>
+<h2 id="références">Références</h2>
+<h3 id="livres">Livres</h3>
+<ul>
+<li><a href="https://jakevdp.github.io/WhirlwindTourOfPython/">A Whirlwind Tour of Python</a></li>
+</ul>
+<h3 id="articles-et-billets">Articles et billets</h3>
+<ul>
+<li><a href="http://sametmax.com/operateur-splat-ou-etoile-en-python/">L’opérateur splat (l’étoile: *) en Python</a></li>
+<li><a href="http://pub.phyks.me/sdz/sdz/ratiques-avancees-et-meconnues-en-python.html">Tutoriel : Pratiques avancées et méconnues en Python</a></li>
+</ul>
+<h3 id="images">Images</h3>
+<p>Les images de <a href="https://fr.wikipedia.org/wiki/Fermeture_%C3%A9clair">fermetures éclair</a> sont des images sous <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.en">licence Creative Commons Attribution-ShareAlike</a></p>
+<ul>
+<li><a href="https://commons.wikimedia.org/wiki/File:Zipper_animated.gif">https://commons.wikimedia.org/wiki/File:Zipper_animated.gif</a></li>
+<li><a href="https://commons.wikimedia.org/wiki/File:Coil_plastic_and_metal_zippers.jpg">https://commons.wikimedia.org/wiki/File:Coil_plastic_and_metal_zippers.jpg</a></li>
+</ul>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Auteur</span>
+    <span class="item-content">TGITS</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">Modifié</span>
+    <span class="item-content">
+        2020-11-22
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/python/">python</a>
+          <a href="/tags/python3/">python3</a>
+          <a href="/tags/notes-dapprentissage/">notes d&#39;apprentissage</a>
+          <a href="/tags/d%C3%A9veloppement/">développement</a>
+          <a href="/tags/tips/">tips</a>
+          <a href="/tags/zip/">zip</a>
+          <a href="/tags/unzip/">unzip</a>
+          <a href="/tags/unpacking/">unpacking&#34;</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/post/notes_apprentissage_python_comprehension/">
+            <span class="next-text nav-default">Notes d&#39;apprentissage de Python : les compréhensions</span>
+            <span class="next-text nav-mobile">Suivant</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    (function() {
+      
+      
+      if (window.location.hostname === 'localhost') return;
+
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      var disqus_shortname = 'thegeekintheshell';
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "thegeekintheshell" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+<div class="social-links">
+      <a href="mailto:thegeekintheshell@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://twitter.com/_TGITS" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="https://www.linkedin.com/in/cvaudry/" class="iconfont icon-linkedin" title="linkedin"></a>
+      <a href="https://github.com/TGITS" class="iconfont icon-github" title="github"></a>
+      <a href="https://gitlab.com/TGITS" class="iconfont icon-gitlab" title="gitlab"></a>
+  <a href="https://tgits.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Propulsé par <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Thème - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2020
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">TGITS</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>
