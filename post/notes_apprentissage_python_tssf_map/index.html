@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Notes d&#39;apprentissage de Python : traitement des séquences avec un style fonctionnelle - map - The Geek In The Shell</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="TGITS" /><meta name="description" content="Contexte Ce billet s&amp;rsquo;inscrit dans une série de billets sur le traitement des séquences avec un style fonctionnelle en Python.
+NB : La version de Python utilisée dans les exemples de code est la version 3.
+Principe La fonction map est native tout comme filter et prend également en paramètre une fonction et une séquence d&amp;rsquo;éléments.
+La fonction map permet d&amp;rsquo;appliquer cette fonction à chaque élément de la séquence et produit une nouvelle séquence résultante dont chaque élément est le résultat de l&amp;rsquo;application de cette fonction sur chaque élément de la séquence initiale." /><meta name="keywords" content="TGITS, Développement, Java, Architecture" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.71.1 with theme even" />
+
+
+<link rel="canonical" href="https://tgits.github.io/post/notes_apprentissage_python_tssf_map/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.8c3cbcb0324c2bb4875ceccba4007cbad4b4ac8377f33af9953c3e7684534a50.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Notes d&#39;apprentissage de Python : traitement des séquences avec un style fonctionnelle - map" />
+<meta property="og:description" content="Contexte Ce billet s&rsquo;inscrit dans une série de billets sur le traitement des séquences avec un style fonctionnelle en Python.
+NB : La version de Python utilisée dans les exemples de code est la version 3.
+Principe La fonction map est native tout comme filter et prend également en paramètre une fonction et une séquence d&rsquo;éléments.
+La fonction map permet d&rsquo;appliquer cette fonction à chaque élément de la séquence et produit une nouvelle séquence résultante dont chaque élément est le résultat de l&rsquo;application de cette fonction sur chaque élément de la séquence initiale." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://tgits.github.io/post/notes_apprentissage_python_tssf_map/" />
+<meta property="article:published_time" content="2021-05-07T14:27:45+02:00" />
+<meta property="article:modified_time" content="2021-05-07T14:27:45+02:00" />
+<meta itemprop="name" content="Notes d&#39;apprentissage de Python : traitement des séquences avec un style fonctionnelle - map">
+<meta itemprop="description" content="Contexte Ce billet s&rsquo;inscrit dans une série de billets sur le traitement des séquences avec un style fonctionnelle en Python.
+NB : La version de Python utilisée dans les exemples de code est la version 3.
+Principe La fonction map est native tout comme filter et prend également en paramètre une fonction et une séquence d&rsquo;éléments.
+La fonction map permet d&rsquo;appliquer cette fonction à chaque élément de la séquence et produit une nouvelle séquence résultante dont chaque élément est le résultat de l&rsquo;application de cette fonction sur chaque élément de la séquence initiale.">
+<meta itemprop="datePublished" content="2021-05-07T14:27:45&#43;02:00" />
+<meta itemprop="dateModified" content="2021-05-07T14:27:45&#43;02:00" />
+<meta itemprop="wordCount" content="1502">
+
+
+
+<meta itemprop="keywords" content="python,python3,notes d&#39;apprentissage,développement,tips,programmation fonctionnelle," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Notes d&#39;apprentissage de Python : traitement des séquences avec un style fonctionnelle - map"/>
+<meta name="twitter:description" content="Contexte Ce billet s&rsquo;inscrit dans une série de billets sur le traitement des séquences avec un style fonctionnelle en Python.
+NB : La version de Python utilisée dans les exemples de code est la version 3.
+Principe La fonction map est native tout comme filter et prend également en paramètre une fonction et une séquence d&rsquo;éléments.
+La fonction map permet d&rsquo;appliquer cette fonction à chaque élément de la séquence et produit une nouvelle séquence résultante dont chaque élément est le résultat de l&rsquo;application de cette fonction sur chaque élément de la séquence initiale."/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">TGITS</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Blog</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">TGITS</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Blog</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Notes d&#39;apprentissage de Python : traitement des séquences avec un style fonctionnelle - map</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2021-05-07 </span>
+        <div class="post-category">
+            <a href="/categories/d%C3%A9veloppement/"> développement </a>
+            <a href="/categories/python/"> python </a>
+            <a href="/categories/notes-dapprentissage/"> notes d&#39;apprentissage </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contenu</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#contexte">Contexte</a></li>
+    <li><a href="#principe">Principe</a></li>
+    <li><a href="#comparaison-avec-les-boucles-for-et-les-compréhensions">Comparaison avec les boucles for et les compréhensions</a></li>
+    <li><a href="#la-fonction-map-retourne-un-iterator">La fonction map retourne un iterator</a></li>
+    <li><a href="#combiner-map-et-filter">Combiner map et filter</a></li>
+    <li><a href="#synthèse">Synthèse</a></li>
+    <li><a href="#ressources">Ressources</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h2 id="contexte">Contexte</h2>
+<p>Ce billet s&rsquo;inscrit dans une <a href="https://tgits.github.io/post/notes_apprentissage_python_traiter_sequences_avec_style_fonctionnelle/">série de billets sur le traitement des séquences avec un style fonctionnelle en Python</a>.</p>
+<p><strong>NB</strong> : La version de Python utilisée dans les exemples de code est la version 3.</p>
+<h2 id="principe">Principe</h2>
+<p>La fonction <code>map</code> est <a href="https://docs.python.org/fr/3/library/functions.html#map">native</a> tout comme <a href="https://tgits.github.io/post/notes_apprentissage_python_tssf_filter/">filter</a> et prend également en paramètre une fonction et une séquence d&rsquo;éléments.</p>
+<p>La fonction <code>map</code> permet d&rsquo;appliquer cette fonction à chaque élément de la séquence et produit une nouvelle séquence résultante dont chaque élément est le résultat de l&rsquo;application de cette fonction sur chaque élément de la séquence initiale.</p>
+<p><img src="../../img/python/map/principe-map.png" alt="Principe de map"></p>
+<p>Ainsi <code>map</code> produit une nouvelle séquence dont chaque élément est l&rsquo;élément correspondant de la première liste sur laquelle on a appliquée la fonction passée en paramètre.</p>
+<p>Tout comme <code>filter</code>, la séquence retournée par la fonction <code>map</code> est un objet <code>iterator</code>.</p>
+<p>Voyons tout cela à travers un exemple simple dans lequel on transforme une séquence de nombres entiers en une séquence des carrés correspondants.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">squared</span><span class="p">(</span><span class="n">x</span><span class="p">):</span> <span class="k">return</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span>
+
+<span class="n">iterator_of_powers_of_2_for_first_numbers</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">squared</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;La fonction map retourne un objet iterator :&#34;</span><span class="p">,</span> <span class="n">iterator_of_powers_of_2_for_first_numbers</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;C&#39;est bien un objet iterator avec les méthodes __iter__ et __next__&#34;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;Il possède la fonction __iter__ (&#39;__iter__&#39; in dir(iterator_of_powers_of_2_for_first_numbers)) :&#34;</span><span class="p">,</span> <span class="s1">&#39;__iter__&#39;</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">iterator_of_powers_of_2_for_first_numbers</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;Il possède la fonction __next__ (&#39;__next__&#39; in dir(iterator_of_powers_of_2_for_first_numbers)) :&#34;</span><span class="p">,</span> <span class="s1">&#39;__next__&#39;</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">iterator_of_powers_of_2_for_first_numbers</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;Premier élément :&#34;</span><span class="p">,</span> <span class="nb">next</span><span class="p">(</span><span class="n">iterator_of_powers_of_2_for_first_numbers</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;Elément suivant :&#34;</span><span class="p">,</span> <span class="nb">next</span><span class="p">(</span><span class="n">iterator_of_powers_of_2_for_first_numbers</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;La suite des éléments : &#34;</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="o">*</span><span class="n">iterator_of_powers_of_2_for_first_numbers</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Si vous exécutez ce code avec Python vous obtiendriez quelque chose de similaire à ce qui suit :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">La</span> <span class="n">fonction</span> <span class="nb">map</span> <span class="n">retourne</span> <span class="n">un</span> <span class="n">objet</span> <span class="n">iterator</span> <span class="p">:</span> <span class="o">&lt;</span><span class="nb">map</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x000002AB8739BA00</span><span class="o">&gt;</span>
+<span class="n">C</span><span class="s1">&#39;est bien un objet iterator avec les méthodes __iter__ et __next__</span>
+<span class="n">Il</span> <span class="n">possède</span> <span class="n">la</span> <span class="n">fonction</span> <span class="fm">__iter__</span> <span class="p">(</span><span class="s1">&#39;__iter__&#39;</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">iterator_of_powers_of_2_for_first_numbers</span><span class="p">))</span> <span class="p">:</span> <span class="bp">True</span>
+<span class="n">Il</span> <span class="n">possède</span> <span class="n">la</span> <span class="n">fonction</span> <span class="n">__next__</span> <span class="p">(</span><span class="s1">&#39;__next__&#39;</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">iterator_of_powers_of_2_for_first_numbers</span><span class="p">))</span> <span class="p">:</span> <span class="bp">True</span>
+<span class="n">Premier</span> <span class="err">é</span><span class="n">lément</span> <span class="p">:</span> <span class="mi">1</span>
+<span class="n">Elément</span> <span class="n">suivant</span> <span class="p">:</span> <span class="mi">4</span>
+<span class="n">La</span> <span class="n">suite</span> <span class="n">des</span> <span class="err">é</span><span class="n">léments</span> <span class="p">:</span> <span class="mi">9</span> <span class="mi">16</span> <span class="mi">25</span> <span class="mi">36</span> <span class="mi">49</span> <span class="mi">64</span> <span class="mi">81</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="comparaison-avec-les-boucles-for-et-les-compréhensions">Comparaison avec les boucles for et les compréhensions</h2>
+<p>L&rsquo;équivalent avec une boucle <code>for</code> pourrait s&rsquo;écrire comme suit :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">print</span><span class="p">(</span><span class="s2">&#34;L&#39;équivalent avec une boucle for : &#34;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">powers_of_2</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">number</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">):</span>
+    <span class="n">powers_of_2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">squared</span><span class="p">(</span><span class="n">number</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">powers_of_2</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Qui produirait l&rsquo;affichage suivant :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">L</span><span class="s1">&#39;équivalent avec une boucle for : [1, 4, 9, 16, 25, 36, 49, 64, 81]</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Ce n&rsquo;est pas strictement équivalent car comme on peut le constater dans l&rsquo;exemple, <code>map</code> retourne un <code>iterator</code>. Pour faire quelque chose de vraiment équivalent, il faudrait utiliser une fonction génératrice comme ci-après.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">my_map</span><span class="p">(</span><span class="n">transformation_function</span><span class="p">,</span> <span class="n">sequence</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">elt</span> <span class="ow">in</span> <span class="n">sequence</span><span class="p">:</span>
+        <span class="k">yield</span> <span class="n">transformation_function</span><span class="p">(</span><span class="n">elt</span><span class="p">)</span>
+
+<span class="n">powers_of_two</span> <span class="o">=</span> <span class="n">my_map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">11</span><span class="p">))</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">powers_of_two</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">powers_of_two</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">powers_of_two</span><span class="p">))</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Qui après exécution donne quelque chose de similaire à ce qui suit :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="o">&lt;</span><span class="n">generator</span> <span class="nb">object</span> <span class="n">my_map</span> <span class="n">at</span> <span class="mh">0x000002239CD9B270</span><span class="o">&gt;</span>
+<span class="mi">1</span>
+<span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">36</span><span class="p">,</span> <span class="mi">49</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">81</span><span class="p">,</span> <span class="mi">100</span><span class="p">]</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Bien sûr on peut écrire du code équivalent sous forme de compréhension, ce qui est considéré comme un style plus <em>pythonique</em> car plus lisible :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">generator_of_powers_of_2_for_first_numbers</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">generator_of_powers_of_2_for_first_numbers</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">generator_of_powers_of_2_for_first_numbers</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">generator_of_powers_of_2_for_first_numbers</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="o">*</span><span class="n">generator_of_powers_of_2_for_first_numbers</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="la-fonction-map-retourne-un-iterator">La fonction map retourne un iterator</h2>
+<p>La fonction <code>map</code> retourne un <code>iterator</code> (comme la fonction <a href="https://tgits.github.io/post/notes_apprentissage_python_tssf_filter/">filter</a>) comme cela a été évoqué dans le paragraphe précédent.
+Ainsi, le retour de la fonction <code>map</code> peut être manipulé comme tel. On peut par exemple utiliser le résultat directement avec les fonctions (natives) <code>sum</code>, <code>max</code> ou <code>min</code>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">print</span><span class="p">(</span><span class="s2">&#34;Somme des carrés des 9 premiers entiers strictement positifs :&#34;</span><span class="p">,</span> <span class="nb">sum</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">squared</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">))))</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;Maximum des carrés des 9 premiers entiers strictement positifs :&#34;</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">squared</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">))))</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;Minimum des carrés des 9 premiers entiers strictement positifs :&#34;</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">squared</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">))))</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Ce qui donne :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">Somme</span> <span class="n">des</span> <span class="n">carrés</span> <span class="n">des</span> <span class="mi">9</span> <span class="n">premiers</span> <span class="n">entiers</span> <span class="n">strictement</span> <span class="n">positifs</span> <span class="p">:</span> <span class="mi">285</span>
+<span class="n">Maximum</span> <span class="n">des</span> <span class="n">carrés</span> <span class="n">des</span> <span class="mi">9</span> <span class="n">premiers</span> <span class="n">entiers</span> <span class="n">strictement</span> <span class="n">positifs</span> <span class="p">:</span> <span class="mi">81</span>
+<span class="n">Minimum</span> <span class="n">des</span> <span class="n">carrés</span> <span class="n">des</span> <span class="mi">9</span> <span class="n">premiers</span> <span class="n">entiers</span> <span class="n">strictement</span> <span class="n">positifs</span> <span class="p">:</span> <span class="mi">1</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Et si nous voulons une liste ou un ensemble à partir du résultat de note <code>map</code>, il faut le convertir vers le type approprié.
+Par exemple pour transformer le résultat de <code>map</code> vers une liste :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">iterator_of_powers_of_2_for_first_numbers</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">squared</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;Liste des carrés des 9 premiers entiers strictement positifs :&#34;</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">iterator_of_powers_of_2_for_first_numbers</span><span class="p">))</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">Liste</span> <span class="n">des</span> <span class="n">carrés</span> <span class="n">des</span> <span class="mi">9</span> <span class="n">premiers</span> <span class="n">entiers</span> <span class="n">strictement</span> <span class="n">positifs</span> <span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">36</span><span class="p">,</span> <span class="mi">49</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">81</span><span class="p">]</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Ou encore pour transformer le résultat de <code>map</code> en un ensemble :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">iterator_of_powers_of_2</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">squared</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;Ensemble des carrés des entiers entre -9 et 9 :&#34;</span><span class="p">,</span> <span class="nb">set</span><span class="p">(</span><span class="n">iterator_of_powers_of_2</span><span class="p">))</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">Ensemble</span> <span class="n">des</span> <span class="n">carrés</span> <span class="n">des</span> <span class="n">entiers</span> <span class="n">entre</span> <span class="o">-</span><span class="mi">9</span> <span class="n">et</span> <span class="mi">9</span> <span class="p">:</span> <span class="p">{</span><span class="mi">64</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">36</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">81</span><span class="p">,</span> <span class="mi">49</span><span class="p">,</span> <span class="mi">25</span><span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>On peut également convertir l'<code>iterator</code> obtenu avec <code>map</code> vers un dictionnaire si ses éléments correspondent à des paires, de la même manière que l&rsquo;on peut convertir une liste de paires vers un dictionnaire.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">squared_pair</span><span class="p">(</span><span class="n">x</span><span class="p">):</span> <span class="k">return</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">iterator_powers_of_2_for_first_numbers</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">squared_pair</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;Tableau associatif des carrés des 9 premiers entiers strictement positifs :&#34;</span><span class="p">,</span><span class="nb">dict</span><span class="p">(</span><span class="n">iterator_powers_of_2_for_first_numbers</span><span class="p">))</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Dans l&rsquo;exemple ci-dessus, la fonction passé à <code>map</code> retourne un <code>tuple</code> et non plus juste une valeur scalaire. Cela nous donne le résultat ci-après.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">Tableau</span> <span class="n">associatif</span> <span class="n">des</span> <span class="n">carrés</span> <span class="n">des</span> <span class="mi">9</span> <span class="n">premiers</span> <span class="n">entiers</span> <span class="n">strictement</span> <span class="n">positifs</span> <span class="p">:</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">4</span><span class="p">:</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">5</span><span class="p">:</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">6</span><span class="p">:</span> <span class="mi">36</span><span class="p">,</span> <span class="mi">7</span><span class="p">:</span> <span class="mi">49</span><span class="p">,</span> <span class="mi">8</span><span class="p">:</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">9</span><span class="p">:</span> <span class="mi">81</span><span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Il est possible tout comme avec <a href="https://tgits.github.io/post/notes_apprentissage_python_tssf_filter/">filter</a>, les <a href="https://tgits.github.io/post/notes_apprentissage_python_comprehension/">compréhensions</a>) et de manière générale avec les <code>iterator</code> en Python, de manipuler des séquences potentiellement infinies (en exploitant par exemple le module <code>itertools</code>). Voici un exemple :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">itertools</span>
+
+
+<span class="n">neverending_iterator_of_powers_of_2</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">squared</span><span class="p">,</span> <span class="n">itertools</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;Premier élément :&#34;</span><span class="p">,</span> <span class="nb">next</span><span class="p">(</span><span class="n">neverending_iterator_of_powers_of_2</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;Elément suivant :&#34;</span><span class="p">,</span> <span class="nb">next</span><span class="p">(</span><span class="n">neverending_iterator_of_powers_of_2</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;La suite des éléments pour les entiers inférieurs à 1000 : &#34;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="o">*</span><span class="n">itertools</span><span class="o">.</span><span class="n">takewhile</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">1000</span><span class="p">,</span>
+                           <span class="n">neverending_iterator_of_powers_of_2</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;Elément suivant :&#34;</span><span class="p">,</span> <span class="nb">next</span><span class="p">(</span><span class="n">neverending_iterator_of_powers_of_2</span><span class="p">))</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>En utilisant ici la fonction <code>count</code> du module <code>itertools</code>, je génère un <code>iterator</code> infini de nombres entiers à partir de 1 et j&rsquo;applique la fonction <code>map</code> dessus. Avec la fonction <code>takewhile</code>, je prends des valeurs de l'<code>iterator</code> généré par <code>map</code> tant que les valeurs sont strictement inférieures à 1000.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">Premier</span> <span class="err">é</span><span class="n">lément</span> <span class="p">:</span> <span class="mi">1</span>
+<span class="n">Elément</span> <span class="n">suivant</span> <span class="p">:</span> <span class="mi">4</span>
+<span class="n">La</span> <span class="n">suite</span> <span class="n">des</span> <span class="err">é</span><span class="n">léments</span> <span class="n">pour</span> <span class="n">les</span> <span class="n">entiers</span> <span class="n">inférieurs</span> <span class="err">à</span> <span class="mi">1000</span> <span class="p">:</span> <span class="mi">9</span> <span class="mi">16</span> <span class="mi">25</span> <span class="mi">36</span> <span class="mi">49</span> <span class="mi">64</span> <span class="mi">81</span> <span class="mi">100</span> <span class="mi">121</span> <span class="mi">144</span> <span class="mi">169</span> <span class="mi">196</span> <span class="mi">225</span> <span class="mi">256</span> <span class="mi">289</span> <span class="mi">324</span> <span class="mi">361</span> <span class="mi">400</span> <span class="mi">441</span> <span class="mi">484</span> <span class="mi">529</span> <span class="mi">576</span> <span class="mi">625</span> <span class="mi">676</span> <span class="mi">729</span> <span class="mi">784</span> <span class="mi">841</span> <span class="mi">900</span> <span class="mi">961</span>
+<span class="n">Elément</span> <span class="n">suivant</span> <span class="p">:</span> <span class="mi">1089</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="combiner-map-et-filter">Combiner map et filter</h2>
+<p>Avec les compréhensions on peut effectuer un filtrage sur les éléments. 
+Avec <code>map</code> on ne peut pas le faire aussi directement que dans une compréhension mais on peut bien sûr combiner <code>map</code>et <code>filter</code> pour avoir le même résultat.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">first_event_numbers</span> <span class="o">=</span> <span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;Un objet _filter_, first_event_numbers :&#34;</span><span class="p">,</span> <span class="n">first_event_numbers</span><span class="p">)</span>
+<span class="n">list_powers_of_2_for_first_event_numbers</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">squared</span><span class="p">,</span> <span class="n">first_event_numbers</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;Les premiers carrés :&#34;</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">list_powers_of_2_for_first_event_numbers</span><span class="p">))</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Ici on a fait le choix de travailler en 2 temps, en créant une variable intermédiaire pour l'<code>iterator</code> produit par <code>filter</code>.
+Bien sûr on pourrait passer directement <code>filter</code> comme paramètre de <code>map</code>.
+Néanmoins les expressions de cette forme deviennent vite peu lisibles.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">Un</span> <span class="n">objet</span> <span class="n">_filter_</span><span class="p">,</span> <span class="n">first_event_numbers</span> <span class="p">:</span> <span class="o">&lt;</span><span class="nb">filter</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x0000020305D6CBE0</span><span class="o">&gt;</span>
+<span class="n">Les</span> <span class="n">premiers</span> <span class="n">carrés</span> <span class="p">:</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">36</span><span class="p">,</span> <span class="mi">64</span><span class="p">]</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Contrairement à des langages fonctionnelles comme <a href="https://elixir-lang.org/">Elixir</a> ou <a href="https://clojure.org/">Clojure</a>, il n&rsquo;y a pas de sucre syntaxique comme le <em>pipe operator</em> <code>|&gt;</code> ou des <em>threading macros</em> comme <code>-&gt;&gt;</code> pour faciliter l&rsquo;écriture d&rsquo;une chaîne d&rsquo;opération sur des <code>iterator</code>.
+De plus, on ne peut pas enchainer les fonctions comme <code>map</code>, <code>filter</code>, <code>reduce</code> ou les fonctions de <code>itertools</code> comme on le ferait avec les <a href="https://docs.oracle.com/javase/8/docs/api/?java/util/stream/Stream.html">stream</a> en Java par exemple, car justement ce sont des fonctions, pas des méthodes de l&rsquo;objet <code>iterator</code>.
+Il est donc souvent préférable pour des questions de lisibilité de passer par des variables intermédiaires pour éviter d&rsquo;avoir des appels de fonctions imbriqués.</p>
+<p>Il y a plusieurs manières d&rsquo;obtenir l&rsquo;équivalent d&rsquo;une boucle ou d&rsquo;une compréhension imbriquée avec <code>map</code>, mais cela implique d&rsquo;autres fonctions que juste <code>map</code>. Ce point est développé dans le billet sur <a href="http://localhost:1313/post/notes_apprentissage_python_tssf_flatmap/">flatmap</a></p>
+<h2 id="synthèse">Synthèse</h2>
+<p>La fonction <code>map</code> est une fonction native de Python. Elle prend en paramètre une fonction et un <code>iterator</code> ; elle retourne un nouvel <code>iterator</code> dont chaque élément est le résultat de l&rsquo;application de cette fonction sur chaque élément de la séquence initiale.
+La fonction <code>map</code> peut être vue comme l&rsquo;abstraction d&rsquo;une boucle sur une liste pour appliquer une fonction sur chaque élément de la liste et produire une nouvelle liste résultante.</p>
+<p>Il est bien sûr possible de combiner <code>map</code> avec <code>filter</code> pour filtrer avant d&rsquo;appliquer <code>map</code> ou au contraire après sur l'<code>iterator</code> produit par <code>map</code>.</p>
+<p>L&rsquo;ensemble du code du billet est disponible dans un <a href="https://gist.github.com/TGITS/8c4737dbb42ce160a39e2859b3e5bf8c">gist</a>.</p>
+<h2 id="ressources">Ressources</h2>
+<ul>
+<li>Billet chapeau sur le <a href="https://tgits.github.io/post/notes_apprentissage_python_traiter_sequences_avec_style_fonctionnelle/">traitement des séquences avec un style fonctionnel</a></li>
+<li>Billet sur <a href="https://tgits.github.io/post/notes_apprentissage_python_tssf_filter/">filter</a></li>
+<li>Billet sur <a href="https://tgits.github.io/post/notes_apprentissage_python_tssf_reduce/">reduce</a></li>
+<li>Billet sur <a href="https://tgits.github.io/post/notes_apprentissage_python_tssf_flatmap/">flatmap</a></li>
+<li><a href="https://gist.github.com/TGITS/8c4737dbb42ce160a39e2859b3e5bf8c">gist des exemples du billet</a></li>
+<li><a href="https://martinfowler.com/articles/collection-pipeline/">Notion de <em>Collection Pipeline</em></a>
+<ul>
+<li>Avec les <a href="https://martinfowler.com/articles/collection-pipeline/#op-catalog">opérations communes</a> sur ce <em>Collection Pipeline</em> :
+<ul>
+<li><a href="https://martinfowler.com/articles/collection-pipeline/map.html">map</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Article <em><a href="https://sametmax.com/map-filter-et-reduce/">map(), filter() et reduce () ?</a></em></li>
+<li><a href="https://rxmarbles.com/">RxJS Marbles</a></li>
+<li><a href="https://github.com/ReactiveX/RxPY">RxPy</a></li>
+<li><a href="http://reactivex.io/">ReactiveX</a>
+<ul>
+<li><a href="http://reactivex.io/documentation/operators/map.html">Map</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Auteur</span>
+    <span class="item-content">TGITS</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">Modifié</span>
+    <span class="item-content">
+        2021-05-07
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/python/">python</a>
+          <a href="/tags/python3/">python3</a>
+          <a href="/tags/notes-dapprentissage/">notes d&#39;apprentissage</a>
+          <a href="/tags/d%C3%A9veloppement/">développement</a>
+          <a href="/tags/tips/">tips</a>
+          <a href="/tags/programmation-fonctionnelle/">programmation fonctionnelle</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/notes_apprentissage_python_tssf_reduce/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Notes d&#39;apprentissage de Python : traitement des séquences avec un style fonctionnelle - reduce</span>
+            <span class="prev-text nav-mobile">Précédent</span>
+          </a>
+        <a class="next" href="/post/notes_apprentissage_python_tssf_filter/">
+            <span class="next-text nav-default">Notes d&#39;apprentissage de Python : traitement des séquences avec un style fonctionnelle - filter</span>
+            <span class="next-text nav-mobile">Suivant</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    (function() {
+      
+      
+      if (window.location.hostname === 'localhost') return;
+
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      var disqus_shortname = 'thegeekintheshell';
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "thegeekintheshell" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+<div class="social-links">
+      <a href="mailto:thegeekintheshell@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://twitter.com/_TGITS" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="https://www.linkedin.com/in/cvaudry/" class="iconfont icon-linkedin" title="linkedin"></a>
+      <a href="https://github.com/TGITS" class="iconfont icon-github" title="github"></a>
+      <a href="https://gitlab.com/TGITS" class="iconfont icon-gitlab" title="gitlab"></a>
+  <a href="https://tgits.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Propulsé par <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Thème - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2020 - 
+    2021
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">TGITS</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

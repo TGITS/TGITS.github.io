@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Notes d&#39;apprentissage de Python : traitement des séquences avec un style fonctionnelle - filter - The Geek In The Shell</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="TGITS" /><meta name="description" content="Contexte Ce billet s&amp;rsquo;inscrit dans une série de billets sur le traitement des séquences avec un style fonctionnelle en Python.
+NB : La version de Python utilisée dans les exemples de code est la version 3.
+Principe La fonction filter est native et prend en paramètre une fonction et une séquence d&amp;rsquo;éléments ; elle retourne un objet iterator.
+La fonction doit prendre un paramètre dont le type correspond aux éléments de la séquence et retourne un booléen (on peut parler de fonction prédicat ou de prédicat)." /><meta name="keywords" content="TGITS, Développement, Java, Architecture" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.71.1 with theme even" />
+
+
+<link rel="canonical" href="https://tgits.github.io/post/notes_apprentissage_python_tssf_filter/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.8c3cbcb0324c2bb4875ceccba4007cbad4b4ac8377f33af9953c3e7684534a50.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Notes d&#39;apprentissage de Python : traitement des séquences avec un style fonctionnelle - filter" />
+<meta property="og:description" content="Contexte Ce billet s&rsquo;inscrit dans une série de billets sur le traitement des séquences avec un style fonctionnelle en Python.
+NB : La version de Python utilisée dans les exemples de code est la version 3.
+Principe La fonction filter est native et prend en paramètre une fonction et une séquence d&rsquo;éléments ; elle retourne un objet iterator.
+La fonction doit prendre un paramètre dont le type correspond aux éléments de la séquence et retourne un booléen (on peut parler de fonction prédicat ou de prédicat)." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://tgits.github.io/post/notes_apprentissage_python_tssf_filter/" />
+<meta property="article:published_time" content="2021-05-07T14:27:44+02:00" />
+<meta property="article:modified_time" content="2021-05-07T14:27:44+02:00" />
+<meta itemprop="name" content="Notes d&#39;apprentissage de Python : traitement des séquences avec un style fonctionnelle - filter">
+<meta itemprop="description" content="Contexte Ce billet s&rsquo;inscrit dans une série de billets sur le traitement des séquences avec un style fonctionnelle en Python.
+NB : La version de Python utilisée dans les exemples de code est la version 3.
+Principe La fonction filter est native et prend en paramètre une fonction et une séquence d&rsquo;éléments ; elle retourne un objet iterator.
+La fonction doit prendre un paramètre dont le type correspond aux éléments de la séquence et retourne un booléen (on peut parler de fonction prédicat ou de prédicat).">
+<meta itemprop="datePublished" content="2021-05-07T14:27:44&#43;02:00" />
+<meta itemprop="dateModified" content="2021-05-07T14:27:44&#43;02:00" />
+<meta itemprop="wordCount" content="1810">
+
+
+
+<meta itemprop="keywords" content="python,python3,notes d&#39;apprentissage,développement,tips,programmation fonctionnelle," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Notes d&#39;apprentissage de Python : traitement des séquences avec un style fonctionnelle - filter"/>
+<meta name="twitter:description" content="Contexte Ce billet s&rsquo;inscrit dans une série de billets sur le traitement des séquences avec un style fonctionnelle en Python.
+NB : La version de Python utilisée dans les exemples de code est la version 3.
+Principe La fonction filter est native et prend en paramètre une fonction et une séquence d&rsquo;éléments ; elle retourne un objet iterator.
+La fonction doit prendre un paramètre dont le type correspond aux éléments de la séquence et retourne un booléen (on peut parler de fonction prédicat ou de prédicat)."/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">TGITS</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Blog</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">TGITS</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Blog</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Notes d&#39;apprentissage de Python : traitement des séquences avec un style fonctionnelle - filter</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2021-05-07 </span>
+        <div class="post-category">
+            <a href="/categories/d%C3%A9veloppement/"> développement </a>
+            <a href="/categories/python/"> python </a>
+            <a href="/categories/notes-dapprentissage/"> notes d&#39;apprentissage </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contenu</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#contexte">Contexte</a></li>
+    <li><a href="#principe">Principe</a></li>
+    <li><a href="#la-fonction-filter-retourne-un-iterator">La fonction filter retourne un iterator</a></li>
+    <li><a href="#filtrer-avec-none">Filtrer avec None</a>
+      <ul>
+        <li><a href="#filtrer-négativement">Filtrer négativement</a></li>
+      </ul>
+    </li>
+    <li><a href="#synthèse">Synthèse</a></li>
+    <li><a href="#ressources">Ressources</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h2 id="contexte">Contexte</h2>
+<p>Ce billet s&rsquo;inscrit dans une <a href="https://tgits.github.io/post/notes_apprentissage_python_traiter_sequences_avec_style_fonctionnelle/">série de billets sur le traitement des séquences avec un style fonctionnelle en Python</a>.</p>
+<p><strong>NB</strong> : La version de Python utilisée dans les exemples de code est la version 3.</p>
+<h2 id="principe">Principe</h2>
+<p>La fonction <code>filter</code> est <a href="https://docs.python.org/fr/3/library/functions.html#filter">native</a> et prend en paramètre une fonction et une séquence d&rsquo;éléments ; elle retourne un objet <code>iterator</code>.</p>
+<p>La fonction doit prendre un paramètre dont le type correspond aux éléments de la séquence et retourne un booléen (on peut parler de fonction prédicat ou de prédicat).</p>
+<p>L&rsquo;objet <code>iterator</code> est une nouvelle séquence d&rsquo;éléments ne comportant que les éléments de la séquence initiale pour lesquelles la fonction a retourné <em>vrai</em> : la séquence de départ a été <em>filtrée</em> des éléments faux pour le prédicat.</p>
+<p>Par exemple, pour obtenir la liste des entiers strictement positifs inférieurs strictement à 10, avec une boucle <code>for</code> on pourrait procéder comme suit :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">even_numbers_below_10_with_for</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">even_numbers_below_10_with_for</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;[for] Liste des nombres pairs plus petits que 10 :&#34;</span><span class="p">,</span> <span class="n">even_numbers_below_10_with_for</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Ce qui donne comme affichage :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="p">[</span><span class="k">for</span><span class="p">]</span> <span class="n">Liste</span> <span class="n">des</span> <span class="n">nombres</span> <span class="n">pairs</span> <span class="n">plus</span> <span class="n">petits</span> <span class="n">que</span> <span class="mi">10</span> <span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">]</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>On pourrait pour faire la même chose écrire une compréhension comme ce qui suit :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">even_numbers_below_10_with_comprehension</span> <span class="o">=</span> <span class="p">[</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span> <span class="k">if</span> <span class="n">n</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;[compréhension] Liste des nombres pairs plus petits que 10 :&#34;</span><span class="p">,</span> <span class="n">even_numbers_below_10_with_comprehension</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="p">[</span><span class="n">compréhension</span><span class="p">]</span> <span class="n">Liste</span> <span class="n">des</span> <span class="n">nombres</span> <span class="n">pairs</span> <span class="n">plus</span> <span class="n">petits</span> <span class="n">que</span> <span class="mi">10</span> <span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">]</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Avec la fonction <code>filter</code>, cela nous donne :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">even_numbers_below_10_with_filter</span> <span class="o">=</span> <span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">n</span><span class="p">:</span> <span class="n">n</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;[filter] Liste des nombres pairs plus petits que 10 :&#34;</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">even_numbers_below_10_with_filter</span><span class="p">))</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="p">[</span><span class="nb">filter</span><span class="p">]</span> <span class="n">Liste</span> <span class="n">des</span> <span class="n">nombres</span> <span class="n">pairs</span> <span class="n">plus</span> <span class="n">petits</span> <span class="n">que</span> <span class="mi">10</span> <span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">]</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>L&rsquo;écriture de la compréhension et de la fonction <code>filter</code> sont plus compactes que celle de la boucle <code>for</code>.
+La fonction <code>filter</code> retourne un <code>iterator</code>, on doit d&rsquo;abord le convertir en liste avant de pouvoir l&rsquo;afficher sous cette forme.</p>
+<h2 id="la-fonction-filter-retourne-un-iterator">La fonction filter retourne un iterator</h2>
+<p>la fonction <code>filter</code> retourne un objet <code>iterator</code>, il est assez facile de le constater. Examinons, le code ci-après :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">houses</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;tyrell&#34;</span><span class="p">,</span> <span class="s2">&#34;stark&#34;</span><span class="p">,</span> <span class="s2">&#34;lannister&#34;</span><span class="p">,</span> <span class="s2">&#34;tarly&#34;</span><span class="p">,</span> <span class="s2">&#34;baratheon&#34;</span><span class="p">,</span> <span class="s2">&#34;targaryen&#34;</span><span class="p">]</span>
+
+<span class="n">houses_starting_with_t</span> <span class="o">=</span> <span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&#34;t&#34;</span><span class="p">),</span> <span class="n">houses</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;La fonction filter retourne un objet iterator :&#34;</span><span class="p">,</span> <span class="n">houses_starting_with_t</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;C&#39;est bien un objet iterator avec les méthodes __iter__ et __next__&#34;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;Il possède la fonction __iter__ (&#39;__iter__&#39; in dir(houses_starting_with_t)) :&#34;</span><span class="p">,</span> <span class="s1">&#39;__iter__&#39;</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">houses_starting_with_t</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;Il possède la fonction __next__ (&#39;__next__&#39; in dir(houses_starting_with_t)) :&#34;</span><span class="p">,</span> <span class="s1">&#39;__next__&#39;</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">houses_starting_with_t</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;L&#39;objet iterator converti en liste :&#34;</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">houses_starting_with_t</span><span class="p">))</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Si on exécute ce code on aura un affichage similaire à celui ci_dessous :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">La</span> <span class="n">fonction</span> <span class="nb">filter</span> <span class="n">retourne</span> <span class="n">un</span> <span class="n">objet</span> <span class="n">iterator</span> <span class="p">:</span> <span class="o">&lt;</span><span class="nb">filter</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x00000228BEA5BFA0</span><span class="o">&gt;</span>
+<span class="n">C</span><span class="s1">&#39;est bien un objet iterator avec les méthodes __iter__ et __next__</span>
+<span class="n">Il</span> <span class="n">possède</span> <span class="n">la</span> <span class="n">fonction</span> <span class="fm">__iter__</span> <span class="p">(</span><span class="s1">&#39;__iter__&#39;</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">houses_starting_with_t</span><span class="p">))</span> <span class="p">:</span> <span class="bp">True</span>
+<span class="n">Il</span> <span class="n">possède</span> <span class="n">la</span> <span class="n">fonction</span> <span class="n">__next__</span> <span class="p">(</span><span class="s1">&#39;__next__&#39;</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">houses_starting_with_t</span><span class="p">))</span> <span class="p">:</span> <span class="bp">True</span>
+<span class="n">L</span><span class="s1">&#39;objet iterator converti en liste : [&#39;</span><span class="n">tyrell</span><span class="s1">&#39;, &#39;</span><span class="n">tarly</span><span class="s1">&#39;, &#39;</span><span class="n">targaryen</span><span class="s1">&#39;]</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>L&rsquo;objet <code>iterator</code> est un objet <code>filter</code>. Il possède des méthodes <code>__iter__</code> et  <code>__next__</code> nécessaires pour qu&rsquo;un objet implémente le protocole <code>iterator</code>.</p>
+<p>Si on souhaite être précis, la compréhension <code>(house for house in houses if house.startswith(&quot;t&quot;))</code> est un véritable équivalent de <code>filter(lambda s: s.startswith(&quot;t&quot;), houses)</code>, mais pas <code>[house for house in houses if house.startswith(&quot;t&quot;)]</code> ou la boucle <code>for</code> ci-après :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">houses</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;tyrell&#34;</span><span class="p">,</span> <span class="s2">&#34;stark&#34;</span><span class="p">,</span> <span class="s2">&#34;lannister&#34;</span><span class="p">,</span> <span class="s2">&#34;tarly&#34;</span><span class="p">,</span> <span class="s2">&#34;baratheon&#34;</span><span class="p">,</span> <span class="s2">&#34;targaryen&#34;</span><span class="p">]</span>
+
+<span class="n">houses_starting_with_t</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">house</span> <span class="ow">in</span> <span class="n">houses</span><span class="p">:</span>
+      <span class="k">if</span> <span class="n">house</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&#34;t&#34;</span><span class="p">):</span>
+            <span class="n">houses_starting_with_t</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">house</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">houses_starting_with_t</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>A proprement parler ces deux derniers cas produisent des listes et non des objets <code>iterator</code>.</p>
+<p>Avec une boucle <code>for</code> pour faire un <em>vrai</em> équivalent à <code>filter</code>, il faut faire une <em>fonction génératrice</em>, comme dans l&rsquo;exemple ci-dessous :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">my_filter</span><span class="p">(</span><span class="n">predicate</span><span class="p">,</span> <span class="n">sequence</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">elt</span> <span class="ow">in</span> <span class="n">sequence</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">predicate</span><span class="p">(</span><span class="n">elt</span><span class="p">):</span>
+            <span class="k">yield</span> <span class="n">elt</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="../../img/python/filter/filter_avec_generator.png" alt="implémentation de filter avec une fonction génératrice"></p>
+<p>Cette fonction retourne un <code>iterator</code> et s&rsquo;utilise comme tel :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">even_numbers</span> <span class="o">=</span> <span class="n">my_filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">))</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">even_numbers</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">even_numbers</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">even_numbers</span><span class="p">))</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Ce qui donne :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="o">&lt;</span><span class="n">generator</span> <span class="nb">object</span> <span class="n">my_filter</span> <span class="n">at</span> <span class="mh">0x0000026C91839510</span><span class="o">&gt;</span>
+<span class="mi">2</span>
+<span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Ce qui est intéressant avec les objets <code>iterator</code>, c&rsquo;est qu&rsquo;ils sont <em>paresseux</em> et qu&rsquo;ils peuvent représenter des séquences potentiellement infinies, les éléments n&rsquo;étant générés qu&rsquo;à la demande. On peut donc avoir des expressions comme ce qui suit, <code>count</code> produisant lui-même un <code>iterator</code> et une séquence infinie de nombres entiers à partir d&rsquo;une valeur de départ. Par exemple pour avoir un <code>iterator</code> représentant les nombrs impairs :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">odd_numbers</span> <span class="o">=</span> <span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">itertools</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>La variable <code>odd_numbers</code> contient un <code>iterator</code> que l&rsquo;on peut ensuite manipuler comme tel :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">print</span><span class="p">(</span><span class="s2">&#34;Premier nombre entier impair :&#34;</span><span class="p">,</span> <span class="nb">next</span><span class="p">(</span><span class="n">odd_numbers</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;Nombre impair suivant :&#34;</span><span class="p">,</span> <span class="nb">next</span><span class="p">(</span><span class="n">odd_numbers</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;Les nombres impairs suivants plus petit que 100 : &#34;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="o">*</span><span class="n">itertools</span><span class="o">.</span><span class="n">takewhile</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">,</span> <span class="n">odd_numbers</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;Le nombre impair suivant :&#34;</span><span class="p">,</span> <span class="nb">next</span><span class="p">(</span><span class="n">odd_numbers</span><span class="p">))</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>La fonction <code>takewhile</code> de <code>itertools</code> extrait des valeurs tant que le prédicat passé comme premier paramètre est vraie (ici la lambda <code>lambda x: x &lt; 100</code>).
+On peut bien sûr faire quelque chose d&rsquo;équivalent avec une compréhension :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">itertools</span>
+
+
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;L&#39;équivalent avec une compréhension :&#34;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">odds_numbers_with_comprehension</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="k">if</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="o">*</span><span class="n">itertools</span><span class="o">.</span><span class="n">takewhile</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">,</span>
+                           <span class="n">odds_numbers_with_comprehension</span><span class="p">))</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Personnellement, je préfère utiliser <code>filter</code> plutôt qu&rsquo;une compréhension dans un cas comme celui-ci, à moins que je ne souhaite avoir directement une liste. En effet, l&rsquo;expression me paraît plus compact et traduisant mieux la sémantique. La bonne pratique dans l&rsquo;écosystème Python est quand même de privilégier les compréhensions qui sont vue comme étant plus <em>pythonique</em></p>
+<h2 id="filtrer-avec-none">Filtrer avec None</h2>
+<p>Il est possible de passer comme premiere paramètre à <code>filter</code> la valeur <code>None</code> plutôt qu&rsquo;une fonction. Dans ce cas, c&rsquo;est la fonction identité qui est utilisée comme fonction de filtre. Ainsi toute valeur pouvant s&rsquo;évaluer à <em>faux</em> dans un contexte booléen sera filtré.</p>
+<p>Il faut rappeler pour ceux qui viennent de Java ou de C# par exemple, qu&rsquo;en Python il n&rsquo;y a pas que les valeurs <code>True</code> et <code>False</code> qui s&rsquo;évalue comme un booléen, du moins dans des contextes où l&rsquo;on est en droit d&rsquo;attendre un booléen comme la condition d&rsquo;un <code>if</code> ou d&rsquo;un <code>while</code> ou ici la valeur de retour d&rsquo;une fonction qui est utilisée comme un prédicat pour filtrer une séquence d&rsquo;éléments.</p>
+<p>Ainsi, en Python les valeurs suivantes s&rsquo;évalue à faux dans un contexte booléen : <code>False</code>, <code>None</code>, <code>[]</code>, <code>()</code>, <code>{}</code>, <code>set()</code>, <code>&quot;&quot;</code>, <code>range(0)</code>, <code>0</code>, <code>0.0</code>, <code>0j</code>.</p>
+<p>Illsutrons tout cela avec un exemple :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">print</span><span class="p">(</span><span class="s2">&#34;Passage de None comme valeur pour le paramètre correspondant à la fonction&#34;</span><span class="p">)</span>
+<span class="n">falsy_values</span> <span class="o">=</span> <span class="p">[</span><span class="bp">False</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="p">[],</span> <span class="p">(),</span> <span class="p">{},</span> <span class="nb">set</span><span class="p">(),</span> <span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mi">0j</span><span class="p">]</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;Exemple de valeurs &#39;falsy&#39; en Python : &#34;</span><span class="p">,</span> <span class="n">falsy_values</span><span class="p">)</span>
+<span class="n">truthy_values</span> <span class="o">=</span> <span class="p">[</span><span class="bp">True</span><span class="p">,</span> <span class="s2">&#34;Not falsy&#34;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]]</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;Exemple de valeurs &#39;truthy&#39; en Python : &#34;</span><span class="p">,</span> <span class="n">truthy_values</span><span class="p">)</span>
+<span class="n">falsy_and_truthy_values</span> <span class="o">=</span> <span class="n">falsy_values</span> <span class="o">+</span> <span class="n">truthy_values</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;Exemple d&#39;une liste de valeurs &#39;falsy&#39; et &#39;truthy&#39;&#34;</span><span class="p">,</span> <span class="n">falsy_and_truthy_values</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;Liste précédente filtrée de ces valeurs &#39;falsy&#39; (avec filter) :&#34;</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="nb">filter</span><span class="p">(</span><span class="bp">None</span><span class="p">,</span><span class="n">falsy_and_truthy_values</span><span class="p">)))</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;Liste précédente filtrée de ces valeurs &#39;falsy&#39; (avec une compréhension) :&#34;</span><span class="p">,</span> <span class="p">[</span><span class="n">item</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">falsy_and_truthy_values</span> <span class="k">if</span> <span class="n">item</span><span class="p">])</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Cela nous donnera comme affichage dans la console après exécution de ces lignes :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">Passage</span> <span class="n">de</span> <span class="bp">None</span> <span class="n">comme</span> <span class="n">valeur</span> <span class="n">pour</span> <span class="n">le</span> <span class="n">paramètre</span> <span class="n">correspondant</span> <span class="err">à</span> <span class="n">la</span> <span class="n">fonction</span>
+<span class="n">Exemple</span> <span class="n">de</span> <span class="n">valeurs</span> <span class="s1">&#39;falsy&#39;</span> <span class="n">en</span> <span class="n">Python</span> <span class="p">:</span>  <span class="p">[</span><span class="bp">False</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="p">[],</span> <span class="p">(),</span> <span class="p">{},</span> <span class="nb">set</span><span class="p">(),</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mi">0j</span><span class="p">]</span>
+<span class="n">Exemple</span> <span class="n">de</span> <span class="n">valeurs</span> <span class="s1">&#39;truthy&#39;</span> <span class="n">en</span> <span class="n">Python</span> <span class="p">:</span>  <span class="p">[</span><span class="bp">True</span><span class="p">,</span> <span class="s1">&#39;Not falsy&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]]</span>
+<span class="n">Exemple</span> <span class="n">d</span><span class="s1">&#39;une liste de valeurs &#39;</span><span class="n">falsy</span><span class="s1">&#39; et &#39;</span><span class="n">truthy</span><span class="s1">&#39; [False, None, [], (), {}, set(), &#39;&#39;, range(0, 0), 0, 0.0, 0j, True, &#39;</span><span class="n">Not</span> <span class="n">falsy</span><span class="s1">&#39;, 1, [0, 1, 2]]</span>
+<span class="n">Liste</span> <span class="n">précédente</span> <span class="n">filtrée</span> <span class="n">de</span> <span class="n">ces</span> <span class="n">valeurs</span> <span class="s1">&#39;falsy&#39;</span> <span class="p">(</span><span class="n">avec</span> <span class="nb">filter</span><span class="p">)</span> <span class="p">:</span> <span class="p">[</span><span class="bp">True</span><span class="p">,</span> <span class="s1">&#39;Not falsy&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]]</span>
+<span class="n">Liste</span> <span class="n">précédente</span> <span class="n">filtrée</span> <span class="n">de</span> <span class="n">ces</span> <span class="n">valeurs</span> <span class="s1">&#39;falsy&#39;</span> <span class="p">(</span><span class="n">avec</span> <span class="n">une</span> <span class="n">compréhension</span><span class="p">)</span> <span class="p">:</span> <span class="p">[</span><span class="bp">True</span><span class="p">,</span> <span class="s1">&#39;Not falsy&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]]</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Cela peut être un truc intéressant à savoir pour par exemple supprimer d&rsquo;une séquence de listes les éléments correspondant à la liste vide ou à <code>None</code>.</p>
+<h3 id="filtrer-négativement">Filtrer négativement</h3>
+<p>Si nous reprenons la liste <code>[&quot;tyrell&quot;, &quot;stark&quot;, &quot;lannister&quot;, &quot;tarly&quot;, &quot;baratheon&quot;, &quot;targaryen&quot;]</code>, imaginons que je veuille garder toutes les valeurs qui ne commencent pas par la lettre &ldquo;t&rdquo;. Je pourrais écrire :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">houses</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;tyrell&#34;</span><span class="p">,</span> <span class="s2">&#34;stark&#34;</span><span class="p">,</span> <span class="s2">&#34;lannister&#34;</span><span class="p">,</span> <span class="s2">&#34;tarly&#34;</span><span class="p">,</span> <span class="s2">&#34;baratheon&#34;</span><span class="p">,</span> <span class="s2">&#34;targaryen&#34;</span><span class="p">]</span>
+<span class="n">houses_not_starting_with_t</span> <span class="o">=</span> <span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="ow">not</span> <span class="n">s</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&#34;t&#34;</span><span class="p">),</span> <span class="n">houses</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Vous avez une alternative fournit par le module <code>itertools</code>, avec la fonction <a href="https://docs.python.org/fr/3/library/itertools.html#itertools.filterfalse%5Bfilterfalse%5D">https://docs.python.org/fr/3/library/itertools.html#itertools.filterfalse[filterfalse]</a>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">itertools</span>
+
+<span class="n">houses</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;tyrell&#34;</span><span class="p">,</span> <span class="s2">&#34;stark&#34;</span><span class="p">,</span> <span class="s2">&#34;lannister&#34;</span><span class="p">,</span> <span class="s2">&#34;tarly&#34;</span><span class="p">,</span> <span class="s2">&#34;baratheon&#34;</span><span class="p">,</span> <span class="s2">&#34;targaryen&#34;</span><span class="p">]</span>
+<span class="n">houses_not_starting_with_t</span> <span class="o">=</span> <span class="n">itertools</span><span class="o">.</span><span class="n">filterfalse</span><span class="p">(</span><span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&#34;t&#34;</span><span class="p">),</span> <span class="n">houses</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;La fonction filterfalse retourne un objet iterator :&#34;</span><span class="p">,</span> <span class="n">houses_not_starting_with_t</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;L&#39;objet iterator converti en liste :&#34;</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">houses_not_starting_with_t</span><span class="p">))</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Ce qui donne si on exécute le script :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">La</span> <span class="n">fonction</span> <span class="n">filterfalse</span> <span class="n">retourne</span> <span class="n">un</span> <span class="n">objet</span> <span class="n">iterator</span> <span class="p">:</span> <span class="o">&lt;</span><span class="n">itertools</span><span class="o">.</span><span class="n">filterfalse</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x0000018FCCA338E0</span><span class="o">&gt;</span>
+<span class="n">L</span><span class="s1">&#39;objet iterator converti en liste : [&#39;</span><span class="n">stark</span><span class="s1">&#39;, &#39;</span><span class="n">lannister</span><span class="s1">&#39;, &#39;</span><span class="n">baratheon</span><span class="s1">&#39;]</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Tout comme <code>filter</code>, <code>filterfalse</code> prend en paramètre une fonction et une séquence et retourne un <code>iterator</code>.</p>
+<p>Tout comme <code>filter</code>, on peut donner à <code>filterfalse</code> la valeur <code>None</code> à la place d&rsquo;une fonction, avec un fonctionnement similaire : c&rsquo;est la fonction identité qui sera utilisé avec une interprétation de la valeur retournée dans un contexte booléen, sauf que cette fois-ci ce sont les valeurs s&rsquo;évaluant à <code>True</code> qui seront supprimées.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">itertools</span>
+
+<span class="n">falsy_values</span> <span class="o">=</span> <span class="p">[</span><span class="bp">False</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="p">[],</span> <span class="p">(),</span> <span class="p">{},</span> <span class="nb">set</span><span class="p">(),</span> <span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mi">0j</span><span class="p">]</span>
+<span class="n">truthy_values</span> <span class="o">=</span> <span class="p">[</span><span class="bp">True</span><span class="p">,</span> <span class="s2">&#34;Not falsy&#34;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]]</span>
+<span class="n">falsy_and_truthy_values</span> <span class="o">=</span> <span class="n">falsy_values</span> <span class="o">+</span> <span class="n">truthy_values</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;Exemple d&#39;une liste de valeurs &#39;falsy&#39; et &#39;truthy&#39;&#34;</span><span class="p">,</span> <span class="n">falsy_and_truthy_values</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;Liste précédente filtrée de ces valeurs &#39;truthy&#39; (avec filterfalse) :&#34;</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">filterfalse</span><span class="p">(</span><span class="bp">None</span><span class="p">,</span><span class="n">falsy_and_truthy_values</span><span class="p">)))</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Ce qui donnera :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">Exemple</span> <span class="n">d</span><span class="s1">&#39;une liste de valeurs &#39;</span><span class="n">falsy</span><span class="s1">&#39; et &#39;</span><span class="n">truthy</span><span class="s1">&#39; [False, None, [], (), {}, set(), &#39;&#39;, range(0, 0), 0, 0.0, 0j, True, &#39;</span><span class="n">Not</span> <span class="n">falsy</span><span class="s1">&#39;, 1, [0, 1, 2]]</span>
+<span class="n">Liste</span> <span class="n">précédente</span> <span class="n">filtrée</span> <span class="n">de</span> <span class="n">ces</span> <span class="n">valeurs</span> <span class="s1">&#39;truthy&#39;</span> <span class="p">(</span><span class="n">avec</span> <span class="n">filterfalse</span><span class="p">)</span> <span class="p">:</span> <span class="p">[</span><span class="bp">False</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="p">[],</span> <span class="p">(),</span> <span class="p">{},</span> <span class="nb">set</span><span class="p">(),</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mi">0j</span><span class="p">]</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="synthèse">Synthèse</h2>
+<p>La fonction <code>filter</code> est une fonction native de Python. Elle prend en paramètre une fonction et un <code>iterator</code> ; elle retourne un nouvel <code>iterator</code> ne contenant que les éléments de l'<code>iterator</code> passé en paramètre pour lesquels la fonction passée en paramètre renvoie vrai.</p>
+<p>On peut passer la valeur <code>None</code> au lieu de passer une fonction, dans ce cas c&rsquo;est la fonction identité qui sera utilisée, les valeurs étant alors interprétées dans un contexte booléen.</p>
+<p>La fonction <code>filter</code> a un double négatif caché dans <code>itertools</code>, <a href="https://docs.python.org/fr/3/library/itertools.html#itertools.filterfalse%5Bfilterfalse%5D">https://docs.python.org/fr/3/library/itertools.html#itertools.filterfalse[filterfalse]</a>.</p>
+<p>L&rsquo;ensemble du code du billet est disponible dans un <a href="https://gist.github.com/TGITS/9338c78506255b023b5cbfd5fda3e809">gist</a>.</p>
+<h2 id="ressources">Ressources</h2>
+<ul>
+<li>Billet chapeau sur le <a href="https://tgits.github.io/post/notes_apprentissage_python_traiter_sequences_avec_style_fonctionnelle/">traitement des séquences avec un style fonctionnel</a></li>
+<li>Billet sur <a href="https://tgits.github.io/post/notes_apprentissage_python_tssf_map/">map</a></li>
+<li>Billet sur <a href="https://tgits.github.io/post/notes_apprentissage_python_tssf_reduce/">reduce</a></li>
+<li>Billet sur <a href="https://tgits.github.io/post/notes_apprentissage_python_tssf_flatmap/">flatmap</a></li>
+<li><a href="https://gist.github.com/TGITS/9338c78506255b023b5cbfd5fda3e809">gist des exemples du billet</a></li>
+<li><a href="https://martinfowler.com/articles/collection-pipeline/">Notion de <em>Collection Pipeline</em></a>
+<ul>
+<li><a href="https://martinfowler.com/articles/collection-pipeline/filter.html">filter</a></li>
+</ul>
+</li>
+<li>Article <em><a href="https://sametmax.com/map-filter-et-reduce/">map(), filter() et reduce () ?</a></em></li>
+<li><a href="https://rxmarbles.com/">RxJS Marbles</a></li>
+<li><a href="https://github.com/ReactiveX/RxPY">RxPy</a></li>
+<li><a href="http://reactivex.io/">ReactiveX</a>
+<ul>
+<li><a href="http://reactivex.io/documentation/operators/filter.html">Filter</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Auteur</span>
+    <span class="item-content">TGITS</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">Modifié</span>
+    <span class="item-content">
+        2021-05-07
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/python/">python</a>
+          <a href="/tags/python3/">python3</a>
+          <a href="/tags/notes-dapprentissage/">notes d&#39;apprentissage</a>
+          <a href="/tags/d%C3%A9veloppement/">développement</a>
+          <a href="/tags/tips/">tips</a>
+          <a href="/tags/programmation-fonctionnelle/">programmation fonctionnelle</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/notes_apprentissage_python_tssf_map/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Notes d&#39;apprentissage de Python : traitement des séquences avec un style fonctionnelle - map</span>
+            <span class="prev-text nav-mobile">Précédent</span>
+          </a>
+        <a class="next" href="/post/notes_apprentissage_python_traiter_sequences_avec_style_fonctionnelle/">
+            <span class="next-text nav-default">Notes d&#39;apprentissage de Python : traitement des séquences avec un style fonctionnelle</span>
+            <span class="next-text nav-mobile">Suivant</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    (function() {
+      
+      
+      if (window.location.hostname === 'localhost') return;
+
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      var disqus_shortname = 'thegeekintheshell';
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "thegeekintheshell" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+<div class="social-links">
+      <a href="mailto:thegeekintheshell@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://twitter.com/_TGITS" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="https://www.linkedin.com/in/cvaudry/" class="iconfont icon-linkedin" title="linkedin"></a>
+      <a href="https://github.com/TGITS" class="iconfont icon-github" title="github"></a>
+      <a href="https://gitlab.com/TGITS" class="iconfont icon-gitlab" title="gitlab"></a>
+  <a href="https://tgits.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Propulsé par <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Thème - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2020 - 
+    2021
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">TGITS</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

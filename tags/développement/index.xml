@@ -6,10 +6,66 @@
     <description>Recent content in développement on The Geek In The Shell</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>fr-fr</language>
-    <lastBuildDate>Sun, 22 Nov 2020 18:27:43 +0200</lastBuildDate>
+    <lastBuildDate>Fri, 07 May 2021 14:27:47 +0200</lastBuildDate>
     
 	<atom:link href="https://tgits.github.io/tags/d%C3%A9veloppement/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Notes d&#39;apprentissage de Python : traitement des séquences avec un style fonctionnelle - flatmap</title>
+      <link>https://tgits.github.io/post/notes_apprentissage_python_tssf_flatmap/</link>
+      <pubDate>Fri, 07 May 2021 14:27:47 +0200</pubDate>
+      
+      <guid>https://tgits.github.io/post/notes_apprentissage_python_tssf_flatmap/</guid>
+      <description>Contexte Ce billet s&amp;rsquo;inscrit dans une série de billets sur le traitement des séquences avec un style fonctionnelle en Python.
+NB : La version de Python utilisée dans les exemples de code est la version 3.
+Pour pleinement profiter de ce billet, il faut que vous connaissiez déjà le fonctionnement de map et reduce en Python ou que vous lisiez d&amp;rsquo;abord les billets que j&amp;rsquo;ai écrit sur l&amp;rsquo;un et l&amp;rsquo;autre.</description>
+    </item>
+    
+    <item>
+      <title>Notes d&#39;apprentissage de Python : traitement des séquences avec un style fonctionnelle - reduce</title>
+      <link>https://tgits.github.io/post/notes_apprentissage_python_tssf_reduce/</link>
+      <pubDate>Fri, 07 May 2021 14:27:46 +0200</pubDate>
+      
+      <guid>https://tgits.github.io/post/notes_apprentissage_python_tssf_reduce/</guid>
+      <description>Contexte Ce billet s&amp;rsquo;inscrit dans une série de billets sur le traitement des séquences avec un style fonctionnelle en Python.
+NB : La version de Python utilisée dans les exemples de code est la version 3.
+Principe Comme filter et map, la fonction reduce transforme une séquence qui lui est fourni en paramètre grâce à une fonction qui lui est également fournie en paramètre en parcourant la séquence de la gauche vers la droite.</description>
+    </item>
+    
+    <item>
+      <title>Notes d&#39;apprentissage de Python : traitement des séquences avec un style fonctionnelle - map</title>
+      <link>https://tgits.github.io/post/notes_apprentissage_python_tssf_map/</link>
+      <pubDate>Fri, 07 May 2021 14:27:45 +0200</pubDate>
+      
+      <guid>https://tgits.github.io/post/notes_apprentissage_python_tssf_map/</guid>
+      <description>Contexte Ce billet s&amp;rsquo;inscrit dans une série de billets sur le traitement des séquences avec un style fonctionnelle en Python.
+NB : La version de Python utilisée dans les exemples de code est la version 3.
+Principe La fonction map est native tout comme filter et prend également en paramètre une fonction et une séquence d&amp;rsquo;éléments.
+La fonction map permet d&amp;rsquo;appliquer cette fonction à chaque élément de la séquence et produit une nouvelle séquence résultante dont chaque élément est le résultat de l&amp;rsquo;application de cette fonction sur chaque élément de la séquence initiale.</description>
+    </item>
+    
+    <item>
+      <title>Notes d&#39;apprentissage de Python : traitement des séquences avec un style fonctionnelle - filter</title>
+      <link>https://tgits.github.io/post/notes_apprentissage_python_tssf_filter/</link>
+      <pubDate>Fri, 07 May 2021 14:27:44 +0200</pubDate>
+      
+      <guid>https://tgits.github.io/post/notes_apprentissage_python_tssf_filter/</guid>
+      <description>Contexte Ce billet s&amp;rsquo;inscrit dans une série de billets sur le traitement des séquences avec un style fonctionnelle en Python.
+NB : La version de Python utilisée dans les exemples de code est la version 3.
+Principe La fonction filter est native et prend en paramètre une fonction et une séquence d&amp;rsquo;éléments ; elle retourne un objet iterator.
+La fonction doit prendre un paramètre dont le type correspond aux éléments de la séquence et retourne un booléen (on peut parler de fonction prédicat ou de prédicat).</description>
+    </item>
+    
+    <item>
+      <title>Notes d&#39;apprentissage de Python : traitement des séquences avec un style fonctionnelle</title>
+      <link>https://tgits.github.io/post/notes_apprentissage_python_traiter_sequences_avec_style_fonctionnelle/</link>
+      <pubDate>Fri, 07 May 2021 14:27:43 +0200</pubDate>
+      
+      <guid>https://tgits.github.io/post/notes_apprentissage_python_traiter_sequences_avec_style_fonctionnelle/</guid>
+      <description>Contexte Python est un langage de programmation très abordable que l&amp;rsquo;on démarre en programmation ou que l&amp;rsquo;on connaisse déjà d&amp;rsquo;autres langages. Néanmoins, ce n&amp;rsquo;est pas parce qu&amp;rsquo;un langage est abordable qu&amp;rsquo;il n&amp;rsquo;a pas ses propres idiomes et qu&amp;rsquo;il n&amp;rsquo;y a pas des trucs &amp;amp; astuces à connaître et à retenir.
+Ce billet est l&amp;rsquo;introduction d&amp;rsquo;une série de notes d&amp;rsquo;apprentissage de Python, sur la manière de traiter les séquences en Python dans un style fonctionnelle.</description>
+    </item>
     
     <item>
       <title>Notes d&#39;apprentissage de Python : zip et unzip</title>

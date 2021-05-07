@@ -2,6 +2,41 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://tgits.github.io/post/notes_apprentissage_python_tssf_flatmap/</loc>
+    <lastmod>2021-05-07T14:27:47+02:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://tgits.github.io/post/notes_apprentissage_python_tssf_reduce/</loc>
+    <lastmod>2021-05-07T14:27:46+02:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://tgits.github.io/post/notes_apprentissage_python_tssf_map/</loc>
+    <lastmod>2021-05-07T14:27:45+02:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://tgits.github.io/post/notes_apprentissage_python_tssf_filter/</loc>
+    <lastmod>2021-05-07T14:27:44+02:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://tgits.github.io/post/notes_apprentissage_python_traiter_sequences_avec_style_fonctionnelle/</loc>
+    <lastmod>2021-05-07T14:27:43+02:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://tgits.github.io/post/notes_apprentissage_python_zip/</loc>
     <lastmod>2020-11-22T18:27:43+02:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -38,7 +73,7 @@
   
   <url>
     <loc>https://tgits.github.io/post/frequencies_map_in_python/</loc>
-    <lastmod>2020-10-23T11:13:13+02:00</lastmod>
+    <lastmod>2021-05-06T10:29:13+02:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -157,84 +192,91 @@
   
   <url>
     <loc>https://tgits.github.io/categories/</loc>
-    <lastmod>2020-11-22T18:27:43+02:00</lastmod>
+    <lastmod>2021-05-07T14:27:47+02:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://tgits.github.io/tags/d%C3%A9veloppement/</loc>
-    <lastmod>2020-11-22T18:27:43+02:00</lastmod>
+    <lastmod>2021-05-07T14:27:47+02:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://tgits.github.io/categories/d%C3%A9veloppement/</loc>
-    <lastmod>2020-11-22T18:27:43+02:00</lastmod>
+    <lastmod>2021-05-07T14:27:47+02:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://tgits.github.io/tags/notes-dapprentissage/</loc>
-    <lastmod>2020-11-22T18:27:43+02:00</lastmod>
+    <lastmod>2021-05-07T14:27:47+02:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://tgits.github.io/categories/notes-dapprentissage/</loc>
-    <lastmod>2020-11-22T18:27:43+02:00</lastmod>
+    <lastmod>2021-05-07T14:27:47+02:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://tgits.github.io/post/</loc>
-    <lastmod>2020-11-22T18:27:43+02:00</lastmod>
+    <lastmod>2021-05-07T14:27:47+02:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://tgits.github.io/tags/programmation-fonctionnelle/</loc>
+    <lastmod>2021-05-07T14:27:47+02:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://tgits.github.io/tags/python/</loc>
-    <lastmod>2020-11-22T18:27:43+02:00</lastmod>
+    <lastmod>2021-05-07T14:27:47+02:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://tgits.github.io/categories/python/</loc>
-    <lastmod>2020-11-22T18:27:43+02:00</lastmod>
+    <lastmod>2021-05-07T14:27:47+02:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://tgits.github.io/tags/python3/</loc>
-    <lastmod>2020-11-22T18:27:43+02:00</lastmod>
+    <lastmod>2021-05-07T14:27:47+02:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://tgits.github.io/tags/</loc>
-    <lastmod>2020-11-22T18:27:43+02:00</lastmod>
+    <lastmod>2021-05-07T14:27:47+02:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://tgits.github.io/</loc>
-    <lastmod>2020-11-22T18:27:43+02:00</lastmod>
+    <lastmod>2021-05-07T14:27:47+02:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://tgits.github.io/tags/tips/</loc>
-    <lastmod>2020-11-22T18:27:43+02:00</lastmod>
+    <lastmod>2021-05-07T14:27:47+02:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -304,35 +346,35 @@
   
   <url>
     <loc>https://tgits.github.io/tags/coding-challenge/</loc>
-    <lastmod>2020-10-23T11:13:13+02:00</lastmod>
+    <lastmod>2021-05-06T10:29:13+02:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://tgits.github.io/tags/exercism/</loc>
-    <lastmod>2020-10-23T11:13:13+02:00</lastmod>
+    <lastmod>2021-05-06T10:29:13+02:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://tgits.github.io/tags/langage-de-programmation/</loc>
-    <lastmod>2020-10-23T11:13:13+02:00</lastmod>
+    <lastmod>2021-05-06T10:29:13+02:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://tgits.github.io/tags/multiensemble/</loc>
-    <lastmod>2020-10-23T11:13:13+02:00</lastmod>
+    <lastmod>2021-05-06T10:29:13+02:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://tgits.github.io/tags/structure-de-donn%C3%A9es/</loc>
-    <lastmod>2020-10-23T11:13:13+02:00</lastmod>
+    <lastmod>2021-05-06T10:29:13+02:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -353,13 +395,6 @@
   
   <url>
     <loc>https://tgits.github.io/tags/programmation-distribu%C3%A9e/</loc>
-    <lastmod>2020-10-19T12:12:52+02:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://tgits.github.io/tags/programmation-fonctionnelle/</loc>
     <lastmod>2020-10-19T12:12:52+02:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>

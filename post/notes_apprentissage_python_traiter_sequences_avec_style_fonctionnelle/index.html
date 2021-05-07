@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Notes d&#39;apprentissage de Python : traitement des séquences avec un style fonctionnelle - The Geek In The Shell</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="TGITS" /><meta name="description" content="Contexte Python est un langage de programmation très abordable que l&amp;rsquo;on démarre en programmation ou que l&amp;rsquo;on connaisse déjà d&amp;rsquo;autres langages. Néanmoins, ce n&amp;rsquo;est pas parce qu&amp;rsquo;un langage est abordable qu&amp;rsquo;il n&amp;rsquo;a pas ses propres idiomes et qu&amp;rsquo;il n&amp;rsquo;y a pas des trucs &amp;amp; astuces à connaître et à retenir.
+Ce billet est l&amp;rsquo;introduction d&amp;rsquo;une série de notes d&amp;rsquo;apprentissage de Python, sur la manière de traiter les séquences en Python dans un style fonctionnelle." /><meta name="keywords" content="TGITS, Développement, Java, Architecture" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.71.1 with theme even" />
+
+
+<link rel="canonical" href="https://tgits.github.io/post/notes_apprentissage_python_traiter_sequences_avec_style_fonctionnelle/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.8c3cbcb0324c2bb4875ceccba4007cbad4b4ac8377f33af9953c3e7684534a50.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Notes d&#39;apprentissage de Python : traitement des séquences avec un style fonctionnelle" />
+<meta property="og:description" content="Contexte Python est un langage de programmation très abordable que l&rsquo;on démarre en programmation ou que l&rsquo;on connaisse déjà d&rsquo;autres langages. Néanmoins, ce n&rsquo;est pas parce qu&rsquo;un langage est abordable qu&rsquo;il n&rsquo;a pas ses propres idiomes et qu&rsquo;il n&rsquo;y a pas des trucs &amp; astuces à connaître et à retenir.
+Ce billet est l&rsquo;introduction d&rsquo;une série de notes d&rsquo;apprentissage de Python, sur la manière de traiter les séquences en Python dans un style fonctionnelle." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://tgits.github.io/post/notes_apprentissage_python_traiter_sequences_avec_style_fonctionnelle/" />
+<meta property="article:published_time" content="2021-05-07T14:27:43+02:00" />
+<meta property="article:modified_time" content="2021-05-07T14:27:43+02:00" />
+<meta itemprop="name" content="Notes d&#39;apprentissage de Python : traitement des séquences avec un style fonctionnelle">
+<meta itemprop="description" content="Contexte Python est un langage de programmation très abordable que l&rsquo;on démarre en programmation ou que l&rsquo;on connaisse déjà d&rsquo;autres langages. Néanmoins, ce n&rsquo;est pas parce qu&rsquo;un langage est abordable qu&rsquo;il n&rsquo;a pas ses propres idiomes et qu&rsquo;il n&rsquo;y a pas des trucs &amp; astuces à connaître et à retenir.
+Ce billet est l&rsquo;introduction d&rsquo;une série de notes d&rsquo;apprentissage de Python, sur la manière de traiter les séquences en Python dans un style fonctionnelle.">
+<meta itemprop="datePublished" content="2021-05-07T14:27:43&#43;02:00" />
+<meta itemprop="dateModified" content="2021-05-07T14:27:43&#43;02:00" />
+<meta itemprop="wordCount" content="927">
+
+
+
+<meta itemprop="keywords" content="python,python3,notes d&#39;apprentissage,développement,tips,programmation fonctionnelle," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Notes d&#39;apprentissage de Python : traitement des séquences avec un style fonctionnelle"/>
+<meta name="twitter:description" content="Contexte Python est un langage de programmation très abordable que l&rsquo;on démarre en programmation ou que l&rsquo;on connaisse déjà d&rsquo;autres langages. Néanmoins, ce n&rsquo;est pas parce qu&rsquo;un langage est abordable qu&rsquo;il n&rsquo;a pas ses propres idiomes et qu&rsquo;il n&rsquo;y a pas des trucs &amp; astuces à connaître et à retenir.
+Ce billet est l&rsquo;introduction d&rsquo;une série de notes d&rsquo;apprentissage de Python, sur la manière de traiter les séquences en Python dans un style fonctionnelle."/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">TGITS</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Blog</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">TGITS</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Blog</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Notes d&#39;apprentissage de Python : traitement des séquences avec un style fonctionnelle</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2021-05-07 </span>
+        <div class="post-category">
+            <a href="/categories/d%C3%A9veloppement/"> développement </a>
+            <a href="/categories/python/"> python </a>
+            <a href="/categories/notes-dapprentissage/"> notes d&#39;apprentissage </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contenu</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#contexte">Contexte</a></li>
+    <li><a href="#a-quoi-cela-sert-il-">A quoi cela sert-il ?</a></li>
+    <li><a href="#filter-map-reduce-et-les-autres">Filter, Map, Reduce et les autres</a></li>
+    <li><a href="#ressources">Ressources</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h2 id="contexte">Contexte</h2>
+<p><a href="https://www.python.org/">Python</a> est un langage de programmation très abordable que l&rsquo;on démarre en programmation ou que l&rsquo;on connaisse déjà d&rsquo;autres langages. Néanmoins, ce n&rsquo;est pas parce qu&rsquo;un langage est abordable qu&rsquo;il n&rsquo;a pas ses propres idiomes et qu&rsquo;il n&rsquo;y a pas des trucs &amp; astuces à connaître et à retenir.</p>
+<p>Ce billet est l&rsquo;introduction d&rsquo;une série de notes d&rsquo;apprentissage de <a href="https://www.python.org/">Python</a>, sur la manière de traiter les séquences en Python dans un style fonctionnelle. Ce que j&rsquo;entends par là c&rsquo;est l&rsquo;utilisation de fonctions comme <code>filter</code>, <code>map</code> et <code>reduce</code> pour itérer sur une séquence et la transformer dans l&rsquo;esprit du <a href="https://martinfowler.com/articles/collection-pipeline/">pattern collection pipeline</a> plutôt que de passer par des itérations avec des boucles <code>for</code> ou <code>while</code> comme on le fait dans un style impératif. On verra également que c&rsquo;est une alternative à l&rsquo;utilisation des <a href="https://tgits.github.io/post/notes_apprentissage_python_comprehension/">compréhensions</a>.</p>
+<p>Le créateur de Python, <a href="https://fr.wikipedia.org/wiki/Guido_van_Rossum">Guido van Rossum</a> a <a href="https://web.archive.org/web/20161104183819/http://python-history.blogspot.com.br/2009/04/origins-of-pythons-functional-features.html">clairement écrit</a> que les principales influences de Python venaient de la programmation impérative. Il n&rsquo;a jamais souhaité faire de Python un langage fonctionnel bien que les fonctions en elles-mêmes soit des objets de <em>première classe</em>. Néanmoins, face à la demande de la communauté, les fonctions <a href="https://docs.python.org/3/library/functions.html#map"><code>map</code></a> et ses associées <a href="https://docs.python.org/3/library/functions.html#filter"><code>filter</code></a> (comme <code>map</code>, une fonction native) et <code>reduce</code> (initialement une fonction native mais maintenant dans le module <a href="https://docs.python.org/3/library/functools.html">functools</a>) sont rapidement arrivées dans le langage ainsi que les <a href="https://docs.python.org/3/reference/expressions.html#lambda">lambdas</a>.</p>
+<p>L&rsquo;objet de cette série est de voir notamment les bases de l&rsquo;utilisation des fonctions <code>filter</code>, <code>map</code> et <code>reduce</code>, notamment dans des contextes similaires à ceux dans lesquels on utiliserait des <a href="https://tgits.github.io/post/notes_apprentissage_python_comprehension/">compréhensions</a> ou des boucles impératives. Cela sera également l&rsquo;occasion de revenir sur le module <a href="https://docs.python.org/3.9/library/itertools.html">itertools</a> déjà évoqué dans les billets sur <a href="https://tgits.github.io/post/notes_apprentissage_python_zip/">zip</a> et les <a href="https://tgits.github.io/post/notes_apprentissage_python_comprehension/">compréhensions</a>. A partir de cette base sur <code>filter</code>/<code>map</code>/<code>reduce</code>, on pourra construire <code>flatmap</code> et voir ce qu&rsquo;<a href="https://docs.python.org/3.9/library/itertools.html">itertools</a> propose pour compléter ces fonctions de base.</p>
+<p>L&rsquo;utilisation de <code>filter</code>/<code>map</code>/<code>reduce</code> en Python n&rsquo;est pas considérée comme un style très <em>pythonique</em> : on lui préfère l&rsquo;utilisation des <a href="https://tgits.github.io/post/notes_apprentissage_python_comprehension/">compréhensions</a> qui permettent de faire la même chose dans de très nombreux cas courants d&rsquo;une manière considérée dans l&rsquo;écosystème Python comme plus lisible.</p>
+<p>Les fonctions <code>filter</code>/<code>map</code>/<code>reduce</code> sont néanmoins très communes dans les langages fonctionnelles classiques (parfois avec des noms différents) et ont fait leur entrée dans des langages <em>mainstream</em> comme <strong>Java</strong> ou <strong>Javascript</strong> depuis un moment. On retrouve également ces fonctions en tant qu&rsquo;opérateurs de <em>reactive streams</em> (voir par exemple <a href="http://reactivex.io/">ReactiveX</a>).</p>
+<p>D&rsquo;ailleurs dans les approches fonctionnelles, on voit souvent la programmation comme une transformation de données ou d&rsquo;un flux de données. Et dans cette vision es fonctions <code>filter</code>/<code>map</code>/<code>reduce</code> sont parmi les opérateurs au coeur de ces transformations. Cette vision est au coeur du <a href="https://martinfowler.com/articles/collection-pipeline/">pattern collection pipeline</a>.</p>
+<p>Bref, il est fort possible que vous ayiez déjà entendu parler ou utilisé ces fonctions.</p>
+<p>Cette série de billets est donc l&rsquo;occasion d&rsquo;explorer totu cela en commençant par l&rsquo;utilisation des fonctions <code>filter</code>, <code>map</code> et <code>reduce</code> dans le contexte de Python, en les comparant à l&rsquo;utilisation des <a href="https://tgits.github.io/post/notes_apprentissage_python_comprehension/">compréhensions</a> ou d&rsquo;une approche impérative classique.</p>
+<p><strong>NB</strong> : La version de Python utilisée dans les exemples de code est la version 3.</p>
+<h2 id="a-quoi-cela-sert-il-">A quoi cela sert-il ?</h2>
+<p>C&rsquo;est bien beau de faire une longue introduction qui parle de <code>filter</code>/<code>map</code>/<code>reduce</code> et de la programmation fonctionnelle mais elles font quoi ces fonctions ? On y vient tout de suite.</p>
+<p>En programmation fonctionnelles, on dit que ces fonctions sont des fonctions d&rsquo;ordre supérieur (<em>higher-order function</em>). Une fonction d&rsquo;ordre supérieur est une fonction qui prend en paramètre une autre fonction ou qui en retourne une.</p>
+<p>Les fonctions <code>filter</code> et <code>map</code> prennent 2 paramètres : une fonction et une <em>séquence</em>. Le terme de <em>séquence</em> utilisé ici correspond en Python aussi bien à une liste, un tuple ou un itérateur : c&rsquo;est une une suite d&rsquo;éléments. Elles appliquent la fonction sur chacun des éléments de la <em>séquence</em> pour produire une nouvelle <em>séquence</em>.</p>
+<p>La fonction <code>reduce</code> fonctionne sur un principe similaire, prenant en paramètre également une fonction, une <em>séquence</em> et éventuellement un troisième paramètre optionnel, appliquant la fonction sur les éléments de la <em>séquence</em> pour produire un résultat qui n&rsquo;est pas nécessairement une <em>séquence</em>, dans le cas de <code>reduce</code>. On verra que <code>filter</code> et <code>map</code> sont des spécialisations de <code>reduce</code>.</p>
+<p>Les fonctions <code>filter</code>/<code>map</code>/<code>reduce</code> sont des abstractions de traitement sur les <em>séquences</em> que l&rsquo;on réalise dans des langages impératifs avec des boucles et des alternatives. Dans les langages fonctionnels ce sont les fonctions de bases pour manipuler les <em>séquences</em> d&rsquo;éléments. Avec ces fonctions et le sucre syntaxique approprié, vous pouvez définir de véritable chaînes de traitement de données (on parle parfois de <em>transformation pipeline</em> ou de <em><a href="https://martinfowler.com/articles/collection-pipeline/">Collection Pipeline</a></em>). Quand dans un contexte de <strong>Big Data</strong> on parle de <strong>Map/Reduce</strong>, on parle bien des mêmes principes que les fonctions ci-dessus, on n&rsquo;est juste pas à la même échelle.</p>
+<p>On verra que justement en Python on n&rsquo;a pas le sucre syntaxique que l&rsquo;on peut avoir dans certains langages et que cela demande de s&rsquo;adapter pour rendre son code lisible.</p>
+<p>On abordera également la fonction <code>flatmap</code> qui vient utilement compléter le trio précédent.</p>
+<h2 id="filter-map-reduce-et-les-autres">Filter, Map, Reduce et les autres</h2>
+<p>Ce billet était initialement prévu comme un billet unique et non comme une série. Cependant chemin faisant, j&rsquo;ai réalisé qu&rsquo;il serait plus pertinent de le découper en plusieurs billets pour en faire une série.</p>
+<ul>
+<li>le premier billet de la série traite de <a href="https://tgits.github.io/post/notes_apprentissage_python_tssf_filter/">filter</a></li>
+<li>On passe ensuite à <a href="https://tgits.github.io/post/notes_apprentissage_python_tssf_map/">map</a></li>
+<li>On enchaine sur <a href="https://tgits.github.io/post/notes_apprentissage_python_tssf_reduce/">reduce</a></li>
+<li>Après avoir vu <a href="https://tgits.github.io/post/notes_apprentissage_python_tssf_reduce/">reduce</a>, il sera temps de conclure la série sur <a href="https://tgits.github.io/post/notes_apprentissage_python_tssf_flatmap/">flatmap</a>.</li>
+</ul>
+<h2 id="ressources">Ressources</h2>
+<ul>
+<li>Billet sur <a href="https://tgits.github.io/post/notes_apprentissage_python_tssf_filter/">filter</a></li>
+<li>Billet sur <a href="https://tgits.github.io/post/notes_apprentissage_python_tssf_map/">map</a></li>
+<li>Billet sur <a href="https://tgits.github.io/post/notes_apprentissage_python_tssf_reduce/">reduce</a></li>
+<li>Billet sur <a href="https://tgits.github.io/post/notes_apprentissage_python_tssf_flatmap/">flatmap</a></li>
+<li><a href="https://martinfowler.com/articles/collection-pipeline/">Notion de <em>Collection Pipeline</em></a>
+<ul>
+<li>Avec les <a href="https://martinfowler.com/articles/collection-pipeline/#op-catalog">opérations communes</a> sur ce <em>Collection Pipeline</em> :</li>
+</ul>
+</li>
+<li>Article <em><a href="https://sametmax.com/map-filter-et-reduce/">map(), filter() et reduce () ?</a></em></li>
+<li><a href="https://rxmarbles.com/">RxJS Marbles</a></li>
+<li><a href="https://github.com/ReactiveX/RxPY">RxPy</a></li>
+<li><a href="http://reactivex.io/">ReactiveX</a></li>
+</ul>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Auteur</span>
+    <span class="item-content">TGITS</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">Modifié</span>
+    <span class="item-content">
+        2021-05-07
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/python/">python</a>
+          <a href="/tags/python3/">python3</a>
+          <a href="/tags/notes-dapprentissage/">notes d&#39;apprentissage</a>
+          <a href="/tags/d%C3%A9veloppement/">développement</a>
+          <a href="/tags/tips/">tips</a>
+          <a href="/tags/programmation-fonctionnelle/">programmation fonctionnelle</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/notes_apprentissage_python_tssf_filter/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Notes d&#39;apprentissage de Python : traitement des séquences avec un style fonctionnelle - filter</span>
+            <span class="prev-text nav-mobile">Précédent</span>
+          </a>
+        <a class="next" href="/post/notes_apprentissage_python_zip/">
+            <span class="next-text nav-default">Notes d&#39;apprentissage de Python : zip et unzip</span>
+            <span class="next-text nav-mobile">Suivant</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    (function() {
+      
+      
+      if (window.location.hostname === 'localhost') return;
+
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      var disqus_shortname = 'thegeekintheshell';
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "thegeekintheshell" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+<div class="social-links">
+      <a href="mailto:thegeekintheshell@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://twitter.com/_TGITS" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="https://www.linkedin.com/in/cvaudry/" class="iconfont icon-linkedin" title="linkedin"></a>
+      <a href="https://github.com/TGITS" class="iconfont icon-github" title="github"></a>
+      <a href="https://gitlab.com/TGITS" class="iconfont icon-gitlab" title="gitlab"></a>
+  <a href="https://tgits.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Propulsé par <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Thème - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2020 - 
+    2021
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">TGITS</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

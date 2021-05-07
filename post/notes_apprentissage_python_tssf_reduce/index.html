@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Notes d&#39;apprentissage de Python : traitement des séquences avec un style fonctionnelle - reduce - The Geek In The Shell</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="TGITS" /><meta name="description" content="Contexte Ce billet s&amp;rsquo;inscrit dans une série de billets sur le traitement des séquences avec un style fonctionnelle en Python.
+NB : La version de Python utilisée dans les exemples de code est la version 3.
+Principe Comme filter et map, la fonction reduce transforme une séquence qui lui est fourni en paramètre grâce à une fonction qui lui est également fournie en paramètre en parcourant la séquence de la gauche vers la droite." /><meta name="keywords" content="TGITS, Développement, Java, Architecture" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.71.1 with theme even" />
+
+
+<link rel="canonical" href="https://tgits.github.io/post/notes_apprentissage_python_tssf_reduce/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.8c3cbcb0324c2bb4875ceccba4007cbad4b4ac8377f33af9953c3e7684534a50.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Notes d&#39;apprentissage de Python : traitement des séquences avec un style fonctionnelle - reduce" />
+<meta property="og:description" content="Contexte Ce billet s&rsquo;inscrit dans une série de billets sur le traitement des séquences avec un style fonctionnelle en Python.
+NB : La version de Python utilisée dans les exemples de code est la version 3.
+Principe Comme filter et map, la fonction reduce transforme une séquence qui lui est fourni en paramètre grâce à une fonction qui lui est également fournie en paramètre en parcourant la séquence de la gauche vers la droite." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://tgits.github.io/post/notes_apprentissage_python_tssf_reduce/" />
+<meta property="article:published_time" content="2021-05-07T14:27:46+02:00" />
+<meta property="article:modified_time" content="2021-05-07T14:27:46+02:00" />
+<meta itemprop="name" content="Notes d&#39;apprentissage de Python : traitement des séquences avec un style fonctionnelle - reduce">
+<meta itemprop="description" content="Contexte Ce billet s&rsquo;inscrit dans une série de billets sur le traitement des séquences avec un style fonctionnelle en Python.
+NB : La version de Python utilisée dans les exemples de code est la version 3.
+Principe Comme filter et map, la fonction reduce transforme une séquence qui lui est fourni en paramètre grâce à une fonction qui lui est également fournie en paramètre en parcourant la séquence de la gauche vers la droite.">
+<meta itemprop="datePublished" content="2021-05-07T14:27:46&#43;02:00" />
+<meta itemprop="dateModified" content="2021-05-07T14:27:46&#43;02:00" />
+<meta itemprop="wordCount" content="2518">
+
+
+
+<meta itemprop="keywords" content="python,python3,notes d&#39;apprentissage,développement,tips,programmation fonctionnelle," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Notes d&#39;apprentissage de Python : traitement des séquences avec un style fonctionnelle - reduce"/>
+<meta name="twitter:description" content="Contexte Ce billet s&rsquo;inscrit dans une série de billets sur le traitement des séquences avec un style fonctionnelle en Python.
+NB : La version de Python utilisée dans les exemples de code est la version 3.
+Principe Comme filter et map, la fonction reduce transforme une séquence qui lui est fourni en paramètre grâce à une fonction qui lui est également fournie en paramètre en parcourant la séquence de la gauche vers la droite."/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">TGITS</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Blog</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">TGITS</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Blog</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Notes d&#39;apprentissage de Python : traitement des séquences avec un style fonctionnelle - reduce</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2021-05-07 </span>
+        <div class="post-category">
+            <a href="/categories/d%C3%A9veloppement/"> développement </a>
+            <a href="/categories/python/"> python </a>
+            <a href="/categories/notes-dapprentissage/"> notes d&#39;apprentissage </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contenu</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#contexte">Contexte</a></li>
+    <li><a href="#principe">Principe</a></li>
+    <li><a href="#reductio-ad-exemplum">Reductio ad exemplum</a>
+      <ul>
+        <li><a href="#juste-faire-une-réduction-en-somme-">Juste faire une réduction en somme !</a></li>
+        <li><a href="#on-donne-le-max-">On donne le max !</a></li>
+        <li><a href="#house-of-the-dragon">House of the Dragon</a></li>
+        <li><a href="#la-fonction-reduce-est-vraiment-générique">La fonction reduce est vraiment générique</a></li>
+      </ul>
+    </li>
+    <li><a href="#synthèse">Synthèse</a></li>
+    <li><a href="#ressources">Ressources</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h2 id="contexte">Contexte</h2>
+<p>Ce billet s&rsquo;inscrit dans une <a href="https://tgits.github.io/post/notes_apprentissage_python_traiter_sequences_avec_style_fonctionnelle/">série de billets sur le traitement des séquences avec un style fonctionnelle en Python</a>.</p>
+<p><strong>NB</strong> : La version de Python utilisée dans les exemples de code est la version 3.</p>
+<h2 id="principe">Principe</h2>
+<p>Comme <a href="https://tgits.github.io/post/notes_apprentissage_python_tssf_filter/">filter</a> et <a href="https://tgits.github.io/post/notes_apprentissage_python_tssf_map/">map</a>, la fonction <code>reduce</code> transforme une <em>séquence</em> qui lui est fourni en paramètre grâce à une fonction qui lui est également fournie en paramètre en parcourant la <em>séquence</em> de la gauche vers la droite.</p>
+<p>A la différence de <a href="https://tgits.github.io/post/notes_apprentissage_python_tssf_filter/">filter</a> qui modifie la <em>séquence</em> originale en supprimant ses éléments qui sont faux pour un prédicat pour produire une nouvelle <em>séquence</em> ou à la différence de <a href="https://tgits.github.io/post/notes_apprentissage_python_tssf_map/">map</a> qui transforme individuellement chaque élément de la <em>séquence</em> pour produire une nouvelle séquence, <code>reduce</code> parcours la <em>séquence</em> de la gauche vers la droite en combinant les éléments afin de transformer la séquence elle-même en un nouvel <em>objet</em> (une valeur scalaire, une nouvelle <em>séquence</em>, etc.).</p>
+<p>Nous allons éclairer tout cela par plusieurs exemples, mais avant il faut également noter qu&rsquo;en Python contrairement à <a href="https://tgits.github.io/post/notes_apprentissage_python_tssf_filter/">filter</a> et à <a href="https://tgits.github.io/post/notes_apprentissage_python_tssf_map/">map</a>, <code>reduce</code> n&rsquo;est pas (en fait n&rsquo;est plus) une <em>fonction native</em> : elle se trouve dans le module <a href="https://docs.python.org/fr/3.9/library/functools.html">functools</a>.</p>
+<h2 id="reductio-ad-exemplum">Reductio ad exemplum</h2>
+<p>L&rsquo;idée avec la fonction <code>reduce</code> comme son nom le rappel est de <em>réduire</em> une séquence à un résultat.</p>
+<h3 id="juste-faire-une-réduction-en-somme-">Juste faire une réduction en somme !</h3>
+<p>L&rsquo;exemple classique est la somme d&rsquo;une liste de nombres : je souhaite <em>réduire</em> la liste de nombres à la somme de ces nombres.
+Prenons la liste des nombres de 1 à 10 qui peuvent nous être donnés en Python avec <code>range(1,11)</code> et calculons leur somme.</p>
+<p>Commençons par le faire de manière impérative avec <code>for</code>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">sum_of_numbers_1</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">number</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">):</span>
+    <span class="n">sum_of_numbers_1</span> <span class="o">=</span> <span class="n">sum_of_numbers_1</span> <span class="o">+</span> <span class="n">number</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;Somme des nombres de 1 à 10 avec une boucle for :&#34;</span><span class="p">,</span> <span class="n">sum_of_numbers_1</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>la variable <code>sum_of_numbers_1</code> initialisée à <code>0</code>, sert d&rsquo;acummulateur : dans la boucle on ajoute successivement chaque élément de la liste à cet accumulateur.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">Somme des nombres de 1 à 10 avec une boucle for : 55
+</code></pre></td></tr></table>
+</div>
+</div><p>C&rsquo;est très exactement ce que va faire <code>reduce</code> :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">functools</span>
+
+
+<span class="n">sum_of_numbers_2</span> <span class="o">=</span> <span class="n">functools</span><span class="o">.</span><span class="n">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;Somme des nombres de 1 à 10 avec reduce :&#34;</span><span class="p">,</span> <span class="n">sum_of_numbers_2</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>La fonction <code>reduce</code> prend en paramètre une fonction et un <em>iterator</em>. On notera que cette fonction passée à <code>reduce</code> prend elle-même 2 paramètres en entrée. Elle produit une valeur en sortie qui n&rsquo;est pas nécessairement du même type que celui des éléments en entrée (même si c&rsquo;est le cas ici avec l&rsquo;addition).</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">Somme des nombres de 1 à 10 avec une boucle for : 55
+</code></pre></td></tr></table>
+</div>
+</div><p>Que se passe-t-il la séquence en paramètre n&rsquo;a qu&rsquo;un seul élément ?</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">functools</span>
+
+
+<span class="n">sum_of_numbers_3</span> <span class="o">=</span> <span class="n">functools</span><span class="o">.</span><span class="n">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;Somme de la liste à un élément [1] avec reduce :&#34;</span><span class="p">,</span> <span class="n">sum_of_numbers_3</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Et bien, cet élément est retourné.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">Somme de la liste à un élément [1] avec reduce : 1
+</code></pre></td></tr></table>
+</div>
+</div><p>Et que se passe-t-il avec la liste vide ?</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">functools</span>
+
+
+<span class="n">sum_of_numbers_4</span> <span class="o">=</span> <span class="n">functools</span><span class="o">.</span><span class="n">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">,</span> <span class="p">[])</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;Somme de la liste vide [] avec reduce :&#34;</span><span class="p">,</span> <span class="n">sum_of_numbers_4</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Et bien dans ce cas on a une exception</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">Traceback (most recent call last):
+  File &#34;xxx.py&#34;, line yy, in &lt;module&gt;
+    sum_of_numbers_4 = functools.reduce(lambda a, b: a + b, [])
+TypeError: reduce() of empty sequence with no initial value
+</code></pre></td></tr></table>
+</div>
+</div><p>Cela semble normal, il n&rsquo;y a aucune valeur cohérente que <code>reduce</code> puisse retourner dans ce cas.</p>
+<p>En fait <code>reduce</code> prend un troisième paramètre optionel qui correspond à une première valeur initiale pour démarrer la réduction. Avec ce troisième paramètre, on peut lui passer une séquence <em>vide</em>, c&rsquo;est cette valeur initiale qui sera retournée.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">sum_of_numbers_4</span> <span class="o">=</span> <span class="n">functools</span><span class="o">.</span><span class="n">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">,</span> <span class="p">[],</span> <span class="mi">0</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;Somme de la liste vide [] avec reduce et une valeur initiale :&#34;</span><span class="p">,</span> <span class="n">sum_of_numbers_4</span><span class="p">)</span>
+
+<span class="n">sum_of_numbers_5</span> <span class="o">=</span> <span class="n">functools</span><span class="o">.</span><span class="n">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;Somme des nombres de 1 à 10 avec reduce et une valeur initiale de 0 :&#34;</span><span class="p">,</span> <span class="n">sum_of_numbers_5</span><span class="p">)</span>
+
+<span class="n">sum_of_numbers_6</span> <span class="o">=</span> <span class="n">functools</span><span class="o">.</span><span class="n">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">),</span> <span class="mi">5</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;Somme des nombres de 1 à 10 avec reduce et une valeur initiale de 5 :&#34;</span><span class="p">,</span> <span class="n">sum_of_numbers_6</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">Somme des nombres de 1 à 10 avec reduce et une valeur initiale de 0 : 55
+Somme de la liste vide [] avec reduce et une valeur initiale : 0        
+Somme des nombres de 1 à 10 avec reduce et une valeur initiale de 5 : 60
+</code></pre></td></tr></table>
+</div>
+</div><p>Cela n&rsquo;a pas à voir directement avec <code>reduce</code> mais au passage on peut noter que dans le cas précis de l&rsquo;addition que nous avons ici, nous avons une écriture plus compacte que la lambda en utilisant le module <code>operator</code> et la fonction <code>add</code> qui y est défini (entre autre chose) :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">sum_of_numbers_7</span> <span class="o">=</span> <span class="n">functools</span><span class="o">.</span><span class="n">reduce</span><span class="p">(</span><span class="n">operator</span><span class="o">.</span><span class="n">add</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">),</span> <span class="mi">5</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;Somme des nombres de 1 à 10 avec reduce et une valeur initiale de 5 :&#34;</span><span class="p">,</span> <span class="n">sum_of_numbers_7</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Donc <code>reduce</code> permet de combiner l&rsquo;ensemble des éléments d&rsquo;une séquence en prenant en compte éventuellement une valeur initiale pour produire un résultat.</p>
+<p>Cependant il est peu probable que vous utilisiez <code>reduce</code> pour calculer une somme de nombres en Python. Pourquoi ? Parce qu&rsquo;il y a une fonction native <code>sum</code> qui est une version spécialisée de <code>reduce</code> et qui calcule la somme des valeurs numériques d&rsquo;un <code>iterator</code>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">functools</span>
+<span class="kn">import</span> <span class="nn">operator</span>
+
+<span class="n">numbers_1_to_10</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
+<span class="n">sum_numbers_1_to_10</span> <span class="o">=</span> <span class="n">functools</span><span class="o">.</span><span class="n">reduce</span><span class="p">(</span><span class="n">operator</span><span class="o">.</span><span class="n">add</span><span class="p">,</span> <span class="n">numbers_1_to_10</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;Somme des nombres de 1 à 10 avec reduce :&#34;</span><span class="p">,</span> <span class="n">sum_numbers_1_to_10</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;Somme des nombres de 1 à 10 avec sum :&#34;</span><span class="p">,</span> <span class="nb">sum</span><span class="p">(</span><span class="n">numbers_1_to_10</span><span class="p">))</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">Somme des nombres de 1 à 10 avec reduce : 55
+Somme des nombres de 1 à 10 avec sum : 55
+</code></pre></td></tr></table>
+</div>
+</div><p>La fonction <code>sum</code> prend également en paramètre optionel une valeur initiale qui vaut par défaut <code>0</code>.
+Il faut noter que pour les nombres flottants il vaut mieux utiliser la fonction <code>fsum</code> du module <code>math</code>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">decimal</span>
+
+
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;Somme de nombres flottants avec sum : &#34;</span><span class="p">,</span>
+      <span class="n">decimal</span><span class="o">.</span><span class="n">Decimal</span><span class="o">.</span><span class="n">from_float</span><span class="p">(</span><span class="nb">sum</span><span class="p">([</span><span class="mf">1.234556e-20</span><span class="p">,</span> <span class="mf">1.2e-10</span><span class="p">,</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">math</span><span class="o">.</span><span class="n">e</span><span class="p">,</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)])))</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;Somme de nombres flottants avec fsum : &#34;</span><span class="p">,</span>
+      <span class="n">decimal</span><span class="o">.</span><span class="n">Decimal</span><span class="o">.</span><span class="n">from_float</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">fsum</span><span class="p">([</span><span class="mf">1.234556e-20</span><span class="p">,</span> <span class="mf">1.2e-10</span><span class="p">,</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">math</span><span class="o">.</span><span class="n">e</span><span class="p">,</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)])))</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>En forçant l&rsquo;affichage de de décimal, on voit que le calcul n&rsquo;a pas la même précision :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">Somme de nombres flottants avec sum :  7.27408804454193269606321337050758302211761474609375
+Somme de nombres flottants avec fsum :  7.27408804454193358424163307063281536102294921875
+</code></pre></td></tr></table>
+</div>
+</div><p>Entre nous, je trouve cela rigolo qu&rsquo;une somme de nombres soit au fond une réduction !</p>
+<h3 id="on-donne-le-max-">On donne le max !</h3>
+<p>Après tout, <code>reduce</code> peut être utilisé à autre chose que le calcul de la somme des nombres d&rsquo;un itérable. On peut par exemple l&rsquo;utiliser pour déterminer la maximum et le minimum d&rsquo;une séquence d&rsquo;élément.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">functools</span>
+
+
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;Le plus grand nombre pour l&#39;intervalle de 1 à 10 avec reduce :&#34;</span><span class="p">,</span>
+      <span class="n">functools</span><span class="o">.</span><span class="n">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="n">a</span> <span class="k">if</span> <span class="n">a</span> <span class="o">&gt;</span> <span class="n">b</span> <span class="k">else</span> <span class="n">b</span><span class="p">,</span> <span class="n">numbers_1_to_10</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;Le plus petit nombre pour l&#39;intervalle de 1 à 10 avec reduce :&#34;</span><span class="p">,</span>
+      <span class="n">functools</span><span class="o">.</span><span class="n">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="n">a</span> <span class="k">if</span> <span class="n">a</span> <span class="o">&lt;</span> <span class="n">b</span> <span class="k">else</span> <span class="n">b</span><span class="p">,</span> <span class="n">numbers_1_to_10</span><span class="p">))</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">Le plus grand nombre pour l&#39;intervalle de 1 à 10 avec reduce : 10
+Le plus petit nombre pour l&#39;intervalle de 1 à 10 avec reduce : 1
+</code></pre></td></tr></table>
+</div>
+</div><p>Mais comme pour la fonction <code>sum</code>, en Python, il existe des fonctions natives <code>max</code> et <code>min</code> dont on préférera l&rsquo;utilisation à celles de <code>reduce</code>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">functools</span>
+
+
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;Le plus grand nombre pour l&#39;intervalle de 1 à 10 avec max :&#34;</span><span class="p">,</span>
+      <span class="nb">max</span><span class="p">(</span><span class="n">numbers_1_to_10</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;Le plus petit nombre pour l&#39;intervalle de 1 à 10 avec min :&#34;</span><span class="p">,</span>
+      <span class="nb">min</span><span class="p">(</span><span class="n">numbers_1_to_10</span><span class="p">))</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">Le plus grand nombre pour l&#39;intervalle de 1 à 10 avec max : 10
+Le plus petit nombre pour l&#39;intervalle de 1 à 10 avec min : 1
+</code></pre></td></tr></table>
+</div>
+</div><p>C&rsquo;est sûr en présentant les choses comme cela, on ne perçoit probablement pas grand intérêt à <code>reduce</code> pour l&rsquo;instant.</p>
+<h3 id="house-of-the-dragon">House of the Dragon</h3>
+<p>La fonction <code>reduce</code> est souvent utilisée pour réduire une liste d&rsquo;éléments à une valeur <em>scalaire</em> mais rien n&rsquo;oblige à ce que cela soit le cas. On peut utiliser <code>reduce</code> pour combiner les éléments pour produire n&rsquo;importe quel type de valeur.</p>
+<p>Ainsi imaginons que j&rsquo;ai une liste de noms et que je veuille créer un dictionnaire qui a comme clé ce nom avec comme valeur associée la longueur de ce nom.
+Je peux m&rsquo;y prendre comme suit avec <code>reduce</code>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">functools</span>
+
+
+<span class="n">houses</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&#34;tyrell&#34;</span><span class="p">,</span> <span class="s2">&#34;stark&#34;</span><span class="p">,</span> <span class="s2">&#34;lannister&#34;</span><span class="p">,</span> <span class="s2">&#34;tarly&#34;</span><span class="p">,</span> <span class="s2">&#34;baratheon&#34;</span><span class="p">,</span> <span class="s2">&#34;targaryen&#34;</span><span class="p">}</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;Houses  :&#39;</span><span class="p">,</span> <span class="n">houses</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">aggregate</span><span class="p">(</span><span class="n">accumulator</span><span class="p">,</span> <span class="n">current_item</span><span class="p">):</span>
+    <span class="n">accumulator</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">current_item</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">current_item</span><span class="p">)})</span>
+    <span class="k">return</span> <span class="n">accumulator</span>
+
+
+<span class="n">length_by_house</span> <span class="o">=</span> <span class="n">functools</span><span class="o">.</span><span class="n">reduce</span><span class="p">(</span><span class="n">aggregate</span><span class="p">,</span> <span class="n">houses</span><span class="p">,</span> <span class="p">{})</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;Longueur du nom par nom de maison avec reduce:&#34;</span><span class="p">,</span> <span class="n">length_by_house</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>J&rsquo;ai une fonction qui combine les éléments de mon <code>iterator</code> en les aggrégeant les uns après les autres dans un dictionnaire avec sa taille. On part de l&rsquo;hypothèse que la séquence n&rsquo;a pas de doublon pour rester simple.
+La valeur d&rsquo;initialisation est le dictionnaire vide.
+Le premier élément sera ajoutée dans ce dictionnaire vide et la valeur retournée sera le dictionnaire avec ce premier élément et sa taille.
+Cette valeur retournée sera passée comme paramètre <code>accumulator</code> pour le deuxième élément et ainsi de suite.
+Arrivée en fin de liste, la valeur retournée par <code>reduce</code> sera le dictionnaire avec le dernier élément ajouté.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">Houses  : {&#39;tarly&#39;, &#39;lannister&#39;, &#39;tyrell&#39;, &#39;baratheon&#39;, &#39;targaryen&#39;, &#39;stark&#39;}
+Length of the name by House name (reduce): {&#39;tyrell&#39;: 6, &#39;stark&#39;: 5, &#39;lannister&#39;: 9, &#39;tarly&#39;: 5, &#39;baratheon&#39;: 9, &#39;targaryen&#39;: 9}
+</code></pre></td></tr></table>
+</div>
+</div><p>Bien sûr en Python, vous pouvez obtenir le même résultat avec une compréhension, ce qui donne un code plus compact et probablement plus compact.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">houses</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&#34;tyrell&#34;</span><span class="p">,</span> <span class="s2">&#34;stark&#34;</span><span class="p">,</span> <span class="s2">&#34;lannister&#34;</span><span class="p">,</span> <span class="s2">&#34;tarly&#34;</span><span class="p">,</span> <span class="s2">&#34;baratheon&#34;</span><span class="p">,</span> <span class="s2">&#34;targaryen&#34;</span><span class="p">}</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;Houses  :&#39;</span><span class="p">,</span> <span class="n">houses</span><span class="p">)</span>
+
+
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;Longueur du nom par nom de maison avec compréhension:&#34;</span><span class="p">,</span>
+      <span class="p">{</span><span class="n">house</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">house</span><span class="p">)</span> <span class="k">for</span> <span class="n">house</span> <span class="ow">in</span> <span class="n">houses</span><span class="p">})</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Il faut reconnaitre qu&rsquo;encore une fois, il existe une solution en Python plus intéressante que celle de <code>reduce</code>. Cependant, une compréhension pourra être utilisée à la place de <code>reduce</code> si le résultat que l&rsquo;on souhaite obtenir est une <code>list</code>, un <code>tuple</code>, un <code>set</code>, un <code>dict</code> ou un <code>iterator</code>.
+Si on souhaite réduire à un objet par exemple on ne pourra pas le faire directement avec une compréhension.</p>
+<p>Prenons un exemple un peu artificiel basé sur l&rsquo;exemple précédent.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">functools</span>
+
+
+<span class="k">class</span> <span class="nc">HousesOfWesteros</span><span class="p">:</span>
+      <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">nameLengthByName</span> <span class="o">=</span> <span class="p">{}</span>
+
+      <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dictionary</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">nameLengthByName</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">dictionary</span><span class="p">)</span>
+
+      <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nameLengthByName</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;Longueur du nom par nom de maison avec reduce sur un objet :&#34;</span><span class="p">,</span> <span class="n">functools</span><span class="o">.</span><span class="n">reduce</span><span class="p">(</span><span class="n">aggregate</span><span class="p">,</span> <span class="n">houses</span><span class="p">,</span> <span class="n">HousesOfWesteros</span><span class="p">()))</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>La classe <code>HousesOfWesteros</code> est juste une <em>enveloppe</em> autour d&rsquo;un dictionnaire.
+En soit elle n&rsquo;a pas grand intérêt, si ce n&rsquo;est pour les besoins de la démonstration ici.
+En effet, ce qui est intéressant avec <code>reduce</code> c&rsquo;est qu&rsquo;on peut réduire une séquence a à peu près n&rsquo;importe quoi.
+On notera au passage, l&rsquo;utilisation du <em>Duck Typing</em> et la réutilisation de la fonction <code>aggregate</code> définie précédemment, qui est utilisée aussi bien sur un <code>dict</code> que sur la classe <code>HousesOfWesteros</code>, ce qui est important est que l&rsquo;on puisse appliquer sur l&rsquo;un et l&rsquo;autre la fonction <code>update</code>.</p>
+<p>Le point est que la fonction <code>reduce</code> est très générique mais qu&rsquo;en Python pour la plupart des besoins courants, on n&rsquo;en n&rsquo;aura pas besoin car on aura une solution plus simple à mettre en oeuvre.</p>
+<h3 id="la-fonction-reduce-est-vraiment-générique">La fonction reduce est vraiment générique</h3>
+<p>Comme cela vient d&rsquo;être écrit la fonction <code>reduce</code> est très générique, à tel point que l&rsquo;on peut exprimer les fonctions <a href="https://tgits.github.io/post/notes_apprentissage_python_tssf_filter/">filter</a> et <a href="https://tgits.github.io/post/notes_apprentissage_python_tssf_map/">map</a> avec <code>reduce</code>. 
+D&rsquo;une certaine manière <a href="https://tgits.github.io/post/notes_apprentissage_python_tssf_filter/">filter</a> et <a href="https://tgits.github.io/post/notes_apprentissage_python_tssf_map/">map</a> sont des versions spécialisées de <code>reduce</code>.</p>
+<p>Commencçons par <code>filter</code>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">functools</span>
+
+
+<span class="k">def</span> <span class="nf">my_filter</span><span class="p">(</span><span class="n">predicate</span><span class="p">,</span> <span class="n">seq</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">filter_and_aggregate_as_list</span><span class="p">(</span><span class="n">accumulator</span><span class="p">,</span> <span class="n">current_elt</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">predicate</span><span class="p">(</span><span class="n">current_elt</span><span class="p">):</span>
+            <span class="n">accumulator</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">current_elt</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">accumulator</span>
+
+    <span class="k">return</span> <span class="n">functools</span><span class="o">.</span><span class="n">reduce</span><span class="p">(</span><span class="n">filter_and_aggregate_as_list</span><span class="p">,</span> <span class="n">seq</span><span class="p">,</span> <span class="p">[])</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;Nombres pairs entre 1 à 9 avec my_filter:&#34;</span><span class="p">,</span>
+      <span class="n">my_filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)))</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;Nombres pairs entre 1 à 9 avec filter:&#34;</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span>
+    <span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">))))</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><p>On peut constater que cela nous donne bien le même résultat qu&rsquo;avec le <code>filter</code> natif.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">Nombres pairs entre 1 à 9 avec my_filter: [2, 4, 6, 8]
+Nombres pairs entre 1 à 9 avec filter: [2, 4, 6, 8]
+</code></pre></td></tr></table>
+</div>
+</div><p>L&rsquo;implémentation repose sur la fonction de réduction qui réalise le filtrage de la liste originale. On notera quand même que dans l&rsquo;<em>implémentation</em> que je propose c&rsquo;est une liste qui est retournée et non un <code>iterator</code>.
+L&rsquo;objet est ici bien sûr de montrer le principe de fonctionnement.</p>
+<p>Si nous passons à <code>map</code>, on pourrait avoir une implémentation de la forme :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">functools</span>
+
+
+<span class="k">def</span> <span class="nf">my_map</span><span class="p">(</span><span class="n">fun</span><span class="p">,</span> <span class="n">seq</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">apply_function_and_aggregate_as_list</span><span class="p">(</span><span class="n">accumulator</span><span class="p">,</span> <span class="n">current_elt</span><span class="p">):</span>
+        <span class="n">accumulator</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">fun</span><span class="p">(</span><span class="n">current_elt</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">accumulator</span>
+
+    <span class="k">return</span> <span class="n">functools</span><span class="o">.</span><span class="n">reduce</span><span class="p">(</span><span class="n">apply_function_and_aggregate_as_list</span><span class="p">,</span> <span class="n">seq</span><span class="p">,</span> <span class="p">[])</span>
+
+
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;Puissances de 2 des nombres entre 1 à 9 avec my_map:&#34;</span><span class="p">,</span>
+      <span class="n">my_map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)))</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;Puissances de 2 des nombres entre 1 à 9 avec map:&#34;</span><span class="p">,</span>
+      <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">))))</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>On obtient des résultats similaires, au détail prêt encore une fois que l&rsquo;implémentation proposée retourne une <code>list</code> et non un <code>iterator</code>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">Puissances de 2 des nombres entre 1 à 9 avec my_map: [1, 4, 9, 16, 25, 36, 49, 64, 81]
+Puissances de 2 des nombres entre 1 à 9 avec map: [1, 4, 9, 16, 25, 36, 49, 64, 81]
+</code></pre></td></tr></table>
+</div>
+</div><p>Le principe est le même que pour <code>filter</code>, la fonction de réduction crée la liste d&rsquo;éléments transformés par l&rsquo;application de la fonction passée à <code>map</code>.</p>
+<p><em>séquence</em>, <em>réduisant</em> cette séquence grâce à cette fonction ; cette dernière doit prendre en paramètre 2 éléments du même type que les éléments de la séquence ; elle combine successivement chaque élément de la liste avec la fonction. Elle prend éventuellement un troisième paramètre optionnel qui sert de valeur de départ., appliquant la fonction sur les éléments de la <em>séquence</em> pour produire un résultat qui n&rsquo;est pas nécessairement une <em>séquence</em>, dans le cas de <code>reduce</code>. On verra plus loin que <code>filter</code> et <code>map</code> sont des spécialisations de <code>reduce</code>.</p>
+<h2 id="synthèse">Synthèse</h2>
+<p>La fonction <code>reduce</code> est une fonction générique qui transforme une <em>séquence</em> d&rsquo;éléments grâce à la fonction qui lui est passée en paramètre et qui sert à combiner les éléments de cette séquence 2 à 2 en la parcourant de la gauche vers la droite.</p>
+<p>La fonction <code>reduce</code> est extrêmement puissante et est une fonction clé aux traitements des séquences dans les langages fonctionnels.
+Néanmoins en Python, si elle est présente, elle n&rsquo;est souvent pas la solution privilégiée par rapport à des solutions plus spécialisées mais plus lisibles.</p>
+<p>Les exemples de code du billet sont disponibles dans un <a href="https://gist.github.com/TGITS/751f7302723bfc29a269176d0c7aee22">gist</a>.</p>
+<h2 id="ressources">Ressources</h2>
+<ul>
+<li>Billet chapeau sur le <a href="https://tgits.github.io/post/notes_apprentissage_python_traiter_sequences_avec_style_fonctionnelle/">traitement des séquences avec un style fonctionnel</a></li>
+<li>Billet sur <a href="https://tgits.github.io/post/notes_apprentissage_python_tssf_filter/">filter</a></li>
+<li>Billet sur <a href="https://tgits.github.io/post/notes_apprentissage_python_tssf_map/">map</a></li>
+<li>Billet sur <a href="https://tgits.github.io/post/notes_apprentissage_python_tssf_flatmap/">flatmap</a></li>
+<li><a href="https://gist.github.com/TGITS/751f7302723bfc29a269176d0c7aee22">gist des exemples du billet</a></li>
+<li><a href="https://martinfowler.com/articles/collection-pipeline/">Notion de <em>Collection Pipeline</em></a>
+<ul>
+<li>Avec les <a href="https://martinfowler.com/articles/collection-pipeline/#op-catalog">opérations communes</a> sur ce <em>Collection Pipeline</em> :
+<ul>
+<li><a href="https://martinfowler.com/articles/collection-pipeline/reduce.html">reduce</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Article <em><a href="https://realpython.com/python-reduce-function/">Python&rsquo;s reduce(): From Functional to Pythonic Style</a></em></li>
+<li>Article <em><a href="https://sametmax.com/map-filter-et-reduce/">map(), filter() et reduce () ?</a></em></li>
+<li><a href="https://rxmarbles.com/">RxJS Marbles</a></li>
+<li><a href="https://github.com/ReactiveX/RxPY">RxPy</a></li>
+<li><a href="http://reactivex.io/">ReactiveX</a>
+<ul>
+<li><a href="http://reactivex.io/documentation/operators/reduce.html">Reduce</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Auteur</span>
+    <span class="item-content">TGITS</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">Modifié</span>
+    <span class="item-content">
+        2021-05-07
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/python/">python</a>
+          <a href="/tags/python3/">python3</a>
+          <a href="/tags/notes-dapprentissage/">notes d&#39;apprentissage</a>
+          <a href="/tags/d%C3%A9veloppement/">développement</a>
+          <a href="/tags/tips/">tips</a>
+          <a href="/tags/programmation-fonctionnelle/">programmation fonctionnelle</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/notes_apprentissage_python_tssf_flatmap/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Notes d&#39;apprentissage de Python : traitement des séquences avec un style fonctionnelle - flatmap</span>
+            <span class="prev-text nav-mobile">Précédent</span>
+          </a>
+        <a class="next" href="/post/notes_apprentissage_python_tssf_map/">
+            <span class="next-text nav-default">Notes d&#39;apprentissage de Python : traitement des séquences avec un style fonctionnelle - map</span>
+            <span class="next-text nav-mobile">Suivant</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    (function() {
+      
+      
+      if (window.location.hostname === 'localhost') return;
+
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      var disqus_shortname = 'thegeekintheshell';
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "thegeekintheshell" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+<div class="social-links">
+      <a href="mailto:thegeekintheshell@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://twitter.com/_TGITS" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="https://www.linkedin.com/in/cvaudry/" class="iconfont icon-linkedin" title="linkedin"></a>
+      <a href="https://github.com/TGITS" class="iconfont icon-github" title="github"></a>
+      <a href="https://gitlab.com/TGITS" class="iconfont icon-gitlab" title="gitlab"></a>
+  <a href="https://tgits.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Propulsé par <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Thème - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2020 - 
+    2021
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">TGITS</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

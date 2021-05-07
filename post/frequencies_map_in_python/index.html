@@ -46,13 +46,13 @@ Pour rappel, je traduis ici par tableau de fréquences l&rsquo;expression anglai
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://tgits.github.io/post/frequencies_map_in_python/" />
 <meta property="article:published_time" content="2020-10-03T12:01:23+02:00" />
-<meta property="article:modified_time" content="2020-10-23T11:13:13+02:00" />
+<meta property="article:modified_time" content="2021-05-06T10:29:13+02:00" />
 <meta itemprop="name" content="Tableau de fréquences en Python">
 <meta itemprop="description" content="Il y a quelques temps j&rsquo;ai publié un billet sur les tableaux de fréquences en Java avec les streams. Faisant un peu de Python en ce moment, je me suis demandé comment je pouvais le faire en Python de manière idiomatique (ou du moins d&rsquo;une manière qui me semble idiomatique en Python).
 Pour rappel, je traduis ici par tableau de fréquences l&rsquo;expression anglaise de frequencies map. Vous avez une liste d&rsquo;éléments et vous voulez pour chaque élément connaître sa fréquence (le nombre de fois où cet élément est présent dans cette liste).">
 <meta itemprop="datePublished" content="2020-10-03T12:01:23&#43;02:00" />
-<meta itemprop="dateModified" content="2020-10-23T11:13:13&#43;02:00" />
-<meta itemprop="wordCount" content="2473">
+<meta itemprop="dateModified" content="2021-05-06T10:29:13&#43;02:00" />
+<meta itemprop="wordCount" content="2467">
 
 
 
@@ -267,7 +267,7 @@ Nous allons stocker au fur et à mesure le résultat dans un dictionnaire, avec 
 </div>
 </div><p>C&rsquo;est mieux mais ce n&rsquo;est toujours pas cela : <code>[('a', &lt;itertools._grouper object at 0x0000016066418940&gt;), ('b', &lt;itertools._grouper object at 0x0000016066418400&gt;), ('c', &lt;itertools._grouper object at 0x0000016066418640&gt;), ('a', &lt;itertools._grouper object at 0x00000160680E2580&gt;), ('d', &lt;itertools._grouper object at 0x00000160680E25B0&gt;), ('a', &lt;itertools._grouper object at 0x00000160680E25E0&gt;), ('d', &lt;itertools._grouper object at 0x00000160680E2610&gt;), ('b', &lt;itertools._grouper object at 0x00000160680E2640&gt;), ('d', &lt;itertools._grouper object at 0x00000160680E2670&gt;)]</code>.</p>
 <p><img src="../../img/python/frequencies-map/essai_itertools_groupby_2.png" alt="Deuxième essai avec groupby dans l&rsquo;interpréteur"></p>
-<p>Et même si ce n&rsquo;est pas très lisible, je sens qu&rsquo;il y a un problème. Pas grave, dans un premier temps améliorons l&rsquo;affichage. Déjà on peut voir que l&rsquo;iérateur retourné est un itérateur sur un tuple comportant la <em>clé</em> un un itérateur. Mettons à profit la méthode <code>map</code> avec une lambda pour améliorer ce qu&rsquo;on voit. La <code>lambda</code> via la fonction <code>map</code> permet de transformer en liste le deuxième élément de chaque tuple de la <em>séquence</em> retournée par <code>groupby</code>.</p>
+<p>Et même si ce n&rsquo;est pas très lisible, je sens qu&rsquo;il y a un problème. Pas grave, dans un premier temps améliorons l&rsquo;affichage. Déjà on peut voir que l&rsquo;itérateur retourné est un itérateur sur un tuple comportant la <em>clé</em> et un itérateur. Mettons à profit la méthode <code>map</code> avec une lambda pour améliorer ce qu&rsquo;on voit. La <code>lambda</code> via la fonction <code>map</code> permet de transformer en liste le deuxième élément de chaque tuple de la <em>séquence</em> retournée par <code>groupby</code>.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt">1
@@ -525,11 +525,11 @@ Nous allons stocker au fur et à mesure le résultat dans un dictionnaire, avec 
 </code></pre></td></tr></table>
 </div>
 </div><p>Cela résoud le problème en appelant juste la bonne classe spécialisée ! C&rsquo;est assez similaire à la manière selon laquelle on peut résoudre cette problématique en <a href="https://clojure.org/">Clojure</a> avec la fonction <a href="https://clojuredocs.org/clojure.core/frequencies"><code>frequencies</code></a>. Boum, la bonne abstraction dans le langage et plus de problème à résoudre.</p>
-<p><code>Counter</code> peut être initialisé avec une séquence d&rsquo;éléments ou un autre dictionnaire et offre notamment une méthode pour extraire les éléments les plus fréquents. Cette classe mériterait un billet spécifique, ce que j&rsquo;essaierai de faire prochainement.</p>
+<p><code>Counter</code> peut être initialisé avec une séquence d&rsquo;éléments ou un autre dictionnaire et offre notamment une méthode pour extraire les éléments les plus fréquents. Cette classe mériterait un billet spécifique.</p>
 <p>J&rsquo;en profite pour faire un peu de publicité à <a href="https://exercism.io/">Exercism</a> qui est vraiment un bon outil pour apprendre un langage et en acquérir les idiomes. Même si les exercices peuvent sembler simples pour certains, dans l&rsquo;esprit des <a href="https://fr.wikipedia.org/wiki/Kata_(programmation)">Coding Katas</a> il y a toujours moyen d&rsquo;apprendre quelque chose et notamment de découvrir les spécificités d&rsquo;un langage, les retours des <em>mentors</em> étant des gros plus en ce sens.</p>
 <p>Le <a href="https://gist.github.com/TGITS/8b5dfde8eb57c1b304b4e98ed909b665">Gist</a> a été mis à jour en conséquence.</p>
 <h2 id="regard-critique-le-retour">Regard critique, le retour</h2>
-<p>Comme l&rsquo;écrivait <a href="https://fr.wikipedia.org/wiki/Nicolas_Boileau">Nicolas Boileau</a>, <em>Vingt fois sur le métier remettez votre ouvrage</em>. Des exercices de style comme celui-ci ou des <em>coding katas</em> sous différentes formes offrent des manières concrètes d&rsquo;approfondir notre connaissance et notre maitrise. Même quand on pense avoir fait le tour d&rsquo;un sujet, il peut encore avoir des choses à en apprendre. Et quand on apprend un nouveau langage, on n&rsquo;est jamais au bout de ses surprises.</p>
+<p>Comme l&rsquo;écrivait <a href="https://fr.wikipedia.org/wiki/Nicolas_Boileau">Nicolas Boileau</a>, <em>Vingt fois sur le métier remettez votre ouvrage</em>. Des exercices de style comme celui-ci ou des <em>coding katas</em> sous différentes formes offrent des manières concrètes d&rsquo;approfondir notre connaissance et notre maîtrise. Même quand on pense avoir fait le tour d&rsquo;un sujet, il peut encore avoir des choses à en apprendre. Et quand on apprend un nouveau langage, on n&rsquo;est jamais au bout de ses surprises.</p>
 <blockquote>
 <p>Avant donc que d&rsquo;écrire, apprenez à penser.</p>
 <p>Ce que l&rsquo;on conçoit bien s&rsquo;énonce clairement,</p>
@@ -551,7 +551,7 @@ Nous allons stocker au fur et à mesure le résultat dans un dictionnaire, avec 
   <p class="copyright-item">
     <span class="item-title">Modifié</span>
     <span class="item-content">
-        2020-10-23
+        2021-05-06
         
     </span>
   </p>
@@ -651,7 +651,8 @@ Nous allons stocker au fur et à mesure le résultat dans un dictionnaire, avec 
 
   <span class="copyright-year">
     &copy; 
-    2020
+    2020 - 
+    2021
     <span class="heart">
       <i class="iconfont icon-heart"></i>
     </span>

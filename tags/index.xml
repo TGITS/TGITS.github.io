@@ -6,7 +6,7 @@
     <description>Recent content in Tags on The Geek In The Shell</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>fr-fr</language>
-    <lastBuildDate>Sun, 22 Nov 2020 18:27:43 +0200</lastBuildDate>
+    <lastBuildDate>Fri, 07 May 2021 14:27:47 +0200</lastBuildDate>
     
 	<atom:link href="https://tgits.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>développement</title>
       <link>https://tgits.github.io/tags/d%C3%A9veloppement/</link>
-      <pubDate>Sun, 22 Nov 2020 18:27:43 +0200</pubDate>
+      <pubDate>Fri, 07 May 2021 14:27:47 +0200</pubDate>
       
       <guid>https://tgits.github.io/tags/d%C3%A9veloppement/</guid>
       <description></description>
@@ -23,16 +23,25 @@
     <item>
       <title>notes d&#39;apprentissage</title>
       <link>https://tgits.github.io/tags/notes-dapprentissage/</link>
-      <pubDate>Sun, 22 Nov 2020 18:27:43 +0200</pubDate>
+      <pubDate>Fri, 07 May 2021 14:27:47 +0200</pubDate>
       
       <guid>https://tgits.github.io/tags/notes-dapprentissage/</guid>
       <description></description>
     </item>
     
     <item>
+      <title>programmation fonctionnelle</title>
+      <link>https://tgits.github.io/tags/programmation-fonctionnelle/</link>
+      <pubDate>Fri, 07 May 2021 14:27:47 +0200</pubDate>
+      
+      <guid>https://tgits.github.io/tags/programmation-fonctionnelle/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>python</title>
       <link>https://tgits.github.io/tags/python/</link>
-      <pubDate>Sun, 22 Nov 2020 18:27:43 +0200</pubDate>
+      <pubDate>Fri, 07 May 2021 14:27:47 +0200</pubDate>
       
       <guid>https://tgits.github.io/tags/python/</guid>
       <description></description>
@@ -41,7 +50,7 @@
     <item>
       <title>python3</title>
       <link>https://tgits.github.io/tags/python3/</link>
-      <pubDate>Sun, 22 Nov 2020 18:27:43 +0200</pubDate>
+      <pubDate>Fri, 07 May 2021 14:27:47 +0200</pubDate>
       
       <guid>https://tgits.github.io/tags/python3/</guid>
       <description></description>
@@ -50,7 +59,7 @@
     <item>
       <title>tips</title>
       <link>https://tgits.github.io/tags/tips/</link>
-      <pubDate>Sun, 22 Nov 2020 18:27:43 +0200</pubDate>
+      <pubDate>Fri, 07 May 2021 14:27:47 +0200</pubDate>
       
       <guid>https://tgits.github.io/tags/tips/</guid>
       <description></description>
@@ -179,15 +188,6 @@
       <pubDate>Sat, 12 Sep 2020 15:46:52 +0200</pubDate>
       
       <guid>https://tgits.github.io/tags/programmation-distribu%C3%A9e/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>programmation fonctionnelle</title>
-      <link>https://tgits.github.io/tags/programmation-fonctionnelle/</link>
-      <pubDate>Sat, 12 Sep 2020 15:46:52 +0200</pubDate>
-      
-      <guid>https://tgits.github.io/tags/programmation-fonctionnelle/</guid>
       <description></description>
     </item>
     
