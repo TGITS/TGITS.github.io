@@ -17,9 +17,9 @@
 
 
 <meta name="author" content="TGITS" /><meta name="description" content="Contexte Ce billet s&amp;rsquo;inscrit dans une série de billets sur le traitement des séquences avec un style fonctionnel en Python.
-NB : La version de Python utilisée dans les exemples de code est la version 3.
-Principe La fonction map est native tout comme filter et prend également en paramètre une fonction et une séquence d&amp;rsquo;éléments.
-La fonction map permet d&amp;rsquo;appliquer cette fonction à chaque élément de la séquence et produit une nouvelle séquence résultante dont chaque élément est le résultat de l&amp;rsquo;application de cette fonction sur chaque élément de la séquence initiale." /><meta name="keywords" content="TGITS, Développement, Java, Architecture" />
+NB1 : La version de Python utilisée dans les exemples de code est la version 3.
+NB2 : Ce billet a été modifié le 24/05/2021, par l&amp;rsquo;ajout d&amp;rsquo;un paragraphe sur le comportement de map avec plusieurs itérables.
+Principe La fonction map est native tout comme filter et prend également en paramètre une fonction et une séquence d&amp;rsquo;éléments." /><meta name="keywords" content="TGITS, Développement, Java, Architecture" />
 
 
 
@@ -44,30 +44,30 @@ La fonction map permet d&amp;rsquo;appliquer cette fonction à chaque élément 
 
 <meta property="og:title" content="Notes d&#39;apprentissage de Python : traitement des séquences avec un style fonctionnel - map" />
 <meta property="og:description" content="Contexte Ce billet s&rsquo;inscrit dans une série de billets sur le traitement des séquences avec un style fonctionnel en Python.
-NB : La version de Python utilisée dans les exemples de code est la version 3.
-Principe La fonction map est native tout comme filter et prend également en paramètre une fonction et une séquence d&rsquo;éléments.
-La fonction map permet d&rsquo;appliquer cette fonction à chaque élément de la séquence et produit une nouvelle séquence résultante dont chaque élément est le résultat de l&rsquo;application de cette fonction sur chaque élément de la séquence initiale." />
+NB1 : La version de Python utilisée dans les exemples de code est la version 3.
+NB2 : Ce billet a été modifié le 24/05/2021, par l&rsquo;ajout d&rsquo;un paragraphe sur le comportement de map avec plusieurs itérables.
+Principe La fonction map est native tout comme filter et prend également en paramètre une fonction et une séquence d&rsquo;éléments." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://tgits.github.io/post/notes_apprentissage_python_tssf_map/" />
 <meta property="article:published_time" content="2021-05-07T14:27:45+02:00" />
-<meta property="article:modified_time" content="2021-05-07T14:27:45+02:00" />
+<meta property="article:modified_time" content="2021-05-24T20:48:45+02:00" />
 <meta itemprop="name" content="Notes d&#39;apprentissage de Python : traitement des séquences avec un style fonctionnel - map">
 <meta itemprop="description" content="Contexte Ce billet s&rsquo;inscrit dans une série de billets sur le traitement des séquences avec un style fonctionnel en Python.
-NB : La version de Python utilisée dans les exemples de code est la version 3.
-Principe La fonction map est native tout comme filter et prend également en paramètre une fonction et une séquence d&rsquo;éléments.
-La fonction map permet d&rsquo;appliquer cette fonction à chaque élément de la séquence et produit une nouvelle séquence résultante dont chaque élément est le résultat de l&rsquo;application de cette fonction sur chaque élément de la séquence initiale.">
+NB1 : La version de Python utilisée dans les exemples de code est la version 3.
+NB2 : Ce billet a été modifié le 24/05/2021, par l&rsquo;ajout d&rsquo;un paragraphe sur le comportement de map avec plusieurs itérables.
+Principe La fonction map est native tout comme filter et prend également en paramètre une fonction et une séquence d&rsquo;éléments.">
 <meta itemprop="datePublished" content="2021-05-07T14:27:45&#43;02:00" />
-<meta itemprop="dateModified" content="2021-05-07T14:27:45&#43;02:00" />
-<meta itemprop="wordCount" content="1502">
+<meta itemprop="dateModified" content="2021-05-24T20:48:45&#43;02:00" />
+<meta itemprop="wordCount" content="2289">
 
 
 
 <meta itemprop="keywords" content="python,python3,notes d&#39;apprentissage,développement,tips,programmation fonctionnelle," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Notes d&#39;apprentissage de Python : traitement des séquences avec un style fonctionnel - map"/>
 <meta name="twitter:description" content="Contexte Ce billet s&rsquo;inscrit dans une série de billets sur le traitement des séquences avec un style fonctionnel en Python.
-NB : La version de Python utilisée dans les exemples de code est la version 3.
-Principe La fonction map est native tout comme filter et prend également en paramètre une fonction et une séquence d&rsquo;éléments.
-La fonction map permet d&rsquo;appliquer cette fonction à chaque élément de la séquence et produit une nouvelle séquence résultante dont chaque élément est le résultat de l&rsquo;application de cette fonction sur chaque élément de la séquence initiale."/>
+NB1 : La version de Python utilisée dans les exemples de code est la version 3.
+NB2 : Ce billet a été modifié le 24/05/2021, par l&rsquo;ajout d&rsquo;un paragraphe sur le comportement de map avec plusieurs itérables.
+Principe La fonction map est native tout comme filter et prend également en paramètre une fonction et une séquence d&rsquo;éléments."/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -157,6 +157,7 @@ La fonction map permet d&rsquo;appliquer cette fonction à chaque élément de l
     <li><a href="#comparaison-avec-les-boucles-for-et-les-compréhensions">Comparaison avec les boucles for et les compréhensions</a></li>
     <li><a href="#la-fonction-map-retourne-un-iterator">La fonction map retourne un iterator</a></li>
     <li><a href="#combiner-map-et-filter">Combiner map et filter</a></li>
+    <li><a href="#la-fonction-map-en-python-peut-traiter-plusieurs-itérables">La fonction map en Python peut traiter plusieurs itérables</a></li>
     <li><a href="#synthèse">Synthèse</a></li>
     <li><a href="#ressources">Ressources</a></li>
   </ul>
@@ -166,7 +167,8 @@ La fonction map permet d&rsquo;appliquer cette fonction à chaque élément de l
     <div class="post-content">
       <h2 id="contexte">Contexte</h2>
 <p>Ce billet s&rsquo;inscrit dans une <a href="https://tgits.github.io/post/notes_apprentissage_python_traiter_sequences_avec_style_fonctionnel/">série de billets sur le traitement des séquences avec un style fonctionnel en Python</a>.</p>
-<p><strong>NB</strong> : La version de Python utilisée dans les exemples de code est la version 3.</p>
+<p><strong>NB1</strong> : La version de Python utilisée dans les exemples de code est la version 3.</p>
+<p><strong>NB2</strong> : Ce billet a été modifié le 24/05/2021, par l&rsquo;ajout d&rsquo;un paragraphe sur le comportement de <code>map</code> avec plusieurs itérables.</p>
 <h2 id="principe">Principe</h2>
 <p>La fonction <code>map</code> est <a href="https://docs.python.org/fr/3/library/functions.html#map">native</a> tout comme <a href="https://tgits.github.io/post/notes_apprentissage_python_tssf_filter/">filter</a> et prend également en paramètre une fonction et une séquence d&rsquo;éléments.</p>
 <p>La fonction <code>map</code> permet d&rsquo;appliquer cette fonction à chaque élément de la séquence et produit une nouvelle séquence résultante dont chaque élément est le résultat de l&rsquo;application de cette fonction sur chaque élément de la séquence initiale.</p>
@@ -472,9 +474,150 @@ Néanmoins les expressions de cette forme deviennent vite peu lisibles.</p>
 De plus, on ne peut pas enchainer les fonctions comme <code>map</code>, <code>filter</code>, <code>reduce</code> ou les fonctions de <code>itertools</code> comme on le ferait avec les <a href="https://docs.oracle.com/javase/8/docs/api/?java/util/stream/Stream.html">stream</a> en Java par exemple, car justement ce sont des fonctions, pas des méthodes de l&rsquo;objet <code>iterator</code>.
 Il est donc souvent préférable pour des questions de lisibilité de passer par des variables intermédiaires pour éviter d&rsquo;avoir des appels de fonctions imbriqués.</p>
 <p>Il y a plusieurs manières d&rsquo;obtenir l&rsquo;équivalent d&rsquo;une boucle ou d&rsquo;une compréhension imbriquée avec <code>map</code>, mais cela implique d&rsquo;autres fonctions que juste <code>map</code>. Ce point est développé dans le billet sur <a href="http://localhost:1313/post/notes_apprentissage_python_tssf_flatmap/">flatmap</a></p>
-<h2 id="synthèse">Synthèse</h2>
+<h2 id="la-fonction-map-en-python-peut-traiter-plusieurs-itérables">La fonction map en Python peut traiter plusieurs itérables</h2>
+<p>La fonction <code>map</code> en Python peut en fait prendre plusieurs itérables, pas juste un seul.
+Il faut que la fonction qu&rsquo;applique <code>map</code> prenne elle-même en paramètre autant d&rsquo;arguments qu&rsquo;il y a d&rsquo;itérables fournis.
+Chaque élement séquence produite par <code>map</code> est résultat de l&rsquo;application de la fonction sur les éléments correspondants des différents itérables.
+Un exemple pour clarifier :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">print</span><span class="p">(</span><span class="o">*</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">:</span> <span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="o">+</span><span class="n">z</span><span class="p">,</span>
+           <span class="p">[</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="s1">&#39;3&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">]))</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>La fonction lambda prend 3 arguments et réalise leur concaténation en prenant respectivement le premier élément de chacun des itérables, puis le second, etc.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">1Aa 2Bb 3Cc
+</code></pre></td></tr></table>
+</div>
+</div><p>Avec une compréhension, vous obtiendriez le même résultat avec un code similaire à ce qui suit :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">print</span><span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="o">+</span><span class="n">z</span> <span class="k">for</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">([</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="s1">&#39;3&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">])])</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>On notera l&rsquo;utilisation de la fonction <code>zip</code> dans la compréhension, c&rsquo;est ce que fait <code>map</code> avec plusieurs itérables d&rsquo;une certaine manière, ils sont <em>zippés</em> implicitement.</p>
+<p>Dans <code>itertools</code>, il existe une variante de le fonction <code>map</code> qui comme dans l&rsquo;exemple de la compréhension fonctionnerait à partir d&rsquo;un ensemble d&rsquo;itérables <em>zippés</em> ou à partir d&rsquo;un itérable de tuples, la fonction <code>starmap</code>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">starmap</span>
+
+
+<span class="k">print</span><span class="p">(</span><span class="o">*</span><span class="n">starmap</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">:</span> <span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="o">+</span><span class="n">z</span><span class="p">,</span> <span class="nb">zip</span><span class="p">([</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="s1">&#39;3&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">])))</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>ou à partir d&rsquo;une liste de tuples directement</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">starmap</span>
+
+
+<span class="k">print</span><span class="p">(</span><span class="o">*</span><span class="n">starmap</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">:</span> <span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="o">+</span><span class="n">z</span><span class="p">,</span> <span class="p">[(</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;3&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">)]))</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Ce qui dans un cas comme dans l&rsquo;autre, donnerait le même résultat qu&rsquo;avec <code>map</code>.</p>
+<p>Pour résumer le fonctionnement de <code>map</code> avec cet exemple.</p>
+<p><img src="../../img/python/map/map-plusieurs-iterables.png" alt="Fonction map avec plusieurs itérables"></p>
+<p>A comparer avec le fonctionnement de <code>starmap</code>.</p>
+<p><img src="../../img/python/map/principe_starmap.png" alt="Fonctionnement de starmap"></p>
+<p>Si vous avez plusieurs itérables à partir desquels vous souhaiteriez produire une nouvelle séquence en fonction de leurs éléments de même indice, <code>map</code> peut vous éviter d&rsquo;utiliser la fonction <code>zip</code> et c&rsquo;est peut-être un exemple ou vous la préférez à l&rsquo;utilisation d&rsquo;une compréhension.</p>
+<p>Si vous avez directement un itérable avec un tuple d&rsquo;éléments à partir duquel vous voulez produire une nouvelle séquence dont les éléments font construits à partir des composants du tuple, <code>starmap</code> peut être à envisager.</p>
+<p>Attardons nous sur quelques autres exemples inspirés de la documentation de la bibliothèque standard de Python.</p>
+<p>Si nous voulons avoir une liste des nombres entre 1 et 9 élevé à la puissance d&rsquo;eux-même, on pourrait écrire quelque chose de la forme :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">print</span><span class="p">(</span><span class="s2">&#34;x puissance x, pour x entier de 1 à 9 : &#34;</span><span class="p">,</span> <span class="o">*</span><span class="nb">map</span><span class="p">(</span><span class="nb">pow</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)))</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Ce qui nous donnerait l&rsquo;affichage suivant :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">x puissance x, pour x entier de 1 à 9 :  1 4 27 256 3125 46656 823543 16777216 387420489
+</code></pre></td></tr></table>
+</div>
+</div><p>On peut également travailler avec des séquences (potentiellement) infinies.
+La fonction <code>repeat</code>de <code>itertools</code> produit une séquence infinie de la valeur qu&rsquo;on lui a passé en paramètre.
+Pour produire la liste des puissance de 2 des nombres de 1 à 9, on pourrait écrire quelque chose de la forme :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">print</span><span class="p">(</span><span class="s2">&#34;les 9 preniers chiffres à la puissance 2 : &#34;</span><span class="p">,</span> <span class="o">*</span><span class="nb">map</span><span class="p">(</span><span class="nb">pow</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">repeat</span><span class="p">(</span><span class="mi">2</span><span class="p">)))</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Comme pour la fonction <code>zip</code>, c&rsquo;est la plus courte des 2 séquences qui déterminera la taille de la séquence produite.
+La fonction <code>repeat(2)</code> produit ici une liste potentiellement <em>infini</em> de <code>2</code> mais seulement 9 valeurs se retrouveront dans la liste finale produite par <code>map</code>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">les 9 preniers chiffres à la puissance 2 :  1 4 9 16 25 36 49 64 81
+</code></pre></td></tr></table>
+</div>
+</div><p>Il est également possible que toutes les séquences passées à <code>map</code> soit <em>infinies</em>.
+En partant de l&rsquo;exemple précédcent, une manière d&rsquo;avoir la liste des puissances des nombres entiers à partir de 1 et d&rsquo;afficher les 20 premiers pourrait être la suivante :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">repeat</span><span class="p">,</span> <span class="n">count</span><span class="p">,</span> <span class="n">islice</span>
+
+<span class="n">powers_of_2</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">pow</span><span class="p">,</span> <span class="n">count</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">repeat</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;[map] Les puissances de 2 pour les 20 premiers nombres à partir de 1 : &#34;</span><span class="p">,</span>
+      <span class="o">*</span><span class="n">islice</span><span class="p">(</span><span class="n">powers_of_2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">20</span><span class="p">))</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>La fonction <code>count</code> de <code>itertools</code> génère une liste de valeurs à partir d&rsquo;une valeur de départ (entière ou réelle) et d&rsquo;un pas de progression (lui aussi entier ou réel), la valeur par défaut de ce pas étant la valeur <code>1</code>.
+Ici <code>count(1)</code> produit la séquence <code>1, 2, 3, ...</code>.
+On utilise <code>islice</code> toujours de <code>itertools</code> pour extraire l&rsquo;intervalle des 20 premiers éléments de l'<code>iterator</code> produit par <code>map</code>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">Les puissances de 2 pour les 20 premiers nombres à partir de 1 :  1 4 9 16 25 36 49 64 81 100 121 144 169 196 225 256 289 324 361 400
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="synthèse">Synthèse</h2>
 <p>La fonction <code>map</code> est une fonction native de Python. Elle prend en paramètre une fonction et un <code>iterator</code> ; elle retourne un nouvel <code>iterator</code> dont chaque élément est le résultat de l&rsquo;application de cette fonction sur chaque élément de la séquence initiale.
-La fonction <code>map</code> peut être vue comme l&rsquo;abstraction d&rsquo;une boucle sur une liste pour appliquer une fonction sur chaque élément de la liste et produire une nouvelle liste résultante.</p>
+La fonction <code>map</code> peut être vue comme l&rsquo;abstraction d&rsquo;une boucle sur une liste pour appliquer une fonction sur chaque élément de la liste et produire une nouvelle liste résultante.
+La fonction <code>map</code> en Python peut prendre plusieurs itérables en paramètres.</p>
 <p>Il est bien sûr possible de combiner <code>map</code> avec <code>filter</code> pour filtrer avant d&rsquo;appliquer <code>map</code> ou au contraire après sur l'<code>iterator</code> produit par <code>map</code>.</p>
 <p>L&rsquo;ensemble du code du billet est disponible dans un <a href="https://gist.github.com/TGITS/8c4737dbb42ce160a39e2859b3e5bf8c">gist</a>.</p>
 <h2 id="ressources">Ressources</h2>
@@ -513,7 +656,7 @@ La fonction <code>map</code> peut être vue comme l&rsquo;abstraction d&rsquo;un
   <p class="copyright-item">
     <span class="item-title">Modifié</span>
     <span class="item-content">
-        2021-05-07
+        2021-05-24
         
     </span>
   </p>
