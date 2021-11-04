@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="TGITS" /><meta name="description" content="The Big Picture Les ADR (Architectural Decision Record) sont une documentation des décisions d’architecture que Michael Nygard a formalisée en 2011 dans un billet sur le blog de Relevance (devenu Cognitech depuis). Pour les lecteurs moins à l&amp;rsquo;aise avec la langue anglaise, je propose une traduction du billet en françaissur un petit dépôt sur GitHub avec d&amp;rsquo;autres ressources sur les ADR en complément de cet article.
+<meta name="author" content="TGITS" /><meta name="description" content="The Big Picture Les ADR (Architectural Decision Record) sont une documentation des décisions d’architecture que Michael Nygard a formalisée en 2011 dans un billet sur le blog de Relevance (devenu Cognitech depuis). Pour les lecteurs moins à l&amp;rsquo;aise avec la langue anglaise, je propose une traduction du billet en français sur un petit dépôt sur GitHub avec d&amp;rsquo;autres ressources sur les ADR en complément de cet article.
 Cette documentation légère est adaptée à des projets agiles." /><meta name="keywords" content="TGITS, Développement, Java, Architecture" />
 
 
@@ -41,24 +41,24 @@ Cette documentation légère est adaptée à des projets agiles." /><meta name="
 
 
 <meta property="og:title" content="Suivre les décisions d&#39;architecture avec les ADR" />
-<meta property="og:description" content="The Big Picture Les ADR (Architectural Decision Record) sont une documentation des décisions d’architecture que Michael Nygard a formalisée en 2011 dans un billet sur le blog de Relevance (devenu Cognitech depuis). Pour les lecteurs moins à l&rsquo;aise avec la langue anglaise, je propose une traduction du billet en françaissur un petit dépôt sur GitHub avec d&rsquo;autres ressources sur les ADR en complément de cet article.
+<meta property="og:description" content="The Big Picture Les ADR (Architectural Decision Record) sont une documentation des décisions d’architecture que Michael Nygard a formalisée en 2011 dans un billet sur le blog de Relevance (devenu Cognitech depuis). Pour les lecteurs moins à l&rsquo;aise avec la langue anglaise, je propose une traduction du billet en français sur un petit dépôt sur GitHub avec d&rsquo;autres ressources sur les ADR en complément de cet article.
 Cette documentation légère est adaptée à des projets agiles." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://tgits.github.io/post/adr/" />
 <meta property="article:published_time" content="2020-06-01T11:56:13+02:00" />
-<meta property="article:modified_time" content="2020-06-01T11:56:13+02:00" />
+<meta property="article:modified_time" content="2021-11-04T13:58:43+02:00" />
 <meta itemprop="name" content="Suivre les décisions d&#39;architecture avec les ADR">
-<meta itemprop="description" content="The Big Picture Les ADR (Architectural Decision Record) sont une documentation des décisions d’architecture que Michael Nygard a formalisée en 2011 dans un billet sur le blog de Relevance (devenu Cognitech depuis). Pour les lecteurs moins à l&rsquo;aise avec la langue anglaise, je propose une traduction du billet en françaissur un petit dépôt sur GitHub avec d&rsquo;autres ressources sur les ADR en complément de cet article.
+<meta itemprop="description" content="The Big Picture Les ADR (Architectural Decision Record) sont une documentation des décisions d’architecture que Michael Nygard a formalisée en 2011 dans un billet sur le blog de Relevance (devenu Cognitech depuis). Pour les lecteurs moins à l&rsquo;aise avec la langue anglaise, je propose une traduction du billet en français sur un petit dépôt sur GitHub avec d&rsquo;autres ressources sur les ADR en complément de cet article.
 Cette documentation légère est adaptée à des projets agiles.">
 <meta itemprop="datePublished" content="2020-06-01T11:56:13&#43;02:00" />
-<meta itemprop="dateModified" content="2020-06-01T11:56:13&#43;02:00" />
-<meta itemprop="wordCount" content="3237">
+<meta itemprop="dateModified" content="2021-11-04T13:58:43&#43;02:00" />
+<meta itemprop="wordCount" content="3240">
 
 
 
-<meta itemprop="keywords" content="adr,architecture,documentation," /><meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="adr,architecture,documentation,conception," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Suivre les décisions d&#39;architecture avec les ADR"/>
-<meta name="twitter:description" content="The Big Picture Les ADR (Architectural Decision Record) sont une documentation des décisions d’architecture que Michael Nygard a formalisée en 2011 dans un billet sur le blog de Relevance (devenu Cognitech depuis). Pour les lecteurs moins à l&rsquo;aise avec la langue anglaise, je propose une traduction du billet en françaissur un petit dépôt sur GitHub avec d&rsquo;autres ressources sur les ADR en complément de cet article.
+<meta name="twitter:description" content="The Big Picture Les ADR (Architectural Decision Record) sont une documentation des décisions d’architecture que Michael Nygard a formalisée en 2011 dans un billet sur le blog de Relevance (devenu Cognitech depuis). Pour les lecteurs moins à l&rsquo;aise avec la langue anglaise, je propose une traduction du billet en français sur un petit dépôt sur GitHub avec d&rsquo;autres ressources sur les ADR en complément de cet article.
 Cette documentation légère est adaptée à des projets agiles."/>
 
 <!--[if lte IE 9]>
@@ -133,6 +133,7 @@ Cette documentation légère est adaptée à des projets agiles."/>
         <div class="post-category">
             <a href="/categories/architecture/"> architecture </a>
             <a href="/categories/documentation/"> documentation </a>
+            <a href="/categories/conception/"> conception </a>
             </div>
         
       </div>
@@ -172,30 +173,30 @@ Cette documentation légère est adaptée à des projets agiles."/>
 </div>
     <div class="post-content">
       <h2 id="the-big-picture">The Big Picture</h2>
-<p>Les <strong>ADR</strong> (<strong>A</strong>rchitectural <strong>D</strong>ecision <strong>R</strong>ecord) sont une documentation des décisions d’architecture que <a href="http://thinkrelevance.com/team/members/michael-nygard">Michael Nygard</a> a formalisée en 2011 dans un <a href="http://thinkrelevance.com/blog/2011/11/15/documenting-architecture-decisions">billet</a> sur le blog de <a href="http://thinkrelevance.com/">Relevance (devenu Cognitech depuis)</a>. Pour les lecteurs moins à l&rsquo;aise avec la langue anglaise, je propose une traduction du billet en françaissur un petit <a href="https://github.com/TGITS/adr-resources">dépôt sur GitHub</a> avec d&rsquo;autres ressources sur les <strong>ADR</strong> en complément de cet article.</p>
+<p>Les <strong>ADR</strong> (<strong>A</strong>rchitectural <strong>D</strong>ecision <strong>R</strong>ecord) sont une documentation des décisions d’architecture que <a href="http://thinkrelevance.com/team/members/michael-nygard">Michael Nygard</a> a formalisée en 2011 dans un <a href="http://thinkrelevance.com/blog/2011/11/15/documenting-architecture-decisions">billet</a> sur le blog de <a href="http://thinkrelevance.com/">Relevance (devenu Cognitech depuis)</a>. Pour les lecteurs moins à l&rsquo;aise avec la langue anglaise, je propose une traduction du billet en français sur un petit <a href="https://github.com/TGITS/adr-resources">dépôt sur GitHub</a> avec d&rsquo;autres ressources sur les <strong>ADR</strong> en complément de cet article.</p>
 <p>Cette documentation légère est adaptée à des projets agiles. Souvent écrite en <em>Markdown</em>, <em>AsciiDoc</em>, <em>Textile</em> ou un format de ce type, elle est alors suivie en gestion de configuration avec le code source. Cependant, elle peut également être gérée via le wiki du projet ou exister à travers des documents textes classiques voire des slides.</p>
 <p>L&rsquo;objet d&rsquo;un <strong>ADR</strong> est de garder un historique des décisions d&rsquo;architecture afin que les choix de conception restent compréhensibles même pour de nouveaux arrivants. Un <strong>ADR</strong> capture le <strong>contexte</strong> et les <strong>conséquences</strong> de la décision au moment où cette dernière est prise. Cela permet ainsi d&rsquo;avoir de la perspective sur les décisions passées et d&rsquo;avoir des éléments pour prendre des décisions éclairées pour les besoins présents du projet en tenant compte de ces choix passés.</p>
 <h2 id="jolie-petite-histoire">Jolie petite histoire</h2>
-<p><strong>Jon Snow</strong> est un jeune développeur fraîchement sorti de formation à <em>Winterfell</em>. Il vient d&rsquo;arriver dans sa nouvelle entreprise, <em>NightWatch</em> . Il est pressé d&rsquo;en découdre et de faire ses preuves. Lors des premiers développements qu&rsquo;il réalise, il s&rsquo;aperçoit qu&rsquo;il y a du code dupliqué dans plusieurs modules différents. Ces différents modules correspondent à des fonctionnalités métiers différentes mais possédent des abstractions fonctionnelles (des classes représentant des concepts métiers) et techniques (ici des classes qui permettent de les <em>sérialiser en</em>/<em>désérialiser de</em> <strong>JSON</strong>) dupliquées.</p>
-<p>Profitant du travail sur une <em>feature</em> qui touche à ces classes dans un des modules, <strong>Jon</strong> en profite pour se lancer dans un <em>refactoring</em> aggressif après avoir vérifié - et le cas échéant complété - la couverture de tests pour ces parties de code-là. Ainsi, il sort sous forme d&rsquo;un module séparé les abstractions métiers d&rsquo;une part et les classes pour la sérialisation/déserialisation d&rsquo;autre part, puis fait en sorte que les différents modules s&rsquo;appuient désormais sur ces 2 nouveaux modules, supprimant les duplications de code. Il est plutôt content de lui, il a appliqué <em>DRY (Don&rsquo;t Repeat Youtself)</em> et ce qu&rsquo;il a fait fonctionne bien. Dommage qu&rsquo;il n&rsquo;y ait pas de revues de code mise en place dans l&rsquo;équipe, il était fier de lui sur ce coup-là et en aurait volontier discuté avec ces collègues.</p>
-<p>Quelques temps après <strong>Grenn</strong>, un autre jeune développeur arrivé également depuis peu chez <em>NightWatch</em>, doit développer une nouvelle fonctionnalité sur un module métier différent de celui de <strong>Jon</strong>. Cependant, entre temps le code de <strong>Jon</strong> a été <em>mergé</em> sur la branche <em>Master</em>,  et il part d&rsquo;une base de code avec les modifications et les nouveaux modules introduits par <strong>Jon</strong>.</p>
+<p><strong>Jon Snow</strong> est un jeune développeur fraîchement sorti de formation à <em>Winterfell</em>. Il vient d&rsquo;arriver dans sa nouvelle entreprise, <em>NightWatch</em>. Il est pressé d&rsquo;en découdre et de faire ses preuves. Lors des premiers développements qu&rsquo;il réalise, il s&rsquo;aperçoit qu&rsquo;il y a du code dupliqué dans plusieurs modules différents. Ces différents modules correspondent à des fonctionnalités métiers différentes mais possédent des abstractions fonctionnelles (des classes représentant des concepts métiers) et techniques (ici des classes qui permettent de les <em>sérialiser en</em>/<em>désérialiser de</em> <strong>JSON</strong>) dupliquées.</p>
+<p>Profitant du travail sur une <em>feature</em> qui touche à ces classes dans un des modules, <strong>Jon</strong> en profite pour se lancer dans un <em>refactoring</em> aggressif après avoir vérifié - et le cas échéant complété - la couverture de tests pour ces parties de code-là. Ainsi, il sort sous forme d&rsquo;un module séparé les abstractions métiers d&rsquo;une part et les classes pour la sérialisation/déserialisation d&rsquo;autre part, puis fait en sorte que les différents modules s&rsquo;appuient désormais sur ces 2 nouveaux modules, supprimant les duplications de code. Il est plutôt content de lui, il a appliqué <em>DRY (Don&rsquo;t Repeat Youtself)</em> et ce qu&rsquo;il a fait fonctionne bien. Dommage qu&rsquo;il n&rsquo;y ait pas de revues de code mise en place dans l&rsquo;équipe, il était fier de lui sur ce coup-là et en aurait volontier discuté avec ses collègues.</p>
+<p>Quelques temps après <strong>Grenn</strong>, un autre jeune développeur arrivé également depuis peu chez <em>NightWatch</em>, doit développer une nouvelle fonctionnalité sur un module métier différent de celui de <strong>Jon</strong>. Cependant, entre temps le code de <strong>Jon</strong> a été <em>mergé</em> sur la branche principale du dépôt de code,  et il part d&rsquo;une base de code avec les modifications et les nouveaux modules introduits par <strong>Jon</strong>.</p>
 <p>Il se trouve que les différents modules métiers exposent différentes API REST en JSON. Et la nouvelle fonctionnalité que <strong>Grenn</strong> a à mettre en oeuvre implique des changements sur les données en JSON exposées. Il doit ainsi modifier les classes de sérialisation/désérialisation maintenant communes. Mais là, c&rsquo;est le drame, il y a des régressions dans tous les sens !!!</p>
 <p>L&rsquo;architecte, <strong>Alliser Thorne</strong>, fait une rapide enquête, et s&rsquo;aperçoit que quelqu&rsquo;un a factorisé les classes de sérialisation/désérialisation dans un module commun :</p>
 <blockquote>
-<p>Ah c&rsquo;est ce jeune imbécile de Jon Snow ! Encore un de ces jeunots qui sort de l&rsquo;école et se croit permis de tout changer dans le code !!! De toutes façons, ce gars, je ne l&rsquo;aime pas ! Qu&rsquo;est-ce qu&rsquo;il croyait le faraud, il y avait une raison à cette duplication de code ! J&rsquo;avais anticiper que les modules métiers puissent auraient à évoluer indépendamment !</p>
+<p>Ah c&rsquo;est ce jeune imbécile de Jon Snow ! Encore un de ces jeunots qui sort de l&rsquo;école et se croit permis de tout changer dans le code !!! De toutes façons, ce gars, je ne l&rsquo;aime pas ! Qu&rsquo;est-ce qu&rsquo;il croyait le faraud, il y avait une raison à cette duplication de code ! J&rsquo;avais anticipé que les modules métiers auraient à évoluer indépendamment !</p>
 </blockquote>
 <p>Lors d&rsquo;une réunion, il tombe sur <strong>Jon</strong>. <strong>Allister</strong> est un architecte acariâtre et présent depuis longtemps chez <em>NightWatch</em>, bref une institution : personne ne vient le contredire et tout le monde regarde ses pieds, pendant que <strong>Jon</strong> se prend une soufflante.</p>
 <p>Heureusement pour ce dernier <strong>Tyrion Lannister</strong>, un consultant indépendant mais influant auprès du directeur de projet, <strong>Jeor Mormont</strong>, vient à sa rescousse. Et il n&rsquo;a pas sa langue dans sa poche !</p>
 <blockquote>
-<p>Mon cher <strong>Alliser</strong>, je vous trouve bien dur envers ce jeune développeur, surtout que ce n&rsquo;est pas lui qui est en faute mais bien vous, le garant de l&rsquo;architecture et des bonnes pratiques ! Je ne reviendrai pas ici sur le fait que si vous aviez mis en place des revues de code, vous auriez vu le problème plutôt, mais comment un développeur pouvait-il savoir qu&rsquo;il y avait une raison à ce que ce code dupliqué ne soit pas à factoriser ? Etait-ce documenté quelque part ? La décision et les raisons de cette décision était-elle connue ? Son idée n&rsquo;a rien de mauvaise, même s&rsquo;il aurait dû communiquer sur ce sujet avec ces collègues&hellip; mais bon, on n&rsquo;est pas trop incité à la communication dans vos équipes !</p>
+<p>Mon cher <strong>Alliser</strong>, je vous trouve bien dur envers ce jeune développeur, surtout que ce n&rsquo;est pas lui qui est en faute mais bien vous, le garant de l&rsquo;architecture et des bonnes pratiques ! Je ne reviendrai pas ici sur le fait que si vous aviez mis en place des revues de code, vous auriez vu le problème plutôt, mais comment un développeur pouvait-il savoir qu&rsquo;il y avait une raison à ce que ce code dupliqué ne soit pas à factoriser ? Etait-ce documenté quelque part ? La décision et les raisons de cette décision étaient-elles connues ? Son idée n&rsquo;a rien de mauvaise, même s&rsquo;il aurait dû communiquer sur ce sujet avec ces collègues&hellip; mais bon, on n&rsquo;est pas trop incité à la communication dans vos équipes !</p>
 </blockquote>
 <p><strong>Alliser</strong> est rouge comme une pivoine et est sur le point d&rsquo;éclater ! Hargneusement, plein de morgue, il balance à <strong>Tyrion</strong> :</p>
 <blockquote>
-<p>C&rsquo;est facile pour vous <strong>M. Lannister</strong> de venir nous donner des leçons ! Mais depuis que nous sommes passés à l&rsquo;Agile, nous n&rsquo;avons plus de documents de conception ! Et de toutes façons, les jeunes sots que l&rsquo;on recrute savent à peine lire et ne compulsent pas les docs ! Et puis tout les développeurs le savaient ! Quand j&rsquo;ai pris cette décision, il y a un an, je l&rsquo;ai bien fait savoir à tout le monde !</p>
+<p>C&rsquo;est facile pour vous <strong>M. Lannister</strong> de venir nous donner des leçons ! Mais depuis que nous sommes passés à &ldquo;<em>l&rsquo;Agile</em>&quot;, nous n&rsquo;avons plus de documents de conception ! Et de toutes façons, les jeunes sots que l&rsquo;on recrute savent à peine lire et ne compulsent pas les docs ! Et puis tous les développeurs le savaient ! Quand j&rsquo;ai pris cette décision, il y a un an, je l&rsquo;ai bien fait savoir à tout le monde !</p>
 </blockquote>
 <p>Tyrion ne se démonte pas et rétorque avec un grand sourire :</p>
 <blockquote>
-<p>Peut-être que des développeurs il y a 1 an &ldquo;<em>le savaient</em>&quot;, mais il faut avouer qu&rsquo;avec un tech lead tel que vous le <em>turn-over</em> est important dans vos équipes. Je doute qu&rsquo;il reste beaucoup de développeurs qui &ldquo;<em>le savaient</em>&rdquo; :  je ne peux que constater que les bons éléments ne restent pas longtemps avec vous hélas. Et puis l&rsquo;Agilité n&rsquo;est pas une excuse pour ne pas documenter vos décisions d&rsquo;architecture afin qu&rsquo;on ne se retrouve pas dans des situations comme celle-ci ! Les <strong>ADR</strong> vous connaissez ?</p>
+<p>Peut-être que des développeurs il y a 1 an &ldquo;<em>le savaient</em>&quot;, mais il faut avouer qu&rsquo;avec un <em>tech lead</em> tel que vous le <em>turn-over</em> est important dans vos équipes. Je doute qu&rsquo;il reste beaucoup de développeurs qui &ldquo;<em>le savaient</em>&rdquo; :  je ne peux que constater que les bons éléments ne restent pas longtemps avec vous, hélas. Et puis &ldquo;<em>l&rsquo;Agilité</em>&rdquo; n&rsquo;est pas une excuse pour ne pas documenter vos décisions d&rsquo;architecture afin qu&rsquo;on ne se retrouve pas dans des situations comme celle-ci ! Les <strong>ADR</strong> vous connaissez ?</p>
 </blockquote>
 <p>Peu après, <strong>Alliser</strong> fut sorti en douceur du projet et placé sur une avant-vente. <strong>Jon</strong> décida de tempérer sa fougue de codeur. Il se dit qu&rsquo;il allait commencer par suivre la recommandation de Tyrion et regarder de plus près ces fameux <strong>ADR</strong> et de manière générale, s&rsquo;assurer de mettre en place les outils idoines pour améliorer la communication avec ces collègues.</p>
 <h2 id="les-adr-en-questions">Les ADR en questions</h2>
@@ -298,7 +299,7 @@ Cette documentation légère est adaptée à des projets agiles."/>
   <p class="copyright-item">
     <span class="item-title">Modifié</span>
     <span class="item-content">
-        2020-06-01
+        2021-11-04
         
     </span>
   </p>
@@ -310,6 +311,7 @@ Cette documentation légère est adaptée à des projets agiles."/>
           <a href="/tags/adr/">adr</a>
           <a href="/tags/architecture/">architecture</a>
           <a href="/tags/documentation/">documentation</a>
+          <a href="/tags/conception/">conception</a>
           </div>
       <nav class="post-nav">
         <a class="prev" href="/post/veille-semaine-20200601/">
