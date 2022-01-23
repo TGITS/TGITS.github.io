@@ -6,10 +6,37 @@
     <description>Recent content in Tags on The Geek In The Shell</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>fr-fr</language>
-    <lastBuildDate>Fri, 07 May 2021 14:27:47 +0200</lastBuildDate>
+    <lastBuildDate>Sun, 23 Jan 2022 11:20:41 +0100</lastBuildDate>
     
 	<atom:link href="https://tgits.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>dos</title>
+      <link>https://tgits.github.io/tags/dos/</link>
+      <pubDate>Sun, 23 Jan 2022 11:20:41 +0100</pubDate>
+      
+      <guid>https://tgits.github.io/tags/dos/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>encoding</title>
+      <link>https://tgits.github.io/tags/encoding/</link>
+      <pubDate>Sun, 23 Jan 2022 11:20:41 +0100</pubDate>
+      
+      <guid>https://tgits.github.io/tags/encoding/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>windows</title>
+      <link>https://tgits.github.io/tags/windows/</link>
+      <pubDate>Sun, 23 Jan 2022 11:20:41 +0100</pubDate>
+      
+      <guid>https://tgits.github.io/tags/windows/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>développement</title>

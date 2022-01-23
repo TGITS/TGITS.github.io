@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://tgits.github.io/post/quick-developer-notes-encoding-console/</loc>
+    <lastmod>2022-01-23T11:14:19+01:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://tgits.github.io/post/notes_apprentissage_python_tssf_flatmap/</loc>
     <lastmod>2021-05-07T14:27:47+02:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -192,20 +199,76 @@
   
   <url>
     <loc>https://tgits.github.io/categories/</loc>
-    <lastmod>2021-11-04T13:58:43+02:00</lastmod>
+    <lastmod>2022-01-23T11:14:19+01:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://tgits.github.io/tags/d%C3%A9veloppement/</loc>
-    <lastmod>2021-05-29T17:48:45+02:00</lastmod>
+    <loc>https://tgits.github.io/categories/developer-notes/</loc>
+    <lastmod>2022-01-23T11:14:19+01:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://tgits.github.io/tags/dos/</loc>
+    <lastmod>2022-01-23T11:14:19+01:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://tgits.github.io/categories/d%C3%A9veloppement/</loc>
+    <lastmod>2022-01-23T11:14:19+01:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://tgits.github.io/tags/encoding/</loc>
+    <lastmod>2022-01-23T11:14:19+01:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://tgits.github.io/post/</loc>
+    <lastmod>2022-01-23T11:14:19+01:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://tgits.github.io/tags/</loc>
+    <lastmod>2022-01-23T11:14:19+01:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://tgits.github.io/</loc>
+    <lastmod>2022-01-23T11:14:19+01:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://tgits.github.io/categories/tips/</loc>
+    <lastmod>2022-01-23T11:14:19+01:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://tgits.github.io/tags/windows/</loc>
+    <lastmod>2022-01-23T11:14:19+01:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://tgits.github.io/tags/d%C3%A9veloppement/</loc>
     <lastmod>2021-05-29T17:48:45+02:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -221,13 +284,6 @@
   <url>
     <loc>https://tgits.github.io/categories/notes-dapprentissage/</loc>
     <lastmod>2021-05-29T17:48:45+02:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://tgits.github.io/post/</loc>
-    <lastmod>2021-11-04T13:58:43+02:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -256,20 +312,6 @@
   <url>
     <loc>https://tgits.github.io/tags/python3/</loc>
     <lastmod>2021-05-29T17:48:45+02:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://tgits.github.io/tags/</loc>
-    <lastmod>2021-11-04T13:58:43+02:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://tgits.github.io/</loc>
-    <lastmod>2021-11-04T13:58:43+02:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>

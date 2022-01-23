@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Quick Developer Notes : changer l&#39;encodage de caractères dans la console DOS - The Geek In The Shell</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="TGITS" /><meta name="description" content="Problématique Récemment en travaillant sur un autre billet de blog, en utilisant JShell sous une invite de commande DOS, j&amp;rsquo;ai exécuté du code avec des affichages de texte qui contenaient des caractères accentuées.
+Cela donnait ce qui suit :
+Bref, ce n&amp;rsquo;est pas terrible, les caractères accentués ne sont pas correctement traduits même si c&amp;rsquo;est normal quand on y pense. En effet, l&amp;rsquo;encodage de caractère par défaut de l&amp;rsquo;invite de commandes n&amp;rsquo;est probablement pas adapté." /><meta name="keywords" content="TGITS, Développement, Java, Architecture" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.71.1 with theme even" />
+
+
+<link rel="canonical" href="https://tgits.github.io/post/quick-developer-notes-encoding-console/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.8c3cbcb0324c2bb4875ceccba4007cbad4b4ac8377f33af9953c3e7684534a50.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Quick Developer Notes : changer l&#39;encodage de caractères dans la console DOS" />
+<meta property="og:description" content="Problématique Récemment en travaillant sur un autre billet de blog, en utilisant JShell sous une invite de commande DOS, j&rsquo;ai exécuté du code avec des affichages de texte qui contenaient des caractères accentuées.
+Cela donnait ce qui suit :
+Bref, ce n&rsquo;est pas terrible, les caractères accentués ne sont pas correctement traduits même si c&rsquo;est normal quand on y pense. En effet, l&rsquo;encodage de caractère par défaut de l&rsquo;invite de commandes n&rsquo;est probablement pas adapté." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://tgits.github.io/post/quick-developer-notes-encoding-console/" />
+<meta property="article:published_time" content="2022-01-23T11:20:41+01:00" />
+<meta property="article:modified_time" content="2022-01-23T11:14:19+01:00" />
+<meta itemprop="name" content="Quick Developer Notes : changer l&#39;encodage de caractères dans la console DOS">
+<meta itemprop="description" content="Problématique Récemment en travaillant sur un autre billet de blog, en utilisant JShell sous une invite de commande DOS, j&rsquo;ai exécuté du code avec des affichages de texte qui contenaient des caractères accentuées.
+Cela donnait ce qui suit :
+Bref, ce n&rsquo;est pas terrible, les caractères accentués ne sont pas correctement traduits même si c&rsquo;est normal quand on y pense. En effet, l&rsquo;encodage de caractère par défaut de l&rsquo;invite de commandes n&rsquo;est probablement pas adapté.">
+<meta itemprop="datePublished" content="2022-01-23T11:20:41&#43;01:00" />
+<meta itemprop="dateModified" content="2022-01-23T11:14:19&#43;01:00" />
+<meta itemprop="wordCount" content="170">
+
+
+
+<meta itemprop="keywords" content="windows,dos,encoding," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Quick Developer Notes : changer l&#39;encodage de caractères dans la console DOS"/>
+<meta name="twitter:description" content="Problématique Récemment en travaillant sur un autre billet de blog, en utilisant JShell sous une invite de commande DOS, j&rsquo;ai exécuté du code avec des affichages de texte qui contenaient des caractères accentuées.
+Cela donnait ce qui suit :
+Bref, ce n&rsquo;est pas terrible, les caractères accentués ne sont pas correctement traduits même si c&rsquo;est normal quand on y pense. En effet, l&rsquo;encodage de caractère par défaut de l&rsquo;invite de commandes n&rsquo;est probablement pas adapté."/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">TGITS</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Blog</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">TGITS</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Blog</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Quick Developer Notes : changer l&#39;encodage de caractères dans la console DOS</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2022-01-23 </span>
+        <div class="post-category">
+            <a href="/categories/d%C3%A9veloppement/"> développement </a>
+            <a href="/categories/tips/"> tips </a>
+            <a href="/categories/developer-notes/"> developer notes </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contenu</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#problématique">Problématique</a></li>
+    <li><a href="#solution">Solution</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h2 id="problématique">Problématique</h2>
+<p>Récemment en travaillant sur un autre billet de blog, en utilisant JShell sous une invite de commande DOS, j&rsquo;ai exécuté du code avec des affichages de texte qui contenaient des caractères accentuées.</p>
+<p>Cela donnait ce qui suit :</p>
+<p><img src="../../img/quick-developer-notes/chcp/jshell-display-without-chcp.png" alt="Affichage (par défaut) de caractères accentués dans jshell"></p>
+<p>Bref, ce n&rsquo;est pas terrible, les caractères accentués ne sont pas correctement traduits même si c&rsquo;est normal quand on y pense.
+En effet, l&rsquo;encodage de caractère par défaut de l&rsquo;invite de commandes n&rsquo;est probablement pas adapté.
+Il faut donc voir s&rsquo;il est possible de modifier cet encodage.</p>
+<h2 id="solution">Solution</h2>
+<p>Après quelques recherches sur Internet, le moyen de changer cet encodage est d&rsquo;utiliser la commande <code>chcp</code>:</p>
+<ul>
+<li>pour changer vers de l&rsquo;UTF-8 il faut exécuter <code>chcp 65001</code>.</li>
+<li>pour changer vers du Windows 1252 il faut exécuter <code>chcp 1252</code>.</li>
+<li>Pour changer vers du IBM850, il faut exécuter <code>chcp 850</code></li>
+</ul>
+<p>Après avoir utilisé <code>chcp 65001</code> cela donne :</p>
+<p><img src="../../img/quick-developer-notes/chcp/jshell-display-after-chcp.png" alt="Affichage de caractères accentués dans jshell avant et après avoir utilisé chcp"></p>
+<p>La commande <code>chcp</code> sans paramètre permet de voir la page de code active dans l&rsquo;invite de commande DOS.
+Cette commande fonctionne aussi dans une invite de commandes Powershell.</p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Auteur</span>
+    <span class="item-content">TGITS</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">Modifié</span>
+    <span class="item-content">
+        2022-01-23
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/windows/">windows</a>
+          <a href="/tags/dos/">dos</a>
+          <a href="/tags/encoding/">encoding</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/post/notes_apprentissage_python_tssf_flatmap/">
+            <span class="next-text nav-default">Notes d&#39;apprentissage de Python : traitement des séquences avec un style fonctionnel - flatmap</span>
+            <span class="next-text nav-mobile">Suivant</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    (function() {
+      
+      
+      if (window.location.hostname === 'localhost') return;
+
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      var disqus_shortname = 'thegeekintheshell';
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "thegeekintheshell" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+<div class="social-links">
+      <a href="mailto:thegeekintheshell@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://twitter.com/_TGITS" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="https://www.linkedin.com/in/cvaudry/" class="iconfont icon-linkedin" title="linkedin"></a>
+      <a href="https://github.com/TGITS" class="iconfont icon-github" title="github"></a>
+      <a href="https://gitlab.com/TGITS" class="iconfont icon-gitlab" title="gitlab"></a>
+  <a href="https://tgits.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Propulsé par <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Thème - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2020 - 
+    2022
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">TGITS</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

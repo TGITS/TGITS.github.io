@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>dos on The Geek In The Shell</title>
+    <link>https://tgits.github.io/tags/dos/</link>
+    <description>Recent content in dos on The Geek In The Shell</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>fr-fr</language>
+    <lastBuildDate>Sun, 23 Jan 2022 11:20:41 +0100</lastBuildDate>
+    
+	<atom:link href="https://tgits.github.io/tags/dos/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Quick Developer Notes : changer l&#39;encodage de caractères dans la console DOS</title>
+      <link>https://tgits.github.io/post/quick-developer-notes-encoding-console/</link>
+      <pubDate>Sun, 23 Jan 2022 11:20:41 +0100</pubDate>
+      
+      <guid>https://tgits.github.io/post/quick-developer-notes-encoding-console/</guid>
+      <description>Problématique Récemment en travaillant sur un autre billet de blog, en utilisant JShell sous une invite de commande DOS, j&amp;rsquo;ai exécuté du code avec des affichages de texte qui contenaient des caractères accentuées.
+Cela donnait ce qui suit :
+Bref, ce n&amp;rsquo;est pas terrible, les caractères accentués ne sont pas correctement traduits même si c&amp;rsquo;est normal quand on y pense. En effet, l&amp;rsquo;encodage de caractère par défaut de l&amp;rsquo;invite de commandes n&amp;rsquo;est probablement pas adapté.</description>
+    </item>
+    
+  </channel>
+</rss>
