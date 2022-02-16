@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://tgits.github.io/post/quick-developer-notes-jshell/</loc>
+    <lastmod>2022-02-16T17:42:21+01:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://tgits.github.io/post/quick-developer-notes-encoding-console/</loc>
     <lastmod>2022-01-23T11:14:19+01:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -199,14 +206,77 @@
   
   <url>
     <loc>https://tgits.github.io/categories/</loc>
-    <lastmod>2022-01-23T11:14:19+01:00</lastmod>
+    <lastmod>2022-02-16T17:42:21+01:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://tgits.github.io/categories/developer-notes/</loc>
-    <lastmod>2022-01-23T11:14:19+01:00</lastmod>
+    <lastmod>2022-02-16T17:42:21+01:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://tgits.github.io/categories/d%C3%A9veloppement/</loc>
+    <lastmod>2022-02-16T17:42:21+01:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://tgits.github.io/tags/java/</loc>
+    <lastmod>2022-02-16T17:42:21+01:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://tgits.github.io/categories/java/</loc>
+    <lastmod>2022-02-16T17:42:21+01:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://tgits.github.io/tags/jshell/</loc>
+    <lastmod>2022-02-16T17:42:21+01:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://tgits.github.io/categories/outil/</loc>
+    <lastmod>2022-02-16T17:42:21+01:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://tgits.github.io/post/</loc>
+    <lastmod>2022-02-16T17:42:21+01:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://tgits.github.io/tags/</loc>
+    <lastmod>2022-02-16T17:42:21+01:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://tgits.github.io/</loc>
+    <lastmod>2022-02-16T17:42:21+01:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://tgits.github.io/categories/tips/</loc>
+    <lastmod>2022-02-16T17:42:21+01:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -219,42 +289,7 @@
   </url>
   
   <url>
-    <loc>https://tgits.github.io/categories/d%C3%A9veloppement/</loc>
-    <lastmod>2022-01-23T11:14:19+01:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://tgits.github.io/tags/encoding/</loc>
-    <lastmod>2022-01-23T11:14:19+01:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://tgits.github.io/post/</loc>
-    <lastmod>2022-01-23T11:14:19+01:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://tgits.github.io/tags/</loc>
-    <lastmod>2022-01-23T11:14:19+01:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://tgits.github.io/</loc>
-    <lastmod>2022-01-23T11:14:19+01:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://tgits.github.io/categories/tips/</loc>
     <lastmod>2022-01-23T11:14:19+01:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -508,20 +543,6 @@
   <url>
     <loc>https://tgits.github.io/categories/documentation/</loc>
     <lastmod>2021-11-04T13:58:43+02:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://tgits.github.io/tags/java/</loc>
-    <lastmod>2020-10-04T18:27:13+02:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://tgits.github.io/categories/java/</loc>
-    <lastmod>2020-10-04T18:27:13+02:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>

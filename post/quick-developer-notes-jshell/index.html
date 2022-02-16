@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Quick Developer Notes Jshell - The Geek In The Shell</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="TGITS" /><meta name="description" content="Besoin Vous avez besoin de tester ou d&amp;rsquo;expérimenter rapidement un bout de code Java et l&amp;rsquo;idéal serait d&amp;rsquo;avoir une REPL pour Java&amp;hellip; Cela tombe bien il y en a une depuis le JDK 9 ! Reste maintenant à connaître les commandes de base pour commencer à l&amp;rsquo;utiliser : c&amp;rsquo;est l&amp;rsquo;objet de ce billet qui est un petit aide-mémoire sur les options et les commandes de base.
+Lancement L&amp;rsquo;outil jshell fait partie des binaires distribués dans votre JDK et devait être dans le PATH si java et javac le sont." /><meta name="keywords" content="TGITS, Développement, Java, Architecture" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.71.1 with theme even" />
+
+
+<link rel="canonical" href="https://tgits.github.io/post/quick-developer-notes-jshell/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.8c3cbcb0324c2bb4875ceccba4007cbad4b4ac8377f33af9953c3e7684534a50.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Quick Developer Notes Jshell" />
+<meta property="og:description" content="Besoin Vous avez besoin de tester ou d&rsquo;expérimenter rapidement un bout de code Java et l&rsquo;idéal serait d&rsquo;avoir une REPL pour Java&hellip; Cela tombe bien il y en a une depuis le JDK 9 ! Reste maintenant à connaître les commandes de base pour commencer à l&rsquo;utiliser : c&rsquo;est l&rsquo;objet de ce billet qui est un petit aide-mémoire sur les options et les commandes de base.
+Lancement L&rsquo;outil jshell fait partie des binaires distribués dans votre JDK et devait être dans le PATH si java et javac le sont." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://tgits.github.io/post/quick-developer-notes-jshell/" />
+<meta property="article:published_time" content="2022-02-16T17:42:21+01:00" />
+<meta property="article:modified_time" content="2022-02-16T17:42:21+01:00" />
+<meta itemprop="name" content="Quick Developer Notes Jshell">
+<meta itemprop="description" content="Besoin Vous avez besoin de tester ou d&rsquo;expérimenter rapidement un bout de code Java et l&rsquo;idéal serait d&rsquo;avoir une REPL pour Java&hellip; Cela tombe bien il y en a une depuis le JDK 9 ! Reste maintenant à connaître les commandes de base pour commencer à l&rsquo;utiliser : c&rsquo;est l&rsquo;objet de ce billet qui est un petit aide-mémoire sur les options et les commandes de base.
+Lancement L&rsquo;outil jshell fait partie des binaires distribués dans votre JDK et devait être dans le PATH si java et javac le sont.">
+<meta itemprop="datePublished" content="2022-02-16T17:42:21&#43;01:00" />
+<meta itemprop="dateModified" content="2022-02-16T17:42:21&#43;01:00" />
+<meta itemprop="wordCount" content="1650">
+
+
+
+<meta itemprop="keywords" content="java,jshell," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Quick Developer Notes Jshell"/>
+<meta name="twitter:description" content="Besoin Vous avez besoin de tester ou d&rsquo;expérimenter rapidement un bout de code Java et l&rsquo;idéal serait d&rsquo;avoir une REPL pour Java&hellip; Cela tombe bien il y en a une depuis le JDK 9 ! Reste maintenant à connaître les commandes de base pour commencer à l&rsquo;utiliser : c&rsquo;est l&rsquo;objet de ce billet qui est un petit aide-mémoire sur les options et les commandes de base.
+Lancement L&rsquo;outil jshell fait partie des binaires distribués dans votre JDK et devait être dans le PATH si java et javac le sont."/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">TGITS</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Blog</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">TGITS</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Blog</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Quick Developer Notes Jshell</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2022-02-16 </span>
+        <div class="post-category">
+            <a href="/categories/d%C3%A9veloppement/"> développement </a>
+            <a href="/categories/tips/"> tips </a>
+            <a href="/categories/developer-notes/"> developer notes </a>
+            <a href="/categories/java/"> java </a>
+            <a href="/categories/outil/"> outil </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contenu</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#besoin">Besoin</a></li>
+    <li><a href="#lancement">Lancement</a>
+      <ul>
+        <li><a href="#connaître-la-version-de-jshell">Connaître la version de jshell</a></li>
+        <li><a href="#afficher-de-laide">Afficher de l'aide</a></li>
+        <li><a href="#préciser-un-classpath">Préciser un classpath</a></li>
+        <li><a href="#utiliser-des-fonctionnalités-en-preview-dans-le-jdk">Utiliser des fonctionnalités en preview dans le JDK</a></li>
+      </ul>
+    </li>
+    <li><a href="#commandes">Commandes</a>
+      <ul>
+        <li><a href="#sortir-de-jshell">Sortir de jshell</a></li>
+        <li><a href="#obtenir-de-laide">Obtenir de l'aide</a></li>
+        <li><a href="#complétion-de-commande">Complétion de commande</a></li>
+        <li><a href="#ouvrir-un-fichier">Ouvrir un fichier</a></li>
+        <li><a href="#lister-les-imports">Lister les imports</a></li>
+        <li><a href="#lister-les-snippets">Lister les snippets</a></li>
+        <li><a href="#lister-les-types-les-variables-et-les-méthodes">Lister les types, les variables et les méthodes</a></li>
+        <li><a href="#sauvegarder-les-snippets">Sauvegarder les snippets</a></li>
+        <li><a href="#manipuler-les-variables-denvironnements-de-la-session">Manipuler les variables d'environnements de la session</a></li>
+        <li><a href="#manipuler-lhistorique-des-commandes">Manipuler l'historique des commandes</a></li>
+      </ul>
+    </li>
+    <li><a href="#conclusion">Conclusion</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h2 id="besoin">Besoin</h2>
+<p>Vous avez besoin de tester ou d&rsquo;expérimenter rapidement un bout de code Java et l&rsquo;idéal serait d&rsquo;avoir une <a href="https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop">REPL</a> pour Java&hellip; Cela tombe bien il y en a une depuis le JDK 9 !
+Reste maintenant à connaître les commandes de base pour commencer à l&rsquo;utiliser : c&rsquo;est l&rsquo;objet de ce billet qui est un petit aide-mémoire sur les options et les commandes de base.</p>
+<h2 id="lancement">Lancement</h2>
+<p>L&rsquo;outil <code>jshell</code> fait partie des binaires distribués dans votre JDK et devait être dans le <strong>PATH</strong> si <code>java</code> et <code>javac</code> le sont.
+Pour le lancer il suffit donc normalement de saisir <code>jshell</code> dans une invite de commande ou un shell.</p>
+<p>Il y a tout un <a href="https://docs.oracle.com/en/java/javase/17/docs/specs/man/jshell.html#options-for-jshell">ensemble d&rsquo;options que l&rsquo;ont peut utiliser au lancement</a>, nous en voyons juste quelques unes ci-après qui me semblent les plus susceptibles d&rsquo;être utiles.</p>
+<h3 id="connaître-la-version-de-jshell">Connaître la version de jshell</h3>
+<p>Pour connaitre la version de JShell, vous avez les options <code>--version</code> qui ne fait qu&rsquo;afficher la version et <code>--show-version</code> qui affiche la version et lance <code>jshell</code></p>
+<p><img src="../../img/quick-developer-notes/jshell/display-version-jshell.png" alt="Affichage de la version de jshell"></p>
+<h3 id="afficher-de-laide">Afficher de l'aide</h3>
+<p>Vous avez bien sûr les classiques options pour afficher les options de l&rsquo;outil avec <code>--help</code>, <code>-h</code> ou <code>-?</code>, par exemple <code>jshell -?</code>.</p>
+<p><img src="../../img/quick-developer-notes/jshell/jshell-display-help.png" alt="Affichage des options de jshell"></p>
+<h3 id="préciser-un-classpath">Préciser un classpath</h3>
+<p>Il est possible de préciser des bibliothèques à inclure dans le <em>classpath</em>  avec l&rsquo;option <code>--class-path &lt;path&gt;</code>.
+Par exemple si je veux pouvoir importer des classes de la la bibliothèque <a href="https://commons.apache.org/proper/commons-math/">Apache Common Math</a>, le <code>jar</code> correspondant étant dane le répertoire <code>C:\tmp\javalib\</code> : <code>jshell --class-path .;C:\tmp\javalib\commons-math3-3.6.1.jar</code>.</p>
+<p><img src="../../img/quick-developer-notes/jshell/jshell-define-classpath.png" alt="Paramétrage du classpath au lancement de jshell"></p>
+<p>Ici on a également préciser le répertoire courant. Le séparateur est <code>;</code> sous Windows et est <code>:</code> sous système Unix.</p>
+<p>Il est possible de préciser un script de démarrage avec l&rsquo;option <code>--startup &lt;script démarrage&gt;</code>.
+Cela peut être un fichier local que vous avez écrit ou un des scripts prédéfinis que l&rsquo;on précise par une valeur spécifique :</p>
+<ul>
+<li><code>DEFAULT</code> : importe les bibliothèques standards de <strong>Java</strong> les plus communément utilisées. Et fait par défaut si on ne précise pas l&rsquo;option <code>--startup</code></li>
+<li><code>JAVASE</code> : importe l&rsquo;ensemble des bibliothèques standard de <strong>Java</strong>.</li>
+<li><code>PRINTING</code> : définit <code>print</code>, <code>println</code> et <code>printf</code> comme des fonctions directement utilisables dans <code>jshell</code>.</li>
+</ul>
+<p>Les scripts de démarrage sont joués lors du démarrage mais également lors de redémarrages de session qui peuvent être provoquées par certaines commandes que nous verrons par la suite.</p>
+<p><img src="../../img/quick-developer-notes/jshell/jshell-startup-option-1.png" alt="Paramétrage du classpath au lancement de jshell - exemple 1"></p>
+<p>On notera qu&rsquo;il n&rsquo;y a pas de différence aux niveaux des imports réalisés par défaut entre <code>jshell</code> et <code>jshell --startup DEFAULT</code>.</p>
+<p><img src="../../img/quick-developer-notes/jshell/jshell-startup-option-2.png" alt="Paramétrage du classpath au lancement de jshell - exemple 2"></p>
+<p>Si on lance <code>jshell</code> avec l&rsquo;option <code>--startup PRINTING</code>, on n&rsquo;a plus les imports par défaut. avec <code>PRINTING</code> on note qu&rsquo;on peut utiliser directement <code>print</code>.</p>
+<p>On peut renseigner plusieurs fois l&rsquo;option pour effectuer le chargement de plusieurs scripts au démarrage.</p>
+<p><img src="../../img/quick-developer-notes/jshell/jshell-startup-option-3.png" alt="Paramétrage du classpath au lancement de jshell - exemple 3"></p>
+<h3 id="utiliser-des-fonctionnalités-en-preview-dans-le-jdk">Utiliser des fonctionnalités en preview dans le JDK</h3>
+<p>Si vous voulez pouvoir tester avec <code>jshell</code> les fonctionnalités en <em>preview</em> de votre JDK, il suffit de le lancer avec l&rsquo;option <code>--enable-preview</code> : <code>jshell --enable-preview</code>.</p>
+<h2 id="commandes">Commandes</h2>
+<p>Une fois dans <code>jshell</code>, vous pouvez saisir du code Java directement.</p>
+<p>Les commandes de <code>jshell</code> (par exemple ouvrir un fichier) sont introduites par le caractère <code>/</code>.</p>
+<p>Il y a des nombreuses commandes possibles pouvant être paramétrées avec options.
+Comme pour les options de lancement, on se concentre ci-après sur les plus utiles (de mon point de vue) dans une utilisation quotidienne.</p>
+<h3 id="sortir-de-jshell">Sortir de jshell</h3>
+<p>Pour sortir de <code>jshell</code>, la commande est simplement <code>/exit</code>.</p>
+<p><img src="../../img/quick-developer-notes/jshell/jshell-command-exit.png" alt="Commande exit sous jshell"></p>
+<h3 id="obtenir-de-laide">Obtenir de l'aide</h3>
+<ul>
+<li><code>/help</code> pour afficher la liste des commandes et ce qui est nommé <em>subjects</em> dans <code>jshell</code>.</li>
+</ul>
+<p><img src="../../img/quick-developer-notes/jshell/jshell-command-help.png" alt="Commande help sous jshell"></p>
+<p><img src="../../img/quick-developer-notes/jshell/jshell-command-help-subjects.png" alt="Commande help sous jshell avec focus sur les subjects"></p>
+<ul>
+<li>Il est possible de passer à la suite de <code>help</code> un nom de commande (sans oublier le <code>/</code> devant) ou un om de subject. Par exemple
+<ul>
+<li><code>/help /exit</code></li>
+<li><code>/help /intro</code></li>
+</ul>
+</li>
+</ul>
+<p><img src="../../img/quick-developer-notes/jshell/jshell-command-help-with-exit-and-intro.png" alt="Commande help pour la commande /exit et le sujet intro"></p>
+<h3 id="complétion-de-commande">Complétion de commande</h3>
+<p>La complétion de commande fonctionne avec <code>TAB</code> après avoir commencé à saisir le caractère <code>/</code>.</p>
+<p><img src="../../img/quick-developer-notes/jshell/command-completion-with-tab.png" alt="Affichage de la commande help sous jshell"></p>
+<h3 id="ouvrir-un-fichier">Ouvrir un fichier</h3>
+<p>Pour ouvrir et faire exécuter un fichier de code java : <code>/open &lt;nom-fichier&gt;</code>.</p>
+<p>par exemple avec l&rsquo;invite de commande depuis laquelle <code>jshell</code> a été ouverte, positionnée dans le répertoire dans lequel le fichier  <code>perfectNumber.jsh</code> se trouve.</p>
+<p><code>/open perfectNumber.jsh</code></p>
+<p><img src="../../img/quick-developer-notes/jshell/perfectNumberScript.png" alt="Ouverture d&rsquo;un script dans jshell"></p>
+<p>Il est de bon ton d&rsquo;utiliser l&rsquo;extension <code>jsh</code> pour vos fichiers de scripts <code>jshell</code> mais ce n&rsquo;est pas une obligation. Ils peuvent avoir l&rsquo;extension <code>java</code> ou n&rsquo;importe quelle autre valeur.</p>
+<p>A toutes fins utiles, le script utilisé dans cet exemple.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">//A exécuter sosu JShell : /open perfectNumber.jsh
+</span><span class="c1"></span>
+<span class="kn">import</span> <span class="nn">java.util.function.IntPredicate</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.stream.Collectors</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.stream.IntStream</span><span class="o">;</span>
+
+<span class="kt">int</span> <span class="nf">sumOfDividers</span><span class="o">(</span><span class="kt">int</span> <span class="n">value</span><span class="o">){</span>
+  <span class="k">return</span> <span class="n">IntStream</span><span class="o">.</span><span class="na">rangeClosed</span><span class="o">(</span><span class="n">1</span><span class="o">,</span> <span class="n">value</span><span class="o">).</span><span class="na">filter</span><span class="o">(</span><span class="n">i</span> <span class="o">-&gt;</span> <span class="n">value</span> <span class="o">%</span> <span class="n">i</span> <span class="o">==</span> <span class="n">0</span><span class="o">).</span><span class="na">sum</span><span class="o">();</span>
+<span class="o">}</span>
+
+<span class="n">var</span> <span class="n">maxItems</span> <span class="o">=</span> <span class="n">100</span><span class="o">;</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Perfect Numbers up to : &#34;</span> <span class="o">+</span> <span class="n">maxItems</span><span class="o">);</span>
+<span class="n">String</span> <span class="n">list</span> <span class="o">=</span> <span class="n">IntStream</span><span class="o">.</span><span class="na">rangeClosed</span><span class="o">(</span><span class="n">1</span><span class="o">,</span> <span class="n">maxItems</span><span class="o">).</span><span class="na">filter</span><span class="o">(</span><span class="n">num</span> <span class="o">-&gt;</span> <span class="n">sumOfDividers</span><span class="o">(</span><span class="n">num</span><span class="o">)</span> <span class="o">==</span> <span class="n">2</span>  <span class="o">*</span> <span class="n">num</span><span class="o">).</span><span class="na">mapToObj</span><span class="o">(</span><span class="n">i</span> <span class="o">-&gt;</span> <span class="o">((</span><span class="n">Integer</span><span class="o">)</span> <span class="n">i</span><span class="o">).</span><span class="na">toString</span><span class="o">()).</span><span class="na">collect</span><span class="o">(</span><span class="n">Collectors</span><span class="o">.</span><span class="na">joining</span><span class="o">(</span><span class="s">&#34;, &#34;</span><span class="o">));</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;&gt;&gt; &#34;</span> <span class="o">+</span> <span class="n">list</span><span class="o">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Vous pouvez également utiliser la commande <code>/open</code> pour ouvrir les mêmes scripts par défaut que ceux qu&rsquo;on peut lancer au démarrage de <code>jshell</code> :</p>
+<ul>
+<li><code>DEFAULT</code> : importe les bibliothèques standards de <strong>Java</strong> les plus communément utilisées.</li>
+<li><code>JAVASE</code> : importer l&rsquo;ensemble des bibliothèques standard de <strong>Java</strong>.</li>
+<li><code>PRINTING</code> : définit <code>print</code>, <code>println</code> et <code>printf</code> comme des fonctions directement utilisables dans <code>jshell</code>.</li>
+</ul>
+<p><img src="../../img/quick-developer-notes/jshell/open-printing.png" alt="Ouverture d&rsquo;un script prédéfini dans jshell"></p>
+<h3 id="lister-les-imports">Lister les imports</h3>
+<p>Pour lister les imports la commande est <code>/imports</code>. Cela vous donne la liste des imports disponibles directement dans jshell.</p>
+<p><img src="../../img/quick-developer-notes/jshell/jshell-command-to-list-imports.png" alt="Lister les imports"></p>
+<p>Dans la copie d&rsquo;écran, on voit l&rsquo;effet de la commande suite au lancement sans options de <code>jshell</code>, avec les imports par défaut.
+Suite à l&rsquo;ouverture du script <code>perfectNumber.jsh</code> qui réalise 3 imports supplémentaires, on voit apparaître ces derniers dans la liste suite à l&rsquo;utilisation de la commande <code>imports</code>.</p>
+<h3 id="lister-les-snippets">Lister les snippets</h3>
+<p>Un <em>snippet</em> est un morceau de code saisi ou chargé dans <code>jshell</code>.
+Pour avoir la liste des snippets saisi : <code>/list</code></p>
+<p><img src="../../img/quick-developer-notes/jshell/list-snippets-1.png" alt="Lister les snippets sous jshell"></p>
+<p>Le code devant le snippet est un identifiant du <em>snippet</em>.
+Cet identifiant peut être utilisé dans certaines commandes pour le référencer comme <code>/drop</code> ou <code>/save</code> qui permettent respectivement de supprimer et de sauver des <em>snippets</em>.</p>
+<p>Avec <code>/list -all</code> on liste tous les <em>snippets</em> y compris ceux qui ont échoués et ceux exécutés au lancement de <code>jshell</code> (comme les imports effectués par défaut que l&rsquo;on voit dans la copie d&rsquo;écran ci-dessus).</p>
+<p><img src="../../img/quick-developer-notes/jshell/list-snippets-2.png" alt="Lister les snippets en erreur sous jshell"></p>
+<p>On notera que les identifiants des <em>snippets</em> exécutés au lancement et ceux en erreur, commence respectivement pas un <code>s</code> et un <code>e</code>.</p>
+<h3 id="lister-les-types-les-variables-et-les-méthodes">Lister les types, les variables et les méthodes</h3>
+<p>Il y a 3 commandes pour lister les types (classes, énumérations, interfaces, annotations), les variables et les méthodes définies dans la sessions <code>jshell</code> courante : <code>/types</code>, <code>/vars</code>et <code>/methods</code>.
+Pour chacune de ces 3 commandes vous pouvez utiliser l&rsquo;option <code>--all</code> pour avoir également ce qui a été chargé au démarrage (entre autre chose).</p>
+<p><img src="../../img/quick-developer-notes/jshell/types-vars-methods-commands.png" alt="Lister les types, variables et méthodes définis dans la session jshell"></p>
+<h3 id="sauvegarder-les-snippets">Sauvegarder les snippets</h3>
+<p>On peut sauvegarder un ou des snippets en précisant un identifiant <code>/save &lt;id1&gt; &lt;nom fichier&gt;</code> ou une plage d&rsquo;identifiants <code>/save &lt;id1&gt;-&lt;id2&gt; &lt;nom fichier&gt;</code>.
+Il faut alors l&rsquo;utiliser en conjonction avec la commande <code>/list</code>.</p>
+<p><img src="../../img/quick-developer-notes/jshell/jshell-save-command-id-span.png" alt="Sauvegarder des snippets en précisant une plage d&rsquo;identifiants"></p>
+<p>Le contenu du fichier obtenu dans l&rsquo;exemple en copie d&rsquo;écran est le suivant :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kn">import</span> <span class="nn">java.util.function.IntPredicate</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.stream.Collectors</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.stream.IntStream</span><span class="o">;</span>
+<span class="kt">int</span> <span class="nf">sumOfDividers</span><span class="o">(</span><span class="kt">int</span> <span class="n">value</span><span class="o">){</span>
+  <span class="k">return</span> <span class="n">IntStream</span><span class="o">.</span><span class="na">rangeClosed</span><span class="o">(</span><span class="n">1</span><span class="o">,</span> <span class="n">value</span><span class="o">).</span><span class="na">filter</span><span class="o">(</span><span class="n">i</span> <span class="o">-&gt;</span> <span class="n">value</span> <span class="o">%</span> <span class="n">i</span> <span class="o">==</span> <span class="n">0</span><span class="o">).</span><span class="na">sum</span><span class="o">();</span>
+<span class="o">}</span>
+<span class="n">var</span> <span class="n">maxItems</span> <span class="o">=</span> <span class="n">100</span><span class="o">;</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Perfect Numbers up to : &#34;</span> <span class="o">+</span> <span class="n">maxItems</span><span class="o">);</span>
+<span class="n">String</span> <span class="n">list</span> <span class="o">=</span> <span class="n">IntStream</span><span class="o">.</span><span class="na">rangeClosed</span><span class="o">(</span><span class="n">1</span><span class="o">,</span> <span class="n">maxItems</span><span class="o">).</span><span class="na">filter</span><span class="o">(</span><span class="n">num</span> <span class="o">-&gt;</span> <span class="n">sumOfDividers</span><span class="o">(</span><span class="n">num</span><span class="o">)</span> <span class="o">==</span> <span class="n">2</span>  <span class="o">*</span> <span class="n">num</span><span class="o">).</span><span class="na">mapToObj</span><span class="o">(</span><span class="n">i</span> <span class="o">-&gt;</span> <span class="o">((</span><span class="n">Integer</span><span class="o">)</span> <span class="n">i</span><span class="o">).</span><span class="na">toString</span><span class="o">()).</span><span class="na">collect</span><span class="o">(</span><span class="n">Collectors</span><span class="o">.</span><span class="na">joining</span><span class="o">(</span><span class="s">&#34;, &#34;</span><span class="o">));</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;&gt;&gt; &#34;</span> <span class="o">+</span> <span class="n">list</span><span class="o">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Il est également possible de sauvegarder l&rsquo;historique des commandes avec les snippets avec <code>save -history &lt;nom fichier&gt;</code> ou tous les snippets avec <code>save -all &lt;nom fichier&gt;</code></p>
+<p><img src="../../img/quick-developer-notes/jshell/jshell-save-command.png" alt="Sauvegarder des snippets en précisant une plage d&rsquo;identifiants"></p>
+<p>L&rsquo;exemple précédent donne respectivement les 2 fichiers suivants :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="o">/</span><span class="n">open</span> <span class="n">perfectNumber</span><span class="o">.</span><span class="na">jsh</span>
+<span class="o">/</span><span class="n">open</span> <span class="n">PRINTING</span>
+<span class="nf">print</span><span class="o">(</span><span class="s">&#34;Hello world!&#34;</span><span class="o">);</span>
+<span class="o">/</span><span class="n">save</span> <span class="o">-</span><span class="n">history</span> <span class="n">save</span><span class="o">-</span><span class="n">history</span><span class="o">.</span><span class="na">jsp</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kn">import</span> <span class="nn">java.io.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.math.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.net.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.nio.file.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.concurrent.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.function.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.prefs.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.regex.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.stream.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.function.IntPredicate</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.stream.Collectors</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.stream.IntStream</span><span class="o">;</span>
+<span class="kt">int</span> <span class="nf">sumOfDividers</span><span class="o">(</span><span class="kt">int</span> <span class="n">value</span><span class="o">){</span>
+	<span class="k">return</span> <span class="n">IntStream</span><span class="o">.</span><span class="na">rangeClosed</span><span class="o">(</span><span class="n">1</span><span class="o">,</span> <span class="n">value</span><span class="o">).</span><span class="na">filter</span><span class="o">(</span><span class="n">i</span> <span class="o">-&gt;</span> <span class="n">value</span> <span class="o">%</span> <span class="n">i</span> <span class="o">==</span> <span class="n">0</span><span class="o">).</span><span class="na">sum</span><span class="o">();</span>
+<span class="o">}</span>
+<span class="n">var</span> <span class="n">maxItems</span> <span class="o">=</span> <span class="n">100</span><span class="o">;</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Perfect Numbers up to : &#34;</span> <span class="o">+</span> <span class="n">maxItems</span><span class="o">);</span>
+<span class="n">String</span> <span class="n">list</span> <span class="o">=</span> <span class="n">IntStream</span><span class="o">.</span><span class="na">rangeClosed</span><span class="o">(</span><span class="n">1</span><span class="o">,</span> <span class="n">maxItems</span><span class="o">).</span><span class="na">filter</span><span class="o">(</span><span class="n">num</span> <span class="o">-&gt;</span> <span class="n">sumOfDividers</span><span class="o">(</span><span class="n">num</span><span class="o">)</span> <span class="o">==</span> <span class="n">2</span>  <span class="o">*</span> <span class="n">num</span><span class="o">).</span><span class="na">mapToObj</span><span class="o">(</span><span class="n">i</span> <span class="o">-&gt;</span> <span class="o">((</span><span class="n">Integer</span><span class="o">)</span> <span class="n">i</span><span class="o">).</span><span class="na">toString</span><span class="o">()).</span><span class="na">collect</span><span class="o">(</span><span class="n">Collectors</span><span class="o">.</span><span class="na">joining</span><span class="o">(</span><span class="s">&#34;, &#34;</span><span class="o">));</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;&gt;&gt; &#34;</span> <span class="o">+</span> <span class="n">list</span><span class="o">);</span>
+<span class="kt">void</span> <span class="nf">print</span><span class="o">(</span><span class="kt">boolean</span> <span class="n">b</span><span class="o">)</span> <span class="o">{</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">b</span><span class="o">);</span> <span class="o">}</span>
+<span class="kt">void</span> <span class="nf">print</span><span class="o">(</span><span class="kt">char</span> <span class="n">c</span><span class="o">)</span> <span class="o">{</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">c</span><span class="o">);</span> <span class="o">}</span>
+<span class="kt">void</span> <span class="nf">print</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">)</span> <span class="o">{</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">i</span><span class="o">);</span> <span class="o">}</span>
+<span class="kt">void</span> <span class="nf">print</span><span class="o">(</span><span class="kt">long</span> <span class="n">l</span><span class="o">)</span> <span class="o">{</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">l</span><span class="o">);</span> <span class="o">}</span>
+<span class="kt">void</span> <span class="nf">print</span><span class="o">(</span><span class="kt">float</span> <span class="n">f</span><span class="o">)</span> <span class="o">{</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">f</span><span class="o">);</span> <span class="o">}</span>
+<span class="kt">void</span> <span class="nf">print</span><span class="o">(</span><span class="kt">double</span> <span class="n">d</span><span class="o">)</span> <span class="o">{</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">d</span><span class="o">);</span> <span class="o">}</span>
+<span class="kt">void</span> <span class="nf">print</span><span class="o">(</span><span class="kt">char</span> <span class="n">s</span><span class="o">[])</span> <span class="o">{</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">s</span><span class="o">);</span> <span class="o">}</span>
+<span class="kt">void</span> <span class="nf">print</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">)</span> <span class="o">{</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">s</span><span class="o">);</span> <span class="o">}</span>
+<span class="kt">void</span> <span class="nf">print</span><span class="o">(</span><span class="n">Object</span> <span class="n">obj</span><span class="o">)</span> <span class="o">{</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">obj</span><span class="o">);</span> <span class="o">}</span>
+<span class="kt">void</span> <span class="nf">println</span><span class="o">()</span> <span class="o">{</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">();</span> <span class="o">}</span>
+<span class="kt">void</span> <span class="nf">println</span><span class="o">(</span><span class="kt">boolean</span> <span class="n">b</span><span class="o">)</span> <span class="o">{</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">b</span><span class="o">);</span> <span class="o">}</span>
+<span class="kt">void</span> <span class="nf">println</span><span class="o">(</span><span class="kt">char</span> <span class="n">c</span><span class="o">)</span> <span class="o">{</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">c</span><span class="o">);</span> <span class="o">}</span>
+<span class="kt">void</span> <span class="nf">println</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">)</span> <span class="o">{</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">i</span><span class="o">);</span> <span class="o">}</span>
+<span class="kt">void</span> <span class="nf">println</span><span class="o">(</span><span class="kt">long</span> <span class="n">l</span><span class="o">)</span> <span class="o">{</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">l</span><span class="o">);</span> <span class="o">}</span>
+<span class="kt">void</span> <span class="nf">println</span><span class="o">(</span><span class="kt">float</span> <span class="n">f</span><span class="o">)</span> <span class="o">{</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">f</span><span class="o">);</span> <span class="o">}</span>
+<span class="kt">void</span> <span class="nf">println</span><span class="o">(</span><span class="kt">double</span> <span class="n">d</span><span class="o">)</span> <span class="o">{</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">d</span><span class="o">);</span> <span class="o">}</span>
+<span class="kt">void</span> <span class="nf">println</span><span class="o">(</span><span class="kt">char</span> <span class="n">s</span><span class="o">[])</span> <span class="o">{</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">s</span><span class="o">);</span> <span class="o">}</span>
+<span class="kt">void</span> <span class="nf">println</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">)</span> <span class="o">{</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">s</span><span class="o">);</span> <span class="o">}</span>
+<span class="kt">void</span> <span class="nf">println</span><span class="o">(</span><span class="n">Object</span> <span class="n">obj</span><span class="o">)</span> <span class="o">{</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">obj</span><span class="o">);</span> <span class="o">}</span>
+<span class="kt">void</span> <span class="nf">printf</span><span class="o">(</span><span class="n">java</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">Locale</span> <span class="n">l</span><span class="o">,</span> <span class="n">String</span> <span class="n">format</span><span class="o">,</span> <span class="n">Object</span><span class="o">...</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="n">l</span><span class="o">,</span> <span class="n">format</span><span class="o">,</span> <span class="n">args</span><span class="o">);</span> <span class="o">}</span>
+<span class="kt">void</span> <span class="nf">printf</span><span class="o">(</span><span class="n">String</span> <span class="n">format</span><span class="o">,</span> <span class="n">Object</span><span class="o">...</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="n">format</span><span class="o">,</span> <span class="n">args</span><span class="o">);</span> <span class="o">}</span>
+<span class="n">print</span><span class="o">(</span><span class="s">&#34;Hello world!&#34;</span><span class="o">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>On notera qu&rsquo;avec le <code>/save -all</code> on sauvegarde tous les snippets mais pas les commandes.</p>
+<h3 id="manipuler-les-variables-denvironnements-de-la-session">Manipuler les variables d'environnements de la session</h3>
+<p>La commande <code>/env</code> sans options permet de visualiser les variables d&rsquo;environnement définis dans la session <code>jshell</code> comme le <em>classpath</em>.</p>
+<p><img src="../../img/quick-developer-notes/jshell/jshell-env-command-1.png" alt="Afficher les variables d&rsquo;environnement la session jshell"></p>
+<p>Cette commande vous permet également de définir de nouvelle variables d&rsquo;environnement pour la session, très utile pour modifier le <em>classpath</em> par exemple.</p>
+<p><img src="../../img/quick-developer-notes/jshell/jshell-env-command-2.png" alt="Définir le classpath avec la commande env"></p>
+<h3 id="manipuler-lhistorique-des-commandes">Manipuler l'historique des commandes</h3>
+<p>On peut <em>se déplacer</em> dans l&rsquo;historique des commandes d&rsquo;une session avec les flèches haut et bas.
+La commande <code>/history</code> permet d&rsquo;avoir la liste des commandes effectuées.</p>
+<p>Vous pouvez rechercher dans l&rsquo;historique avec la combinaison de touches <code>Ctrl + R</code>.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>C&rsquo;était un tour rapide et non-exhaustif : j&rsquo;ai laissé certaines commandes et options de côté.
+Ainsi il est possible<a href="https://docs.oracle.com/en/java/javase/17/jshell/editing.html#GUID-935C9CB4-6010-4BB2-AA6D-3679FFFB6A0D"> d&rsquo;éditer les snippets directement dans <code>jshell</code></a> par exemple.
+<a href="https://docs.oracle.com/en/java/javase/17/jshell/external-code.html#GUID-BF9E7C33-27FE-4D9D-82BD-FDAC8DF1D527"><code>jshell</code> supporte également les modules</a> au besoin.</p>
+<p>C&rsquo;est un outil intéressant pour expérimenter rapidement une idée ou tester un petit exemple ; on aurait tord de se priver de l&rsquo;utiliser.</p>
+<p>Pour aller plus loin, la documentation d&rsquo;Oracle est déjà très complète :</p>
+<ul>
+<li><a href="https://docs.oracle.com/en/java/javase/17/docs/specs/man/jshell.html">The jshell Command</a></li>
+<li><a href="https://docs.oracle.com/en/java/javase/17/jshell/introduction-jshell.html#GUID-630F27C8-1195-4989-9F6B-2C51D46F52C8">Java Shell User&rsquo;s Guide (Java 17)</a></li>
+</ul>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Auteur</span>
+    <span class="item-content">TGITS</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">Modifié</span>
+    <span class="item-content">
+        2022-02-16
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/java/">java</a>
+          <a href="/tags/jshell/">jshell</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/post/quick-developer-notes-encoding-console/">
+            <span class="next-text nav-default">Quick Developer Notes : changer l&#39;encodage de caractères dans la console DOS</span>
+            <span class="next-text nav-mobile">Suivant</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    (function() {
+      
+      
+      if (window.location.hostname === 'localhost') return;
+
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      var disqus_shortname = 'thegeekintheshell';
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "thegeekintheshell" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+<div class="social-links">
+      <a href="mailto:thegeekintheshell@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://twitter.com/_TGITS" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="https://www.linkedin.com/in/cvaudry/" class="iconfont icon-linkedin" title="linkedin"></a>
+      <a href="https://github.com/TGITS" class="iconfont icon-github" title="github"></a>
+      <a href="https://gitlab.com/TGITS" class="iconfont icon-gitlab" title="gitlab"></a>
+  <a href="https://tgits.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Propulsé par <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Thème - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2020 - 
+    2022
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">TGITS</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -6,10 +6,20 @@
     <description>Recent content in java on The Geek In The Shell</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>fr-fr</language>
-    <lastBuildDate>Sun, 31 May 2020 11:53:13 +0200</lastBuildDate>
+    <lastBuildDate>Wed, 16 Feb 2022 17:42:21 +0100</lastBuildDate>
     
 	<atom:link href="https://tgits.github.io/tags/java/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Quick Developer Notes Jshell</title>
+      <link>https://tgits.github.io/post/quick-developer-notes-jshell/</link>
+      <pubDate>Wed, 16 Feb 2022 17:42:21 +0100</pubDate>
+      
+      <guid>https://tgits.github.io/post/quick-developer-notes-jshell/</guid>
+      <description>Besoin Vous avez besoin de tester ou d&amp;rsquo;expérimenter rapidement un bout de code Java et l&amp;rsquo;idéal serait d&amp;rsquo;avoir une REPL pour Java&amp;hellip; Cela tombe bien il y en a une depuis le JDK 9 ! Reste maintenant à connaître les commandes de base pour commencer à l&amp;rsquo;utiliser : c&amp;rsquo;est l&amp;rsquo;objet de ce billet qui est un petit aide-mémoire sur les options et les commandes de base.
+Lancement L&amp;rsquo;outil jshell fait partie des binaires distribués dans votre JDK et devait être dans le PATH si java et javac le sont.</description>
+    </item>
     
     <item>
       <title>Tableau de fréquences en Java avec les Streams</title>

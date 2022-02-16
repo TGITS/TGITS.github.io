@@ -6,10 +6,28 @@
     <description>Recent content in Tags on The Geek In The Shell</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>fr-fr</language>
-    <lastBuildDate>Sun, 23 Jan 2022 11:20:41 +0100</lastBuildDate>
+    <lastBuildDate>Wed, 16 Feb 2022 17:42:21 +0100</lastBuildDate>
     
 	<atom:link href="https://tgits.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>java</title>
+      <link>https://tgits.github.io/tags/java/</link>
+      <pubDate>Wed, 16 Feb 2022 17:42:21 +0100</pubDate>
+      
+      <guid>https://tgits.github.io/tags/java/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>jshell</title>
+      <link>https://tgits.github.io/tags/jshell/</link>
+      <pubDate>Wed, 16 Feb 2022 17:42:21 +0100</pubDate>
+      
+      <guid>https://tgits.github.io/tags/jshell/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>dos</title>
@@ -269,15 +287,6 @@
       <pubDate>Mon, 01 Jun 2020 11:56:13 +0200</pubDate>
       
       <guid>https://tgits.github.io/tags/documentation/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>java</title>
-      <link>https://tgits.github.io/tags/java/</link>
-      <pubDate>Sun, 31 May 2020 11:53:13 +0200</pubDate>
-      
-      <guid>https://tgits.github.io/tags/java/</guid>
       <description></description>
     </item>
     
