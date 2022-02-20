@@ -247,6 +247,13 @@
   </url>
   
   <url>
+    <loc>https://tgits.github.io/categories/jshell/</loc>
+    <lastmod>2022-02-20T10:13:21+01:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://tgits.github.io/categories/outil/</loc>
     <lastmod>2022-02-20T10:13:21+01:00</lastmod>
     <changefreq>weekly</changefreq>

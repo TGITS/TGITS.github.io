@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>java on The Geek In The Shell</title>
-    <link>https://tgits.github.io/categories/java/</link>
-    <description>Recent content in java on The Geek In The Shell</description>
+    <title>jshell on The Geek In The Shell</title>
+    <link>https://tgits.github.io/categories/jshell/</link>
+    <description>Recent content in jshell on The Geek In The Shell</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>fr-fr</language>
     <lastBuildDate>Wed, 16 Feb 2022 17:42:21 +0100</lastBuildDate>
     
-	<atom:link href="https://tgits.github.io/categories/java/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://tgits.github.io/categories/jshell/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -19,16 +19,6 @@
       <guid>https://tgits.github.io/post/quick-developer-notes-jshell/</guid>
       <description>Besoin Vous avez besoin de tester ou d&amp;rsquo;expérimenter rapidement un bout de code Java et l&amp;rsquo;idéal serait d&amp;rsquo;avoir une REPL pour Java&amp;hellip; Cela tombe bien il y en a une depuis le JDK 9 ! Reste maintenant à connaître les commandes de base pour commencer à l&amp;rsquo;utiliser : c&amp;rsquo;est l&amp;rsquo;objet de ce billet qui est un petit aide-mémoire sur les options et les commandes de base.
 Lancement L&amp;rsquo;outil jshell fait partie des binaires distribués dans votre JDK et devait être dans le PATH si java et javac le sont.</description>
-    </item>
-    
-    <item>
-      <title>Tableau de fréquences en Java avec les Streams</title>
-      <link>https://tgits.github.io/post/frequencies_map/</link>
-      <pubDate>Sun, 31 May 2020 11:53:13 +0200</pubDate>
-      
-      <guid>https://tgits.github.io/post/frequencies_map/</guid>
-      <description>Pour contextualiser, je traduis ici par tableau de fréquences l&amp;rsquo;expression anglaise de frequencies map.
-Vous avez une liste d&amp;rsquo;éléments et vous voulez pour chaque élément connaître sa fréquence (le nombre de fois où il est présent dans cette liste) : ainsi à partir de cette liste d&amp;rsquo;éléments, vous désirez obtenir un tableau associatif dans lequel chaque clé est un élément de cet liste et est associé à sa fréquence dans la liste.</description>
     </item>
     
   </channel>
