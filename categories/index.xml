@@ -6,24 +6,15 @@
     <description>Recent content in Categories on The Geek In The Shell</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>fr-fr</language>
-    <lastBuildDate>Wed, 16 Feb 2022 17:42:21 +0100</lastBuildDate>
+    <lastBuildDate>Sat, 05 Mar 2022 11:42:33 +0100</lastBuildDate>
     
 	<atom:link href="https://tgits.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>developer notes</title>
-      <link>https://tgits.github.io/categories/developer-notes/</link>
-      <pubDate>Wed, 16 Feb 2022 17:42:21 +0100</pubDate>
-      
-      <guid>https://tgits.github.io/categories/developer-notes/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>développement</title>
       <link>https://tgits.github.io/categories/d%C3%A9veloppement/</link>
-      <pubDate>Wed, 16 Feb 2022 17:42:21 +0100</pubDate>
+      <pubDate>Sat, 05 Mar 2022 11:42:33 +0100</pubDate>
       
       <guid>https://tgits.github.io/categories/d%C3%A9veloppement/</guid>
       <description></description>
@@ -32,9 +23,18 @@
     <item>
       <title>java</title>
       <link>https://tgits.github.io/categories/java/</link>
-      <pubDate>Wed, 16 Feb 2022 17:42:21 +0100</pubDate>
+      <pubDate>Sat, 05 Mar 2022 11:42:33 +0100</pubDate>
       
       <guid>https://tgits.github.io/categories/java/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>developer notes</title>
+      <link>https://tgits.github.io/categories/developer-notes/</link>
+      <pubDate>Wed, 16 Feb 2022 17:42:21 +0100</pubDate>
+      
+      <guid>https://tgits.github.io/categories/developer-notes/</guid>
       <description></description>
     </item>
     
